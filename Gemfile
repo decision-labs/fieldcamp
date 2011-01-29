@@ -6,6 +6,8 @@ gem 'haml'
 
 group :test, :development do
   gem 'rspec'
+  gem 'rspec-rails'
+  gem 'haml-rails'
   gem 'rails3-generators'
   gem 'machinist', '>= 2.0.0.beta1'
 end

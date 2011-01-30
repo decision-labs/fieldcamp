@@ -136,3 +136,9 @@ p.addlink {
 #alert {
   color: red;
 }
+
+.locale_links {
+  text-align: right;
+  font-size:   0.80em;
+  color: #ccc;
+}

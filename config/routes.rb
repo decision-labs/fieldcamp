@@ -1,3 +1,9 @@
 ProjectManager::Application.routes.draw do
-  resources :people
+  scope "(:locale)" do
+    resources :projects
+    resources :people
+  end
+
+  root :to => 'application#index'
+  match '/:locale' => 'application#index'
 end

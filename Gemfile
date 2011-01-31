@@ -1,11 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'sqlite3', :require => 'sqlite3'
+gem 'sqlite3'
 gem 'pg'
 gem 'haml'
 gem 'nofxx-georuby', :require => 'geo_ruby'
-gem 'postgis_adapter'
+gem 'postgis_adapter', :git => 'git://github.com/nofxx/postgis_adapter.git'
 
 group :test, :development do
   gem 'rspec'

@@ -24,7 +24,7 @@ shpfile.each_with_index do |rec, i|
                          :description => "With help from partner agencies, Caritas Pakistan has since focused on helping communities with rehabilitation and reconstruction, including road building, small-scale business initiatives and education in disaster preparedness",
                          :start_date  => 1.year.ago,
                          :end_date    => Date.today + 1.year,
-                         :location_id => location
+                         :location_id => location.id
   )
 
   project.save!

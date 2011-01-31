@@ -4,6 +4,8 @@ gem 'rails', '3.0.3'
 gem 'sqlite3', :require => 'sqlite3'
 gem 'pg'
 gem 'haml'
+gem 'nofxx-georuby', :require => 'geo_ruby'
+gem 'postgis_adapter'
 
 group :test, :development do
   gem 'rspec'
@@ -15,4 +17,5 @@ group :test, :development do
   gem 'jquery-rails'
   gem 'rails3-generators'
   gem 'machinist', '>= 2.0.0.beta1'
+  gem 'dbf'
 end

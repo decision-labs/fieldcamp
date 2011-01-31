@@ -51,9 +51,13 @@ GEM
     cucumber-rails (0.3.2)
       cucumber (>= 0.8.0)
     culerity (0.2.15)
+    dbf (1.5.1)
+      activesupport (~> 3.0.0)
+      fastercsv (= 1.5.3)
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    fastercsv (1.5.3)
     ffi (0.6.3)
       rake (>= 0.8.7)
     gherkin (2.2.9)
@@ -78,9 +82,12 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    nofxx-georuby (1.9.0)
+      json_pure (>= 1.4.6)
     nokogiri (1.4.4)
     pg (0.10.1)
     polyglot (0.3.1)
+    postgis_adapter (0.7.9)
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
@@ -137,11 +144,14 @@ DEPENDENCIES
   capybara
   cucumber
   cucumber-rails
+  dbf
   haml
   haml-rails
   jquery-rails
   machinist (>= 2.0.0.beta1)
+  nofxx-georuby
   pg
+  postgis_adapter
   rails (= 3.0.3)
   rails3-generators
   rspec

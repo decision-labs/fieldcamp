@@ -10,41 +10,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110129212518) do
+ActiveRecord::Schema.define(:version => 20110130230751) do
 
-  create_table "geometry_columns", :id => false, :force => true do |t|
-    t.string  "f_table_catalog",   :limit => 256, :null => false
-    t.string  "f_table_schema",    :limit => 256, :null => false
-    t.string  "f_table_name",      :limit => 256, :null => false
-    t.string  "f_geometry_column", :limit => 256, :null => false
-    t.integer "coord_dimension",                  :null => false
-    t.integer "srid",                             :null => false
-    t.string  "type",              :limit => 30,  :null => false
+  create_table "locations", :force => true do |t|
+    t.column "name", :string
+    t.column "description", :text
+    t.column "admin_level_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "geom", :geometry, :srid => 4326, :null => false
   end
 
+  add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
+
   create_table "people", :force => true do |t|
-    t.string   "first_name", :null => false
-    t.string   "last_name",  :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.column "first_name", :string, :null => false
+    t.column "last_name", :string, :null => false
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "title",       :null => false
-    t.text     "description"
-    t.integer  "admin_id"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spatial_ref_sys", :id => false, :force => true do |t|
-    t.integer "srid",                      :null => false
-    t.string  "auth_name", :limit => 256
-    t.integer "auth_srid"
-    t.string  "srtext",    :limit => 2048
-    t.string  "proj4text", :limit => 2048
+    t.column "title", :string, :null => false
+    t.column "description", :text
+    t.column "admin_id", :integer
+    t.column "start_date", :date
+    t.column "end_date", :date
+    t.column "location_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
   end
 
 end

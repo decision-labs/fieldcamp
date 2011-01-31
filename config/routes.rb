@@ -1,4 +1,6 @@
 ProjectManager::Application.routes.draw do
+  resources :locations
+
   scope "(:locale)" do
     resources :projects
     resources :people

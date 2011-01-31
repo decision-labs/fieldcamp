@@ -6,6 +6,7 @@ class CreateProjects < ActiveRecord::Migration
       t.integer :admin_id
       t.date    :start_date
       t.date    :end_date
+      t.integer :location_id
 
       t.timestamps
     end

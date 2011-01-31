@@ -1,7 +1,8 @@
 module ProjectsHelper
-  def project_title_links(project)
+  def project_title_link(project)
     content_tag :h1 do
-      project.title
+      link_to h(project.title), project_path(project)
     end
+    
   end
 end

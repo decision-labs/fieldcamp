@@ -1,3 +1,63 @@
+- content_for :head do
+  = stylesheet_link_tag 'polymaps'
+  = javascript_include_tag 'polymaps.min', 'jquery-ui-1.8.6.custom.min'
+  :javascript
+    var po = org.polymaps;
+    $(function() {
+    var pathname = window.location.pathname;
+
+    var map = po.map()
+      .container(document.getElementById("map").appendChild(po.svg("svg")))
+      .center({lat: 30.375, lon: 69.345})
+      .zoom(5)
+      .add(po.interact())
+      .add(po.hash());
+
+    map.add(po.image()
+      .url(po.url("http://{S}tile.cloudmade.com"
+      + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
+      + "/998/256/{Z}/{X}/{Y}.png")
+      .hosts(["a.", "b.", "c.", ""])));
+
+    map.add(po.compass()
+      .pan("none"));
+
+    map.add(po.geoJson()
+      .url(pathname+'.json')
+      .id("province")
+      .on('load', setupPopup));
+    });
+
+    function setupPopup (e) {
+      $.each(e.features, function () {
+        addDialogue(this);
+      })
+    }
+
+    function addDialogue (feature) {
+      var element = feature.element;
+      var props = "My Province";           // feature.data.properties;
+      var markerUrl =  '/images/rails.png'; // props.marker;
+      var markerimage = po.svg("image");
+      markerimage.setAttribute("xlink:href", markerUrl);
+      markerimage.setAttribute("transform", element.getAttribute("transform"));
+      element.parentNode.appendChild(markerimage);
+
+      var qe = $(element);
+      // element.setAttribute("class", "dialog");
+      console.log("data %o", feature.data);
+
+      var title =  "My province"; // props.tags.join(", ");
+      // var newNode = $("<div><img src=\"" + markerUrl + "\"/>" +  props.description + "</div>");
+      var newNode = $("<div><img src=\"" + markerUrl + "\"/>My province is so pretty ... </div>");
+      $("body").append(newNode);
+
+      newNode.dialog({ autoOpen: false, title: title })
+      qe.click(function() {newNode.dialog('open')});
+    }
+
+#map
+
 %p
   %b Title:
   = @project.title

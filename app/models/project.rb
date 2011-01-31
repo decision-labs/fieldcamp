@@ -1,4 +1,4 @@
 class Project < ActiveRecord::Base
-  has_one :location
+  belongs_to :location
   validate :title, :presence => true
 end

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @event.title
+%p
+  %b Description:
+  = @event.description
+%p
+  %b Geom:
+  = @event.geom
+%p
+  %b Project:
+  = @event.project_id
+
+= link_to 'Edit', edit_project_event_path(@project, @event)
+\|
+= link_to 'Back', project_events_path(@project)

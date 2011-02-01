@@ -10,7 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130230751) do
+ActiveRecord::Schema.define(:version => 20110201214314) do
+
+  create_table "events", :force => true do |t|
+    t.column "title", :string
+    t.column "description", :text
+    t.column "project_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+    t.column "geom", :point, :srid => 4326, :with_z => true
+  end
+
+  add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
 
   create_table "locations", :force => true do |t|
     t.column "name", :string

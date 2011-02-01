@@ -1,6 +1,6 @@
 - content_for :head do
-  = stylesheet_link_tag 'polymaps'
-  = javascript_include_tag 'polymaps.min', 'jquery-ui-1.8.6.custom.min'
+  = stylesheet_link_tag 'polymaps', 'ui-lightness/jquery-ui'
+  = javascript_include_tag 'polymaps.min', 'jquery-ui.min'
   :javascript
     var po = org.polymaps;
     $(function() {

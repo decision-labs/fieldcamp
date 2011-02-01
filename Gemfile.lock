@@ -76,6 +76,9 @@ GEM
       activesupport (~> 3.0)
       haml (~> 3.0)
       railties (~> 3.0)
+    hoptoad_notifier (2.4.4)
+      activesupport
+      builder
     i18n (0.5.0)
     jquery-rails (0.2.6)
       rails (~> 3.0)
@@ -153,6 +156,7 @@ DEPENDENCIES
   dbf
   haml
   haml-rails
+  hoptoad_notifier
   jquery-rails
   machinist (>= 2.0.0.beta1)
   nofxx-georuby

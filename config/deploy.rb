@@ -60,3 +60,6 @@ after "deploy:update_code" do
   # deploy.load_seed
 end
 
+
+# require 'config/boot'
+require 'hoptoad_notifier/capistrano'

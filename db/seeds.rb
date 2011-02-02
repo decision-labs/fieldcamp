@@ -50,8 +50,8 @@ shpfile.each_with_index do |rec, i|
     e = project.events.build(events_attributes[i])
     point = location.geom.envelope.center
     point.with_z = true
-    point.x += rand * 0.01 * [1,-1][rand(2)]
-    point.y += rand * 0.01 * [1,-1][rand(2)]
+    point.x += rand * 0.5 * [1,-1][rand(2)]
+    point.y += rand * 0.5 * [1,-1][rand(2)]
     point.z = 0
     e.geom = point
     e.save!

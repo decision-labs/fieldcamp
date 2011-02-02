@@ -8,7 +8,12 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
-      format.json
+      format.json do
+        render(:layout => false, :json =>  {
+            :type => "FeatureCollection",
+            :features => @events.map(&:as_feature_hash) }
+        )
+      end
     end
   end
 
@@ -20,7 +25,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @event }
+      format.json  { render :json => @event.as_feature_hash }
     end
   end
 

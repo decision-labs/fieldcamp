@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json  { render :json => @project.location.geom.as_geojson }
+      format.json  { render(:layout => false, :json => @project.location.geom.as_geojson) }
     end
   end
 

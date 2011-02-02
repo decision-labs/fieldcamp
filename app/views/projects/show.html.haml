@@ -16,6 +16,13 @@
         province = new GeoJSON(geojson, null);
         province.setMap(map);
       });
+      
+      $.get(pathname+'/events.json', function(geojson) {
+        for (var i=0;i<geojson.geometries.length;i++){
+          event = new GeoJSON(geojson.geometries[i], null);
+          event.setMap(map);
+        }
+      });
     }
 
     function loadScript() {

@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'sqlite3'
 gem 'pg'
 gem 'haml'
 gem 'nofxx-georuby', :require => 'geo_ruby'
@@ -10,6 +9,7 @@ gem 'hoptoad_notifier'
 gem 'jquery-rails'
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'cucumber'

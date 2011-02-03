@@ -1,0 +1,15 @@
+!!! 5
+%html{:lang => I18n.locale.to_s}
+  %head
+    %meta{:charset => "UTF-8"}
+    = render :partial => 'shared/includes'
+    = yield :head
+  
+  %body
+    %page{data: {role: 'page'}}
+      %header{data: {role: 'header'}}
+        = yield :header
+      %content{data: {role: 'content'}}
+        = yield :content
+      %footer{data: {role: 'footer'}}
+        = yield :footer

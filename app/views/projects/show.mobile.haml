@@ -1,6 +1,7 @@
 - content_for :head do
   %meta{"name" => "viewport", :content => "initial-scale=1.0, user-scalable=no"}
   = stylesheet_link_tag 'google'
+  = javascript_include_tag 'GeoJSON', 'json-helpers'
   :javascript
     function detectBrowser() {
       var useragent = navigator.userAgent;
@@ -42,6 +43,7 @@
           });
         })
       });
+      google.maps.event.trigger(map, 'resize');
     }
 
     function loadScript() {
@@ -53,5 +55,9 @@
 
     window.onload = loadScript;
 
-%content
-  #map_canvas
+#header{data: {role: "header"}}
+  =link_to "Back", :back, :rel => "external"
+  %h1= @project.title
+
+#content{data: {role: "content"}, style: "height:100%"}
+  #map_canvas{style: "width:100%; height:100%"}

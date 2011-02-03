@@ -1,2 +1,6 @@
-%header
-  %h1 Projects
+#header{data: {role: "header"}}
+  %h1= t :projects
+#content{data: {role: "content"}}
+  %ul{data: {role: "listview"}}
+    - @projects.each do |project|
+      %li= link_to project.title, project, :rel => "external"

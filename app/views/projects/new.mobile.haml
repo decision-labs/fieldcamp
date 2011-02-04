@@ -1,0 +1,6 @@
+%div{ 'data-role' => 'header', 'data-position' => 'fixed' }
+  =link_to "Cancel", projects_path, :rel => 'external', 'data-icon' => 'delete'
+  %h1 New project
+
+%div{ 'data-role' => 'content' }
+  =render 'form'

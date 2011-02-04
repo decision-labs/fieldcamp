@@ -18,7 +18,8 @@
 
     function initialize() {
       detectBrowser();
-      var pathname = window.location.pathname;
+      // var pathname = window.location.pathname;
+      var pathname = "#{project_path(@project)}"
       var myLatlng = new google.maps.LatLng(30.375, 69.345);
       var myOptions = {
         zoom: 6,
@@ -56,7 +57,7 @@
     window.onload = loadScript;
 
 #header{data: {role: "header"}}
-  =link_to "Back", :back, :rel => "external"
+  =link_to "Projects", projects_path, :rel => "external", "data-icon" => "arrow-l"
   %h1= @project.title
 
 #content{data: {role: "content"}, style: "height:100%"}

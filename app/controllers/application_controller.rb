@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   end
 
   private  
-  def mobile_device?  
+  def mobile_device?
+    return false if request.format.to_s =~ /application\/json/i
     request.user_agent =~ /Mobile|webOS/  
   end  
 

@@ -10,5 +10,5 @@ ProjectManager::Application.routes.draw do
   end # scope(:locale)
 
   root :to => 'projects#index'
-  match '/:locale' => 'application#index'
+  match '/:locale' => 'projects#index'
 end

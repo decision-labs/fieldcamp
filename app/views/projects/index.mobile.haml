@@ -7,4 +7,4 @@
     - @projects.each do |project|
       %li
         = link_to project.title, project, :rel => "external"
-        = link_to 'edit project', edit_project_path(project), "data-icon" => "gear"
+        = link_to 'edit project', edit_project_path(project), "data-icon" => "gear", :rel => 'external'

@@ -61,9 +61,11 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to(@project, :notice => 'Project was successfully updated.') }
+        format.mobile { redirect_to(@project, :notice => 'Project was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.mobile { render :action => "edit" }
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end

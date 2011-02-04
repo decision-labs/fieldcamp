@@ -21,7 +21,7 @@
         $.each(geojson.features, function(i, feature) {
           var event_marker = new GeoJSON(feature.geometry, null);
           event_marker.setMap(map);
-          var content_string = renderJSON(feature);
+          var content_string = renderJSON(feature.properties);
           var info_window = new google.maps.InfoWindow({content: content_string});
           google.maps.event.addListener(event_marker, 'click', function() {
             info_window.open(map, event_marker);

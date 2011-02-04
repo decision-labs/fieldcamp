@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  has_mobile_fu
-  before_filter :set_locale
-  
+  before_filter :set_locale, :prepare_for_mobile
+
   def set_locale
     # if params[:locale] is nil then I18n.default_locale will be used
     I18n.locale = params[:locale] || I18n.default_locale
@@ -17,4 +16,14 @@ class ApplicationController < ActionController::Base
     flash[:notice] = t(:hello_flash)
     render :template => 'index'
   end
+
+  private  
+  def mobile_device?  
+    request.user_agent =~ /Mobile|webOS/  
+  end  
+
+  def prepare_for_mobile
+    request.format = :mobile if mobile_device?
+  end
+
 end

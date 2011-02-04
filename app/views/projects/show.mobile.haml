@@ -56,9 +56,9 @@
 
     window.onload = loadScript;
 
-#header{data: {role: "header"}}
+#header{"data-role" => "header"}
   =link_to "Projects", projects_path, :rel => "external", "data-icon" => "arrow-l"
   %h1= @project.title
 
-#content{data: {role: "content"}, style: "height:100%"}
+#content{"data-role" => "content", style: "height:100%"}
   #map_canvas{style: "width:100%; height:100%"}

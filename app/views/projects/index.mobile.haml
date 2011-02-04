@@ -1,9 +1,9 @@
-#header{data: {role: "header"}}
+#header{"data-role" => "header"}
   %h1= t :projects
   =link_to "New", new_project_path, :rel => "external", "data-icon" => "plus", :class => "ui-btn-right"
 
-#content{data: {role: "content"}}
-  %ul{data: {role: "listview"}}
+#content{"data-role" => "content"}
+  %ul{"data-role" => "listview"}
     - @projects.each do |project|
       %li
         = link_to project.title, project, :rel => "external"

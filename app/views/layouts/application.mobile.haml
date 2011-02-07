@@ -2,6 +2,9 @@
 %html{:lang => I18n.locale.to_s}
   %head
     %meta{:charset => "UTF-8"}
+    %meta{:name => "viewport", :content => "initial-scale=1.0, user-scalable=no"}
+    %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}
+    %link{:rel => 'apple-touch-icon', :href => '/apple-touch-icon.png', "size" => "200x200"}
     = render :partial => 'shared/includes'
     = yield :head
 

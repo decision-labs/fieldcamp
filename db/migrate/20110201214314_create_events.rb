@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string  :title
       t.text    :description
       t.point   :geom, :srid => 4326, :with_z => true
+      t.string  :address
       t.integer :project_id
 
       t.timestamps

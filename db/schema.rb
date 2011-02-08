@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20110201214314) do
   create_table "events", :force => true do |t|
     t.column "title", :string
     t.column "description", :text
+    t.column "address", :string
     t.column "project_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime

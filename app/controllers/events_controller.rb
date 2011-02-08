@@ -7,7 +7,6 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @events }
       format.json do
         render(:layout => false, :json =>  {
             :type => "FeatureCollection",
@@ -21,7 +20,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @project = Project.find(params[:project_id])
-    @event = Event.find(params[:id])
+    @event = @project.events.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,10 +31,11 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
+    @project = Project.find(params[:project_id])
     @event = Event.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.xml  { render :xml => @event }
     end
   end
@@ -48,11 +48,12 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.xml
   def create
-    @event = Event.new(params[:event])
+    @project = Project.find(params[:project_id])
+    @event = @project.events.build(params[:event])
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+        format.html { redirect_to(@project, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
@@ -64,7 +65,8 @@ class EventsController < ApplicationController
   # PUT /events/1
   # PUT /events/1.xml
   def update
-    @event = Event.find(params[:id])
+    @project = Project.find(params[:project_id])
+    @event = @project.events.find(params[:id])
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

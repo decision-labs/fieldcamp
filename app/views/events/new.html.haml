@@ -4,7 +4,7 @@
 
 :javascript
   $(document).ready(function () {
-    var lat, lon = 0;
+    var lat, lon, elev = 0;
     var map = null;
     var marker = null;
 
@@ -13,9 +13,19 @@
         if( pos.coords ){
           lat = pos.coords.latitude;
           lon = pos.coords.longitude;
+          if( pos.coords.altitude != null){
+            elev = pos.coords.altitude;
+          } else {
+            elev = (getElevationForLatLon(lat,lon) || 0);
+          }
         } else{
           lat = pos.latitude;
           lon = pos.longitude;
+          if( pos.altitude != null){
+            elev = pos.altitude;
+          }else{
+            elev = (getElevationForLatLon(lat,lon) || 0);
+          }
         }
 
         event = new google.maps.LatLng(lat, lon);
@@ -27,7 +37,7 @@
           animation: google.maps.Animation.DROP,
           position: event
         });
-        $('input#event_geom').val("POINT("+lon +" "+lat+")");
+        $('input#event_geom').val("POINT("+lon +" "+lat+" "+elev+")");
         // console.log("Location Found: lat="+lat + " lon="+lon );
       }
       function gpsFail () {
@@ -51,8 +61,9 @@
           }
           lon = results[0].geometry.location.lng()
           lat = results[0].geometry.location.lat()
+          elev = (getElevationForLatLon(lat,lon) || 0);
           // set the hidden geom field to wkt_geometry string
-          $('input#event_geom').val("POINT("+lon +" "+lat+")");
+          $('input#event_geom').val("POINT("+lon +" "+lat+" "+elev+")");
           // set address varified
           $('span.geocoding_status').html("Address verified");
           // center map to address and drop marker

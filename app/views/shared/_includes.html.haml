@@ -17,7 +17,7 @@
 
     // Connect to Web Socket.
     // Change host/port here to your own Web Socket server.
-    ws = new WebSocket("ws://#{Websocket_config[:socket_host]}:#{Websocket_config[:socket_port]}/");
+    ws = new WebSocket("ws://#{WebsocketConfig[:socket_host]}:#{WebsocketConfig[:socket_port]}/");
 
     // Set event handlers.
     ws.onopen = function() {

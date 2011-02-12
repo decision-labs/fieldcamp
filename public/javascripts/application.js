@@ -10,7 +10,7 @@ $(document).ready(function() {
 function getElevationForLatLon(lat,lon) {
   var elevator = new google.maps.ElevationService();
   var positionalRequest = {
-    'locations': new google.maps.LatLng(lat,lon)
+    'locations': [new google.maps.LatLng(lat,lon)]
   }
   elevator.getElevationForLocations(positionalRequest, function(results, status) {
     if (status == google.maps.ElevationStatus.OK) {

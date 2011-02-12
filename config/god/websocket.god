@@ -2,8 +2,8 @@ rails_env   = ENV['RAILS_ENV']  || "production"
 rails_root  = ENV['RAILS_ROOT'] || "/data/shoaib/caritas/current"
 
 God.watch do |w|
-  w.name     = "caritas-websocket"
-  w.group    = 'caritas-websocket'
+  w.name     = 'caritas-websocket-task'
+  w.group    = 'caritas-websocket-group'
   w.interval = 30.seconds
   w.env      = {"RAILS_ENV"=>rails_env}
   w.start    = "/opt/ruby-enterprise/bin/ruby #{rails_root}/script/websocket_server.rb"

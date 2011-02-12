@@ -1,7 +1,8 @@
 require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
+# require File.join(File.dirname(__FILE__), '..', 'lib', 'web_socket') # should be loaded when rails env is loaded
 
 websocket_config = YAML.load(File.read(Rails.root.join('config', 'websocket.yml')))
-config = websocket_config['default'].symbolize_keys
+WebSocketConfig = websocket_config['default'].symbolize_keys
 
 at_exit do
   begin
@@ -23,20 +24,35 @@ def write_pidfile
 end
 
 def debug_pp thing
-  pp thing if config[:socket_debug] || ENV['SOCKET_DEBUG']
+  pp thing if WebSocketConfig[:socket_debug] || ENV['SOCKET_DEBUG']
+end
+
+def process_message
+  if Caritas::WebSocket.length > 0
+    message = JSON::parse(Caritas::WebSocket.next)
+    if message
+      Caritas::WebSocket.broadcast(message)
+    end
+    EM.next_tick{process_message}
+  else
+    EM::Timer.new(1){process_message}
+  end
 end
 
 begin
   EM.run {
-    socket_params = { :host => config[:socket_host],
-                      :port => config[:socket_port],
-                      :debug =>config[:socket_debug] }
+    Caritas::WebSocket.initialize_channel
 
-    if config[:socket_secure] && config[:socket_private_key_location] && config[:socket_cert_chain_location]
+    socket_params = { :host => WebSocketConfig[:socket_host],
+                      :port => WebSocketConfig[:socket_port],
+                      :debug =>WebSocketConfig[:socket_debug] }
+
+
+    if WebSocketConfig[:socket_secure] && WebSocketConfig[:socket_private_key_location] && WebSocketConfig[:socket_cert_chain_location]
       socket_params[:secure] = true;
       socket_params[:tls_options] = {
-                    :private_key_file => config[:socket_private_key_location],
-                    :cert_chain_file  => config[:socket_cert_chain_location]
+                    :private_key_file => WebSocketConfig[:socket_private_key_location],
+                    :cert_chain_file  => WebSocketConfig[:socket_cert_chain_location]
       }
     end
 
@@ -45,12 +61,14 @@ begin
       ws.onopen {
         begin
           debug_pp ws.request
+          sid = Caritas::WebSocket.subscribe(ws)
 
           ws.onmessage { |msg| debug_pp msg }
 
           ws.onclose {
             begin
               debug_pp "Closing websocket"
+              Caritas::WebSocket.unsubscribe(sid)
             rescue
               debug_pp "Could not close socket"
             end
@@ -62,14 +80,13 @@ begin
         end
       }
     end
-    PID_FILE = (config[:socket_pidfile] ? config[:socket_pidfile] : 'tmp/pids/wss.pid')
+    PID_FILE = (WebSocketConfig[:socket_pidfile] ? WebSocketConfig[:socket_pidfile] : 'tmp/pids/wss.pid')
     write_pidfile
     puts "Websocket server started."
-    #process_message
+    process_message
   }
 rescue RuntimeError => e
   raise e unless e.message.include?("no acceptor")
   puts "Are you sure the websocket server isn't already running?"
-  puts "Just start thin with bundle exec thin start."
   Process.exit
 end

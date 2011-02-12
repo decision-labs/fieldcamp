@@ -55,7 +55,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        # TODO: should broadcast via websocket
+        Caritas::WebSocket.queue_for_broadcast(@event.as_feature_hash)
         format.html { redirect_to(@project, :notice => 'Event was successfully created.') }
         format.mobile { redirect_to(@project) }
       else

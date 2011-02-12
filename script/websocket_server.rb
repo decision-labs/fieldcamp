@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), '..', 'config', 'environment')
 # require File.join(File.dirname(__FILE__), '..', 'lib', 'web_socket') # should be loaded when rails env is loaded
 
 websocket_config = YAML.load(File.read(Rails.root.join('config', 'websocket.yml')))
-WebSocketConfig = websocket_config['default'].symbolize_keys
+WebSocketConfig = websocket_config[Rails.env].symbolize_keys
 
 at_exit do
   begin

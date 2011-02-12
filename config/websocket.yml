@@ -1,4 +1,4 @@
-default:
+default: &default
   # Websocket server setup, see script/websocket_server.rb
   # Enable extensive logging to websocket server.
   socket_debug : false
@@ -18,3 +18,10 @@ default:
   socket_secure: false
   socket_private_key_location: '/full/path/to/file.key'
   socket_cert_chain_location: '/full/path/to/cert_chain.crt'
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  socket_host: caritas.nomad-labs.com

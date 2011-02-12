@@ -21,4 +21,5 @@ group :test, :development do
   gem 'rails3-generators'
   gem 'machinist', '>= 2.0.0.beta1'
   gem 'dbf'
+  gem 'faker'
 end

@@ -172,6 +172,7 @@ DEPENDENCIES
   haml-rails
   hoptoad_notifier
   jquery-rails
+  json
   machinist (>= 2.0.0.beta1)
   nofxx-georuby
   pg

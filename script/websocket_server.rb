@@ -29,7 +29,7 @@ end
 
 def process_message
   if Caritas::WebSocket.length > 0
-    message = JSON::parse(Caritas::WebSocket.next)
+    message = JSON.parse(Caritas::WebSocket.next)
     if message
       Caritas::WebSocket.broadcast(message)
     end

@@ -8,6 +8,7 @@ gem 'postgis_adapter', :git => 'git://github.com/nofxx/postgis_adapter.git'
 gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket'
+gem 'redis'
 
 group :test, :development do
   gem 'sqlite3'

@@ -1,0 +1,12 @@
+defaults_development: &defaults_development
+  host: localhost
+  port: 6379
+
+production:
+  <<: *defaults_development
+
+development:
+  <<: *defaults_development
+
+test:
+  <<: *defaults_development

@@ -2,7 +2,10 @@ ssh_options[:forward_agent] = true
 set :rake,    '/opt/ruby-enterprise/bin/rake'
 set :bundle,  '/opt/ruby-enterprise/bin/bundle'
 set :ruby,    '/opt/ruby-enterprise/bin/ruby'
-set :svn,     '/usr/bin/svn'
+set :god_init, '/etc/init.d/god'
+set :god_bin,  '/opt/ruby-enterprise/bin/god'
+
+set :use_sudo,      false
 
 set :application, "caritas"
 set :repository,  "git@nomad-labs.dyndns.org:caritas.git"
@@ -14,9 +17,9 @@ role :web, "caritas.nomad-labs.com"                           # Your HTTP server
 role :app, "caritas.nomad-labs.com"                           # This may be the same as your `Web` server
 role :db,  "caritas.nomad-labs.com", :primary => true         # This is where Rails migrations will run
 
-
 namespace :deploy do
   task :start, :roles => :app do
+    god.reload_websocket
     run "touch #{current_release}/tmp/restart.txt"
   end
 
@@ -28,6 +31,7 @@ namespace :deploy do
 
   desc "Restart Application"
   task :restart, :roles => :app do
+    god.reload_websocket
     run "touch #{current_release}/tmp/restart.txt"
   end
 end
@@ -50,6 +54,27 @@ namespace :bundler do
   
   task :unlock, :roles => :app do
     run "cd #{current_release} && #{bundle} unlock;"
+  end
+end
+
+namespace :god do
+  task :restart, :roles => :app do
+    run "sudo #{god_init} restart"
+  end
+
+  desc "Reload config"
+  task :reload_websocket, :roles => :app do
+    run "sudo #{god_bin} load #{deploy_to}/current/config/god/websocket.god"
+  end
+
+  desc "Start god"
+  task :start, :roles => :app do
+    run "sudo #{god_init} start"
+  end
+
+  desc "Describe the status of the running tasks"
+  task :status, :roles => :app do
+    run "sudo #{god_bin} status"
   end
 end
 

@@ -9,7 +9,7 @@ module Caritas
     end
 
     def self.queue_for_broadcast(data)
-      redis.lpush(:caritas_websocket, {:data => data}.to_json)
+      redis.lpush(:caritas_websocket, data.to_json)
     end
 
     def self.next
@@ -24,8 +24,9 @@ module Caritas
       @channel ||= EM::Channel.new
     end
 
-    def self.broadcast(data)
-      @channel.push(data) if @channel
+    def self.broadcast(data) # passed data as string
+      # FIXME: some reason get's truned to hash notation when sent to browser
+      @channel.push(data.to_str) if @channel
     end
 
     def self.subscribe(ws)

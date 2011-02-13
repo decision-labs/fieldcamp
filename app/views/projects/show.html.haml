@@ -2,6 +2,8 @@
   = stylesheet_link_tag 'google'
   = javascript_include_tag 'GeoJSON', 'json-helpers'
   :javascript
+    var map;
+
     function initialize() {
       var pathname = window.location.pathname;
       var myLatlng = new google.maps.LatLng(30.375, 69.345);
@@ -10,7 +12,7 @@
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.TERRAIN
       }
-      var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
       $.getJSON(pathname+'.json', function(geojson) {
         province = new GeoJSON(geojson, null);
@@ -39,6 +41,25 @@
 
     window.onload = loadScript;
 
+    // ==================== Handle WebSocket messages ====================
+    $(document).ready(function() {
+
+      ws.onmessage = function(e) {
+        feature = JSON.parse(e.data);
+        if (feature.properties.project_id == "#{@project.id}") {
+          console.log(feature);
+          marker_opts = { animation: google.maps.Animation.DROP }
+          var event_marker = new GeoJSON(feature.geometry, marker_opts);
+          event_marker.setMap(map);
+          var content_string = renderJSON(feature.properties);
+          var info_window = new google.maps.InfoWindow({content: content_string});
+          google.maps.event.addListener(event_marker, 'click', function() {
+            info_window.open(map, event_marker);
+          });
+        }
+      }
+
+    });
 
 %h3
   =link_to "New event", new_project_event_path(@project)

@@ -5,7 +5,7 @@ God.watch do |w|
   w.name     = 'caritas-websocket-task'
   w.group    = 'caritas-websocket-group'
   w.interval = 30.seconds
-  w.env      = {"RAILS_ENV"=>rails_env}
+  w.env      = {"RAILS_ENV"=>rails_env,"RAILS_ROOT"=>rails_root}
   w.start    = "/opt/ruby-enterprise/bin/ruby #{rails_root}/script/websocket_server.rb"
   w.pid_file = "#{rails_root}/tmp/pids/caritas-wss.pid"
   w.stop = "kill `cat #{rails_root}/tmp/pids/caritas-wss.pid`"

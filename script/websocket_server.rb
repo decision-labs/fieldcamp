@@ -80,7 +80,7 @@ begin
         end
       }
     end
-    PID_FILE = (WebSocketConfig[:socket_pidfile] ? WebSocketConfig[:socket_pidfile] : 'tmp/pids/wss.pid')
+    PID_FILE = (WebSocketConfig[:socket_pidfile] ? WebSocketConfig[:socket_pidfile] : ENV['RAILS_ROOT']+'/tmp/pids/wss.pid')
     write_pidfile
     puts "Websocket server started."
     process_message

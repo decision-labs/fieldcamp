@@ -25,3 +25,4 @@ development:
 production:
   <<: *default
   socket_host: caritas.nomad-labs.com
+  socket_pidfile: "/data/shoaib/caritas/current/tmp/pids/caritas-wss.pid"

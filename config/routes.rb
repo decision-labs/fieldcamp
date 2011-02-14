@@ -1,4 +1,4 @@
-ProjectManager::Application.routes.draw do
+Caritas::Application.routes.draw do
   resources :locations
 
   scope "(:locale)" do

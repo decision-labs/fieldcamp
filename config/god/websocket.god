@@ -8,11 +8,12 @@ God.watch do |w|
   w.env      = {"RAILS_ENV"=>rails_env}
   w.start    = "/opt/ruby-enterprise/bin/ruby #{rails_root}/script/websocket_server.rb"
   w.pid_file = "#{rails_root}/tmp/pids/caritas-wss.pid"
+  w.stop = "kill `cat #{rails_root}/tmp/pids/caritas-wss.pid`"
 
   w.uid = 'shoaib'
   w.gid = 'shoaib'
 
-  # retart if memory gets too high
+  # restart if memory gets too high
   w.transition(:up, :restart) do |on|
     on.condition(:memory_usage) do |c|
       c.above = 350.megabytes

@@ -1,2 +1,7 @@
 .project
-  = project_title_link(project)
+  = project_title_links(project)
+
+  = render project.events
+
+  %p.addlink
+    = link_to 'Add a new event', new_project_event_path(project)

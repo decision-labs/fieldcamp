@@ -8,16 +8,20 @@
 
   .field
     = f.label :title
+    %br
     = f.text_field :title
   .field
     = f.label :description
+    %br
     = f.text_area :description
   .field
     = f.hidden_field :geom
   .field
     = f.label :address
+    %br
     = f.text_field :address
+    %span.geocode_link=link_to "Geocode this address", nil, :class => 'geocode_address'
+    %br
     %span.geocoding_status Address unvarified
-    =link_to "Geocode this address", nil, :class => 'geocode_address'
   .actions
     = f.submit 'Save'

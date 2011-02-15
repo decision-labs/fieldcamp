@@ -1,6 +1,7 @@
-%p
-  = event.title
-  %br
-  = event.description
-  %br
-  = event.geom.as_wkt
+.event{:class => "#{dom_class_first(event, event.project.events)} #{cycle('odd', 'even')}"}
+  .event-title= event.title
+  .event-description= event.description
+  / .status-title{:class => "#{dom_id(event.status)}"}=event.status.title
+  .time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:short)
+  = link_to_icon 'edit', edit_project_event_path(event.project, event)
+  = link_to_icon 'destroy', project_event_path(event.project, event), :confirm => "Do you want to delete '#{event.title}'?", :method => :delete

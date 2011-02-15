@@ -61,33 +61,26 @@
 
     });
 
-%h3
-  =link_to "New event", new_project_event_path(@project)
 
 #map_canvas
 
+.project
+  =project_title_links(@project)
+  .project-location= @project.location.name
+  .project-description= @project.description
+  .project-time
+    Start date:
+    = @project.start_date
+  .project-time
+    End date:
+    = @project.end_date
 
-%p
-  %b Title:
-  = @project.title
-%p
-  %b Description:
-  = @project.description
-%p
-  %b Location:
-  = @project.location.name
-%p
-  %b Start date:
-  = @project.start_date
-%p
-  %b End date:
-  = @project.end_date
+  .clear
 
-%h2 Recent Events
-= render :partial => 'events/event', :collection => @project.events
+  %p
+    %span.new-event-link=link_to "New event", new_project_event_path(@project)
 
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
-\|
-= link_to 'Events', project_events_path(@project)
+  %h2 Recent Events
+  = render :partial => 'events/event', :collection => @project.events
+
+= link_to raw('&larr; Back to Projects'), projects_path

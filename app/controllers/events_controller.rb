@@ -42,6 +42,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @project = Project.find(params[:project_id])
     @event = Event.find(params[:id])
   end
 

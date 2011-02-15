@@ -18,7 +18,7 @@ a {
   border-bottom: 1px solid #888;
   text-decoration: none;
 }
-a:visited { color: #999; }
+a:visited { color: #eee; }
 a:hover { color: #fff; }
 
 a.icon {
@@ -57,27 +57,27 @@ label {
   background-color: #373737;
 }
 
-.project .role {
+.project .event {
   position: relative;
   border-bottom: 1px solid #666;
 }
-.project .role.first {
+.project .event.first {
   border-top: 1px solid #666;
 }
 
-.project .role .person-name {
+.project .event .event-title {
   font-weight: bold;
   font-size: 24px;
   display: block;
   padding: 6px 0 4px 6px;
   color: #ccc;
 }
-.project .role .role-title {
+.project .event .event-description {
   display: block;
   color: #999;
   padding: 0 0 4px 6px;
 }
-.project .role .status-title {
+.project .event .status-title {
   text-transform: uppercase;
   font-size: 10px;
   font-weight: bold;
@@ -86,12 +86,12 @@ label {
   right: 60px;
   bottom: 2px;
 }
-.project .role .status-title.status_1 { color: #669; }
-.project .role .status-title.status_2 { color: #966; }
-.project .role .status-title.status_3 { color: #969; }
-.project .role .status-title.status_4 { color: #996; }
+.project .event .status-title.status_1 { color: #669; }
+.project .event .status-title.status_2 { color: #966; }
+.project .event .status-title.status_3 { color: #969; }
+.project .event .status-title.status_4 { color: #996; }
 
-.project .role .time {
+.project .event .time {
   position: absolute;
   font-size: 12px;
   color: #555;
@@ -99,20 +99,20 @@ label {
   right: 60px;
 }
 
-.project .role a {
+.project .event a {
   position: absolute;
   top: 10px;
 }
-.project .role a.edit {
+.project .event a.edit {
   right: 30px;
 }
-.project .role a.destroy {
+.project .event a.destroy {
   right: 10px;
 }
 
 
 
-.role {
+.event {
   display: block;
 }
 
@@ -141,4 +141,44 @@ p.addlink {
   text-align: right;
   font-size:   0.80em;
   color: #ccc;
+}
+
+.project .project-description{
+  display: block;
+  color: #999;
+  padding: 0 0 4px 6px;
+}
+
+.project .project-time {
+  position: relative;
+  font-size: 12px;
+  color: #888;
+  top: 11px;
+  /*right: 60px;*/
+  float: right;
+  padding-left: 20px;
+}
+
+.project .project-location{
+  color: #AAA;
+  padding: 0 0 4px 6px
+}
+
+div.clear {
+  clear: both;
+  width: 100%;
+  height: 1px;
+}
+
+.project .new-event-link a {
+  color: #AAA;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.geocoding_status{
+  color: red;
+}
+.geocode_link {
+
 }

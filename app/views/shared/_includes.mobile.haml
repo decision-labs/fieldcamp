@@ -15,6 +15,7 @@
   WEB_SOCKET_SWF_LOCATION = "vendor/web-socket-js/WebSocketMain.swf";
   // Set this to dump debug message from Flash to console.log:
   WEB_SOCKET_DEBUG = true;
+  WEB_SOCKET_SUPPORTED = true;
 
   // Everything below is the same as using standard WebSocket.
 
@@ -24,23 +25,24 @@
 
     // Connect to Web Socket.
     // Change host/port here to your own Web Socket server.
-    ws = new WebSocket("ws://#{WebsocketConfig[:socket_host]}:#{WebsocketConfig[:socket_port]}/");
+    try{
+      ws = new WebSocket("ws://#{WebsocketConfig[:socket_host]}:#{WebsocketConfig[:socket_port]}/");
 
-    // Set event handlers.
-    ws.onopen = function() {
-      console.log("onopen");
-    };
-    // ws.onmessage = function(e) {
-    //   // e.data contains received string.
-    //   console.log("onmessage");
-    // };
-    ws.onclose = function() {
-      console.log("onclose");
-    };
-    ws.onerror = function() {
-      console.log("onerror");
-    };
-
+      // Set event handlers.
+      ws.onopen = function() {
+        console.log("onopen");
+      };
+      ws.onclose = function() {
+        console.log("onclose");
+      };
+      ws.onerror = function() {
+        console.log("onerror");
+      };
+    }
+    catch(err){
+      ws = null;
+      WEB_SOCKET_SUPPORTED = false;
+    }
   }
 
   $(document).ready(function() {

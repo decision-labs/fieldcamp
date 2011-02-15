@@ -102,4 +102,6 @@
 
 = render 'form'
 
-= link_to 'Back', project_events_path(@project)
+= link_to raw("&larr; Back to Current Project (#{@project.title})"), project_path(@project)
+%br
+= link_to raw('&larr; Back to Projects'), projects_path

@@ -4,6 +4,40 @@
   :javascript
     var map;
 
+    function ToggleFullScreen(controlDiv, map) {
+
+      // Set CSS styles for the DIV containing the control
+      // Setting padding to 5 px will offset the control
+      // from the edge of the map
+      controlDiv.style.padding = '5px';
+
+      // Set CSS for the control border
+      var controlUI = document.createElement('DIV');
+      controlUI.style.backgroundColor = 'white';
+      controlUI.style.borderStyle = 'solid';
+      controlUI.style.borderWidth = '2px';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = 'Click to set the map to Home';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior
+      var controlText = document.createElement('DIV');
+      controlText.style.fontFamily = 'Arial,sans-serif';
+      controlText.style.fontSize = '12px';
+      controlText.style.paddingLeft = '4px';
+      controlText.style.paddingRight = '4px';
+      controlText.innerHTML = 'Toggle Fullscreen';
+      controlUI.appendChild(controlText);
+
+      // Setup the click event listeners: simply set the map to Chicago
+      google.maps.event.addDomListener(controlUI, 'click', function() {
+        $('#map').css({height: $(window).height(), width: $(document).width()});
+        $('#map_canvas').toggleClass("fullscreen");
+        google.maps.event.trigger(map, 'resize');
+      });
+    }
+
     function initialize() {
       var pathname = window.location.pathname;
       var myLatlng = new google.maps.LatLng(30.375, 69.345);
@@ -13,6 +47,12 @@
         mapTypeId: google.maps.MapTypeId.TERRAIN
       }
       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+      var fullScreenControlDiv = document.createElement('DIV');
+      var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
+
+      fullScreenControlDiv.index = 1;
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(fullScreenControlDiv);
 
       $.getJSON(pathname+'.json', function(geojson) {
         province = new GeoJSON(geojson, null);
@@ -58,11 +98,10 @@
           });
         }
       }
+    }); // document ready
 
-    });
-
-
-#map_canvas
+#map
+  #map_canvas
 
 .project
   =project_title_links(@project)

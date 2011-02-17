@@ -18,7 +18,7 @@
       controlUI.style.borderWidth = '2px';
       controlUI.style.cursor = 'pointer';
       controlUI.style.textAlign = 'center';
-      controlUI.title = 'Click to set the map to Home';
+      controlUI.title = 'Toggle fullscreen.';
       controlDiv.appendChild(controlUI);
 
       // Set CSS for the control interior
@@ -27,7 +27,7 @@
       controlText.style.fontSize = '12px';
       controlText.style.paddingLeft = '4px';
       controlText.style.paddingRight = '4px';
-      controlText.innerHTML = 'Toggle Fullscreen';
+      controlText.innerHTML = 'Toggle fullscreen';
       controlUI.appendChild(controlText);
 
       // Setup the click event listeners: simply set the map to Chicago
@@ -44,7 +44,11 @@
       var myOptions = {
         zoom: 6,
         center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+        mapTypeId: google.maps.MapTypeId.TERRAIN,
+        zoomControl: true,
+        zoomControlOptions: {
+              style: google.maps.ZoomControlStyle.SMALL
+        }
       }
       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
@@ -52,7 +56,7 @@
       var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
 
       fullScreenControlDiv.index = 1;
-      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(fullScreenControlDiv);
+      map.controls[google.maps.ControlPosition.LEFT_TOP].push(fullScreenControlDiv);
 
       $.getJSON(pathname+'.json', function(geojson) {
         province = new GeoJSON(geojson, null);

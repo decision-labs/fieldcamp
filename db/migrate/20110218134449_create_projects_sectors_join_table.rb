@@ -4,6 +4,8 @@ class CreateProjectsSectorsJoinTable < ActiveRecord::Migration
       t.integer :project_id
       t.integer :sector_id
     end
+    add_index :projects_sectors, :project_id
+    add_index :projects_sectors, :sector_id
   end
 
   def self.down

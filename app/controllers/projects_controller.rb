@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.xml
   def show
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:id], :include => [:location, :events])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,6 +41,8 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
+    @project.sectors  << Sector.find(params[:sectors])   rescue []
+    @project.partners << Partner.find(params[:partners]) rescue []
 
     respond_to do |format|
       if @project.save

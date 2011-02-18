@@ -9,7 +9,40 @@ if Rails.env != "production"
   Location.delete_all
   Project.delete_all
   Event.delete_all
+  Sector.delete_all
+  Partner.delete_all
 end
+
+partners = [
+  Partner.create!(:name => 'UNHCR'),
+  Partner.create!(:name => 'UNODC'),
+  Partner.create!(:name => 'ION'),
+  Partner.create!(:name => 'UNHRC'),
+  Partner.create!(:name => 'ILO'),
+  Partner.create!(:name => 'ICMC'),
+  Partner.create!(:name => 'JRS'),
+  Partner.create!(:name => 'COATNET'),
+  Partner.create!(:name => 'USG')
+]
+
+sectors  = [
+  Sector.create!(:name => 'Education'),
+  Sector.create!(:name => 'Food'),
+  Sector.create!(:name => 'Health'),
+  Sector.create!(:name => 'Logistics'),
+  Sector.create!(:name => 'Mine Action'),
+  Sector.create!(:name => 'Nutrition'),
+  Sector.create!(:name => 'Protection'),
+  Sector.create!(:name => 'Shelter'),
+  Sector.create!(:name => 'Water, Sanitation and Hygiene (WASH)'),
+  Sector.create!(:name => 'Agriculture'),
+  Sector.create!(:name => 'Camp Coordination / Management'),
+  Sector.create!(:name => 'Community Restoration / Early Recovery'),
+  Sector.create!(:name => 'Emergency Telecommunications'),
+  Sector.create!(:name => 'Information Management'),
+  Sector.create!(:name => 'Gender Based Violence'),
+  Sector.create!(:name => 'Child Protection')
+]
 
 project_titles = ["Education", "Agriculture", "Health", "Flood Relief",
                   "Earthquake Relief", "Reconstruction", "Drought Relief", "Maternal Health"]
@@ -43,10 +76,12 @@ shpfile.each_with_index do |rec, i|
                          :location_id => location.id
   )
 
+  project.sectors  << sectors.shuffle![0..1]
+  project.partners << partners.shuffle![0..1]
   project.save!
 
   3.times do |i|
-    puts "\nbuilding event...\n"
+    # puts "\nbuilding event...\n"
     e = project.events.build(events_attributes[i])
     point = location.geom.envelope.center
     point.with_z = true

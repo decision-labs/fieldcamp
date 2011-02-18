@@ -111,7 +111,12 @@
   .project-time
     End date:
     = @project.end_date
-
+  .project-partners
+    Partners:
+    = render :partial => 'partner', :collection => @project.partners
+  .project-sectors
+    Sectors:
+    = render :partial => 'sector', :collection => @project.sectors
   .clear
 
   %p

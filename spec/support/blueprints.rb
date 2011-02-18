@@ -19,3 +19,11 @@ end
 Event.blueprint do
   # Attributes here
 end
+
+Sector.blueprint do
+  # Attributes here
+end
+
+Partner.blueprint do
+  # Attributes here
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201214314) do
+ActiveRecord::Schema.define(:version => 20110218134449) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -35,6 +35,18 @@ ActiveRecord::Schema.define(:version => 20110201214314) do
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
 
+  create_table "partners", :force => true do |t|
+    t.column "name", :string
+    t.column "description", :text
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "partners_projects", :id => false, :force => true do |t|
+    t.column "partner_id", :integer
+    t.column "project_id", :integer
+  end
+
   create_table "people", :force => true do |t|
     t.column "first_name", :string, :null => false
     t.column "last_name", :string, :null => false
@@ -49,6 +61,18 @@ ActiveRecord::Schema.define(:version => 20110201214314) do
     t.column "start_date", :date
     t.column "end_date", :date
     t.column "location_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  create_table "projects_sectors", :id => false, :force => true do |t|
+    t.column "project_id", :integer
+    t.column "sector_id", :integer
+  end
+
+  create_table "sectors", :force => true do |t|
+    t.column "name", :string
+    t.column "description", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end

@@ -1,0 +1,14 @@
+/ Partners
+
+#header{'data-role' => 'header'}
+  %h1= t(:partners)
+  =link_to t(:new), new_partner_path, 'data-icon' => 'plus', :class => 'ui-btn-right'
+
+#content{'data-role' => 'content'}
+  %ul{'data-role' => 'listview'}
+    - @partners.each do |partner|
+      %li
+        = link_to partner.name, partner
+        = link_to t(:edit), edit_partner_path(partner), 'data-icon' => 'gear'
+
+= render 'footer'

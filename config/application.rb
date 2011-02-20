@@ -43,6 +43,8 @@ module Caritas
       g.template_engine :haml
       g.test_framework :rspec
       g.fixture_replacement :machinist
+      g.view_specs false
+      g.helper_specs false
     end
   end
 end

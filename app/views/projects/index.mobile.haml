@@ -1,10 +1,11 @@
-#header{"data-role" => "header"}
-  %h1= t :projects
-  =link_to "New", new_project_path, :rel => "external", "data-icon" => "plus", :class => "ui-btn-right"
+/ Projects
 
-#content{"data-role" => "content"}
-  %ul{"data-role" => "listview"}
-    - @projects.each do |project|
-      %li
-        = link_to project.title, project, :rel => "external"
-        = link_to 'edit project', edit_project_path(project), "data-icon" => "gear", :rel => 'external'
+#header{'data-role' => 'header'}
+  %h1= t(:projects)
+  =link_to t(:new), new_project_path, 'data-icon' => 'plus', :class => 'ui-btn-right'
+
+#content{'data-role' => 'content'}
+  %ul{'data-role' => 'listview'}
+    = render @projects
+
+= render 'footer'

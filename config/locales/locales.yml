@@ -6,15 +6,27 @@ en:
   hello_flash: Hello Flash
   project: Project
   projects: Projects
+  sectors: Sectors
+  partners: Partners
+  new: New
+  edit: Edit
 
 de:
   hello_world: Hallo Welt
   hello_flash: Hallo Flash
   project: Projekt
   projects: Projekte
+  sectors: Branchen
+  partners: Partner
+  new: Neu
+  edit: Bearbeiten
 
 ur:
   hello_world: ہیلو دنیا والو
   hello_flash: ہیلو فلیش
   project: پروجیکٹ
   projects: پراجیکٹس
+  sectors: شعبہ
+  partners: شریک
+  new: نیا
+  edit: ترمیم

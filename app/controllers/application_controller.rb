@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     { :locale => I18n.locale }
   end
 
-  def index
-    flash[:notice] = t(:hello_flash)
-    render :template => 'index'
-  end
-
   private  
   def mobile_device?
     return false if request.format.to_s =~ /application\/json/i

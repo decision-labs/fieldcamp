@@ -1,21 +1,8 @@
 - content_for :head do
   = stylesheet_link_tag 'map'
-  = javascript_include_tag 'vendor/GeoJSON', 'json-helpers'
+  = javascript_include_tag 'vendor/GeoJSON', 'map-helpers'
   :javascript
     var map;
-
-    function detectBrowser() {
-      var useragent = navigator.userAgent;
-      var mapdiv = document.getElementById("map_canvas");
-
-      if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) {
-        mapdiv.style.width = '100%';
-        mapdiv.style.height = '100%';
-      } else {
-        mapdiv.style.width = '600px';
-        mapdiv.style.height = '600px';
-      }
-    }
 
     function initialize() {
       detectBrowser();

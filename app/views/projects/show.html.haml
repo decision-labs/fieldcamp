@@ -1,36 +1,8 @@
 - content_for :head do
   = stylesheet_link_tag 'map'
-  = javascript_include_tag 'vendor/GeoJSON', 'json-helpers'
+  = javascript_include_tag 'vendor/GeoJSON', 'map-helpers'
   :javascript
     var map;
-
-    function ToggleFullScreen(controlDiv, map) {
-
-      // Set CSS styles for the DIV containing the control
-      // Setting padding to 5 px will offset the control
-      // from the edge of the map
-      controlDiv.style.padding = '5px';
-
-      // Set CSS for the control border
-      var controlUI = document.createElement('DIV');
-      controlUI.style.cursor = 'pointer';
-      controlUI.style.textAlign = 'center';
-      controlUI.title = 'Toggle fullscreen.';
-      controlDiv.appendChild(controlUI);
-
-      var fullscreenIcon = document.createElement('IMG');
-      fullscreenIcon.src = '/images/icons/fullscreen.png';
-      fullscreenIcon.style.paddingLeft = '29px';
-
-      controlUI.appendChild(fullscreenIcon);
-
-      // Setup the click event listeners: simply set the map to Chicago
-      google.maps.event.addDomListener(controlUI, 'click', function() {
-        $('#map').css({height: $(window).height(), width: $(document).width()});
-        $('#map_canvas').toggleClass("fullscreen");
-        google.maps.event.trigger(map, 'resize');
-      });
-    }
 
     function initialize() {
       var pathname = window.location.pathname;

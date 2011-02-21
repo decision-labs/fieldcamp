@@ -47,14 +47,14 @@ de:
   editing_project: Bearbeiten von Projekt
   sectors: Branchen
   partners: Partner
-  new_event: Neuer Termin
-  editing_event: Bearbeiten von Event
-  recent_events: Aktuelle Veranstaltungen
-  add_a_new_event: Fügen Sie ein neues Ereignis
+  new_event: Neues Ereignis
+  editing_event: Ereignis bearbeiten
+  recent_events: Aktuelle Ereignisse
+  add_a_new_event: Fügen Sie ein neues Ereignis hinzu
   create_a_new_project: Erstellen eines neuen Projekts
   back_to_current_project: Zurück zum aktuellen Projekt
   back_to_projects: Zurück zu Projekte
-  use_current_location: Verwenden Sie Aktueller Standort
+  use_current_location: Verwenden Sie aktuellen Standort
   geocode_this_address: Geocode diese Adresse
 
 ur:

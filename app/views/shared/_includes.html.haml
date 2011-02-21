@@ -1,44 +1,7 @@
 = stylesheet_link_tag 'application', 'scaffold'
 = stylesheet_link_tag 'print', :media => 'print'
 = javascript_include_tag :defaults
-/ socket-io TODO: move to jammit vendor
 = javascript_include_tag "vendor/web-socket-js/swfobject", "vendor/web-socket-js/FABridge", "vendor/web-socket-js/web_socket"
-
-:javascript
-  // Set URL of your WebSocketMain.swf here:
-  WEB_SOCKET_SWF_LOCATION = "/javascripts/vendor/web-socket-js/WebSocketMain.swf";
-  // Set this to dump debug message from Flash to console.log:
-  WEB_SOCKET_DEBUG = true;
-
-  // Everything below is the same as using standard WebSocket.
-
-  var ws;
-
-  function initWebsocket() {
-
-    // Connect to Web Socket.
-    // Change host/port here to your own Web Socket server.
-    ws = new WebSocket("ws://#{WebsocketConfig[:socket_host]}:#{WebsocketConfig[:socket_port]}/");
-
-    // Set event handlers.
-    ws.onopen = function() {
-      console.log("onopen");
-    };
-    // ws.onmessage = function(e) {
-    //   // e.data contains received string.
-    //   console.log("onmessage");
-    // };
-    ws.onclose = function() {
-      console.log("onclose");
-    };
-    ws.onerror = function() {
-      console.log("onerror");
-    };
-
-  }
-
-  $(document).ready(function() {
-    initWebsocket();
-  });
+= render 'js/websocket_js'
 
 = csrf_meta_tag

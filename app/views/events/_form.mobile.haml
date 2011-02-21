@@ -18,6 +18,6 @@
     = f.label :address
     = f.text_field :address
     %span.geocoding_status Address unvarified
-    =link_to "Geocode this address", nil, :class => 'geocode_address'
+    =link_to t(:geocode_this_address), nil, :class => 'geocode_address'
   .actions
-    = f.submit 'Save'
+    = f.submit t(:save)

@@ -1,7 +1,8 @@
 %div{ 'data-role' => 'header', 'data-position' => 'fixed' }
-  =link_to "Cancel", projects_path, :rel => 'external', 'data-icon' => 'delete'
-  %h1 New project
-  = link_to 'Save', '#', :rel => 'external', 'data-icon' => 'check', :id => 'save_button'
+  =link_to t(:cancel), projects_path, :rel => 'external', 'data-icon' => 'delete'
+  %h1
+    = t(:new_project)
+  = link_to t(:save), '#', :rel => 'external', 'data-icon' => 'check', :id => 'save_button'
 
 %div{ 'data-role' => 'content' }
   =render 'form'

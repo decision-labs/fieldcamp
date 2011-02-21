@@ -3,5 +3,5 @@
   .event-description= event.description
   / .status-title{:class => "#{dom_id(event.status)}"}=event.status.title
   .time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:short)
-  = link_to_icon 'edit', edit_project_event_path(event.project, event)
-  = link_to_icon 'destroy', project_event_path(event.project, event), :confirm => "Do you want to delete '#{event.title}'?", :method => :delete
+  = link_to_icon 'edit', t(:edit), edit_project_event_path(event.project, event)
+  = link_to_icon 'destroy', t(:destroy), project_event_path(event.project, event), :confirm => "#{t(:do_you_want_to_delete)} '#{event.title}'?", :method => :delete

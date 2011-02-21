@@ -1,7 +1,8 @@
-%h1 Editing event
+%h1
+  = t(:editing_event)
 
 = render 'form'
 
-= link_to raw("&larr; Back to Current Project (#{@project.title})"), project_path(@project)
+= link_to raw("&larr; #{t(:back_to_current_project)} (#{@project.title})"), project_path(@project)
 %br
-= link_to raw('&larr; Back to Projects'), projects_path
+= link_to raw("&larr; #{t(:back_to_projects)}"), projects_path

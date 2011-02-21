@@ -20,8 +20,8 @@
     = f.label :address
     %br
     = f.text_field :address
-    %span.geocode_link=link_to "Geocode this address", nil, :class => 'geocode_address'
+    %span.geocode_link=link_to t(:geocode_this_address), nil, :class => 'geocode_address'
     %br
-    %span.geocoding_status Address unvarified
+    %span.geocoding_status Address unverified
   .actions
-    = f.submit 'Save'
+    = f.submit t(:save)

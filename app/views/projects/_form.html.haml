@@ -37,4 +37,4 @@
     = select_tag :sectors, options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true
 
   .actions
-    = f.submit 'Save'
+    = f.submit t(:save)

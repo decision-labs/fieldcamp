@@ -90,13 +90,14 @@
   })  // document read
 
 %div{ 'data-role' => 'header', 'data-position' => 'fixed' }
-  =link_to "Cancel", project_path(@project), :rel => 'external', 'data-icon' => 'delete'
-  %h1 New Event
-  = link_to 'Save', '#', :rel => 'external', 'data-icon' => 'check', :id => 'save_button'
+  =link_to t(:cancel), project_path(@project), :rel => 'external', 'data-icon' => 'delete'
+  %h1
+    = t(:new_Event)
+  = link_to t(:save), '#', :rel => 'external', 'data-icon' => 'check', :id => 'save_button'
 
 %div{ 'data-role' => 'content' }
   #map_canvas
-  =link_to "Use Current Location", nil, :class => 'use_current_location'
+  =link_to t(:use_current_location), nil, :class => 'use_current_location'
   =render 'form'
 
   :javascript

@@ -1,7 +1,8 @@
 / Projects
 
 #header{'data-role' => 'header'}
-  %h1= t(:projects)
+  %h1
+    = t(:projects)
   =link_to t(:new), new_project_path, 'data-icon' => 'plus', :class => 'ui-btn-right'
 
 #content{'data-role' => 'content'}

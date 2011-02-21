@@ -1,7 +1,8 @@
-%h1 Editing project
+%h1
+  = t(:editing_project)
 
 = render 'form'
 
-= link_to 'Show', @project
+= link_to t(:show), @project
 \|
-= link_to 'Back', projects_path
+= link_to t(:back), projects_path

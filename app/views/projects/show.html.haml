@@ -120,9 +120,10 @@
   .clear
 
   %p
-    %span.new-event-link=link_to "New event", new_project_event_path(@project)
+    %span.new-event-link=link_to t(:new_event), new_project_event_path(@project)
 
-  %h2 Recent Events
+  %h2
+    = t(:recent_events)
   = render :partial => 'events/event', :collection => @project.events
 
-= link_to raw('&larr; Back to Projects'), projects_path
+= link_to raw("&larr; #{t(:back_to_projects)}"), projects_path

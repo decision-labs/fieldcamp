@@ -31,6 +31,7 @@ group :development do
   gem "wirble"
   gem "hirb"
   gem "awesome_print"
+  gem 'capistrano'
 end
 
 platforms :ruby_18 do

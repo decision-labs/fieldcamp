@@ -26,6 +26,7 @@ en:
   create_a_new_project: Create a New Project
   back_to_current_project: Back to Current Project
   back_to_projects: Back to Projects
+  back_to_sectors: Back to Sectors
   use_current_location: Use Current Location
   geocode_this_address: Geocode this address
 
@@ -54,6 +55,7 @@ de:
   create_a_new_project: Erstellen eines neuen Projekts
   back_to_current_project: Zurück zum aktuellen Projekt
   back_to_projects: Zurück zu Projekte
+  back_to_sectors: Zurück zu Branchen
   use_current_location: Verwenden Sie aktuellen Standort
   geocode_this_address: Geocode diese Adresse
 
@@ -82,5 +84,6 @@ ur:
   create_a_new_project: ایک نیا منصوبہ تشکیل دیں
   back_to_current_project: موجودہ پروجیکٹ پر واپس جائیں
   back_to_projects: منصوبوں پر واپس جائیں
+  back_to_sectors: شعبہ میں واپس
   use_current_location: موجودہ جگہ استعمال کریں
   geocode_this_address: Geocode this address

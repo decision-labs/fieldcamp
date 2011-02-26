@@ -25,24 +25,27 @@ partners = [
   Partner.create!(:name => 'USG')
 ]
 
-sectors  = [
-  Sector.create!(:name => 'Education'),
-  Sector.create!(:name => 'Food'),
-  Sector.create!(:name => 'Health'),
-  Sector.create!(:name => 'Logistics'),
-  Sector.create!(:name => 'Mine Action'),
-  Sector.create!(:name => 'Nutrition'),
-  Sector.create!(:name => 'Protection'),
-  Sector.create!(:name => 'Shelter'),
-  Sector.create!(:name => 'Water, Sanitation and Hygiene (WASH)'),
-  Sector.create!(:name => 'Agriculture'),
-  Sector.create!(:name => 'Camp Coordination / Management'),
-  Sector.create!(:name => 'Community Restoration / Early Recovery'),
-  Sector.create!(:name => 'Emergency Telecommunications'),
-  Sector.create!(:name => 'Information Management'),
-  Sector.create!(:name => 'Gender Based Violence'),
-  Sector.create!(:name => 'Child Protection')
-]
+sectors = [
+  # 'Emergency Telecommunications',
+  # 'Information Management',
+  # 'Gender Based Violence',
+  # 'Child Protection',
+  # 'Camp Coordination / Management',
+  # 'Logistics',
+  # 'Mine Action',
+  # 'Protection', 
+  # 'Agriculture'
+  # 'Community Restoration / Early Recovery'
+
+  'Food Aid and Nutrition',
+  'Non-food items (NFI)',
+  'Water, Sanitation and Hygiene (WASH)',
+  'Shelter',
+  'Health',
+  'Education',
+  'Livelihoods',
+  'Partner Support'
+].collect{ |name| Sector.create!(:name => name) }
 
 project_titles = ["Education", "Agriculture", "Health", "Flood Relief",
                   "Earthquake Relief", "Reconstruction", "Drought Relief", "Maternal Health"]

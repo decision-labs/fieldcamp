@@ -24,6 +24,7 @@ en:
   recent_events: Recent Events
   add_a_new_event: Add a new event
   create_a_new_project: Create a New Project
+  create_a_new_sector: Create a New Sector
   back_to_current_project: Back to Current Project
   back_to_projects: Back to Projects
   back_to_sectors: Back to Sectors
@@ -55,6 +56,7 @@ de:
   recent_events: Aktuelle Ereignisse
   add_a_new_event: Fügen Sie ein neues Ereignis hinzu
   create_a_new_project: Erstellen eines neuen Projekts
+  create_a_new_sector: Create a neuen Branchen
   back_to_current_project: Zurück zum aktuellen Projekt
   back_to_projects: Zurück zu Projekte
   back_to_sectors: Zurück zu Branchen
@@ -86,6 +88,7 @@ ur:
   recent_events: حالیہ واقعات
   add_a_new_event: نیا اہم واقعہ شامل کریں
   create_a_new_project: ایک نیا منصوبہ تشکیل دیں
+  create_a_new_sector: ایک نئے شعبہ بنائیں
   back_to_current_project: موجودہ پروجیکٹ پر واپس جائیں
   back_to_projects: منصوبوں پر واپس جائیں
   back_to_sectors: شعبہ میں واپس

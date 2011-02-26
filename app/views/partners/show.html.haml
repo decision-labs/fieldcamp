@@ -1,6 +1,5 @@
-%p#notice= notice
+%header
+  %p= @partner.name
 
-
-= link_to 'Edit', edit_partner_path(@partner)
-\|
-= link_to 'Back', partners_path
+=render @partner.projects
+= link_to raw("&larr; #{t(:back_to_partners)}"), partners_path

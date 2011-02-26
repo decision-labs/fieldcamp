@@ -28,6 +28,8 @@ en:
   back_to_projects: Back to Projects
   use_current_location: Use Current Location
   geocode_this_address: Geocode this address
+  create_a_new_partner: Create a New Partner
+  back_to_partners: Back to Partners
 
 de:
   hello_world: Hallo Welt
@@ -56,6 +58,8 @@ de:
   back_to_projects: Zurück zu Projekte
   use_current_location: Verwenden Sie aktuellen Standort
   geocode_this_address: Geocode diese Adresse
+  create_a_new_partner: Erstellen Sie einen neuen Partner
+  back_to_partners: Zurück zu Partner
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -84,3 +88,5 @@ ur:
   back_to_projects: منصوبوں پر واپس جائیں
   use_current_location: موجودہ جگہ استعمال کریں
   geocode_this_address: Geocode this address
+  create_a_new_partner: ایک نیا ساتھی بنائیں
+  back_to_partners: شراکت دار پر واپس جائیں

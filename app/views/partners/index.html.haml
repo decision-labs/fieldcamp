@@ -1,17 +1,6 @@
-%h1 Listing partners
+%header
+  %p= t :partners
 
-%table
-  %tr
-    %th
-    %th
-    %th
+.addlink= link_to t(:create_a_new_partner), new_partner_path
 
-  - @partners.each do |partner|
-    %tr
-      %td= link_to 'Show', partner
-      %td= link_to 'Edit', edit_partner_path(partner)
-      %td= link_to 'Destroy', partner, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Partner', new_partner_path
+= render @partners

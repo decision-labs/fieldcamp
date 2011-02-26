@@ -2,7 +2,7 @@ class PartnersController < ApplicationController
   # GET /partners
   # GET /partners.xml
   def index
-    @partners = Partner.all
+    @partners = Partner.all(:include => :projects)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class PartnersController < ApplicationController
   # GET /partners/1
   # GET /partners/1.xml
   def show
-    @partner = Partner.find(params[:id])
+    @partner = Partner.find(params[:id], :include => :projects)
 
     respond_to do |format|
       format.html # show.html.erb

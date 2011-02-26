@@ -3,17 +3,13 @@ class SectorsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @sectors = Sector.all
+    @sectors = Sector.all(:include => :projects)
   end
 
-  # GET /sectors/1
-  # GET /sectors/1.xml
   def show
-    @sector = Sector.find(params[:id])
+    @sector = Sector.find(params[:id], :include => :projects)
   end
 
-  # GET /sectors/new
-  # GET /sectors/new.xml
   def new
     @sector = Sector.new
   end

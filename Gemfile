@@ -24,4 +24,19 @@ group :test, :development do
   gem 'machinist', '>= 2.0.0.beta1'
   gem 'dbf'
   gem 'faker'
+  gem 'silent-postgres'
+end
+
+group :development do
+  gem "wirble"
+  gem "hirb"
+  gem "awesome_print"
+end
+
+platforms :ruby_18 do
+  gem 'ruby-debug'
+end
+
+platforms :ruby_19 do
+  gem 'ruby-debug19'
 end

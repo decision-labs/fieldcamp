@@ -1,3 +1,2 @@
-%h3= sector.name
-- sector.projects.each do |project|
-  =render 'sectors/project'
+.sector
+  = model_title_links(sector, t="name")

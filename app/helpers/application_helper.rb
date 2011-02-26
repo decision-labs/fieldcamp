@@ -19,4 +19,17 @@ module ApplicationHelper
     nil
   end
 
+  def model_title_links(m, t="title")
+    content_tag :h1 do
+      [ m.send(t),
+        link_to_icon('show', t(:show), m),
+        link_to_icon('edit', t(:edit), send("edit_#{m.class.name.downcase}_path", m)),
+        link_to_icon('destroy', t(:destroy), m, {
+          :confirm => t(:are_you_sure),
+          :method => :delete
+        })
+      ].join(' ').html_safe
+    end
+  end
+
 end

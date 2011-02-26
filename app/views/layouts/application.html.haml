@@ -2,7 +2,7 @@
 %html{:lang => I18n.locale.to_s}
   %head
     %meta{:charset => 'utf-8'}
-    %title Project
+    %title= content_for?(:title) ? yield(:title) : title_fallback
     = hoptoad_javascript_notifier
     = render :partial => 'shared/includes'
     = render :partial => 'shared/locale_links'

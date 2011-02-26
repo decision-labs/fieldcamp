@@ -32,4 +32,11 @@ module ApplicationHelper
     end
   end
 
+  def title(page_title)
+    content_for(:title, page_title.to_s)
+  end
+
+  def title_fallback
+    ['Cartias', controller.controller_name, controller.action_name].compact.join(' :: ')
+  end
 end

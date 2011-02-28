@@ -9,7 +9,6 @@ gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket'
 gem 'redis'
-gem 'SystemTimer'
 gem 'json'
 
 group :test, :development do
@@ -35,6 +34,7 @@ group :development do
 end
 
 platforms :ruby_18 do
+  gem 'SystemTimer'
   gem 'ruby-debug'
 end
 

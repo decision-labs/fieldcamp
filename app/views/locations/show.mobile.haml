@@ -1,0 +1,9 @@
+#header{"data-role" => "header"}
+  =link_to t(:locations), locations_path, "data-icon" => "arrow-l", "data-rel"=>'back'
+  %h1= @location.name
+
+#content{'data-role' => 'content'}
+  %ul{'data-role' => 'listview'}
+    = render :partial => 'projects/project', :collection => @location.projects
+  
+= render 'shared/footer'

@@ -1,25 +1,4 @@
-%h1 Listing locations
+%header
+  %p= t :locations
 
-%table
-  %tr
-    %th Name
-    %th Description
-    %th Admin level
-    %th Geom
-    %th
-    %th
-    %th
-
-  - @locations.each do |location|
-    %tr
-      %td= location.name
-      %td= location.description
-      %td= location.admin_level_id
-      %td= location.geom
-      %td= link_to 'Show', location
-      %td= link_to 'Edit', edit_location_path(location)
-      %td= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Location', new_location_path
+= render @locations

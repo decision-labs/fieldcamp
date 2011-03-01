@@ -1,16 +1,8 @@
-%p
-  %b Name:
-  = @location.name
-%p
-  %b Description:
-  = @location.description
-%p
-  %b Admin level:
-  = @location.admin_level_id
-%p
-  %b Geom:
-  = @location.geom
+%header
+  %p= @location.name
 
-= link_to 'Edit', edit_location_path(@location)
-\|
-= link_to 'Back', locations_path
+.projects
+  =render :partial => 'projects/project', :collection => @location.projects
+
+= link_to raw("&larr; #{t(:back_to_locations)}"), locations_path
+

@@ -1,7 +1,7 @@
 Caritas::Application.routes.draw do
-  resources :locations
 
   scope "(:locale)" do
+    resources :locations
     resources :people
     resources :partners
     resources :sectors

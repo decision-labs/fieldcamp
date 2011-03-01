@@ -32,6 +32,8 @@ en:
   geocode_this_address: Geocode this address
   create_a_new_partner: Create a New Partner
   back_to_partners: Back to Partners
+  locations: Locations
+  back_to_locations: Back to Locations
 
 de:
   hello_world: Hallo Welt
@@ -64,6 +66,8 @@ de:
   geocode_this_address: Geocode diese Adresse
   create_a_new_partner: Erstellen Sie einen neuen Partner
   back_to_partners: Zurück zu Partner
+  locations: Standorte
+  back_to_locations: Zurück zu Standorte
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -96,3 +100,5 @@ ur:
   geocode_this_address: Geocode this address
   create_a_new_partner: ایک نیا ساتھی بنائیں
   back_to_partners: شراکت دار پر واپس جائیں
+  locations: جگہ
+  back_to_locations: جگہوں پر واپس

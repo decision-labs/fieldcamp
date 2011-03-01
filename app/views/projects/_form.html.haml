@@ -29,12 +29,12 @@
   .field
     = f.label :partners
     %br
-    = select_tag :partners, options_from_collection_for_select(Partner.all, "id", "name"), :multiple=>true
+    = select_tag 'project[partner_ids][]', options_from_collection_for_select(Partner.all, "id", "name"), :multiple=>true
 
   .field
     = f.label :sectors
     %br
-    = select_tag :sectors, options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true
+    = select_tag 'project[sector_ids][]', options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true
 
   .actions
     = f.submit t(:save)

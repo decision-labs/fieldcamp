@@ -1,0 +1,14 @@
+/ Locations
+
+#header{'data-role' => 'header'}
+  %h1= t(:locations)
+  /=link_to t(:new), new_location_path, 'data-icon' => 'plus', :class => 'ui-btn-right'
+
+#content{'data-role' => 'content'}
+  %ul{'data-role' => 'listview'}
+    - @locations.each do |location|
+      %li
+        = link_to location.name, location
+        /= link_to t(:edit), edit_location_path(location), 'data-icon' => 'gear'
+
+= render 'shared/footer'

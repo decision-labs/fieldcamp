@@ -1,0 +1,11 @@
+%div{'data-role' => 'footer'}
+  %div{ 'data-role' => 'navbar'}
+    %ul
+      %li
+        %a{ :href => projects_path, :class => mobile_active_button_class('project'), :rel => mobile_rel_external('project') }=t(:projects)
+      %li
+        %a{ :href => sectors_path, :class => mobile_active_button_class('sector'), :rel => mobile_rel_external('sector') }=t(:sectors)
+      %li
+        %a{ :href => partners_path, :class => mobile_active_button_class('partner'), :rel => mobile_rel_external('partner') }=t(:partners)
+      %li
+        %a{ :href => locations_path, :class => mobile_active_button_class('location'), :rel => mobile_rel_external('location') }=t(:locations)

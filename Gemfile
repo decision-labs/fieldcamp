@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket'
 gem 'redis'
 gem 'json'
+gem 'devise'
 
 group :test, :development do
   gem 'sqlite3'

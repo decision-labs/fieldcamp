@@ -51,6 +51,7 @@ GEM
     awesome_print (0.3.2)
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
+    cancan (1.5.1)
     capistrano (2.5.19)
       highline
       net-scp (>= 1.0.0)
@@ -213,6 +214,7 @@ PLATFORMS
 DEPENDENCIES
   SystemTimer
   awesome_print
+  cancan
   capistrano
   capybara
   configatron

@@ -2,8 +2,8 @@
   var map;
 
   function initialize() {
-    var pathname = window.location.pathname;
-    var myLatlng = new google.maps.LatLng(30.375, 69.345);
+    var pathname = "#{url_for(:action => controller.action_name)}"
+    var myLatlng = new google.maps.LatLng("#{@project.location.geom.envelope.center.y}", "#{@project.location.geom.envelope.center.x}");
     var myOptions = {
       zoom: 6,
       center: myLatlng,

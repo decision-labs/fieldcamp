@@ -47,13 +47,6 @@ ActiveRecord::Schema.define(:version => 20110218134449) do
     t.column "project_id", :integer
   end
 
-  create_table "people", :force => true do |t|
-    t.column "first_name", :string, :null => false
-    t.column "last_name", :string, :null => false
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-  end
-
   create_table "projects", :force => true do |t|
     t.column "title", :string, :null => false
     t.column "description", :text

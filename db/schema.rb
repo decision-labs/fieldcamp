@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218134449) do
+ActiveRecord::Schema.define(:version => 20110301154436) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(:version => 20110218134449) do
     t.column "project_id", :integer
   end
 
+  create_table "people", :force => true do |t|
+    t.column "first_name", :string, :null => false
+    t.column "last_name", :string, :null => false
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
   create_table "projects", :force => true do |t|
     t.column "title", :string, :null => false
     t.column "description", :text
@@ -63,14 +70,34 @@ ActiveRecord::Schema.define(:version => 20110218134449) do
     t.column "sector_id", :integer
   end
 
-  add_index "projects_sectors", ["project_id"], :name => "index_projects_sectors_on_project_id"
-  add_index "projects_sectors", ["sector_id"], :name => "index_projects_sectors_on_sector_id"
-
   create_table "sectors", :force => true do |t|
     t.column "name", :string
     t.column "description", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
+
+  create_table "users", :force => true do |t|
+    t.column "email", :string, :default => "", :null => false
+    t.column "encrypted_password", :string, :limit => 128, :default => "", :null => false
+    t.column "password_salt", :string, :default => "", :null => false
+    t.column "reset_password_token", :string
+    t.column "remember_token", :string
+    t.column "remember_created_at", :datetime
+    t.column "sign_in_count", :integer, :default => 0
+    t.column "current_sign_in_at", :datetime
+    t.column "last_sign_in_at", :datetime
+    t.column "current_sign_in_ip", :string
+    t.column "last_sign_in_ip", :string
+    t.column "confirmation_token", :string
+    t.column "confirmed_at", :datetime
+    t.column "confirmation_sent_at", :datetime
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

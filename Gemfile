@@ -11,6 +11,7 @@ gem 'em-websocket', :git => 'git://github.com/igrigorik/em-websocket'
 gem 'redis'
 gem 'json'
 gem 'devise'
+gem 'configatron'
 
 group :test, :development do
   gem 'sqlite3'

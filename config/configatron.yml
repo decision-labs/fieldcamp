@@ -1,0 +1,12 @@
+defaults: &defaults
+  host: localhost:3000
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  host: caritas.nomad-labs.com

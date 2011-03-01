@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20110301154436) do
     t.column "confirmation_token", :string
     t.column "confirmed_at", :datetime
     t.column "confirmation_sent_at", :datetime
+    t.column "role", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end

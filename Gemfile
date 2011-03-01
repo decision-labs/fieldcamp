@@ -12,6 +12,7 @@ gem 'redis'
 gem 'json'
 gem 'devise'
 gem 'configatron'
+gem 'cancan'
 
 group :test, :development do
   gem 'sqlite3'

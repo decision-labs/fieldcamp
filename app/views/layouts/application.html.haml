@@ -3,7 +3,8 @@
   %head
     %meta{:charset => 'utf-8'}
     %title= content_for?(:title) ? yield(:title) : title_fallback
-    = hoptoad_javascript_notifier
+    /[if (gt IE 8)]
+      = hoptoad_javascript_notifier
     = render :partial => 'shared/includes'
     = render :partial => 'shared/locale_links'
     = yield :head

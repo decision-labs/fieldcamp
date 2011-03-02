@@ -36,6 +36,9 @@ en:
   back_to_locations: Back to Locations
   logout: Logout
   login: Login
+  start_date: Start date
+  end_date: End date
+  editing_partner: Editing partner
 
 de:
   hello_world: Hallo Welt
@@ -72,6 +75,9 @@ de:
   back_to_locations: Zurück zu Standorte
   logout: Abmelden
   login: Login
+  start_date: Startdatum
+  end_date: Enddatum
+  editing_partner: Bearbeiten Partner
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -108,3 +114,6 @@ ur:
   back_to_locations: جگہوں پر واپس
   logout: لاگ آؤٹ
   login: لاگ ان
+  start_date: شروع کرنے کی تاریخ
+  end_date: اخری تاریخ
+  editing_partner: ترمیم پارٹنر

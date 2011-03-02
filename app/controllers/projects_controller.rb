@@ -2,7 +2,6 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    authorize! :index, @projects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +11,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id], :include => [:location, :events])
-    authorize! :show, @project
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,8 +19,8 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    authorize! :new, Project
     @project = Project.new
-    authorize! :new, @project
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,15 +29,15 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, Project
     @project = Project.find(params[:id])
-    authorize! :edit, @project
   end
 
   def create
+    authorize! :create, Project
     @project = Project.new(params[:project])
-    @project.sectors  << Sector.find( params[:sectors] ) rescue []
+    @project.sectors  << Sector.find(params[:sectors])   rescue []
     @project.partners << Partner.find(params[:partners]) rescue []
-    authorize! :create, @project
 
     respond_to do |format|
       if @project.save
@@ -53,8 +51,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    authorize! :update, Project
     @project = Project.find(params[:id])
-    authorize! :update, @project
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

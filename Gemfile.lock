@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/igrigorik/em-websocket
-  revision: cdedd7bd5c43e25fd0b30236889bc131b5cbe495
+  revision: 866290409c35b1557017fac3c12b701af71f8d2d
   specs:
-    em-websocket (0.2.0)
+    em-websocket (0.2.1)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
 
@@ -119,7 +119,7 @@ GEM
     linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
-    machinist (2.0.0.beta2)
+    machinist (1.0.6)
     mail (2.2.15)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -130,7 +130,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
       net-ssh (>= 2.0.9)
-    net-ssh (2.1.0)
+    net-ssh (2.1.3)
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nofxx-georuby (1.9.0)
@@ -194,6 +194,7 @@ GEM
       ffi (~> 0.6.3)
       json_pure
       rubyzip
+    sham (0.4.0)
     silent-postgres (0.0.7)
     sqlite3 (1.3.3)
     term-ansicolor (1.0.5)
@@ -230,7 +231,7 @@ DEPENDENCIES
   hoptoad_notifier
   jquery-rails
   json
-  machinist (>= 2.0.0.beta1)
+  machinist
   nofxx-georuby
   pg
   postgis_adapter!
@@ -241,6 +242,7 @@ DEPENDENCIES
   rspec-rails
   ruby-debug
   ruby-debug19
+  sham
   silent-postgres
   sqlite3
   wirble

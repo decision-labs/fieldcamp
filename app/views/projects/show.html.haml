@@ -11,16 +11,16 @@
   .project-location= @project.location.name
   .project-description= @project.description
   .project-time
-    Start date:
+    = t(:start_date)+':'
     = @project.start_date
   .project-time
-    End date:
+    = t(:end_date)+':'
     = @project.end_date
   .project-partners
-    Partners:
+    = t(:partners)+':'
     = render :partial => 'partner', :collection => @project.partners
   .project-sectors
-    Sectors:
+    = t(:sectors)+':'
     = render :partial => 'sector', :collection => @project.sectors
   .clear
 

@@ -39,6 +39,7 @@ en:
   start_date: Start date
   end_date: End date
   editing_partner: Editing partner
+  editing_location: Editing location
 
 de:
   hello_world: Hallo Welt
@@ -78,6 +79,7 @@ de:
   start_date: Startdatum
   end_date: Enddatum
   editing_partner: Bearbeiten Partner
+  editing_location: Bearbeiten von Standort
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -117,3 +119,4 @@ ur:
   start_date: شروع کرنے کی تاریخ
   end_date: اخری تاریخ
   editing_partner: ترمیم پارٹنر
+  editing_location: جگہ ترمیم

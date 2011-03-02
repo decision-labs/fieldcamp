@@ -1,0 +1,20 @@
+#header{'data-role' => 'header'}
+  %h1 Sign in
+
+#content{'data-role' => 'content'}
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    %div{'data-role' => 'fieldcontain'}
+      = f.label :email
+      = f.email_field :email, :placeholder => 'Email'
+
+      = f.label :password
+      = f.password_field :password, :placeholder => 'Password'
+      %br
+      %fieldset{'data-role' => 'controlgroup'}
+        - if devise_mapping.rememberable?
+          = f.check_box :remember_me, :type => 'checkbox'
+          = f.label :remember_me
+      %br
+      = f.submit "Sign in"
+
+  = render :partial => "devise/shared/links"

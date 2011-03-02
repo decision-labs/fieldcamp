@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :location
-  has_many :events
+  belongs_to :user
+  has_many :events, :dependent => :destroy
 
   has_and_belongs_to_many :sectors
   has_and_belongs_to_many :partners

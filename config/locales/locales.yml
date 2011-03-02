@@ -34,6 +34,8 @@ en:
   back_to_partners: Back to Partners
   locations: Locations
   back_to_locations: Back to Locations
+  logout: Logout
+  login: Login
 
 de:
   hello_world: Hallo Welt
@@ -68,6 +70,8 @@ de:
   back_to_partners: Zurück zu Partner
   locations: Standorte
   back_to_locations: Zurück zu Standorte
+  logout: Abmelden
+  login: Login
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -102,3 +106,5 @@ ur:
   back_to_partners: شراکت دار پر واپس جائیں
   locations: جگہ
   back_to_locations: جگہوں پر واپس
+  logout: لاگ آؤٹ
+  login: لاگ ان

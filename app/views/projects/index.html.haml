@@ -1,6 +1,7 @@
 %header
   %p= t :projects
 
-.addlink= link_to t(:create_a_new_project), new_project_path
+-if (can? :create,  Project)
+  .addlink= link_to t(:create_a_new_project), new_project_path
 
 = render @projects

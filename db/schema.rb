@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(:version => 20110301154436) do
     t.column "sector_id", :integer
   end
 
+  add_index "projects_sectors", ["project_id"], :name => "index_projects_sectors_on_project_id"
+  add_index "projects_sectors", ["sector_id"], :name => "index_projects_sectors_on_sector_id"
+
   create_table "sectors", :force => true do |t|
     t.column "name", :string
     t.column "description", :text

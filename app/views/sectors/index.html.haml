@@ -1,6 +1,7 @@
 %header
   %p= t :sectors
 
-.addlink= link_to t(:create_a_new_sector), new_sector_path
+-if (can? :create,  Sector)
+  .addlink= link_to t(:create_a_new_sector), new_sector_path
 
 = render @sectors

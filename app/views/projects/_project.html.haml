@@ -3,5 +3,6 @@
 
   = render project.events
 
-  %p.addlink
-    = link_to t(:add_a_new_event), new_project_event_path(project)
+  -if (can? :create,  Event)
+    %p.addlink
+      = link_to t(:add_a_new_event), new_project_event_path(project)

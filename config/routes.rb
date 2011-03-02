@@ -1,8 +1,8 @@
 Caritas::Application.routes.draw do
 
-  devise_for :users
-
   scope "(:locale)" do
+    devise_for :users
+
     resources :locations
     resources :partners
     resources :sectors

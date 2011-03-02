@@ -1,7 +1,8 @@
-%h1 Editing partner
+%h1
+  =t(:editing_partner)
 
 = render 'form'
 
-= link_to 'Show', @partner
+= link_to t(:show), @partner
 \|
-= link_to 'Back', partners_path
+= link_to t(:back), partners_path

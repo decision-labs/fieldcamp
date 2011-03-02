@@ -3,6 +3,10 @@
 #header{'data-role' => 'header'}
   %h1
     = t(:projects)
+  - if user_signed_in?
+    = link_to(t(:logout), destroy_user_session_path, :class => 'ui-btn-right', :rel => 'external')
+  - else
+    = link_to(t(:login), new_user_session_path, :class => 'ui-btn-right', 'data-rel' => 'dialog', 'data-transition' => 'pop')
   /=link_to t(:new), new_project_path, 'data-icon' => 'plus', :class => 'ui-btn-right'
 
 #content{'data-role' => 'content'}

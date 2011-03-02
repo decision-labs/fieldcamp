@@ -22,6 +22,9 @@ default: &default
 development:
   <<: *default
 
+test:
+  <<: *default
+
 production:
   <<: *default
   socket_host: caritas.nomad-labs.com

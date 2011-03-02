@@ -1,6 +1,7 @@
 %header
   %p= t :partners
 
-.addlink= link_to t(:create_a_new_partner), new_partner_path
+-if (can? :create,  Partner)
+  .addlink= link_to t(:create_a_new_partner), new_partner_path
 
 = render @partners

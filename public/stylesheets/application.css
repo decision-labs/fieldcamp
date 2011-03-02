@@ -143,6 +143,12 @@ p.addlink {
   color: #ccc;
 }
 
+.login_links {
+  text-align: right;
+  font-size:   1em;
+  color: #ccc;
+}
+
 .project .project-description{
   display: block;
   color: #999;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110301154436) do
+ActiveRecord::Schema.define(:version => 20110302111732) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -20,9 +20,11 @@ ActiveRecord::Schema.define(:version => 20110301154436) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "geom", :point, :srid => 4326, :with_z => true
+    t.column "user_id", :integer
   end
 
   add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "locations", :force => true do |t|
     t.column "name", :string
@@ -31,16 +33,21 @@ ActiveRecord::Schema.define(:version => 20110301154436) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "geom", :geometry, :srid => 4326, :null => false
+    t.column "user_id", :integer
   end
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
+  add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
 
   create_table "partners", :force => true do |t|
     t.column "name", :string
     t.column "description", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "user_id", :integer
   end
+
+  add_index "partners", ["user_id"], :name => "index_partners_on_user_id"
 
   create_table "partners_projects", :id => false, :force => true do |t|
     t.column "partner_id", :integer
@@ -63,22 +70,25 @@ ActiveRecord::Schema.define(:version => 20110301154436) do
     t.column "location_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "user_id", :integer
   end
+
+  add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "projects_sectors", :id => false, :force => true do |t|
     t.column "project_id", :integer
     t.column "sector_id", :integer
   end
 
-  add_index "projects_sectors", ["project_id"], :name => "index_projects_sectors_on_project_id"
-  add_index "projects_sectors", ["sector_id"], :name => "index_projects_sectors_on_sector_id"
-
   create_table "sectors", :force => true do |t|
     t.column "name", :string
     t.column "description", :text
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "user_id", :integer
   end
+
+  add_index "sectors", ["user_id"], :name => "index_sectors_on_user_id"
 
   create_table "users", :force => true do |t|
     t.column "email", :string, :default => "", :null => false

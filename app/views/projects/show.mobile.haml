@@ -6,7 +6,8 @@
 #header{"data-role" => "header"}
   =link_to t(:projects), projects_path, :rel => "external", "data-icon" => "arrow-l"
   %h1= @project.title
-  =link_to t(:new), new_project_event_path(@project), :rel => "external", "data-icon" => "plus", :class => "ui-btn-right"
+  -if (can? :create, Event)
+    =link_to t(:new), new_project_event_path(@project), :rel => "external", "data-icon" => "plus", :class => "ui-btn-right"
 
 #content{"data-role" => "content", :style => "height:100%"}
   #map_canvas{:style => "width:100%; height:100%"}

@@ -23,8 +23,9 @@ group :test, :development do
   gem 'capybara'
   gem 'haml-rails'
   gem 'rails3-generators'
-  gem 'machinist', '>= 2.0.0.beta1'
+  gem 'machinist'# , '>= 2.0.0.beta1'
   gem 'dbf'
+  gem 'sham'
   gem 'faker'
   gem 'silent-postgres'
 end

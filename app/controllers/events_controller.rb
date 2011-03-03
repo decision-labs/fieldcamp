@@ -31,6 +31,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
+    authorize! :new, Event
     @project = Project.find(params[:project_id])
     @event = Event.new
 
@@ -43,7 +44,8 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @project = Project.find(params[:project_id])
-    @event = Event.find(params[:id])
+    @event = @project.events.find(params[:id])
+    authorize! :edit, @event
   end
 
   # POST /events
@@ -53,6 +55,7 @@ class EventsController < ApplicationController
     wkt = params[:event].delete(:geom)
     @event = @project.events.build(params[:event])
     @event.geom = Point.from_ewkt(wkt)
+    authorize! :create, @event
 
     respond_to do |format|
       if @event.save
@@ -68,30 +71,34 @@ class EventsController < ApplicationController
 
   # PUT /events/1
   # PUT /events/1.xml
-  # def update
-  #   @project = Project.find(params[:project_id])
-  #   @event = @project.events.find(params[:id])
-  # 
-  #   respond_to do |format|
-  #     if @event.update_attributes(params[:event])
-  #       format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
-  #       format.xml  { head :ok }
-  #     else
-  #       format.html { render :action => "edit" }
-  #       format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    @project = Project.find(params[:project_id])
+    @event = @project.events.find(params[:id])
+    authorize! :update, @event
+
+    respond_to do |format|
+      if @event.update_attributes(params[:event])
+        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /events/1
   # DELETE /events/1.xml
-  # def destroy
-  #   @event = Event.find(params[:id])
-  #   @event.destroy
-  # 
-  #   respond_to do |format|
-  #     format.html { redirect_to(events_url) }
-  #     format.xml  { head :ok }
-  #   end
-  # end
+  def destroy
+    @project = Project.find(params[:project_id])
+    @event = @project.events.find(params[:id])
+    authorize! :destroy, @event
+
+    @event.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(events_url) }
+      format.xml  { head :ok }
+    end
+  end
 end

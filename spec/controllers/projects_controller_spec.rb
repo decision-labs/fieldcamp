@@ -29,24 +29,21 @@ describe ProjectsController do
 
     describe "GET new" do
       it "raises CanCan::AccessDenied exception" do
-        lambda{get :new}.should
-          raise_exception(CanCan::AccessDenied)
+        lambda{get :new}.should raise_exception(CanCan::AccessDenied)
       end
     end
 
     describe "POST create" do
       it "raises CanCan::AccessDenied exception" do
         params = {:title => 'test'}
-        lambda{post :create, :project => params }.should
-          raise_exception(CanCan::AccessDenied)
+        lambda{post :create, :project => params }.should raise_exception(CanCan::AccessDenied)
       end
     end
 
     describe "GET edit" do
       it "raises CanCan::AccessDenied exception" do
         Project.stub(:find).with("37") { mock_project }
-        lambda{get :edit, :id => "37"}.should
-          raise_exception(CanCan::AccessDenied)
+        lambda{get :edit, :id => "37"}.should raise_exception(CanCan::AccessDenied)
       end
     end
 
@@ -54,16 +51,14 @@ describe ProjectsController do
       it "raises CanCan::AccessDenied exception" do
         Project.stub(:find).with("37") { mock_project }
         params = {'these' => 'params'}
-        lambda{ put :update, :id => "37", :project => params }.should
-          raise_exception(CanCan::AccessDenied)
+        lambda{ put :update, :id => "37", :project => params }.should raise_exception(CanCan::AccessDenied)
       end
     end
 
     describe "DELETE destroy" do
       it "raises CanCan::AccessDenied exception" do
         Project.stub(:find).with("37") { mock_project }
-        lambda{delete :destroy, :id => "37"}.should
-          raise_exception(CanCan::AccessDenied)
+        lambda{delete :destroy, :id => "37"}.should raise_exception(CanCan::AccessDenied)
       end
     end
   end # publisher role

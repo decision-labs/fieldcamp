@@ -1,15 +1,24 @@
 require 'machinist/active_record'
 
 Project.blueprint do
-  # Attributes here
+  title { Faker::Lorem.name }
+  description { Faker::Lorem.paragraph }
+  user
+  location
 end
 
 Location.blueprint do
-  # Attributes here
+  name { Faker::Lorem.name }
+  description { Faker::Lorem.paragraph }
+  admin_level_id { 1 }
+  geom { GeoRuby::SimpleFeatures::Polygon.from_coordinates([[[0,0],[4,0],[4,4],[0,4],[0,0]],[[1,1],[3,1],[3,3],[1,3],[1,1]]],4326) }
 end
 
 Event.blueprint do
-  # Attributes here
+  title { Faker::Lorem.name }
+  description { Faker::Lorem.paragraph }
+  address { "Multan, Pakistan" }
+  project
 end
 
 Sector.blueprint do

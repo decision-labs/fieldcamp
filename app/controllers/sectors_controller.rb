@@ -11,17 +11,19 @@ class SectorsController < ApplicationController
   end
 
   def new
+    authorize! :new, Sector
     @sector = Sector.new
   end
 
-  # GET /sectors/1/edit
   def edit
+    authorize! :edit, Sector
     @sector = Sector.find(params[:id])
   end
 
   # POST /sectors
   # POST /sectors.xml
   def create
+    authorize! :create, Sector
     @sector = Sector.new(params[:sector])
 
     respond_to do |format|
@@ -38,6 +40,7 @@ class SectorsController < ApplicationController
   # PUT /sectors/1
   # PUT /sectors/1.xml
   def update
+    authorize! :update, Sector
     @sector = Sector.find(params[:id])
 
     respond_to do |format|
@@ -51,9 +54,9 @@ class SectorsController < ApplicationController
     end
   end
 
-  # DELETE /sectors/1
-  # DELETE /sectors/1.xml
   def destroy
+    authorize! :destroy, Sector
+
     @sector = Sector.find(params[:id])
     @sector.destroy
 

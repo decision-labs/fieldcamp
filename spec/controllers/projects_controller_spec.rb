@@ -113,7 +113,8 @@ describe ProjectsController do
         @project_stub_methods = {
           :save => true,
           :sectors => [],
-          :partners => []}
+          :partners => [],
+          :user= => nil}
       end
       describe "with valid params" do
         it "assigns a newly created project as @project" do

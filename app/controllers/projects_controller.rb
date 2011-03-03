@@ -8,6 +8,9 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id], :include => [:location, :events])
+    respond_to do |format|
+      format.json  { render(:layout => false, :json => @project.location.geom.as_geojson) }
+    end
   end
 
   def new

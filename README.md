@@ -17,3 +17,25 @@
 ## Controllers example:
 
 `bundle exec rspec controllers/projects_controller_spec.rb`
+
+# TODO:
+
+## Add more tests for
+
+* WebSockets
+
+* User login/logout
+
+* Admin User can create, read, update and delete
+  - projects
+  - events
+  - partners
+  - sectors
+
+* Publisher User can create, read, update and delete events
+
+* Publisher User can read everything else
+
+* Locales
+
+* GeoJSON creation

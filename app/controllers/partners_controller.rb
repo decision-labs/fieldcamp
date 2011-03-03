@@ -21,7 +21,7 @@ class PartnersController < ApplicationController
   end
 
   def create
-    authorize! :edit, Partner
+    authorize! :create, Partner
     @partner = Partner.new(params[:partner])
 
     respond_to do |format|

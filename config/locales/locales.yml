@@ -15,7 +15,7 @@ en:
   save: Save
   project: Project
   projects: Projects
-  new_project: New project
+  new_project: New Project
   editing_project: Editing project
   sectors: Sectors
   partners: Partners
@@ -40,6 +40,9 @@ en:
   end_date: End date
   editing_partner: Editing partner
   editing_location: Editing location
+  new_partner: New Partner
+  editing_sector: Editing Sector
+  new_sector: New Sector
 
 de:
   hello_world: Hallo Welt
@@ -80,6 +83,9 @@ de:
   end_date: Enddatum
   editing_partner: Bearbeiten Partner
   editing_location: Bearbeiten von Standort
+  new_partner: Neuer Partner
+  editing_sector: Bearbeiten von Sector
+  new_sector: Neuen Sektor
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -120,3 +126,6 @@ ur:
   end_date: اخری تاریخ
   editing_partner: ترمیم پارٹنر
   editing_location: جگہ ترمیم
+  new_partner: نیا ساتھی
+  editing_sector: ترمیم کرنا علاقے
+  new_sector: نیا علاقے

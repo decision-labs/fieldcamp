@@ -43,6 +43,7 @@ en:
   new_partner: New Partner
   editing_sector: Editing Sector
   new_sector: New Sector
+  unauthorized: Not authorized to %{action} %{subject}
 
 de:
   hello_world: Hallo Welt
@@ -57,6 +58,7 @@ de:
   are_you_sure: Sind Sie sicher?
   save: Speichern
   project: Projekt
+  Project: Projekt
   projects: Projekte
   new_project: Neues Projekt
   editing_project: Bearbeiten von Projekt
@@ -86,6 +88,7 @@ de:
   new_partner: Neuer Partner
   editing_sector: Bearbeiten von Sector
   new_sector: Neuen Sektor
+  unauthorized: Nicht berechtigt, %{action} %{subject}
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -129,3 +132,4 @@ ur:
   new_partner: نیا ساتھی
   editing_sector: ترمیم کرنا علاقے
   new_sector: نیا علاقے
+  unauthorized: مجاز نہیں

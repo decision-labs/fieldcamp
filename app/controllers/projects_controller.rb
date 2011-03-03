@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.sectors  << Sector.find(params[:sectors])   rescue []
     @project.partners << Partner.find(params[:partners]) rescue []
+    @project.user = current_user
 
     respond_to do |format|
       if @project.save

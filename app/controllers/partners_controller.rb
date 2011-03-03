@@ -23,6 +23,7 @@ class PartnersController < ApplicationController
   def create
     authorize! :create, Partner
     @partner = Partner.new(params[:partner])
+    @partner.user = current_user
 
     respond_to do |format|
       if @partner.save

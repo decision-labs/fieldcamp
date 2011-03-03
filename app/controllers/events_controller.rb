@@ -55,6 +55,7 @@ class EventsController < ApplicationController
     wkt = params[:event].delete(:geom)
     @event = @project.events.build(params[:event])
     @event.geom = Point.from_ewkt(wkt)
+    @event.user = current_user
     authorize! :create, @event
 
     respond_to do |format|

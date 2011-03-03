@@ -23,6 +23,7 @@ class SectorsController < ApplicationController
   def create
     authorize! :create, Sector
     @sector = Sector.new(params[:sector])
+    @sector.user = current_user
 
     respond_to do |format|
       if @sector.save

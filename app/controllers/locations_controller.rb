@@ -23,6 +23,7 @@ class LocationsController < ApplicationController
   def create
     authorize! :create, Location
     @location = Location.new(params[:location])
+    @location.user = current_user
 
     respond_to do |format|
       if @location.save

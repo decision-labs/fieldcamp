@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :project
+  belongs_to :user
 
   def as_feature_hash
     props = attributes

@@ -16,16 +16,16 @@ end
 
 gernot  = User.create(
   :email                 => 'gernot.ritthaler@caritas.de',
-  :password              => "caritas123",
-  :password_confirmation => "caritas123",
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
 gernot.confirm!
 
 silvius = User.create(
   :email                 => 'prakkako@caritas.de',
-  :password              => "caritas123",
-  :password_confirmation => "caritas123",
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
 silvius.confirm!
@@ -38,17 +38,13 @@ publisher = User.create(
 )
 publisher.confirm!
 
-partners = [
-  Partner.create!(:name => 'UNHCR',   :user_id => gernot.id),
-  Partner.create!(:name => 'UNODC',   :user_id => gernot.id),
-  Partner.create!(:name => 'ION',     :user_id => gernot.id),
-  Partner.create!(:name => 'UNHRC',   :user_id => gernot.id),
-  Partner.create!(:name => 'ILO',     :user_id => gernot.id),
-  Partner.create!(:name => 'ICMC',    :user_id => gernot.id),
-  Partner.create!(:name => 'JRS',     :user_id => gernot.id),
-  Partner.create!(:name => 'COATNET', :user_id => gernot.id),
-  Partner.create!(:name => 'USG',     :user_id => gernot.id)
-]
+
+partners = ['UNHCR', 'UNODC', 'ION', 'UNHRC', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].collect do |name|
+  p = Partner.new(:name => name)
+  p.user = gernot
+  p.save!
+  p
+end
 
 sectors = [
   # 'Emergency Telecommunications',
@@ -70,7 +66,12 @@ sectors = [
   'Education',
   'Livelihoods',
   'Partner Support'
-].collect{ |name| Sector.create!(:name => name, :user_id => gernot.id) }
+].collect{ |name|
+  s = Sector.new(:name => name)
+  s.user = gernot
+  s.save!
+  s
+}
 
 project_titles = ["Education", "Agriculture", "Health", "Flood Relief",
                   "Earthquake Relief", "Reconstruction", "Drought Relief", "Maternal Health"]
@@ -78,38 +79,36 @@ project_titles = ["Education", "Agriculture", "Health", "Flood Relief",
 events_attributes = [
   {
     :title => "Water Delivery",
-    :description => "200 Galons of drinkable water delivered to the village",
-    :user_id => silvius.id
+    :description => "200 Galons of drinkable water delivered to the village"
   },
   {
     :title => "Grain Delivery",
-    :description => "200 tonnes of grain delivered to the village",
-    :user_id => silvius.id
+    :description => "200 tonnes of grain delivered to the village"
   },
   {
     :title => "School Books Delivery",
-    :description => "Books delivered to 10 schools in the district",
-    :user_id => silvius.id
+    :description => "Books delivered to 10 schools in the district"
   }
 ]
 
 shpfile.each_with_index do |rec, i|
   geom = rec.geometry
   name = rec.data["NAME_1"]
-  location = Location.new(:name => name, :admin_level_id => 1, :user_id => gernot.id)
+  location = Location.new(:name => name, :admin_level_id => 1)
   location.geom = geom
+  location.user = gernot
   location.save!
 
   project = Project.new( :title       => project_titles[i],
                          :description => "With help from partner agencies, Caritas Pakistan has since focused on helping communities with rehabilitation and reconstruction, including road building, small-scale business initiatives and education in disaster preparedness.",
                          :start_date  => 1.year.ago,
                          :end_date    => Date.today + 1.year,
-                         :location_id => location.id,
-                         :user_id     => gernot.id
+                         :location_id => location.id
   )
 
   project.sectors  << sectors.shuffle![0..1]
   project.partners << partners.shuffle![0..1]
+  project.user = gernot
   project.save!
 
   3.times do |i|
@@ -121,6 +120,7 @@ shpfile.each_with_index do |rec, i|
     point.y += rand * 0.5 * [1,-1][rand(2)]
     point.z = 0
     e.geom = point
+    e.user = silvius
     e.save!
   end
 

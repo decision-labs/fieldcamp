@@ -8,27 +8,27 @@ namespace :db do
     if args[:shapefile_path].nil?
       print "Please provide a path to the .shp file"
       print "The path may be relative to the current directory.\n"
-      print "Example: rake shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp\n"
+      print "Example: rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
       exit 0
     end
     if args[:name_field].nil?
       print "Please provide a field that maps to name\n"
-      print "Example: rake shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
+      print "Example: rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
       exit 0
     end
     if args[:description_field].nil?
       print "Please provide a field that maps to name\n"
-      print "Example: rake shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
+      print "Example: rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
       exit 0
     end
     if args[:admin_level].nil?
       print "Please provide an admin_level for this data\n"
-      print "Example: rake shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
+      print "Example: rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
       exit 0
     end
     if args[:admin_email].nil?
       print "Please provide an admin user email who will be responsible for this data\n"
-      print "Example: rake shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
+      print "Example: rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de\n"
       exit 0
     end
 

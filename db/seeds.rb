@@ -20,7 +20,7 @@ gernot  = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-gernot.confirm!
+# gernot.confirm!
 
 silvius = User.create(
   :email                 => 'prakkako@caritas.de',
@@ -28,7 +28,7 @@ silvius = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-silvius.confirm!
+# silvius.confirm!
 
 publisher = User.create(
   :email                 => 'publisher@caritas.de',
@@ -36,7 +36,7 @@ publisher = User.create(
   :password_confirmation => "caritas123",
   :role                  => 'publisher'
 )
-publisher.confirm!
+# publisher.confirm!
 
 
 partners = ['UNHCR', 'UNODC', 'ION', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].collect do |name|

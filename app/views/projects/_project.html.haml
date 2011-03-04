@@ -1,8 +1,10 @@
-.project
-  = model_title_links(project)
+.project.block
+  .content
+    = model_title_links(project)
+    .inner
+      %ul.list
+        = render :partial => 'events/event', :collection => project.events, :locals => {:project=>project}
 
-  = render project.events
-
-  -if (can? :create,  Event)
-    %p.addlink
-      = link_to t(:add_a_new_event), new_project_event_path(project)
+      -if (can? :create,  Event)
+        .actions-bar.wat-cf
+          = link_to t(:add_a_new_event), new_project_event_path(project), :class => 'button'

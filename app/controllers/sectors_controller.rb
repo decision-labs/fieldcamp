@@ -3,7 +3,7 @@ class SectorsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @sectors = Sector.all(:include => :projects)
+    @sectors = Sector.all(:include => :projects, :order => 'created_at desc')
   end
 
   def show

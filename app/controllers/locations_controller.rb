@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @locations = Location.all(:include => :projects)
+    @locations = Location.all(:include => :projects, :order => 'created_at desc')
   end
 
   def show

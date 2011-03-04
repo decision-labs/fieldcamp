@@ -3,7 +3,7 @@ class PartnersController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @partners = Partner.all(:include => :projects)
+    @partners = Partner.all(:include => :projects, :order => 'created_at desc')
   end
 
   def show

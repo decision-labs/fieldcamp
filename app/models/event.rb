@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  scope :desc, order("events.updated_at DESC")
+
   def as_feature_hash
     props = attributes
     props.delete('geom')

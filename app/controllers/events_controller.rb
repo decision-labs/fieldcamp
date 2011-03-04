@@ -1,8 +1,7 @@
 class EventsController < ApplicationController
   # GET /events
-  # GET /events.xml
   def index
-    @project = Project.find(params[:project_id])
+    @project = Project.find(params[:project_id], :order => 'updated_at DESC')
     @events = @project.events
 
     respond_to do |format|
@@ -17,7 +16,6 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1
-  # GET /events/1.xml
   def show
     @project = Project.find(params[:project_id])
     @event = @project.events.find(params[:id])
@@ -29,7 +27,6 @@ class EventsController < ApplicationController
   end
 
   # GET /events/new
-  # GET /events/new.xml
   def new
     authorize! :new, Event
     @project = Project.find(params[:project_id])
@@ -49,7 +46,6 @@ class EventsController < ApplicationController
   end
 
   # POST /events
-  # POST /events.xml
   def create
     @project = Project.find(params[:project_id])
     wkt = params[:event].delete(:geom)
@@ -71,7 +67,6 @@ class EventsController < ApplicationController
   end
 
   # PUT /events/1
-  # PUT /events/1.xml
   def update
     @project = Project.find(params[:project_id])
     @event = @project.events.find(params[:id])
@@ -79,17 +74,14 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to(@event, :notice => 'Event was successfully updated.') }
-        format.xml  { head :ok }
+        format.html { redirect_to(project_url(@project), :notice => 'Event was successfully updated.') }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /events/1
-  # DELETE /events/1.xml
   def destroy
     @project = Project.find(params[:project_id])
     @event = @project.events.find(params[:id])
@@ -98,8 +90,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(events_url) }
-      format.xml  { head :ok }
+      format.html { redirect_to(project_url(@project)) }
     end
   end
 end

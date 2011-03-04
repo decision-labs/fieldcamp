@@ -29,6 +29,6 @@
 
   %h2
     = t(:recent_events)
-  = render :partial => 'events/event', :collection => @project.events
+  = render :partial => 'events/event', :collection => @project.events.desc
 
 = link_to raw("&larr; #{t(:back_to_projects)}"), projects_path

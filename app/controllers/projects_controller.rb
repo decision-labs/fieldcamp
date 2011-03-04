@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @projects = Project.all
+    @projects = Project.all(:order => 'created_at desc')
   end
 
   def show

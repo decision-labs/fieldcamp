@@ -39,7 +39,7 @@ publisher = User.create(
 publisher.confirm!
 
 
-partners = ['UNHCR', 'UNODC', 'ION', 'UNHRC', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].collect do |name|
+partners = ['UNHCR', 'UNODC', 'ION', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].collect do |name|
   p = Partner.new(:name => name)
   p.user = gernot
   p.save!

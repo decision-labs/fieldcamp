@@ -1,8 +1,10 @@
-%h1
-  =t(:editing_location)
-
-= render 'form'
+= render :partial => "nav"
+.block
+  .content
+    %h2.title
+      =t(:editing_location)
+    .inner
+      .form
+        = render 'form'
 
 = link_to t(:show), @location
-\|
-= link_to t(:back), locations_path

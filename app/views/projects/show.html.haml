@@ -3,32 +3,41 @@
   = javascript_include_tag 'vendor/GeoJSON', 'map-helpers'
   = render 'js/show-map_js'
 
+= render :partial => "nav"
+
 #map
   #map_canvas
 
-.project
-  =model_title_links(@project)
-  .project-location= @project.location.name
-  .project-description= @project.description
-  .project-time
-    = t(:start_date)+':'
-    = @project.start_date
-  .project-time
-    = t(:end_date)+':'
-    = @project.end_date
-  .project-partners
-    = t(:partners)+':'
-    = render :partial => 'partner', :collection => @project.partners
-  .project-sectors
-    = t(:sectors)+':'
-    = render :partial => 'sector', :collection => @project.sectors
-  .clear
+.project.block
+  .content
+    =model_title_links(@project)
+    .project-location= @project.location.name
+    .project-description= @project.description
+    .project-time
+      = t(:start_date)+':'
+      = @project.start_date
+    .project-time
+      = t(:end_date)+':'
+      = @project.end_date
+    .project-partners
+      = t(:partners)+':'
+      = render :partial => 'partner', :collection => @project.partners
+    .project-sectors
+      = t(:sectors)+':'
+      = render :partial => 'sector', :collection => @project.sectors
+    .clear
 
-  %p
-    %span.new-event-link=link_to t(:new_event), new_project_event_path(@project)
+.block
+  .content
+    %h2.title
+      = t(:recent_events)
+    .inner
+      %ul.list
+        = render :partial => 'events/event', :collection => @project.events.desc
 
-  %h2
-    = t(:recent_events)
-  = render :partial => 'events/event', :collection => @project.events.desc
+  - content_for :sidebar do
+    .block
+      -if (can? :create,  Event)
+        =link_to t(:new_event), new_project_event_path(@project), :class => 'button'
 
 = link_to raw("&larr; #{t(:back_to_projects)}"), projects_path

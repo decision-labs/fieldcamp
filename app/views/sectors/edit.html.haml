@@ -1,8 +1,11 @@
-%h1
-  =t(:editing_sector)
+= render :partial => "nav"
 
-= render 'form'
+.block
+  .content
+    %h2.title
+      =t(:editing_sector)
+    .inner
+      .form
+        = render 'form'
 
 = link_to t(:show), @sector
-\|
-= link_to t(:back), sectors_path

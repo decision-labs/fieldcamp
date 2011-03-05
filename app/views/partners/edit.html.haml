@@ -1,8 +1,10 @@
-%h1
-  =t(:editing_partner)
-
-= render 'form'
+= render :partial => "nav"
+.block
+  .content
+    %h2.title
+      =t(:editing_partner)
+    .inner
+      .form
+        = render 'form'
 
 = link_to t(:show), @partner
-\|
-= link_to t(:back), partners_path

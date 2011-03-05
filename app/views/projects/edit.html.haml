@@ -1,8 +1,12 @@
-%h1
-  = t(:editing_project)
+= render :partial => "nav"
 
-= render 'form'
+.block
+  .content
+    %h2.title
+      = t(:editing_project)
+    .inner
+      .form
+        = render 'form'
 
 = link_to t(:show), @project
-\|
-= link_to t(:back), projects_path
+

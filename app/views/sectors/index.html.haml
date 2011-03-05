@@ -1,7 +1,8 @@
-%header
-  %p= t :sectors
+= render :partial => "nav"
 
--if (can? :create,  Sector)
-  .addlink= link_to t(:create_a_new_sector), new_sector_path
+- content_for :sidebar do
+  .block
+    -if (can? :create,  Sector)
+      .addlink= link_to t(:create_a_new_sector), new_sector_path, :class => 'button'
 
 = render @sectors

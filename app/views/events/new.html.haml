@@ -4,14 +4,20 @@
 
 = render 'js/new-map_js'
 
-%h1
-  = t(:new_event)
+= render :partial => "nav"
+
+.block
+  .content
+    %h2.title
+      = t(:new_event)
+    .inner
+      .form
+        = render 'form'
 
 #map_canvas
-%br
-=link_to t(:use_current_location), nil, :class => 'use_current_location'
-
-= render 'form'
+- content_for :sidebar do
+  .block
+    =link_to t(:use_current_location), nil, :class => 'use_current_location', :class => 'button'
 
 = link_to raw("&larr; #{t(:back_to_current_project)} (#{@project.title})"), project_path(@project)
 %br

@@ -28,6 +28,7 @@ group :test, :development do
   gem 'sham'
   gem 'faker'
   gem 'silent-postgres'
+  gem 'geokit'
 end
 
 group :development do

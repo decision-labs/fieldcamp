@@ -2,9 +2,12 @@ require 'pp'
 require 'geo_ruby'
 require 'geo_ruby/shp'
 include GeoRuby::Shp4r
+require 'geokit'
+include Geokit::Geocoders
 
-shpfile = ShpFile.open("#{Rails.root}/db/raw_data/provincial_boundaries_of_pakistan/provincial_boundaries_of_pakistan.shp")
-
+# -------------------------------
+# Delete all unless in production
+# -------------------------------
 if Rails.env != "production"
   Location.delete_all
   Project.delete_all
@@ -14,13 +17,15 @@ if Rails.env != "production"
   User.delete_all
 end
 
+# -------------------------------
+# Create users
+# -------------------------------
 gernot  = User.create(
   :email                 => 'gernot.ritthaler@caritas.de',
   :password              => "caritas321",
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-# gernot.confirm!
 
 silvius = User.create(
   :email                 => 'prakkako@caritas.de',
@@ -28,7 +33,6 @@ silvius = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-# silvius.confirm!
 
 publisher = User.create(
   :email                 => 'publisher@caritas.de',
@@ -36,9 +40,50 @@ publisher = User.create(
   :password_confirmation => "caritas123",
   :role                  => 'publisher'
 )
-# publisher.confirm!
 
+# -----------------------------------
+# Load Locations data from shapefiles
+# -----------------------------------
 
+# load pakistan data
+puts %x[rake db:load_shapefile \
+  shapefile_path="#{Rails.root}/db/raw_data/national_boundries_of_pakistan/pakistan_country_bdry.shp" \
+  name_field=NAME_1 \
+  description_field=descriptio \
+  admin_level=0 \
+  admin_email=#{gernot.email}]
+pakistan = Location.where(:name => "Pakistan").first
+puts "Created Pakistan id: #{pakistan.id}"
+
+puts %x[rake db:load_shapefile \
+  shapefile_path="#{Rails.root}/db/raw_data/provincial_boundaries_of_pakistan/provincial_boundaries_of_pakistan.shp" \
+  name_field=NAME_1 \
+  description_field=ENGTYPE_1 \
+  admin_level=1 \
+  parent_id=#{pakistan.id} \
+  admin_email=#{gernot.email}]
+
+# load Haiti data
+puts %x[rake db:load_shapefile \
+  shapefile_path="#{Rails.root}/db/raw_data/haiti_national/haiti_national_bdry.shp" \
+  name_field=COUNTRY \
+  description_field=COMMENT \
+  admin_level=0 \
+  admin_email=#{gernot.email}]
+haiti = Location.where(:name => "Republic of Haiti").first
+puts "Created Haiti id: #{haiti.id}"
+
+puts %x[rake db:load_shapefile \
+  shapefile_path="#{Rails.root}/db/raw_data/haiti/Haiti_adm1_2000-2010.shp" \
+  name_field=ADM1_NAME \
+  description_field=COMMENT \
+  admin_level=1 \
+  parent_id=#{haiti.id} \
+  admin_email=#{gernot.email}]
+
+# -------------------------------
+# Create partners
+# -------------------------------
 partners = ['UNHCR', 'UNODC', 'ION', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].collect do |name|
   p = Partner.new(:name => name)
   p.user = gernot
@@ -46,6 +91,9 @@ partners = ['UNHCR', 'UNODC', 'ION', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].col
   p
 end
 
+# -------------------------------
+# Create sectors
+# -------------------------------
 sectors = [
   # 'Emergency Telecommunications',
   # 'Information Management',
@@ -73,8 +121,13 @@ sectors = [
   s
 }
 
-project_titles = ["Education", "Agriculture", "Health", "Flood Relief",
-                  "Earthquake Relief", "Reconstruction", "Drought Relief", "Maternal Health"]
+# ------------------------------------------
+# Prepare attributes for projects and events
+# ------------------------------------------
+
+project_titles = ["Education", "Agriculture", "Health", "Flood Relief", "Sanitation",
+                 "Rural Development", "Earthquake Relief", "Reconstruction",
+                 "Drought Relief", "Maternal Health", "Emergency Response"]
 
 events_attributes = [
   {
@@ -91,37 +144,37 @@ events_attributes = [
   }
 ]
 
-shpfile.each_with_index do |rec, i|
-  geom = rec.geometry
-  name = rec.data["NAME_1"]
-  location = Location.new(:name => name, :admin_level => 1)
-  location.geom = geom
-  location.user = gernot
-  location.save!
+proj_desc = "With help from partner agencies, Caritas Pakistan has since focused on helping communities with rehabilitation and reconstruction, including road building, small-scale business initiatives and education in disaster preparedness."
 
-  project = Project.new( :title       => project_titles[i],
-                         :description => "With help from partner agencies, Caritas Pakistan has since focused on helping communities with rehabilitation and reconstruction, including road building, small-scale business initiatives and education in disaster preparedness.",
-                         :start_date  => 1.year.ago,
-                         :end_date    => Date.today + 1.year,
-                         :location_id => location.id
-  )
+# ----------------------------------------------
+# Load for projects and events for each country
+# ----------------------------------------------
+[pakistan, haiti].each do |country|
 
-  project.sectors  << sectors.shuffle![0..1]
-  project.partners << partners.shuffle![0..1]
-  project.user = gernot
-  project.save!
+  country.children.each_with_index do |location, i|
+    project = Project.new( :title       => project_titles[i],
+                           :description => proj_desc,
+                           :start_date  => 1.year.ago,
+                           :end_date    => Date.today + 1.year)
 
-  3.times do |i|
-    # puts "\nbuilding event...\n"
-    e = project.events.build(events_attributes[i])
-    point = location.geom.envelope.center
-    point.with_z = true
-    point.x += rand * 0.5 * [1,-1][rand(2)]
-    point.y += rand * 0.5 * [1,-1][rand(2)]
-    point.z = 0
-    e.geom = point
-    e.user = silvius
-    e.save!
+    project.sectors   << sectors.shuffle![0..1]
+    project.partners  << partners.shuffle![0..1]
+    project.user      = gernot
+    project.location  = location
+    project.save!
+
+    3.times do |i|
+      e = project.events.build(events_attributes[i])
+      point = location.geom.envelope.center
+      point.with_z = true
+      point.x += rand * 0.5 * [1,-1][rand(2)]
+      point.y += rand * 0.5 * [1,-1][rand(2)]
+      point.z = 0
+      res=GoogleGeocoder.reverse_geocode([point.y,point.x])
+      e.address = res.full_address
+      e.geom = point
+      e.user = silvius
+      e.save!
+    end
   end
-
 end

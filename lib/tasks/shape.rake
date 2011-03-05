@@ -44,7 +44,7 @@ namespace :db do
       exit 0
     end
 
-    if not Location.exists?(args[:parent_id])
+    if !args[:parent_id].nil? && !Location.exists?(args[:parent_id])
       print "Couldn't find any parent location record with an id of #{args[:parent_id]}\n"
       exit 0
     end
@@ -62,14 +62,14 @@ namespace :db do
 
     shpfile.each_with_index do |rec,i|
       geom = rec.geometry
-      name = rec.data[name_field].humanize
-      description = rec.data[description_field].humanize
+      name = rec.data[name_field]
+      description = rec.data[description_field]
       location = Location.new(:name => name, :admin_level => admin_level)
       location.geom = geom
       location.user = admin_user
       location.parent = parent unless parent.nil?
       location.save!
-      print "Created New Location ID: #{location.id} => #{[name,description,admin_level].inspect}\n"
+      puts "#{location.id}"
     end
   end
 end

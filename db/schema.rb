@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110302111732) do
+ActiveRecord::Schema.define(:version => 20110304210354) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -29,14 +29,16 @@ ActiveRecord::Schema.define(:version => 20110302111732) do
   create_table "locations", :force => true do |t|
     t.column "name", :string
     t.column "description", :text
-    t.column "admin_level_id", :integer
+    t.column "admin_level", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "user_id", :integer
+    t.column "parent_id", :integer
   end
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
+  add_index "locations", ["parent_id"], :name => "index_locations_on_parent_id"
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
 
   create_table "partners", :force => true do |t|
@@ -79,6 +81,9 @@ ActiveRecord::Schema.define(:version => 20110302111732) do
     t.column "project_id", :integer
     t.column "sector_id", :integer
   end
+
+  add_index "projects_sectors", ["project_id"], :name => "index_projects_sectors_on_project_id"
+  add_index "projects_sectors", ["sector_id"], :name => "index_projects_sectors_on_sector_id"
 
   create_table "sectors", :force => true do |t|
     t.column "name", :string

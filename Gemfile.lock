@@ -103,6 +103,7 @@ GEM
     fastercsv (1.5.3)
     ffi (0.6.3)
       rake (>= 0.8.7)
+    geokit (1.5.0)
     gherkin (2.3.3)
       json (~> 1.4.6)
     haml (3.0.25)
@@ -229,6 +230,7 @@ DEPENDENCIES
   devise
   em-websocket!
   faker
+  geokit
   georuby!
   haml
   haml-rails

@@ -6,13 +6,13 @@ describe "locations/index.html.haml" do
       stub_model(Location,
         :name => "Name",
         :description => "MyText",
-        :admin_level_id => 1,
+        :admin_level => 1,
         :geom => ""
       ),
       stub_model(Location,
         :name => "Name",
         :description => "MyText",
-        :admin_level_id => 1,
+        :admin_level => 1,
         :geom => ""
       )
     ])

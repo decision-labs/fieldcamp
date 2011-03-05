@@ -94,7 +94,7 @@ events_attributes = [
 shpfile.each_with_index do |rec, i|
   geom = rec.geometry
   name = rec.data["NAME_1"]
-  location = Location.new(:name => name, :admin_level_id => 1)
+  location = Location.new(:name => name, :admin_level => 1)
   location.geom = geom
   location.user = gernot
   location.save!

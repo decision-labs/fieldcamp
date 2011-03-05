@@ -5,7 +5,7 @@ describe "locations/new.html.haml" do
     assign(:location, stub_model(Location,
       :name => "MyString",
       :description => "MyText",
-      :admin_level_id => 1,
+      :admin_level => 1,
       :geom => ""
     ).as_new_record)
   end
@@ -17,7 +17,7 @@ describe "locations/new.html.haml" do
     assert_select "form", :action => locations_path, :method => "post" do
       assert_select "input#location_name", :name => "location[name]"
       assert_select "textarea#location_description", :name => "location[description]"
-      assert_select "input#location_admin_level_id", :name => "location[admin_level_id]"
+      assert_select "input#location_admin_level", :name => "location[admin_level]"
       assert_select "input#location_geom", :name => "location[geom]"
     end
   end

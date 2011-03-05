@@ -5,7 +5,7 @@ describe "locations/show.html.haml" do
     @location = assign(:location, stub_model(Location,
       :name => "Name",
       :description => "MyText",
-      :admin_level_id => 1,
+      :admin_level => 1,
       :geom => ""
     ))
   end

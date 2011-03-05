@@ -10,7 +10,7 @@ end
 Location.blueprint do
   name { Faker::Lorem.name }
   description { Faker::Lorem.paragraph }
-  admin_level_id { 1 }
+  admin_level { 1 }
   geom { GeoRuby::SimpleFeatures::Polygon.from_coordinates([[[0,0],[4,0],[4,4],[0,4],[0,0]],[[1,1],[3,1],[3,3],[1,3],[1,1]]],4326) }
 end
 

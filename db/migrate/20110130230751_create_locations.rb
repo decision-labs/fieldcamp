@@ -3,7 +3,7 @@ class CreateLocations < ActiveRecord::Migration
     create_table :locations do |t|
       t.string    :name
       t.text      :description
-      t.integer   :admin_level_id
+      t.integer   :admin_level
       t.geometry  :geom, :srid => 4326, :with_z => false, :null => false
 
       t.timestamps

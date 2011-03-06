@@ -19,12 +19,6 @@
     .project-time
       = t(:end_date)+':'
       = @project.end_date
-    .project-partners
-      = t(:partners)+':'
-      = render :partial => 'partner', :collection => @project.partners
-    .project-sectors
-      = t(:sectors)+':'
-      = render :partial => 'sector', :collection => @project.sectors
     .clear
 
 .block
@@ -35,9 +29,25 @@
       %ul.list
         = render :partial => 'events/event', :collection => @project.events.desc
 
-  - content_for :sidebar do
-    .block
-      -if (can? :create,  Event)
-        =link_to t(:new_event), new_project_event_path(@project), :class => 'button'
+.block
+  .content
+    %h2.title
+      = t(:sectors)
+    .inner
+      %ul.list
+        = render :partial => 'sector', :collection => @project.sectors
+
+.block
+  .content
+    %h2.title
+      = t(:partners)
+    .inner
+      %ul.list
+        = render :partial => 'partner', :collection => @project.partners
+                
+- content_for :sidebar do
+  .block
+    -if (can? :create,  Event)
+      =link_to t(:new_event), new_project_event_path(@project), :class => 'button'
 
 = link_to raw("&larr; #{t(:back_to_projects)}"), projects_path

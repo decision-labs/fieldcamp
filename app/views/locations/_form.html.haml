@@ -5,16 +5,17 @@
       %ul
         - @location.errors.full_messages.each do |msg|
           %li= msg
-
-  .field.group
-    = f.label :name, :class => 'label'
-    = f.text_field :name, :class => 'text_field'
-  .field.group
-    = f.label :description, :class => 'label'
-    = f.text_area :description, :class => 'text_area'
-  .field.group
-    = f.label :admin_level_id, :class => 'label'
-    = f.text_field :admin_level_id, :class => 'text_field'
+  .columns.wat-cf
+    .column.left
+      .field.group
+        = f.label :name, :class => 'label'
+        = f.text_field :name, :class => 'text_field'
+      .field.group
+        = f.label :description, :class => 'label'
+        = f.text_area :description, :class => 'text_area'
+      .field.group
+        = f.label :admin_level_id, :class => 'label'
+        = f.text_field :admin_level_id, :class => 'text_field'
   .group.navform.wat-cf
     = f.submit t(:save), :class => 'button'
     = link_to t(:back), locations_path, :class => 'button'

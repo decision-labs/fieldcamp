@@ -1,7 +1,11 @@
-%h1
-  = t(:editing_event)
-
-= render 'form'
+= render :partial => "nav"
+.block
+  .content
+    %h2.title
+      = t(:editing_event)
+    .inner
+      .form
+        = render 'form'
 
 = link_to raw("&larr; #{t(:back_to_current_project)} (#{@project.title})"), project_path(@project)
 \|

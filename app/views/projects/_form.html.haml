@@ -5,29 +5,30 @@
       %ul
         - @project.errors.full_messages.each do |msg|
           %li= msg
-
-  .field.group
-    = f.label :title, :class => 'label'
-    = f.text_field :title, :class => 'text_field'
-  .field.group
-    = f.label :description, :class => 'label'
-    = f.text_area :description, :cols => 40, :rows => 10, :class => 'text_area'
-  .field.group
-    = f.label :location, :class => 'label'
-    = f.select :location_id, Location.all.collect {|p| [ p.name, p.id ] }, :class => 'select'
-  .field.group
-    = f.label :start_date, :class => 'label'
-    = f.date_select :start_date, :class => 'date_select'
-  .field.group
-    = f.label :end_date, :class => 'label'
-    = f.date_select :end_date, :class => 'date_select'
-  .field.group
-    = f.label :partners, :class => 'label'
-    = select_tag 'project[partner_ids][]', options_from_collection_for_select(Partner.all, "id", "name"), :multiple=>true, :class => 'select_tag'
-
-  .field.group
-    = f.label :sectors, :class => 'label'
-    = select_tag 'project[sector_ids][]', options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true, :class => 'select_tag'
+  .columns.wat-cf
+    .column.left
+      .field.group
+        = f.label :title, :class => 'label'
+        = f.text_field :title, :class => 'text_field'
+      .field.group
+        = f.label :description, :class => 'label'
+        = f.text_area :description, :cols => 40, :rows => 10, :class => 'text_area'
+      .field.group
+        = f.label :location, :class => 'label'
+        = f.select :location_id, Location.all.collect {|p| [ p.name, p.id ] }, :class => 'select'
+    .column.right
+      .field.group
+        = f.label :start_date, :class => 'label'
+        = f.date_select :start_date, :class => 'date_select'
+      .field.group
+        = f.label :end_date, :class => 'label'
+        = f.date_select :end_date, :class => 'date_select'
+      .field.group
+        = f.label :partners, :class => 'label'
+        = select_tag 'project[partner_ids][]', options_from_collection_for_select(Partner.all, "id", "name"), :multiple=>true, :class => 'select_tag'
+      .field.group
+        = f.label :sectors, :class => 'label'
+        = select_tag 'project[sector_ids][]', options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true, :class => 'select_tag'
 
   .group.navform.wat-cf
     = f.submit t(:save), :class => 'button'

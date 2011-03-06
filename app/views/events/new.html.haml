@@ -1,5 +1,4 @@
-=content_for :head do
-  =stylesheet_link_tag 'map'
+-content_for :head do
   =javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
 
 = render 'js/new-map_js'
@@ -13,11 +12,6 @@
     .inner
       .form
         = render 'form'
-
-#map_canvas
-- content_for :sidebar do
-  .block
-    =link_to t(:use_current_location), nil, :class => 'use_current_location', :class => 'button'
 
 = link_to raw("&larr; #{t(:back_to_current_project)} (#{@project.title})"), project_path(@project)
 %br

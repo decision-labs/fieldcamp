@@ -1,25 +1,29 @@
-- content_for :head do
+- content_for :outer do
   = stylesheet_link_tag 'map'
   = javascript_include_tag 'vendor/GeoJSON', 'map-helpers'
   = render 'js/show-map_js'
 
 = render :partial => "nav"
 
-#map
-  #map_canvas
+
 
 .project.block
   .content
     =model_title_links(@project)
-    .project-location= @project.location.name
-    .project-description= @project.description
-    .project-time
-      = t(:start_date)+':'
-      = @project.start_date
-    .project-time
-      = t(:end_date)+':'
-      = @project.end_date
-    .clear
+    .inner
+      .columns.wat-cf
+        .column.left
+          .project-location= @project.location.name
+          .project-description= @project.description
+          .project-time
+            = t(:start_date)+':'
+            = @project.start_date
+          .project-time
+            = t(:end_date)+':'
+            = @project.end_date
+        .column.right
+          #map
+            #map_canvas
 
 .block
   .content
@@ -44,7 +48,7 @@
     .inner
       %ul.list
         = render :partial => 'partner', :collection => @project.partners
-                
+
 - content_for :sidebar do
   .block
     -if (can? :create,  Event)

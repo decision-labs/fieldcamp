@@ -16,11 +16,23 @@
       .field.group
         = f.hidden_field :geom, :class => 'hidden_field'
       .field.group
-        = f.label :address, :class => 'label'
+        .fieldWithErrors
+          = f.label :address, :class => 'label'
+          %span.geocoding_status.error
+            =t(:address_unverified)
         = f.text_field :address, :class => 'text_field'
-        %span.geocode_link=link_to t(:geocode_this_address), nil, :class => 'geocode_address'
-        %span.geocoding_status Address unverified
+        %span.description E.g. Multan, Pakistan
+        .actions-bar.wat-cf
+          .actions
+            %span.geocode_link=link_to t(:geocode_this_address), nil, :class => 'geocode_address button'
+            / FIXME: OR needed
+            =link_to t(:use_current_location), nil, :class => 'use_current_location button'
+
     .column.right
-    
+      #map
+        #map_canvas
+
   .group.navform.wat-cf
-    = f.submit t(:save), :class => 'button'
+    - content_tag :button, :type => :submit, :class => 'button' do
+      = image_tag "icons/tick.png"
+      =t(:save)

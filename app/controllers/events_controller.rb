@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   # GET /events
   def index
-    @project = Project.find(params[:project_id], :order => 'updated_at DESC')
-    @events = @project.events
+    @project = Project.find(params[:project_id])
+    @events = @project.events.order('updated_at desc')
 
     respond_to do |format|
       format.html # index.html.erb

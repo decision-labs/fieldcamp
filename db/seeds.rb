@@ -166,9 +166,13 @@ proj_desc = "With help from partner agencies, Caritas Pakistan has since focused
     3.times do |i|
       e = project.events.build(events_attributes[i])
       point = location.geom.envelope.center
+
+      width  = (haiti.geom.envelope.upper_corner.x - haiti.geom.envelope.lower_corner.x).abs/2
+      height = (haiti.geom.envelope.upper_corner.y - haiti.geom.envelope.lower_corner.y).abs/2
+
       point.with_z = true
-      point.x += rand * 0.5 * [1,-1][rand(2)]
-      point.y += rand * 0.5 * [1,-1][rand(2)]
+      point.x += width  * rand * 0.1 * [1,-1][rand(2)]
+      point.y += height * rand * 0.1 * [1,-1][rand(2)]
       point.z = 0
       res=GoogleGeocoder.reverse_geocode([point.y,point.x])
       e.address = res.full_address

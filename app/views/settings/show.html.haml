@@ -1,0 +1,7 @@
+%h1 Settings
+- unless @settings.location.nil?
+  = @settings.location.name
+  = link_to t(:change_user_settings), edit_settings_path
+- else
+  Please set the location of your projects
+  = link_to t(:edit_user_settings), edit_settings_path

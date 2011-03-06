@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110304210354) do
+ActiveRecord::Schema.define(:version => 20110305135148) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -94,6 +94,17 @@ ActiveRecord::Schema.define(:version => 20110304210354) do
   end
 
   add_index "sectors", ["user_id"], :name => "index_sectors_on_user_id"
+
+  create_table "settings", :force => true do |t|
+    t.column "user_id", :integer
+    t.column "location_id", :integer
+    t.column "language", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "settings", ["language"], :name => "index_settings_on_language"
+  add_index "settings", ["location_id"], :name => "index_settings_on_location_id"
 
   create_table "users", :force => true do |t|
     t.column "email", :string, :default => "", :null => false

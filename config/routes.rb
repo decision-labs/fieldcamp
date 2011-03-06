@@ -2,6 +2,9 @@ Caritas::Application.routes.draw do
 
   scope "(:locale)" do
     devise_for :users
+    get 'settings' => 'settings#show'
+    get 'settings/edit' => 'settings#edit', :as => 'edit_settings'
+    put 'settings' => 'settings#update'
 
     resources :locations
     resources :partners

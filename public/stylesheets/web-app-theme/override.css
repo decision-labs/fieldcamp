@@ -76,3 +76,17 @@ input.checkbox {
 .project-description{
   font-size: 1.3em!important;
 }
+
+ul.list li .item {
+  margin-left: 5px!important;
+}
+
+span .locale_links{
+  padding-top: 2px;
+  padding-right: 2px;
+  float: right;
+  color: #999;
+}
+span .locale_links a{
+  color: #aaa;
+}

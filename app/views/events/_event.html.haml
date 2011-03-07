@@ -1,11 +1,16 @@
 %li
   .item
     %h3.title
-      .event-title= event.title
+      = event.title
       -if (can? :update,  event)
         = link_to_icon 'edit', t(:edit), edit_project_event_path(event.project, event)
       -if (can? :destroy,  event)
         = link_to_icon 'destroy', t(:destroy), project_event_path(event.project, event), :confirm => "#{t(:do_you_want_to_delete)} '#{event.title}'?", :method => :delete
 
-    .event-description= event.description
-    .time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:short)
+    %p.event-location
+      %strong
+        ="#{t(:location)}:"
+      = event.address
+
+    %p.event-description= event.description
+    %strong.gray.right.time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:long)

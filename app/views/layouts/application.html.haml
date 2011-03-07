@@ -12,6 +12,7 @@
       = yield :outer
     #container
       #header
+        %span.locale_links=render 'shared/locale_links'
         %h1
           %a{:href => "/"} Caritas
         #user-navigation

@@ -13,14 +13,16 @@
     .inner
       .columns.wat-cf
         .column.left
-          .project-location= @project.location.name
-          .project-description= @project.description
-          .project-time
-            = t(:start_date)+':'
-            = @project.start_date
-          .project-time
-            = t(:end_date)+':'
-            = @project.end_date
+          %h3.project-time
+            = @project.start_date.to_formatted_s(:long)
+            \-
+            = @project.end_date.to_formatted_s(:long)
+          %h3.project-location
+            %strong
+              ="#{t(:location)}:"
+            = @project.location.name.titleize
+
+          %p.first.project-description= @project.description
         .column.right
           #map
             #map_canvas

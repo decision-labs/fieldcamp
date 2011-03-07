@@ -68,6 +68,6 @@ module ApplicationHelper
   end
 
   def title_fallback
-    ['Cartias', controller.controller_name, controller.action_name].compact.join(' :: ')
+    ['Caritas', controller.controller_name, controller.action_name].compact.join(' :: ')
   end
 end

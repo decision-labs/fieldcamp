@@ -67,3 +67,8 @@ input.checkbox {
   top: 4px;
   *overflow: hidden;
 }
+
+#event_infowindow{
+  width: 250px;
+  height: 150px;
+}

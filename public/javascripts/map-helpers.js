@@ -54,6 +54,22 @@ function ToggleFullScreen(controlDiv, map) {
   });
 }
 
+function renderJSONEvent(obj){
+  title = obj["title"];
+  description = obj["description"];
+  address = obj["address"];
+  updated_at = obj["updated_at"];
+  html= "<div id='event_infowindow'>"+
+    "<h3>"+title+"</h3>"+
+    "<p>"+
+        "<strong class='label'>Description:</strong> "+ description +"<br>"+
+        "<strong class='label'>Address:</strong> "+ address         +"<br>"+
+        "<strong class='label'>Updated at:</strong> <span id='datetime'>"+updated_at+"</span>"+
+    "</p>"+
+  "</div>";
+  return(html);
+}
+
 function renderJSON(obj) {
   var keys = []
   var retValue = ""

@@ -1,7 +1,11 @@
-%header
-  %p= @sector.name
+= render :partial => "nav"
 
-.projects
-  =render :partial => 'projects/project', :collection => @sector.projects
+.block
+  .content
+    = model_title_links(@sector, t="name")
+    .inner
+      %p= @sector.description
+
+=render :partial => 'projects/project', :collection => @sector.projects
 
 = link_to raw("&larr; #{t(:back_to_sectors)}"), sectors_path

@@ -8,6 +8,7 @@
       zoom: 6,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
+      panControl: true,
       zoomControl: true,
       zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL
@@ -30,7 +31,7 @@
       $.each(geojson.features, function(i, feature) {
         var event_marker = new GeoJSON(feature.geometry, null);
         event_marker.setMap(map);
-        var content_string = renderJSON(feature.properties);
+        var content_string = renderJSONEvent(feature.properties);
         var info_window = new google.maps.InfoWindow({content: content_string});
         google.maps.event.addListener(event_marker, 'click', function() {
           info_window.open(map, event_marker);
@@ -58,7 +59,7 @@
         marker_opts = { animation: google.maps.Animation.DROP }
         var event_marker = new GeoJSON(feature.geometry, marker_opts);
         event_marker.setMap(map);
-        var content_string = renderJSON(feature.properties);
+        var content_string = renderJSONEvent(feature.properties);
         var info_window = new google.maps.InfoWindow({content: content_string});
         google.maps.event.addListener(event_marker, 'click', function() {
           info_window.open(map, event_marker);

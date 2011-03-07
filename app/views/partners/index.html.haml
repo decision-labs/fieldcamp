@@ -1,7 +1,8 @@
-%header
-  %p= t :partners
+= render :partial => "nav"
 
--if (can? :create,  Partner)
-  .addlink= link_to t(:create_a_new_partner), new_partner_path
+- content_for :sidebar do
+  .block
+    -if (can? :create,  Partner)
+      .addlink= link_to t(:create_a_new_partner), new_partner_path, :class => 'button'
 
 = render @partners

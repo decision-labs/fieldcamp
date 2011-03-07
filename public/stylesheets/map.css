@@ -1,7 +1,7 @@
 /*TODO: The map_canvas style for mobile and web app needs to be sperated */
 #map_canvas {
   height: 400px;
-  width:  600px;
+  width:  100%;
   color:  #444;
 }
 

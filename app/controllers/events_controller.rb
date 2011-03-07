@@ -72,6 +72,9 @@ class EventsController < ApplicationController
     @event = @project.events.find(params[:id])
     authorize! :update, @event
 
+    wkt = params[:event][:wkt]
+    @event.geom = Point.from_ewkt(wkt)
+
     respond_to do |format|
       if @event.update_attributes(params[:event])
         format.html { redirect_to(project_url(@project), :notice => 'Event was successfully updated.') }

@@ -5,18 +5,19 @@
       %ul
         - @location.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :name
-    %br
-    = f.text_field :name
-  .field
-    = f.label :description
-    %br
-    = f.text_area :description
-  .field
-    = f.label :admin_level
-    %br
-    = f.text_field :admin_level
-  .actions
-    = f.submit 'Save'
+  .columns.wat-cf
+    .column.left
+      .field.group
+        = f.label :name, :class => 'label'
+        = f.text_field :name, :class => 'text_field'
+      .field.group
+        = f.label :description, :class => 'label'
+        = f.text_area :description, :class => 'text_area'
+      .field.group
+        = f.label :admin_level_id, :class => 'label'
+        = f.text_field :admin_level_id, :class => 'text_field'
+  .group.navform.wat-cf
+    - content_tag :button, :type => :submit, :class => 'button' do
+      = image_tag "icons/tick.png"
+      =t(:save)
+    = link_to t(:back), locations_path, :class => 'button'

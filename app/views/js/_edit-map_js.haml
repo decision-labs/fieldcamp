@@ -1,0 +1,107 @@
+:javascript
+  $(document).ready(function() {
+    var lat,
+    lon,
+    elev = 0;
+    var map = null;
+    var marker = null;
+
+    if (navigator.geolocation) {
+      function gpsSuccess(pos) {
+        if (pos.coords) {
+          lat = pos.coords.latitude;
+          lon = pos.coords.longitude;
+          if (pos.coords.altitude != null) {
+            elev = pos.coords.altitude;
+          }
+        } else {
+          lat = pos.latitude;
+          lon = pos.longitude;
+          if (pos.altitude != null) {
+            elev = pos.altitude;
+          }
+        }
+
+        event = new google.maps.LatLng(lat, lon);
+
+        map.panTo(event);
+        if (marker != null) {
+          marker.setMap(null);
+        }
+        marker = new google.maps.Marker({
+          map: map,
+          animation: google.maps.Animation.DROP,
+          position: event
+        });
+        $('input#event_geom').val("POINT(" + lon + " " + lat + " " + elev + ")");
+        // console.log("Location Found: lat="+lat + " lon="+lon );
+      }
+
+      function gpsFail() {
+        console.log("No Geolocation API - use address field")
+      }
+
+      $('.use_current_location').bind('click',
+      function() {
+        navigator.geolocation.getCurrentPosition(gpsSuccess, gpsFail, {
+          enableHighAccuracy: true,
+          maximumAge: 300000
+        });
+        return false;
+      })
+    }
+    // geolocation api calls
+    // TODO: Add event to listen on typing address: $('.geocode_address') and clear all locations
+    $('.geocode_address').bind('click',
+    function() {
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({
+        'address': $('input#event_address').val()
+      },
+      function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (! (results[0].formatted_address == undefined)) {
+            // set the address field with the geocoded address
+            $('input#event_address').val(results[0].formatted_address);
+          }
+
+          lon = results[0].geometry.location.lng()
+          lat = results[0].geometry.location.lat()
+
+          // set the hidden geom field to wkt_geometry string
+          $('input#event_geom').val("POINT(" + lon + " " + lat + " " + elev + ")");
+
+          // set address varified
+          $('span.geocoding_status').html("Address verified");
+
+          // center map to address and drop marker
+          event = new google.maps.LatLng(lat, lon);
+          map.panTo(event);
+          if (marker != null) {
+            marker.setMap(null);
+          }
+          // clear any old markers
+          marker = new google.maps.Marker({
+            map: map,
+            animation: google.maps.Animation.DROP,
+            position: event
+          });
+        }
+      });
+      return false;
+    });
+
+    var latlng = new google.maps.LatLng("#{@event.geom.y}", "#{@event.geom.x}");
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map($('#map_canvas')[0], mapOptions)
+    map.panTo(latlng);
+    marker = new google.maps.Marker({
+      map: map,
+      position: latlng
+    });
+  })

@@ -1,8 +1,13 @@
-%header
-  %p= @location.name
+= render :partial => "nav"
 
-.projects
-  =render :partial => 'projects/project', :collection => @location.projects
+.block
+  .content
+    = model_title_links(@location, t="name")
+    .inner
+      %p= @location.description
+
+
+=render :partial => 'projects/project', :collection => @location.projects
 
 = link_to raw("&larr; #{t(:back_to_locations)}"), locations_path
 

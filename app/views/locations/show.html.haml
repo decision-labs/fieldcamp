@@ -4,7 +4,7 @@
   .content
     = model_title_links(@location, t="name")
     .inner
-      = @location.description
+      %p= @location.description
 
 
 =render :partial => 'projects/project', :collection => @location.projects

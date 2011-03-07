@@ -4,7 +4,7 @@
   .content
     = model_title_links(@partner, t="name")
     .inner
-      = @partner.description
+      %p= @partner.description
 
 =render @partner.projects
 

@@ -15,12 +15,7 @@
         %h1
           %a{:href => "/"} Caritas
         #user-navigation
-          %ul.wat-cf
-            %li
-              - if user_signed_in?
-                = link_to(t(:logout), destroy_user_session_path, :class=>'logout')
-              - else
-                = link_to(t(:login), new_user_session_path, :class=>'login')
+          =render 'shared/login_links'
         #main-navigation
           %ul.wat-cf
             = yield :nav

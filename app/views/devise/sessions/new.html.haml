@@ -1,0 +1,37 @@
+#box
+  #block-login.block
+    %h2 Sign in
+    .content.login
+      .flash
+        - flash.each do |type, message|
+          %div{:class => "message #{type}"}
+            %p= message
+
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html=>{:class=>'form login'}) do |f|
+        .group.wat-cf
+          .left
+            = f.label :email, :class => 'label right'
+          .right
+            = f.text_field :email, :class => 'text_field'
+        .group.wat-cf
+          .left
+            = f.label :password, :class => 'label right'
+          .right
+            = f.password_field :password, :class => 'text_field'
+        - if devise_mapping.rememberable?
+          .group.wat-cf
+            .left
+              = f.label :remember, :class => 'checkbox label right'
+            .right
+              = f.check_box :remember_me, :class => 'checkbox'
+        .group.navform.wat-cf
+          .right
+            - content_tag :button, :type => :submit, :class => 'button', :alt => "Sign in" do
+              = image_tag "icons/key.png"
+              Sign in
+            %a.button{:href => root_path}
+              = image_tag "icons/cross.png", :alt => "Cancel"
+              Cancel
+
+
+      = render :partial => "devise/shared/links"

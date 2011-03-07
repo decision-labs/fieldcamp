@@ -55,3 +55,15 @@ input.button:hover {
 input.button:active {
   background-color:#e5e5e5;
 }
+
+.flash .alert {
+  border: 1px solid #ffbbbb;
+  background-color: #ffdddd;
+}
+
+input.checkbox {
+  vertical-align: bottom;
+  position: relative;
+  top: 4px;
+  *overflow: hidden;
+}

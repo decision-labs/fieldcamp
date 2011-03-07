@@ -14,5 +14,7 @@
         = f.label :description, :class => 'label'
         = f.text_area :description, :class => 'text_area'
   .group.navform.wat-cf
-    = f.submit t(:save), :class => 'button'
+    - content_tag :button, :type => :submit, :class => 'button' do
+      = image_tag "icons/tick.png"
+      =t(:save)
     = link_to t(:back), partners_path, :class => 'button'

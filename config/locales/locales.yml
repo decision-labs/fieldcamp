@@ -33,6 +33,7 @@ en:
   create_a_new_partner: Create a New Partner
   back_to_partners: Back to Partners
   locations: Locations
+  location: Location
   back_to_locations: Back to Locations
   logout: Logout
   login: Login
@@ -78,6 +79,7 @@ de:
   create_a_new_partner: Erstellen Sie einen neuen Partner
   back_to_partners: Zurück zu Partner
   locations: Standorte
+  location: Standort
   back_to_locations: Zurück zu Standorte
   logout: Abmelden
   login: Login
@@ -122,6 +124,7 @@ ur:
   create_a_new_partner: ایک نیا ساتھی بنائیں
   back_to_partners: شراکت دار پر واپس جائیں
   locations: جگہ
+  location: مقام
   back_to_locations: جگہوں پر واپس
   logout: لاگ آؤٹ
   login: لاگ ان

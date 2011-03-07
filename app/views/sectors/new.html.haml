@@ -1,6 +1,9 @@
-%h1
-  =t(:new_sector)
+= render :partial => "nav"
 
-= render 'form'
-
-= link_to t(:back), sectors_path
+.block
+  .content
+    %h2.title
+      =t(:new_sector)
+    .inner
+      .form
+        = render 'form'

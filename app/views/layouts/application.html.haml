@@ -5,20 +5,31 @@
     %title= content_for?(:title) ? yield(:title) : title_fallback
     /[if (gt IE 8)]
       = hoptoad_javascript_notifier
-    = render :partial => 'shared/includes'
-    = render :partial => 'shared/locale_links'
-    = render :partial => 'shared/login_links'
+    = render 'shared/includes'
     = yield :head
   %body
-    #header
-      = yield :header
-    #nav
-      %ul
-        %li=link_to t(:projects), projects_url
-        %li=link_to t(:sectors), sectors_url
-        %li=link_to t(:partners), partners_url
-        %li=link_to t(:locations), locations_url
-    %p#notice= notice
-    %p#alert= alert
-
-    = yield
+    #outer
+      = yield :outer
+    #container
+      #header
+        %span.locale_links=render 'shared/locale_links'
+        %h1
+          %a{:href => "/"} Caritas
+        #user-navigation
+          =render 'shared/login_links'
+        #main-navigation
+          %ul.wat-cf
+            = yield :nav
+      #wrapper.wat-cf
+        .flash
+          - flash.each do |type, message|
+            %div{:class => "message #{type}"}
+              %p= message
+        #main
+          = yield
+          #footer
+            .block
+              %p
+                Copyright &copy; #{Time.now.year} nomad labs.
+        #sidebar
+          = yield :sidebar

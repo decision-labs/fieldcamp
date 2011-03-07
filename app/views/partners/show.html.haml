@@ -1,5 +1,11 @@
-%header
-  %p= @partner.name
+= render :partial => "nav"
+
+.block
+  .content
+    = model_title_links(@partner, t="name")
+    .inner
+      %p= @partner.description
 
 =render @partner.projects
+
 = link_to raw("&larr; #{t(:back_to_partners)}"), partners_path

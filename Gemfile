@@ -28,6 +28,9 @@ group :test, :development do
   gem 'sham'
   gem 'faker'
   gem 'silent-postgres'
+  gem 'web-app-theme'
+  gem 'hpricot'
+  gem 'ruby_parser'
 end
 
 group :development do

@@ -1,7 +1,17 @@
-%h1
-  = t(:editing_event)
+-content_for :head do
+  =javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
 
-= render 'form'
+= render 'js/edit-map_js'
+
+= render :partial => "nav"
+
+.block
+  .content
+    %h2.title
+      = t(:editing_event)
+    .inner
+      .form
+        = render 'form'
 
 = link_to raw("&larr; #{t(:back_to_current_project)} (#{@project.title})"), project_path(@project)
 \|

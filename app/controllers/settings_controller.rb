@@ -1,4 +1,5 @@
 class SettingsController < ApplicationController
+  before_filter :authenticate_user!
   def show
     if current_user.settings.nil?
       @settings = Settings.new(:user_id => current_user.id)

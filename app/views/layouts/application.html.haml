@@ -33,4 +33,11 @@
                 Copyright &copy; #{Time.now.year} nomad labs.
         #sidebar
           = yield :sidebar
-          = render 'shared/user_settings'
+          -unless( params[:controller] =~ /settings/ || !user_signed_in?)
+            .block
+              .content
+                %h3=t(:Settings)
+                .actions-bar.wat-cf
+                  .actions
+                    %ul.user_settings
+                      %li= render 'shared/user_settings'

@@ -1,12 +1,12 @@
+- content_for :nav do
+  %li.first=link_to t(:projects), projects_url
+  %li=link_to t(:sectors), sectors_url
+  %li=link_to t(:partners), partners_url
+  %li=link_to t(:locations), locations_url
 .block
   .content
     %h2.title=t(:Settings)
     .inner
       .actions-bar.wat-cf
         .actions
-          - unless @settings.location.nil?
-            %span.setting_label= @settings.location.name
-            = link_to t(:edit_user_settings), edit_settings_path, :class => "button"
-          - else
-            %span.setting_label=t(:set_your_location_label)
-            = link_to t(:edit_user_settings), edit_settings_path, :class => "button"
+          =render 'shared/user_settings'

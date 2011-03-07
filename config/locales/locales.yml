@@ -48,6 +48,7 @@ en:
   edit_user_settings: Edit user settings
   set_your_location_label: Please set work location
   Settings: Settings
+  settings_update_success_message: Settings where successfully updated
 
 de:
   hello_world: Hallo Welt
@@ -98,6 +99,7 @@ de:
   set_your_location_label: Bitte setzen Sie Einsatzort
   Settings: Einstellungen
   account_settings: Konto-Einstellungen
+  settings_update_success_message: Settings where successfully updated
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -147,10 +149,9 @@ ur:
   set_your_location_label: براہ مہربانی کام کی جگہ مقرر
   Settings: ترتیبات
   account_settings: اکاؤنٹ کی ترتیبات
+  settings_update_success_message: Settings where successfully updated
 
 fr:
-
-
   hello_world: Bonjour tout le monde
   hello_flash: Bonjour Flash
   new: Nouveau
@@ -198,3 +199,4 @@ fr:
   set_your_location_label: S'il vous plaît définir lieu de travail
   Settings: Paramètres
   account_settings: Paramètres du compte
+  settings_update_success_message: Settings where successfully updated

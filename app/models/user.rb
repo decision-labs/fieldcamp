@@ -18,10 +18,15 @@ class User < ActiveRecord::Base
                   :role
 
   before_create :set_role
+  before_create :build_settings
 
   private
 
   def set_role
     self.role = 'publisher' if self.role.nil?
+  end
+
+  def build_settings
+    self.settings = Settings.new if self.settings.nil?
   end
 end

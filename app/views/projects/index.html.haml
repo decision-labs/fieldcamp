@@ -3,6 +3,10 @@
 - content_for :sidebar do
   .block
     -if (can? :create,  Project)
-      = link_to t(:create_a_new_project), new_project_path, :class => 'button'
+      .content
+        %h3=t(:project)
+        .actions-bar.wat-cf
+          .actions
+            = link_to t(:create_a_new_project), new_project_path, :class => 'button'
 
 = render @projects

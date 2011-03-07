@@ -104,3 +104,7 @@ span.setting_label{
   padding:5px 10px 6px 7px;
   text-decoration: none;
 }
+
+.actions-bar.wat-cf .actions ul.user_settings li{
+  list-style-type: none;
+}

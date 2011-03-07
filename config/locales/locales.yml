@@ -47,6 +47,7 @@ en:
   unauthorized: Not authorized to %{action} %{subject}
   edit_user_settings: Edit user settings
   set_your_location_label: Please set work location
+  Settings: Settings
 
 de:
   hello_world: Hallo Welt
@@ -95,6 +96,8 @@ de:
   unauthorized: Nicht berechtigt, %{action} %{subject}
   edit_user_settings: Benutzer-Einstellungen bearbeiten
   set_your_location_label: Bitte setzen Sie Einsatzort
+  Settings: Einstellungen
+  account_settings: Konto-Einstellungen
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -142,6 +145,56 @@ ur:
   unauthorized: مجاز نہیں
   edit_user_settings: صارف تراتیب میں ترمیم کریں
   set_your_location_label: براہ مہربانی کام کی جگہ مقرر
+  Settings: ترتیبات
+  account_settings: اکاؤنٹ کی ترتیبات
+
 fr:
+
+
+  hello_world: Bonjour tout le monde
+  hello_flash: Bonjour Flash
+  new: Nouveau
+  edit: Modifier
+  show: Voir
+  destroy: Détruire
+  back: Retour
+  cancel: Annuler
+  do_you_want_to_delete: Voulez-vous supprimer
+  are_you_sure: Etes-vous sûr?
+  save: Enregistrer
+  project: Projet
+  projects: Projets
+  new_project: Nouveau projet
+  editing_project: Projet de montage
+  sectors: Secteurs
+  partners: Partenaires
+  new_event: Nouvel événement
+  editing_event: Modification de l'événement
+  recent_events: Événements récents
+  add_a_new_event: Ajouter un nouvel événement
+  create_a_new_project: Créer un nouveau projet
+  create_a_new_sector: Créer un nouveau secteur
+  back_to_current_project: Retour au projet actuel
+  back_to_projects: Retour à Projets
+  back_to_sectors: Retour aux secteurs
+  use_current_location: Utilisez l'emplacement actuel
+  geocode_this_address: Géocode cette adresse
+  create_a_new_partner: Créer un nouveau partenaire
+  back_to_partners: Retour aux Partenaires
+  locations: Emplacements
+  location: Lieu
+  back_to_locations: Retour à Lieux
+  logout: Déconnexion
+  login: Connectez-vous
+  start_date: Date de début
+  end_date: Date de fin
+  editing_partner: Partenaire d'édition
+  editing_location: Modification de l'emplacement
+  new_partner: Nouveau partenaire
+  editing_sector: Modification du secteur
+  new_sector: Nouveau secteur
+  unauthorized: Non autorisé à %{action} %{subject}
   edit_user_settings: Modifier les paramètres de l'utilisateur
   set_your_location_label: S'il vous plaît définir lieu de travail
+  Settings: Paramètres
+  account_settings: Paramètres du compte

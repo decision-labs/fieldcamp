@@ -1,0 +1,27 @@
+<SFRendering>
+  <Layer Name="Haiti_adm1_2000-2010" GroupName="Data Layers" Type="3" Path="" Tag="" LegendPicture="" Visible="True" LabelsVisible="True" Expanded="False">
+    <Image Type="">
+    </Image>
+    <ShapeFileProperties LabelsVisible="True" MapTooltipField="-1" MapTooltipsEnabled="False" VerticesVisible="False" Color="1268137" DrawFill="True" TransparencyPercent="1" FillStipple="0" LineOrPointSize="1" LineStipple="0" OutLineColor="8233213" PointType="0" CustomLineStipple="0" UseTransparency="False" TransparencyColor="0" FillStippleTransparent="False" FillStippleLineColor="-16777216">
+      <CustomPointType>
+        <Image Type="">
+        </Image>
+      </CustomPointType>
+      <Legend FieldIndex="4" Key="" NumberOfBreaks="10" SchemeCaption="ADM1_NAME">
+        <ColorBreaks>
+          <Break StartColor="8741775" EndColor="8741775" StartValue="ARTIBONITE" EndValue="ARTIBONITE" Caption="ARTIBONITE" Visible="True" />
+          <Break StartColor="2233268" EndColor="2233268" StartValue="CENTRE" EndValue="CENTRE" Caption="CENTRE" Visible="True" />
+          <Break StartColor="13135016" EndColor="13135016" StartValue="GRAND' ANSE" EndValue="GRAND' ANSE" Caption="GRAND' ANSE" Visible="True" />
+          <Break StartColor="3424174" EndColor="3424174" StartValue="NIPPES" EndValue="NIPPES" Caption="NIPPES" Visible="True" />
+          <Break StartColor="16197908" EndColor="16197908" StartValue="NORD" EndValue="NORD" Caption="NORD" Visible="True" />
+          <Break StartColor="15877578" EndColor="15877578" StartValue="NORD-EST" EndValue="NORD-EST" Caption="NORD-EST" Visible="True" />
+          <Break StartColor="13188288" EndColor="13188288" StartValue="NORD-OUEST" EndValue="NORD-OUEST" Caption="NORD-OUEST" Visible="True" />
+          <Break StartColor="6591763" EndColor="6591763" StartValue="OUEST" EndValue="OUEST" Caption="OUEST" Visible="True" />
+          <Break StartColor="9885602" EndColor="9885602" StartValue="SUD" EndValue="SUD" Caption="SUD" Visible="True" />
+          <Break StartColor="12523183" EndColor="12523183" StartValue="SUD-EST" EndValue="SUD-EST" Caption="SUD-EST" Visible="True" />
+        </ColorBreaks>
+      </Legend>
+    </ShapeFileProperties>
+    <DynamicVisibility UseDynamicVisibility="False" Scale="0" />
+  </Layer>
+</SFRendering>

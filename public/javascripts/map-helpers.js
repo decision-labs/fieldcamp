@@ -26,15 +26,33 @@ function ToggleFullScreen(controlDiv, map) {
 
   var fullscreenIcon = document.createElement('IMG');
   fullscreenIcon.src = '/images/icons/fullscreen.png';
-  fullscreenIcon.style.paddingLeft = '29px';
+  fullscreenIcon.style.paddingLeft = '30px';
 
   controlUI.appendChild(fullscreenIcon);
 
-  // Setup the click event listeners: simply set the map to Chicago
+  // Setup the click event listeners
   google.maps.event.addDomListener(controlUI, 'click', function() {
-    $('#map').css({height: $(window).height(), width: $(document).width()});
+    var div = $('#map').parent()[0];
+    // if the class is empty (not fullscreen) 
+    // store the #map div's parent's
+    if (!$('#map_canvas').attr("class").match(/fullscreen/) ) { // toggle fullscreen on
+      fullscreenIcon.style.paddingLeft = '8px';
+      jQuery.data(div, 'map_parent_height', $('#map').parent().height() );
+      jQuery.data(div, 'map_parent_width', $('#map').parent().width() );
+      $('#map').css({height: $(window).height(), width: $(document).width()});
+    }
+    else { // toggle fullscreen off
+      // set the map and its parent's width and height from stored data
+      fullscreenIcon.style.paddingLeft = '30px';
+      var h = jQuery.data(div, 'map_parent_height');
+      var w = jQuery.data(div, 'map_parent_width');
+      $('#map').parent().height(h);
+      $('#map').parent().width(w);
+      $('#map').height(h);
+      $('#map').width(w);
+    }
     $('#map_canvas').toggleClass("fullscreen");
-    google.maps.event.trigger(map, 'resize');
+    google.maps.event.trigger(map, 'resize'); // refreshes the map
   });
 }
 

@@ -36,14 +36,12 @@ function ToggleFullScreen(controlDiv, map) {
     // if the class is empty (not fullscreen) 
     // store the #map div's parent's
     if (!$('#map_canvas').attr("class").match(/fullscreen/) ) { // toggle fullscreen on
-      fullscreenIcon.style.paddingLeft = '8px';
       jQuery.data(div, 'map_parent_height', $('#map').parent().height() );
       jQuery.data(div, 'map_parent_width', $('#map').parent().width() );
       $('#map').css({height: $(window).height(), width: $(document).width()});
     }
     else { // toggle fullscreen off
       // set the map and its parent's width and height from stored data
-      fullscreenIcon.style.paddingLeft = '30px';
       var h = jQuery.data(div, 'map_parent_height');
       var w = jQuery.data(div, 'map_parent_width');
       $('#map').parent().height(h);

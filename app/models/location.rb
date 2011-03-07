@@ -5,4 +5,8 @@ class Location < ActiveRecord::Base
   belongs_to :parent, :class_name => "Location"
 
   acts_as_geom :geom => :multi_polygon
+
+  def self.user_location_scoped(location_ids)
+    scope :all, where(:id => location_ids)
+  end
 end

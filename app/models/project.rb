@@ -8,12 +8,8 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :title
 
-  def self.user_location_scoped(current_user)
-    unless current_user.settings.nil?
-      ids = current_user.settings.location.children.collect(&:id)
-      ids << current_user.settings.location_id
-      scope :all, where(:location_id => ids)
-    end
+  def self.user_location_scoped(location_ids)
+    scope :all, where(:location_id => location_ids)
   end
 
 end

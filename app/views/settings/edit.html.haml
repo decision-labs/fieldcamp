@@ -1,22 +1,31 @@
-%h1 Edit Settings
+.block
+  .content
+    %h2.title= t(:edit_settings)
+    .inner
+      .form
 
-= form_for :settings, :url => settings_url, :html => { :method => :put } do |f|
-  - if @settings.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@settings.errors.count, "error")} prohibited these settings from being saved"
-      %ul
-        - @settings.errors.full_messages.each do |msg|
-          %li= msg
+        = form_for :settings, :url => settings_url, :html => { :method => :put } do |f|
+          - if @settings.errors.any?
+            #error_explanation
+              %h2= "#{pluralize(@settings.errors.count, "error")} prohibited these settings from being saved"
+              %ul
+                - @settings.errors.full_messages.each do |msg|
+                  %li= msg
 
-  .field
-    = f.label :locations
-    %br
-    = f.select :location_id, Location.all.collect{ |l| ["... "*l.admin_level+"#{l.admin_level} : #{l.name}", l.id ]}
+          .columns.wat-cf
+            .column.left
+              .field.group
+                = f.label :locations, :class => 'label'
+                = f.select :location_id, Location.all.collect{ |l| ["... "*l.admin_level+"#{l.admin_level} : #{l.name}", l.id ]}, :class => 'select'
 
-  .field
-    = f.label :language
-    %br
-    = f.text_field :language
+              .field.group
+                = f.label :language, :class => 'label'
+                = f.text_field :language, :class => 'text_field'
 
-  .actions
-    = f.submit t(:save)
+              .group.navform.wat-cf
+                - content_tag :button, :type => :submit, :class => 'button' do
+                  = image_tag "icons/tick.png"
+                  =t(:save)
+                %a.button{:href => settings_path}
+                  = image_tag "icons/cross.png", :alt => "Cancel"
+                  Cancel

@@ -45,6 +45,8 @@ en:
   editing_sector: Editing Sector
   new_sector: New Sector
   unauthorized: Not authorized to %{action} %{subject}
+  edit_user_settings: Edit user settings
+  set_your_location_label: Please set work location
 
 de:
   hello_world: Hallo Welt
@@ -91,6 +93,8 @@ de:
   editing_sector: Bearbeiten von Sector
   new_sector: Neuen Sektor
   unauthorized: Nicht berechtigt, %{action} %{subject}
+  edit_user_settings: Benutzer-Einstellungen bearbeiten
+  set_your_location_label: Bitte setzen Sie Einsatzort
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -136,3 +140,8 @@ ur:
   editing_sector: ترمیم کرنا علاقے
   new_sector: نیا علاقے
   unauthorized: مجاز نہیں
+  edit_user_settings: صارف تراتیب میں ترمیم کریں
+  set_your_location_label: براہ مہربانی کام کی جگہ مقرر
+fr:
+  edit_user_settings: Modifier les paramètres de l'utilisateur
+  set_your_location_label: S'il vous plaît définir lieu de travail

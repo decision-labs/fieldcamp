@@ -90,3 +90,17 @@ span .locale_links{
 span .locale_links a{
   color: #aaa;
 }
+
+span.setting_label{
+  color: #222;
+  display:block;
+  float:left;
+  margin:0 7px 0 0;
+  background-color: #eee;
+  border:1px solid #bfbfbf;
+  font-size: 1em;
+  line-height: 1.3em;
+  font-weight:bold;
+  padding:5px 10px 6px 7px;
+  text-decoration: none;
+}

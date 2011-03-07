@@ -3,11 +3,24 @@ class PartnersController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @partners = Partner.all(:include => :projects, :order => 'created_at desc')
+    if current_user
+      @partners = Partner.all(:include => :projects,
+        :conditions => {"projects.location_id" => @current_user_location_ids},
+        :order => 'partners.created_at desc')
+    else
+      @partners = Partner.all(:include => :projects, :order => 'created_at desc')
+    end
   end
 
   def show
-    @partner = Partner.find(params[:id], :include => :projects)
+    if current_user
+      @partner = Partner.find(params[:id], :include => :projects,
+        :conditions => {"projects.location_id" => @current_user_location_ids},
+        :order => 'partners.created_at desc')
+    else
+      @partner = Partner.find(params[:id], :include => :projects)
+    end
+
   end
 
   def new

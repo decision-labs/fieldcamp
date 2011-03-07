@@ -1,7 +1,12 @@
-%h1 Settings
-- unless @settings.location.nil?
-  = @settings.location.name
-  = link_to t(:change_user_settings), edit_settings_path
-- else
-  Please set the location of your projects
-  = link_to t(:edit_user_settings), edit_settings_path
+.block
+  .content
+    %h2.title=t(:Settings)
+    .inner
+      .actions-bar.wat-cf
+        .actions
+          - unless @settings.location.nil?
+            %span.setting_label= @settings.location.name
+            = link_to t(:edit_user_settings), edit_settings_path, :class => "button"
+          - else
+            %span.setting_label=t(:set_your_location_label)
+            = link_to t(:edit_user_settings), edit_settings_path, :class => "button"

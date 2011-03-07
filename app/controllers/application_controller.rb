@@ -29,11 +29,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_location_scope
-    # Project.user_location_scoped(current_user) unless current_user.nil?
-    unless current_user.settings.nil?
-      ids = current_user.settings.location.children.collect(&:id)
-      ids << current_user.settings.location_id
-      scope :all, where(:location_id => ids)
+    unless (current_user.nil? || current_user.settings.nil?)
+      @current_user_location_ids = current_user.settings.location.children.collect(&:id)
+      @current_user_location_ids << current_user.settings.location_id
+      Project.user_location_scoped(@current_user_location_ids)
+      Location.user_location_scoped(@current_user_location_ids) unless params[:controller] =~ /settings/i
     end
   end
 

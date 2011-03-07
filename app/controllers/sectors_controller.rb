@@ -3,11 +3,23 @@ class SectorsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @sectors = Sector.all(:include => :projects, :order => 'created_at desc')
+    if current_user
+      @sectors = Sector.all(:include => :projects,
+        :conditions => {"projects.location_id" => @current_user_location_ids},
+        :order => 'sectors.created_at desc')
+    else
+      @sectors = Sector.all(:include => :projects, :order => 'created_at desc')
+    end
   end
 
   def show
-    @sector = Sector.find(params[:id], :include => :projects)
+    if current_user
+      @sector = Sector.find(params[:id],
+        :include => :projects,
+        :conditions => {"projects.location_id" => @current_user_location_ids})
+    else
+      @sector = Sector.find(params[:id], :include => :projects)
+    end
   end
 
   def new

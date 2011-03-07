@@ -72,7 +72,7 @@ class EventsController < ApplicationController
     @event = @project.events.find(params[:id])
     authorize! :update, @event
 
-    wkt = params[:event][:wkt]
+    wkt = params[:event].delete(:geom)
     @event.geom = Point.from_ewkt(wkt)
 
     respond_to do |format|

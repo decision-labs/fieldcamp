@@ -3,6 +3,10 @@
 - content_for :sidebar do
   .block
     -if (can? :create,  Sector)
-      .addlink= link_to t(:create_a_new_sector), new_sector_path, :class => 'button'
+    .content
+      %h3=t(:sectors)
+      .actions-bar.wat-cf
+        .actions
+          .addlink= link_to t(:create_a_new_sector), new_sector_path, :class => 'button'
 
 = render @sectors

@@ -4,7 +4,7 @@
   .block
     -if (can? :create,  Project)
       .content
-        %h3=t(:project)
+        %h3=t(:projects)
         .actions-bar.wat-cf
           .actions
             = link_to t(:create_a_new_project), new_project_path, :class => 'button'

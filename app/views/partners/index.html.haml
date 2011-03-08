@@ -3,6 +3,10 @@
 - content_for :sidebar do
   .block
     -if (can? :create,  Partner)
-      .addlink= link_to t(:create_a_new_partner), new_partner_path, :class => 'button'
+    .content
+      %h3=t(:partners)
+      .actions-bar.wat-cf
+        .actions
+          .addlink= link_to t(:create_a_new_partner), new_partner_path, :class => 'button'
 
 = render @partners

@@ -3,7 +3,13 @@ class LocationsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @locations = Location.all(:include => :projects, :order => 'created_at desc')
+    if current_user
+      @locations = Location.all(:include => :projects,
+        :conditions => {"projects.location_id" => @current_user_location_ids},
+        :order => 'locations.created_at desc')
+    else
+      @locations = Location.all(:include => :projects, :order => 'locations.created_at desc')
+    end
   end
 
   def show

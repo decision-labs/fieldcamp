@@ -3,11 +3,25 @@ class ProjectsController < ApplicationController
   respond_to :mobile, :html
 
   def index
-    @projects = Project.all(:order => 'created_at desc')
+    if current_user
+      @projects = Project.all(
+        :conditions => {'projects.location_id' => @current_user_location_ids},
+        :order => 'projects.created_at desc')
+    else
+      @projects = Project.all(:order => 'created_at desc')
+    end
+
   end
 
   def show
-    @project = Project.find(params[:id], :include => [:location, :events])
+    if current_user
+      @project = Project.find(params[:id],
+              :include => [:location, :events],
+              :conditions => {'projects.location_id' => @current_user_location_ids})
+    else
+      @project = Project.find(params[:id], :include => [:location, :events])
+    end
+
     respond_to do |format|
       format.html
       format.json  { render(:layout => false, :json => @project.location.geom.as_geojson) }

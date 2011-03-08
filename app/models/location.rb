@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
 
   acts_as_geom :geom => :multi_polygon
 
-  def self.user_location_scoped(location_ids)
-    scope :all, where(:id => location_ids)
-  end
+  # def self.user_location_scoped(location_ids)
+  #   scope :all, where(:id => location_ids)
+  # end
 end

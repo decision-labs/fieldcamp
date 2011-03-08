@@ -8,8 +8,8 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :title
 
-  def self.user_location_scoped(location_ids)
-    scope :all, where(:location_id => location_ids)
-  end
+  # def self.user_location_scoped(location_ids)
+  #   scope :all, where(:location_id => location_ids)
+  # end
 
 end

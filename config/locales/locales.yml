@@ -45,10 +45,11 @@ en:
   editing_sector: Editing Sector
   new_sector: New Sector
   unauthorized: Not authorized to %{action} %{subject}
-  edit_user_settings: Edit user settings
+  edit_user_settings: Change
   set_your_location_label: Please set work location
   Settings: Settings
   settings_update_success_message: Settings where successfully updated
+  logged_in_label: "Logged in as: %{email}"
 
 de:
   hello_world: Hallo Welt
@@ -95,7 +96,7 @@ de:
   editing_sector: Bearbeiten von Sector
   new_sector: Neuen Sektor
   unauthorized: Nicht berechtigt, %{action} %{subject}
-  edit_user_settings: Benutzer-Einstellungen bearbeiten
+  edit_user_settings: Ändern
   set_your_location_label: Bitte setzen Sie Einsatzort
   Settings: Einstellungen
   account_settings: Konto-Einstellungen
@@ -145,7 +146,7 @@ ur:
   editing_sector: ترمیم کرنا علاقے
   new_sector: نیا علاقے
   unauthorized: مجاز نہیں
-  edit_user_settings: صارف تراتیب میں ترمیم کریں
+  edit_user_settings: تبدیل کریں
   set_your_location_label: براہ مہربانی کام کی جگہ مقرر
   Settings: ترتیبات
   account_settings: اکاؤنٹ کی ترتیبات
@@ -195,7 +196,7 @@ fr:
   editing_sector: Modification du secteur
   new_sector: Nouveau secteur
   unauthorized: Non autorisé à %{action} %{subject}
-  edit_user_settings: Modifier les paramètres de l'utilisateur
+  edit_user_settings: Changement
   set_your_location_label: S'il vous plaît définir lieu de travail
   Settings: Paramètres
   account_settings: Paramètres du compte

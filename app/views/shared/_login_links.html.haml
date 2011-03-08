@@ -1,6 +1,6 @@
 %ul.wat-cf
   - if user_signed_in?
-    %li= link_to(t(:Settings), settings_path)
+    %li= link_to(t(:logged_in_label, :email => truncate(current_user.email, :length=>12, :omission=>'..') ), settings_path, :class=>'logout')
     %li= link_to(t(:logout), destroy_user_session_path, :class=>'logout')
   - else
     %li= link_to(t(:login), new_user_session_path, :class=>'login')

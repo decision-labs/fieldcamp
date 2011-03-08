@@ -3,6 +3,9 @@
   .content
     %h2.title=t(:Settings)
     .inner
+      %h3=current_user.email
+      %strong Role:
+      =current_user.role
       .actions-bar.wat-cf
         .actions
           =render 'shared/user_settings'

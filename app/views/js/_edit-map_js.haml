@@ -72,7 +72,7 @@
           $('input#event_geom').val("POINT(" + lon + " " + lat + " " + elev + ")");
 
           // set address varified
-          $('span.geocoding_status').html("Address verified");
+          $('span.geocoding_status').html('#{t(:address_verified)}');
 
           // center map to address and drop marker
           event = new google.maps.LatLng(lat, lon);

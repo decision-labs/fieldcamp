@@ -50,6 +50,8 @@ en:
   Settings: Settings
   settings_update_success_message: Settings where successfully updated
   logged_in_label: "Logged in as: %{email}"
+  address_unverified: Address unverified
+  address_verified: Address verified
 
 de:
   hello_world: Hallo Welt
@@ -101,6 +103,8 @@ de:
   Settings: Einstellungen
   account_settings: Konto-Einstellungen
   settings_update_success_message: Settings where successfully updated
+  address_unverified: ungeprüfter Adresse
+  address_verified: verifiziert Adresse
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -151,6 +155,8 @@ ur:
   Settings: ترتیبات
   account_settings: اکاؤنٹ کی ترتیبات
   settings_update_success_message: Settings where successfully updated
+  address_unverified: پتہ غیر توثیق شدہ
+  address_verified: میل ایڈریس کی تصدیق
 
 fr:
   hello_world: Bonjour tout le monde
@@ -201,3 +207,5 @@ fr:
   Settings: Paramètres
   account_settings: Paramètres du compte
   settings_update_success_message: Settings where successfully updated
+  address_unverified: non vérifiés adresse
+  address_verified: vérifié l'adresse

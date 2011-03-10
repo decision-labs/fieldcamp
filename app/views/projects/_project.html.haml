@@ -3,7 +3,7 @@
     = model_title_links(project)
     .inner
       %ul.list
-        = render :partial => 'events/event', :collection => project.events, :locals => {:project=>project}
+        = render :partial => 'events/event', :collection => project.events.desc, :locals => {:project=>project}
 
       -if (can? :create,  Event)
         .actions-bar.wat-cf

@@ -21,7 +21,7 @@ module ApplicationHelper
 
   def model_title_links(m, t="title")
       content_tag :h2, :class=>'title' do
-        [ m.send(t).titlecase,
+        [ m.send(t),
           link_to_icon('show', t(:show), m),
           (can? :update,  m) ? link_to_icon('edit', t(:edit), send("edit_#{m.class.name.downcase}_path", m)) : nil,
           (can? :destroy, m) ? link_to_icon('destroy', t(:destroy), m, {

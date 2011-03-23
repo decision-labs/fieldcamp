@@ -3,12 +3,18 @@ class PartnersController < ApplicationController
   respond_to :mobile, :html
 
   def index
+    if session[:partners_sort_order].blank? && params[:sort_order].blank?
+      session[:partners_sort_order] = 'updated_at desc'
+    elsif !params[:sort_order].blank? && (session[:partners_sort_order] != params[:sort_order])
+      session[:partners_sort_order] = params[:sort_order]
+    end
+
     if current_user
       @partners = Partner.all(:include => :projects,
         :conditions => {"projects.location_id" => @current_user_location_ids},
-        :order => 'partners.created_at desc')
+        :order => session[:partners_sort_order])
     else
-      @partners = Partner.all(:include => :projects, :order => 'created_at desc')
+      @partners = Partner.all(:include => :projects, :order => session[:partners_sort_order])
     end
   end
 

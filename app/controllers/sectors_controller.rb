@@ -3,12 +3,18 @@ class SectorsController < ApplicationController
   respond_to :mobile, :html
 
   def index
+    if session[:sectors_sort_order].blank? && params[:sort_order].blank?
+      session[:sectors_sort_order] = 'updated_at desc'
+    elsif !params[:sort_order].blank? && (session[:sectors_sort_order] != params[:sort_order])
+      session[:sectors_sort_order] = params[:sort_order]
+    end
+
     if current_user
       @sectors = Sector.all(:include => :projects,
         :conditions => {"projects.location_id" => @current_user_location_ids},
-        :order => 'sectors.created_at desc')
+        :order => session[:sectors_sort_order])
     else
-      @sectors = Sector.all(:include => :projects, :order => 'created_at desc')
+      @sectors = Sector.all(:include => :projects, :order => session[:sectors_sort_order])
     end
   end
 

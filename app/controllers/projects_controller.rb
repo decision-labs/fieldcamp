@@ -3,12 +3,18 @@ class ProjectsController < ApplicationController
   respond_to :mobile, :html
 
   def index
+    if params[:sort_order].blank? && session[:projects_sort_order].blank?
+      session[:projects_sort_order] = 'created_at desc'
+    elsif !params[:sort_order].blank? && (params[:sort_order] != session[:projects_sort_order])
+      session[:projects_sort_order] = params[:sort_order]
+    end
+
     if current_user
       @projects = Project.all(
         :conditions => {'projects.location_id' => @current_user_location_ids},
-        :order => 'projects.created_at desc')
+        :order => session[:projects_sort_order])
     else
-      @projects = Project.all(:order => 'created_at desc')
+      @projects = Project.all(:order => session[:projects_sort_order])
     end
 
   end

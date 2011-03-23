@@ -52,6 +52,14 @@ en:
   logged_in_label: "Logged in as: %{email}"
   address_unverified: Address unverified
   address_verified: Address verified
+  alphabetical_asc: Order A-Z
+  alphabetical_desc: Order Z-A
+  created_at_asc: Order oldest
+  created_at_desc: Order newest
+  updated_at_asc: Oldest update first
+  updated_at_desc: Recent update first
+  sort_options: Sort options
+
 
 de:
   hello_world: Hallo Welt

@@ -1,12 +1,32 @@
 = render :partial => "nav"
 
 - content_for :sidebar do
-  .block
-    -if (can? :create,  Project)
+  -if (can? :create,  Project)
+    .block
+      %h3=t(:projects)
       .content
-        %h3=t(:projects)
         .actions-bar.wat-cf
           .actions
             = link_to t(:create_a_new_project), new_project_path, :class => 'button'
+
+  / TODO: Refactor to helper
+  .block
+    %h3=t(:sort_options)
+    .content
+      %ul.navigation
+        %li{:class => ("current_sort" if session[:projects_sort_order] == 'title asc') }
+          = link_to_unless(session[:projects_sort_order] == 'title asc', t(:alphabetical_asc), projects_path(:sort_order => 'title asc'))
+        %li{:class => ("current_sort" if session[:projects_sort_order] == 'title desc') }
+          = link_to_unless(session[:projects_sort_order] == 'title desc', t(:alphabetical_desc), projects_path(:sort_order => 'title desc'))
+
+        %li{:class => ("current_sort" if session[:projects_sort_order] == 'created_at asc') }
+          = link_to_unless(session[:projects_sort_order] == 'created_at asc', t(:created_at_asc), projects_path(:sort_order => 'created_at asc'))
+        %li{:class => ("current_sort" if session[:projects_sort_order] == 'created_at desc') }
+          = link_to_unless(session[:projects_sort_order] == 'created_at desc', t(:created_at_desc), projects_path(:sort_order => 'created_at desc'))
+
+        %li{:class => ("current_sort" if session[:projects_sort_order] == 'updated_at asc' )}
+          = link_to_unless(session[:projects_sort_order] == 'updated_at asc', t(:updated_at_asc), projects_path(:sort_order => 'updated_at asc'))
+        %li{:class => ("current_sort" if session[:projects_sort_order] == 'updated_at desc')}
+          = link_to_unless(session[:projects_sort_order] == 'updated_at desc', t(:updated_at_desc), projects_path(:sort_order => 'updated_at desc'))
 
 = render @projects

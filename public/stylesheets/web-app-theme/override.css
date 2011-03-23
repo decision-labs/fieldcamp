@@ -108,3 +108,10 @@ span.setting_label{
 .actions-bar.wat-cf .actions ul.user_settings li{
   list-style-type: none;
 }
+
+ul li.current_sort{
+  display: block;
+  padding: 10px 15px;
+  font-weight: bold;
+  margin-left:20px;
+}

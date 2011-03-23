@@ -16,7 +16,7 @@
         = f.text_field :name, :class => 'text_field'
       .field.group
         = f.label :description, :class => 'label'
-        #sector_description-button-bar
+        #description-button-bar
         = f.text_area :description, :class => 'text_area'
       .field.group
         %label.label Preview
@@ -30,7 +30,7 @@
 :javascript
   setup_wmd({
       input: "sector_description",
-      button_bar: "sector_description-button-bar",
+      button_bar: "description-button-bar",
       preview: "sector_description-preview"
       // output: "copy_html"
   });

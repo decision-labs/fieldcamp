@@ -17,14 +17,14 @@
         = f.text_field :title, :class => 'text_field'
       .field.group
         = f.label :description, :class => 'label'
-        #event_description-button-bar
+        #description-button-bar
         = f.text_area :description, :class => 'text_area'
       .field.group
         %label.label Preview
         #event_description-preview.markdown_preview
 
       .field.group
-        = f.hidden_field :geom, :class => 'hidden_field'
+        = f.hidden_field :geom, :class => 'hidden_field', :value => @event.geom.try(:as_ewkt)
       .field.group
         .fieldWithErrors
           = f.label :address, :class => 'label'
@@ -50,7 +50,7 @@
 :javascript
   setup_wmd({
       input: "event_description",
-      button_bar: "event_description-button-bar",
+      button_bar: "description-button-bar",
       preview: "event_description-preview"
       // output: "copy_html"
   });

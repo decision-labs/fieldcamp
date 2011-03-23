@@ -5,7 +5,8 @@ class Event < ActiveRecord::Base
   scope :desc, order("events.updated_at DESC")
 
   def as_feature_hash
-    props = attributes
+    props = attributes # todo change the description to html
+    props["description"] = RDiscount.new(attributes["description"]).to_html if !attributes["description"].nil?
     props.delete('geom')
     geojson = {
       :id => to_param,

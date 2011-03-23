@@ -73,7 +73,13 @@ class EventsController < ApplicationController
     authorize! :update, @event
 
     wkt = params[:event].delete(:geom)
+
+    # begin
+    # FIXME: itn't working for ewkb
     @event.geom = Point.from_ewkt(wkt)
+    # rescue GeoRuby::SimpleFeatures::EWKTFormatError
+    #   @event.geom = Point.from_ewkb(wkt)
+    # end
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

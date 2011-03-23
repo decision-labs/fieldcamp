@@ -134,6 +134,9 @@ li.wmd-button.wmd-code-button{
   margin-left: 15px;
 }
 
-#location_description-button-bar li{
+#description-button-bar li{
   margin-left: 0px;
 }
+
+
+/* FIXME: li in block content have horizontal margins under them */

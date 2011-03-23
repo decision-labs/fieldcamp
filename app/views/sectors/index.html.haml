@@ -14,20 +14,20 @@
     %h3=t(:sort_options)
     .content
       %ul.navigation
-        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'name asc') }
-          = link_to_unless(session[:sectors_sort_order] == 'name asc', t(:alphabetical_asc), sectors_path(:sort_order => 'name asc'))
-        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'name desc') }
-          = link_to_unless(session[:sectors_sort_order] == 'name desc', t(:alphabetical_desc), sectors_path(:sort_order => 'name desc'))
+        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'sectors.name asc') }
+          = link_to_unless(session[:sectors_sort_order] == 'sectors.name asc', t(:alphabetical_asc), sectors_path(:sort_order => 'sectors.name asc'))
+        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'sectors.name desc') }
+          = link_to_unless(session[:sectors_sort_order] == 'sectors.name desc', t(:alphabetical_desc), sectors_path(:sort_order => 'sectors.name desc'))
 
-        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'created_at asc') }
-          = link_to_unless(session[:sectors_sort_order] == 'created_at asc', t(:created_at_asc), sectors_path(:sort_order => 'created_at asc'))
-        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'created_at desc') }
-          = link_to_unless(session[:sectors_sort_order] == 'created_at desc', t(:created_at_desc), sectors_path(:sort_order => 'created_at desc'))
+        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'sectors.created_at asc') }
+          = link_to_unless(session[:sectors_sort_order] == 'sectors.created_at asc', t(:created_at_asc), sectors_path(:sort_order => 'sectors.created_at asc'))
+        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'sectors.created_at desc') }
+          = link_to_unless(session[:sectors_sort_order] == 'sectors.created_at desc', t(:created_at_desc), sectors_path(:sort_order => 'sectors.created_at desc'))
 
-        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'updated_at asc' )}
-          = link_to_unless(session[:sectors_sort_order] == 'updated_at asc', t(:updated_at_asc), sectors_path(:sort_order => 'updated_at asc'))
-        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'updated_at desc')}
-          = link_to_unless(session[:sectors_sort_order] == 'updated_at desc', t(:updated_at_desc), sectors_path(:sort_order => 'updated_at desc'))
+        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'sectors.updated_at asc' )}
+          = link_to_unless(session[:sectors_sort_order] == 'sectors.updated_at asc', t(:updated_at_asc), sectors_path(:sort_order => 'sectors.updated_at asc'))
+        %li{:class => ("current_sort" if session[:sectors_sort_order] == 'sectors.updated_at desc')}
+          = link_to_unless(session[:sectors_sort_order] == 'sectors.updated_at desc', t(:updated_at_desc), sectors_path(:sort_order => 'sectors.updated_at desc'))
 
 
 = render @sectors

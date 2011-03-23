@@ -4,7 +4,7 @@ class PartnersController < ApplicationController
 
   def index
     if session[:partners_sort_order].blank? && params[:sort_order].blank?
-      session[:partners_sort_order] = 'updated_at desc'
+      session[:partners_sort_order] = 'partners.updated_at desc'
     elsif !params[:sort_order].blank? && (session[:partners_sort_order] != params[:sort_order])
       session[:partners_sort_order] = params[:sort_order]
     end

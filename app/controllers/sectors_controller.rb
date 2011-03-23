@@ -4,7 +4,7 @@ class SectorsController < ApplicationController
 
   def index
     if session[:sectors_sort_order].blank? && params[:sort_order].blank?
-      session[:sectors_sort_order] = 'updated_at desc'
+      session[:sectors_sort_order] = 'sectors.updated_at desc'
     elsif !params[:sort_order].blank? && (session[:sectors_sort_order] != params[:sort_order])
       session[:sectors_sort_order] = params[:sort_order]
     end

@@ -14,19 +14,19 @@
     %h3=t(:sort_options)
     .content
       %ul.navigation
-        %li{:class => ("current_sort" if session[:partners_sort_order] == 'name asc') }
-          = link_to_unless(session[:partners_sort_order] == 'name asc', t(:alphabetical_asc), partners_path(:sort_order => 'name asc'))
-        %li{:class => ("current_sort" if session[:partners_sort_order] == 'name desc') }
-          = link_to_unless(session[:partners_sort_order] == 'name desc', t(:alphabetical_desc), partners_path(:sort_order => 'name desc'))
+        %li{:class => ("current_sort" if session[:partners_sort_order] == 'partners.name asc') }
+          = link_to_unless(session[:partners_sort_order] == 'partners.name asc', t(:alphabetical_asc), partners_path(:sort_order => 'partners.name asc'))
+        %li{:class => ("current_sort" if session[:partners_sort_order] == 'partners.name desc') }
+          = link_to_unless(session[:partners_sort_order] == 'partners.name desc', t(:alphabetical_desc), partners_path(:sort_order => 'partners.name desc'))
 
-        %li{:class => ("current_sort" if session[:partners_sort_order] == 'created_at asc') }
-          = link_to_unless(session[:partners_sort_order] == 'created_at asc', t(:created_at_asc), partners_path(:sort_order => 'created_at asc'))
-        %li{:class => ("current_sort" if session[:partners_sort_order] == 'created_at desc') }
-          = link_to_unless(session[:partners_sort_order] == 'created_at desc', t(:created_at_desc), partners_path(:sort_order => 'created_at desc'))
+        %li{:class => ("current_sort" if session[:partners_sort_order] == 'partners.created_at asc') }
+          = link_to_unless(session[:partners_sort_order] == 'partners.created_at asc', t(:created_at_asc), partners_path(:sort_order => 'partners.created_at asc'))
+        %li{:class => ("current_sort" if session[:partners_sort_order] == 'partners.created_at desc') }
+          = link_to_unless(session[:partners_sort_order] == 'partners.created_at desc', t(:created_at_desc), partners_path(:sort_order => 'partners.created_at desc'))
 
-        %li{:class => ("current_sort" if session[:partners_sort_order] == 'updated_at asc' )}
-          = link_to_unless(session[:partners_sort_order] == 'updated_at asc', t(:updated_at_asc), partners_path(:sort_order => 'updated_at asc'))
-        %li{:class => ("current_sort" if session[:partners_sort_order] == 'updated_at desc')}
-          = link_to_unless(session[:partners_sort_order] == 'updated_at desc', t(:updated_at_desc), partners_path(:sort_order => 'updated_at desc'))
+        %li{:class => ("current_sort" if session[:partners_sort_order] == 'partners.updated_at asc' )}
+          = link_to_unless(session[:partners_sort_order] == 'partners.updated_at asc', t(:updated_at_asc), partners_path(:sort_order => 'partners.updated_at asc'))
+        %li{:class => ("current_sort" if session[:partners_sort_order] == 'partners.updated_at desc')}
+          = link_to_unless(session[:partners_sort_order] == 'partners.updated_at desc', t(:updated_at_desc), partners_path(:sort_order => 'partners.updated_at desc'))
 
 = render @partners

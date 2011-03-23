@@ -5,7 +5,7 @@
   = @event.title
 %p
   %b Description:
-  = @event.description
+  = raw(RDiscount.new(@event.description).to_html) rescue nil
 %p
   %b Geom:
   = @event.geom

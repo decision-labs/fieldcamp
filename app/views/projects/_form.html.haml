@@ -1,3 +1,8 @@
+-content_for :head do
+  = stylesheet_link_tag 'wmd/wmd.css', :cache => true
+  = javascript_include_tag 'vendor/wmd/wmd.combined.min', :cache => true
+
+
 = form_for @project do |f|
   -if @project.errors.any?
     #error_explanation
@@ -12,7 +17,11 @@
         = f.text_field :title, :class => 'text_field'
       .field.group
         = f.label :description, :class => 'label'
+        #project_description-button-bar
         = f.text_area :description, :cols => 40, :rows => 10, :class => 'text_area'
+      .field.group
+        %label.label Preview
+        #project_description-preview.markdown_preview
       .field.group
         = f.label :location, :class => 'label'
         = f.select :location_id, Location.all.collect {|p| [ p.name, p.id ] }, :class => 'select'
@@ -35,3 +44,11 @@
       = image_tag "icons/tick.png"
       =t(:save)
     = link_to t(:back), projects_path, :class => 'button'
+
+:javascript
+  setup_wmd({
+      input: "project_description",
+      button_bar: "project_description-button-bar",
+      preview: "project_description-preview"
+      // output: "copy_html"
+  });

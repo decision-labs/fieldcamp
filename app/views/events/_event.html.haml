@@ -12,5 +12,5 @@
         ="#{t(:location)}:"
       = event.address
 
-    %p.event-description= event.description
+    %p.event-description= raw(RDiscount.new(event.description).to_html) rescue nil
     %strong.gray.right.time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:long)

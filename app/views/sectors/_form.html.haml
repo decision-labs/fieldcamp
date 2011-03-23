@@ -1,3 +1,7 @@
+-content_for :head do
+  = stylesheet_link_tag 'wmd/wmd.css', :cache => true
+  = javascript_include_tag 'vendor/wmd/wmd.combined.min', :cache => true
+
 = form_for @sector do |f|
   -if @sector.errors.any?
     #error_explanation
@@ -12,9 +16,21 @@
         = f.text_field :name, :class => 'text_field'
       .field.group
         = f.label :description, :class => 'label'
+        #sector_description-button-bar
         = f.text_area :description, :class => 'text_area'
+      .field.group
+        %label.label Preview
+        #sector_description-preview.markdown_preview
   .group.navform.wat-cf
     - content_tag :button, :type => :submit, :class => 'button' do
       = image_tag "icons/tick.png"
       =t(:save)
     = link_to t(:back), sectors_path, :class => 'button'
+
+:javascript
+  setup_wmd({
+      input: "sector_description",
+      button_bar: "sector_description-button-bar",
+      preview: "sector_description-preview"
+      // output: "copy_html"
+  });

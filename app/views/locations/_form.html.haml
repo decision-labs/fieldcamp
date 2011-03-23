@@ -1,3 +1,8 @@
+-content_for :head do
+  = stylesheet_link_tag 'wmd/wmd.css', :cache => true
+  = javascript_include_tag 'vendor/wmd/wmd.combined.min', :cache => true
+
+
 = form_for @location do |f|
   -if @location.errors.any?
     #error_explanation
@@ -12,7 +17,11 @@
         = f.text_field :name, :class => 'text_field'
       .field.group
         = f.label :description, :class => 'label'
+        #location_description-button-bar
         = f.text_area :description, :class => 'text_area'
+      .field.group
+        %label.label Preview
+        #location_description-preview.markdown_preview
       .field.group
         = f.label :admin_level, :class => 'label'
         = f.text_field :admin_level, :class => 'text_field'
@@ -21,3 +30,11 @@
       = image_tag "icons/tick.png"
       =t(:save)
     = link_to t(:back), locations_path, :class => 'button'
+
+:javascript
+  setup_wmd({
+      input: "location_description",
+      button_bar: "location_description-button-bar",
+      preview: "location_description-preview"
+      // output: "copy_html"
+  });

@@ -115,3 +115,25 @@ ul li.current_sort{
   font-weight: bold;
   margin-left:20px;
 }
+
+li.wmd-button.wmd-code-button{
+  display: none;
+}
+
+.markdown_preview{
+  color: #7F7F7F;
+  background: #eee;
+  margin-top: 4px;
+}
+
+#main .block .content p{
+  font-size: 14px;
+}
+
+.inner li {
+  margin-left: 15px;
+}
+
+#location_description-button-bar li{
+  margin-left: 0px;
+}

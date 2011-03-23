@@ -1,21 +1,23 @@
-%h1 Listing events
+.block
+  .content
+    %h2.title Listing events
+    .inner
+      %table
+        %tr
+          %th Title
+          %th Description
+          %th Project
+          %th
+          %th
+          %th
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Project
-    %th
-    %th
-    %th
+        - @events.each do |event|
+          %tr
+            %td= event.title
+            %td= event.description
+            %td= link_to event.project.title, project_path(event.project)
+            %td= link_to 'Show', project_event_path(@project, event)
+            %td= link_to 'Edit', edit_project_event_path(@project, event)
+            %td= link_to 'Destroy', project_event_path(@project, event), :confirm => 'Are you sure?', :method => :delete
 
-  - @events.each do |event|
-    %tr
-      %td= event.title
-      %td= event.description
-      %td= link_to event.project.title, project_path(event.project)
-      %td= link_to 'Show', project_event_path(@project, event)
-      %td= link_to 'Edit', edit_project_event_path(@project, event)
-      %td= link_to 'Destroy', project_event_path(@project, event), :confirm => 'Are you sure?', :method => :delete
-
-%br
+      %br

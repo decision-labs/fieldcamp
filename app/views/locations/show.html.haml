@@ -4,7 +4,7 @@
   .content
     = model_title_links(@location, t="name")
     .inner
-      %p= @location.description
+      %p= raw(RDiscount.new(@location.description).to_html) rescue nil
 
 
 =render :partial => 'projects/project', :collection => @location.projects

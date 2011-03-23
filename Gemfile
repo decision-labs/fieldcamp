@@ -13,6 +13,8 @@ gem 'json'
 gem 'devise'
 gem 'configatron'
 gem 'cancan'
+gem 'rdiscount'
+# gem 'acts_as_markup'
 
 group :test, :development do
   gem 'sqlite3'

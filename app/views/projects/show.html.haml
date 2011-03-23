@@ -22,7 +22,7 @@
               ="#{t(:location)}:"
             = @project.location.name.titleize
 
-          %p.first.project-description= @project.description
+          %p.first.project-description= raw(RDiscount.new(@project.description).to_html) rescue nil
         .column.right
           #map
             #map_canvas

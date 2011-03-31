@@ -7,11 +7,12 @@ class LocationsController < ApplicationController
     if current_user
       @locations = current_user.settings.location.children.all(
         :select => @desired_columns,
-        :order  => 'locations.name asc')
+        :order  => 'locations.created_at desc')
+      @locations.insert(0, Location.find(current_user.settings.location.id, :select => @desired_columns))
     else
       @locations = Location.all(
         :select => @desired_columns,
-        :order  => 'locations.name asc')
+        :order  => 'locations.created_at desc')
     end
   end
 

@@ -69,3 +69,5 @@ rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.s
 * Locales
 
 * GeoJSON creation
+
+* Add Styles for form validations

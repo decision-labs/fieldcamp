@@ -9,22 +9,16 @@ class PartnersController < ApplicationController
       session[:partners_sort_order] = params[:sort_order]
     end
 
-    if current_user
-      @partners = Partner.all(:include => :projects,
-        :conditions => {"projects.location_id" => @current_user_location_ids},
-        :order => session[:partners_sort_order])
-    else
-      @partners = Partner.all(:include => :projects, :order => session[:partners_sort_order])
-    end
+    @partners = Partner.all(:order => session[:partners_sort_order])
   end
 
   def show
     if current_user
-      @partner = Partner.find(params[:id], :include => :projects,
-        :conditions => {"projects.location_id" => @current_user_location_ids},
-        :order => 'partners.created_at desc')
+      @partner = Partner.find(params[:id])
+      @projects = @partner.projects.all(:conditions => {"projects.location_id" => @current_user_location_ids})
     else
       @partner = Partner.find(params[:id], :include => :projects)
+      @projects = @partner.projects
     end
 
   end

@@ -10,9 +10,7 @@ class SectorsController < ApplicationController
     end
 
     if current_user
-      @sectors = Sector.all(:include => :projects,
-        :conditions => {"projects.location_id" => @current_user_location_ids},
-        :order => session[:sectors_sort_order])
+      @sectors = Sector.all(:order => session[:sectors_sort_order])
     else
       @sectors = Sector.all(:include => :projects, :order => session[:sectors_sort_order])
     end
@@ -20,11 +18,11 @@ class SectorsController < ApplicationController
 
   def show
     if current_user
-      @sector = Sector.find(params[:id],
-        :include => :projects,
-        :conditions => {"projects.location_id" => @current_user_location_ids})
+      @sector = Sector.find(params[:id])
+      @projects = @sector.projects.all(:conditions => {"projects.location_id" => @current_user_location_ids})
     else
       @sector = Sector.find(params[:id], :include => :projects)
+      @projects = @sector.projects.all
     end
   end
 

@@ -56,4 +56,9 @@
     -if (can? :create,  Event)
       =link_to t(:new_event), new_project_event_path(@project), :class => 'button'
 
-= link_to raw("&larr; #{t(:back_to_projects)}"), projects_path
+
+.block
+  .content
+    .inner
+      .actions-bar.wat-cf
+        .actions= link_to raw("&larr; #{t(:back_to_projects)}"), projects_path, :class => "button"

@@ -6,6 +6,15 @@
     .inner
       %p= raw(RDiscount.new(@sector.description).to_html) rescue nil
 
+/ TODO: Add Heading: %h1 Projects
+.content
+  .inner
+    %h1 Projects
 =render :partial => 'projects/project', :collection => @sector.projects
 
-= link_to raw("&larr; #{t(:back_to_sectors)}"), sectors_path
+.block
+  .content
+    .inner
+      .actions-bar.wat-cf
+        .actions
+          = link_to raw("&larr; #{t(:back_to_sectors)}"), sectors_path, :class => "button"

@@ -18,6 +18,7 @@
             .column.left
               .field.group
                 = f.label :locations, :class => 'label'
+                / TODO: Tree Selection
                 = f.select :location_id, Location.all.collect{ |l| ["... "*l.admin_level+"#{l.admin_level} : #{l.name}", l.id ]}, :class => 'select'
 
               .field.group

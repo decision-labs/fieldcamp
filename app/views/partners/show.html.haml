@@ -6,6 +6,15 @@
     .inner
       %p= raw(RDiscount.new(@partner.description).to_html) rescue nil
 
+.content
+  .inner
+    %h1 Projects
+
 =render @partner.projects
 
-= link_to raw("&larr; #{t(:back_to_partners)}"), partners_path
+.block
+  .content
+    .inner
+      .actions-bar.wat-cf
+        .actions
+          = link_to raw("&larr; #{t(:back_to_partners)}"), partners_path, :class => "button"

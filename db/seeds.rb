@@ -26,7 +26,7 @@ gernot  = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-gernot.settings = Settings.new
+gernot.settings = Settings.create!
 
 silvius = User.create(
   :email                 => 'prakkako@caritas.de',
@@ -34,7 +34,7 @@ silvius = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-silvius.settings = Settings.new
+silvius.settings = Settings.create!
 
 publisher = User.create(
   :email                 => 'publisher@caritas.de',
@@ -42,7 +42,15 @@ publisher = User.create(
   :password_confirmation => "caritas123",
   :role                  => 'publisher'
 )
-publisher.settings = Settings.new
+publisher.settings = Settings.create!
+
+shoaib = User.create(
+  :email                 => 'shoaib@nomad-labs.com',
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
+  :role                  => 'admin'
+)
+shoaib.settings = Settings.create!
 
 # -----------------------------------
 # Load Locations data from shapefiles

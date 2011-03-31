@@ -71,3 +71,9 @@ rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.s
 * GeoJSON creation
 
 * Add Styles for form validations
+
+[DEVISE] From version 1.2, there is no need to set your encryptor to bcrypt since encryptors are only enabled if you include :encryptable in your models. To update your app, please:
+
+1) Remove config.encryptor from your initializer;
+2) Add t.encryptable to your old migrations;
+3) [Optional] Remove password_salt in a new recent migration. Bcrypt does not require it anymore.

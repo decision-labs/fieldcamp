@@ -45,24 +45,6 @@ module ApplicationHelper
       end
     end
 
-  # def model_title_links(m, t="title", header_level=:h2, parent_model = nil)
-  #   parent_name = nil
-  #   unless parent_model.nil?
-  #     parent_name = parent_model.class.name.downcase
-  #   end
-  #   path = [parent_name, m.class.name.downcase, 'path'].compact.join('_')
-  #   content_tag header_level, :class=>'title' do
-  #     [ m.send(t),
-  #       link_to_icon('show', t(:show), send(path, m, parent_model) ),
-  #       (can? :update,  m) ? link_to_icon('edit', t(:edit), send(['edit', path].join('_') , send(path, m, parent_model))) : nil,
-  #       (can? :destroy, m) ? link_to_icon('destroy', t(:destroy), send(path, m, parent_model), {
-  #         :confirm => t(:are_you_sure),
-  #         :method => :delete
-  #       }) : nil
-  #     ].compact.join(' ').html_safe
-  #   end
-  # end
-
   def title(page_title)
     content_for(:title, page_title.to_s)
   end

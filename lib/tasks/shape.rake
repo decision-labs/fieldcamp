@@ -5,7 +5,7 @@ include GeoRuby::Shp4r
 
 namespace :db do
   desc "load a shapefile into the locations table."
-  task :load_shapefile, :shapefile_path, :name_field, :description_field, :admin_level, :admin_email, :parent_id, :needs => :environment do |t, args|
+  task :load_shapefile, :shapefile_path, :name_field, :description_field, :admin_level, :admin_email, :parent_id, :parent_name_field, :needs => :environment do |t, args|
     example = "rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de [parent_id=23]"
     if args[:shapefile_path].nil?
       print "Please provide a path to the .shp file"
@@ -19,7 +19,7 @@ namespace :db do
       exit 0
     end
     if args[:description_field].nil?
-      print "Please provide a field that maps to name\n"
+      print "Please provide a field that maps to description\n"
       print "Example: #{example}\n"
       exit 0
     end
@@ -55,12 +55,18 @@ namespace :db do
     admin_level         = args[:admin_level]
     admin_email         = args[:admin_email]
     parent_id           = args[:parent_id]
+    parent_name_field   = args[:parent_name_field]
 
     shpfile    =  ShpFile.open(shapefile_path)
     admin_user =  User.where(:email => admin_email, :role => "admin").first
-    parent     =  Location.find(parent_id) rescue nil
 
     shpfile.each_with_index do |rec,i|
+      if parent_name_field
+        parent =  Location.find_by_name(rec.data[parent_name_field]) rescue nil
+        puts "[shape.rake] Couldn't find a parent with name #{rec.data[parent_name_field]} for #{rec.data[name_field]}" if parent.nil?
+      else
+        parent =  Location.find(parent_id) rescue nil
+      end
       geom = rec.geometry
       name = rec.data[name_field]
       description = rec.data[description_field]

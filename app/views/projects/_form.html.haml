@@ -24,7 +24,7 @@
         #project_description-preview.markdown_preview
       .field.group
         = f.label :location, :class => 'label'
-        = f.select :location_id, Location.all.collect {|p| [ p.name, p.id ] }, :class => 'select'
+        = f.select :location_id, @locations.collect {|p| [ p.name, p.id ] }, :class => 'select'
     .column.right
       .field.group
         = f.label :start_date, :class => 'label'

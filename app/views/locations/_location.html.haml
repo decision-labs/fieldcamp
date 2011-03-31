@@ -1,3 +1,8 @@
 .block
   .content
     = model_title_links(location, t="name")
+    .inner
+      - location.children.map{|loc| [loc.id, loc.name]}.each_slice(10) do |v|
+        - v.each do |l|
+          = link_to l[1], location_path(l[0])
+        %br

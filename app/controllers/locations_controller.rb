@@ -1,19 +1,26 @@
 class LocationsController < ApplicationController
 
   respond_to :mobile, :html
+  before_filter :set_desired_columns
 
   def index
     if current_user
-      @locations = Location.all(:include => :projects,
-        :conditions => {"projects.location_id" => @current_user_location_ids},
-        :order => 'locations.created_at desc')
+      @locations = current_user.settings.location.children.all(
+        :select => @desired_columns,
+        :order  => 'locations.name asc')
     else
-      @locations = Location.all(:include => :projects, :order => 'locations.created_at desc')
+      @locations = Location.all(
+        :select => @desired_columns,
+        :order  => 'locations.name asc')
     end
   end
 
   def show
     @location = Location.find(params[:id], :include => :projects)
+    respond_to do |format|
+      format.html
+      format.json  { render(:layout => false, :json => @location.geom.as_geojson) }
+    end
   end
 
   def new
@@ -23,7 +30,7 @@ class LocationsController < ApplicationController
 
   def edit
     authorize! :edit, Location
-    @location = Location.find(params[:id])
+    @location = Location.find(params[:id], :select => @desired_columns)
   end
 
   def create
@@ -42,7 +49,7 @@ class LocationsController < ApplicationController
 
   def update
     authorize! :update, Location
-    @location = Location.find(params[:id])
+    @location = Location.find(params[:id], :select => @desired_columns)
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
@@ -55,11 +62,16 @@ class LocationsController < ApplicationController
 
   def destroy
     authorize! :destroy, Location
-    @location = Location.find(params[:id])
+    @location = Location.find(params[:id], :select => @desired_columns)
     @location.destroy
 
     respond_to do |format|
       format.html { redirect_to(locations_url) }
     end
+  end
+
+  private
+  def set_desired_columns
+    @desired_columns = (Location.column_names - ['geom']).join(', ')
   end
 end

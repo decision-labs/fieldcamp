@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
 
   respond_to :mobile, :html
+  before_filter :set_desired_columns
+  before_filter :set_locations, :only => [:new, :edit, :update, :create]
 
   def index
     if params[:sort_order].blank? && session[:projects_sort_order].blank?
@@ -30,7 +32,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json  { render(:layout => false, :json => @project.location.geom.as_geojson) }
+      format.json { render(:layout => false, :json => @project.location.geom.as_geojson) }
     end
   end
 
@@ -87,4 +89,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  private
+  def set_desired_columns
+    @desired_columns = (Location.column_names - ['geom']).join(', ')
+  end
+
+  def set_locations
+    @locations = current_user.settings.location.children.all(:select => @desired_columns, :order => 'locations.name')
+    @locations.insert(0, Location.find(current_user.settings.location.id, :select => @desired_columns))
+  end
 end

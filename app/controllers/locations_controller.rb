@@ -16,6 +16,7 @@ class LocationsController < ApplicationController
         :per_page => 5,
         :page => params[:page],
         :select => @desired_columns,
+        :conditions => ["locations.admin_level < ?", 1],
         :order  => 'locations.created_at desc')
     end
   end

@@ -1,3 +1,11 @@
 = render :partial => "nav"
 
 = render @locations
+
+.block
+  .content
+    .inner
+      .actions-bar.wat-cf
+        .actions
+          = will_paginate @locations
+      = page_entries_info

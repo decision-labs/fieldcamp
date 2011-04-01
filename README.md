@@ -77,3 +77,5 @@ rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.s
 1) Remove config.encryptor from your initializer;
 2) Add t.encryptable to your old migrations;
 3) [Optional] Remove password_salt in a new recent migration. Bcrypt does not require it anymore.
+
+* In index page add some useful summary info e.g location of project, number of events, last updated (how many days ago)

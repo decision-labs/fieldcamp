@@ -6,6 +6,9 @@ class Location < ActiveRecord::Base
 
   acts_as_geom :geom => :multi_polygon
 
+  cattr_reader :per_page
+  @@per_page = 5
+
   # def self.user_location_scoped(location_ids)
   #   scope :all, where(:id => location_ids)
   # end

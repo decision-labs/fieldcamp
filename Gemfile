@@ -14,6 +14,7 @@ gem 'devise'
 gem 'configatron'
 gem 'cancan'
 gem 'rdiscount'
+gem 'will_paginate', "~> 3.0.pre2"
 # gem 'acts_as_markup'
 
 group :test, :development do

@@ -10,6 +10,7 @@ class SettingsController < ApplicationController
   end
 
   def edit
+    @locations ||= Location.all(:order => 'created_at asc', :select => ["id","admin_level", "name"])
     if current_user.settings.nil?
       @settings = Settings.new(:user_id => current_user.id)
       @settings.save

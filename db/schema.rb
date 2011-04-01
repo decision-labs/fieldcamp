@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110305135148) do
+ActiveRecord::Schema.define(:version => 20110331235400) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -19,11 +19,12 @@ ActiveRecord::Schema.define(:version => 20110305135148) do
     t.column "project_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "geom", :point, :srid => 4326, :with_z => true
     t.column "user_id", :integer
+    t.column "geom", :point, :srid => 4326, :with_z => true
   end
 
   add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
+  add_index "events", ["title"], :name => "index_events_on_title"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "locations", :force => true do |t|
@@ -32,12 +33,13 @@ ActiveRecord::Schema.define(:version => 20110305135148) do
     t.column "admin_level", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "user_id", :integer
     t.column "parent_id", :integer
+    t.column "geom", :geometry, :srid => 4326, :null => false
   end
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
+  add_index "locations", ["name"], :name => "index_locations_on_name"
   add_index "locations", ["parent_id"], :name => "index_locations_on_parent_id"
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
 
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20110305135148) do
     t.column "user_id", :integer
   end
 
+  add_index "partners", ["name"], :name => "index_partners_on_name"
   add_index "partners", ["user_id"], :name => "index_partners_on_user_id"
 
   create_table "partners_projects", :id => false, :force => true do |t|
@@ -75,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20110305135148) do
     t.column "user_id", :integer
   end
 
+  add_index "projects", ["title"], :name => "index_projects_on_title"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "projects_sectors", :id => false, :force => true do |t|
@@ -93,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20110305135148) do
     t.column "user_id", :integer
   end
 
+  add_index "sectors", ["name"], :name => "index_sectors_on_name"
   add_index "sectors", ["user_id"], :name => "index_sectors_on_user_id"
 
   create_table "settings", :force => true do |t|

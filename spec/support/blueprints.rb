@@ -1,4 +1,6 @@
 require 'machinist/active_record'
+require 'sham'
+require 'faker'
 
 Project.blueprint do
   title { Faker::Lorem.name }
@@ -34,3 +36,16 @@ User.blueprint do
   password              { 'secret' }
   password_confirmation { 'secret' }
 end
+
+# Location.blueprint(:child) do
+#   name
+#   description
+#   admin_level
+#   user
+#   parent
+#   geom
+# end
+
+# Location.blueprint(:country) do
+#   # load a location
+# end

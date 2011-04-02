@@ -12,7 +12,7 @@
     var ne = new google.maps.LatLng("#{@location.geom.envelope.upper_corner.y}", "#{@location.geom.envelope.upper_corner.x}");
     var mapBounds = new google.maps.LatLngBounds(sw, ne); // LatLngBounds(sw?:LatLng, ne?:LatLng)
     var mapOptions = {
-      zoom: 6,
+      zoom: 5,
       center: center,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
       zoomControlOptions: {

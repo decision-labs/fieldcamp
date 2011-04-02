@@ -2,7 +2,8 @@
   .content
     = model_title_links(project)
     .inner
-      %h2 Recent Events
+      %h2 
+        = t(:recent_events)
       %ul.list
         = render :partial => 'events/event', :collection => project.events, :locals => {:project=>project}
 

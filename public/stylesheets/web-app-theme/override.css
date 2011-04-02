@@ -81,6 +81,10 @@ ul.list li .item {
   margin-left: 5px!important;
 }
 
+.item ul li{
+  border: 0px;
+}
+
 span .locale_links{
   padding-top: 2px;
   padding-right: 2px;

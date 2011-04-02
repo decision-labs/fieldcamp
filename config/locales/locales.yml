@@ -48,7 +48,7 @@ en:
   edit_user_settings: Change
   set_your_location_label: Please set work location
   Settings: Settings
-  settings_update_success_message: Settings where successfully updated
+  settings_update_success_message: Settings were successfully updated
   logged_in_label: "Logged in as: %{email}"
   address_unverified: Address unverified
   address_verified: Address verified
@@ -111,9 +111,17 @@ de:
   set_your_location_label: Bitte setzen Sie Einsatzort
   Settings: Einstellungen
   account_settings: Konto-Einstellungen
-  settings_update_success_message: Settings where successfully updated
+  settings_update_success_message: Einstellungen wurden erfolgreich aktualisiert
+  logged_in_label: "Angemeldet als: %{email}"
   address_unverified: ungeprüfter Adresse
   address_verified: verifiziert Adresse
+  alphabetical_asc: Order A-Z
+  alphabetical_desc: Order Z-A
+  created_at_asc: Order oldest
+  created_at_desc: Order newest
+  updated_at_asc: Oldest update first
+  updated_at_desc: Recent update first
+  sort_options: Sortieren Optionen
   Next_Administrative_Level: Weiter Administrativer Ebene
   Administrative_Level: Administrativer Ebene
 
@@ -165,9 +173,17 @@ ur:
   set_your_location_label: براہ مہربانی کام کی جگہ مقرر
   Settings: ترتیبات
   account_settings: اکاؤنٹ کی ترتیبات
-  settings_update_success_message: Settings where successfully updated
+  logged_in_label: "Logged in as: %{email}"
+  settings_update_success_message: ترتیبات کو کامیابی سے اپ ڈیٹ کیا گیا
   address_unverified: پتہ غیر توثیق شدہ
   address_verified: میل ایڈریس کی تصدیق
+  alphabetical_asc: Order A-Z
+  alphabetical_desc: Order Z-A
+  created_at_asc: Order oldest
+  created_at_desc: Order newest
+  updated_at_asc: Oldest update first
+  updated_at_desc: Recent update first
+  sort_options: ترتیب کے اختیارات
   Next_Administrative_Level: اگلا انتظامی سطح
   Administrative_Level: انتظامی سطح
 
@@ -219,8 +235,16 @@ fr:
   set_your_location_label: S'il vous plaît définir lieu de travail
   Settings: Paramètres
   account_settings: Paramètres du compte
-  settings_update_success_message: Settings where successfully updated
+  settings_update_success_message: Les paramètres ont été correctement mis à jour
+  logged_in_label: "Connecté en tant que: %{email}"
   address_unverified: non vérifiés adresse
   address_verified: vérifié l'adresse
+  alphabetical_asc: Order A-Z
+  alphabetical_desc: Order Z-A
+  created_at_asc: Order oldest
+  created_at_desc: Order newest
+  updated_at_asc: Oldest update first
+  updated_at_desc: Recent update first
+  sort_options: Les options de tri
   Next_Administrative_Level: Next Level Administratif
   Administrative_Level: Niveau administratif

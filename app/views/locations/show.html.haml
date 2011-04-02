@@ -22,7 +22,8 @@
 
 .content
   .inner
-    %h1 Projects
+    %h1
+      = t(:projects)
 
 =render :partial => 'projects/project', :collection => @projects
 

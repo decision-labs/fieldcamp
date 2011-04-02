@@ -2,11 +2,16 @@
   .content
     = model_title_links(location, t="name")
     .inner.child_locations
-      %h3
-        =t(:administrative_level)
-        =location.admin_level+1
 
       %table.table
+
+        %thead
+          %h3
+            =t(:Administrative_Level)
+            =location.admin_level+1
+            =t(:locations)
+            \:
+
         %tbody
           - location.children.map{|loc| [loc.id, loc.name]}.each_slice(5) do |v|
             %tr{:class=>cycle('odd','even')}

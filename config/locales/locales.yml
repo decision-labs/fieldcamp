@@ -59,7 +59,8 @@ en:
   updated_at_asc: Oldest update first
   updated_at_desc: Recent update first
   sort_options: Sort options
-
+  Next_Administrative_Level: Next Administrative Level
+  Administrative_Level: Administrative Level
 
 de:
   hello_world: Hallo Welt
@@ -113,6 +114,8 @@ de:
   settings_update_success_message: Settings where successfully updated
   address_unverified: ungeprüfter Adresse
   address_verified: verifiziert Adresse
+  Next_Administrative_Level: Weiter Administrativer Ebene
+  Administrative_Level: Administrativer Ebene
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -165,6 +168,8 @@ ur:
   settings_update_success_message: Settings where successfully updated
   address_unverified: پتہ غیر توثیق شدہ
   address_verified: میل ایڈریس کی تصدیق
+  Next_Administrative_Level: اگلا انتظامی سطح
+  Administrative_Level: انتظامی سطح
 
 fr:
   hello_world: Bonjour tout le monde
@@ -217,3 +222,5 @@ fr:
   settings_update_success_message: Settings where successfully updated
   address_unverified: non vérifiés adresse
   address_verified: vérifié l'adresse
+  Next_Administrative_Level: Next Level Administratif
+  Administrative_Level: Niveau administratif

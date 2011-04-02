@@ -231,6 +231,10 @@ hr {
 .pagination em {
   background: #002134;
   color: #fff;
+  text-align: center;
+  min-width: 15px;
+  margin-right: 5px;
+  padding: 6px;
   border: 1px solid #002134;
 }
 

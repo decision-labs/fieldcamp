@@ -17,7 +17,7 @@
             %tr{:class=>cycle('odd','even')}
               - v.each do |l|
                 %td
-                  - project_count = Location.find(l[0]).projects.count
+                  - project_count = Location.find(l[0]).projects.size
                   - if project_count > 0
                     %span.location.has_project
                       = link_to "#{l[1]} (#{pluralize(project_count, 'project')})", location_path(l[0])

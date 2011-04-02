@@ -8,6 +8,7 @@
 
 #content{'data-role' => 'content'}
   %ul{'data-role' => 'listview'}
+    / TODO: FIXME make consistent with html template @projects is set by the controller
     = render :partial => 'projects/project', :collection => @location.projects
   
 = render 'shared/footer'

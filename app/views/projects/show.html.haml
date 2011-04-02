@@ -33,7 +33,7 @@
       = t(:recent_events)
     .inner
       %ul.list
-        = render :partial => 'events/event', :collection => @project.events.desc
+        = render :partial => 'events/event', :collection => @project.events.desc, :locals => {:project=>@project}
 
 .block
   .content

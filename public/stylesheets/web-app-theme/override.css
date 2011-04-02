@@ -138,5 +138,25 @@ li.wmd-button.wmd-code-button{
   margin-left: 0px;
 }
 
+.child_locations span.location{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.child_locations td span.has_project a{
+  color: #111;
+}
+
+.child_locations td span.location a:hover{
+  background-color: #FBFFED;
+}
+.child_locations td span.has_project a:hover{
+  background-color: #EBFFBA;
+}
+
+.child_locations a {
+  color: #7F7F7F;
+  text-decoration: none;
+}
 
 /* FIXME: li in block content have horizontal margins under them */

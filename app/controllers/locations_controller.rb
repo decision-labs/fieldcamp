@@ -22,10 +22,21 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = Location.find(params[:id], :include => :projects)
+    @location ||= Location.find(params[:id])
     respond_to do |format|
-      format.html
-      format.json  { render(:layout => false, :json => @location.geom.as_geojson) }
+      format.html{
+        @projects ||= @location.child_projects.all(:include => :events)
+      }
+      format.json  {
+        # CHECK: if doing ajax is faster than using the cached geometry (see routes.rb)
+        # if params[:events]
+        #   @projects ||= @location.child_projects.all(:include => :events)
+        #   render(:layout => false, :json => Project.events_to_feature_collection(@projects))
+        # else
+        #   render(:layout => false, :json => @location.geom.as_geojson)
+        # end
+        render(:layout => false, :json => @location.geom.as_geojson)
+      }
     end
   end
 

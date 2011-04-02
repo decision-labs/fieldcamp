@@ -15,6 +15,6 @@ class Location < ActiveRecord::Base
   def child_projects
     # find projects with location.parent_id = self.id
     # join projects on location.parent_id = self.id
-    Project.where("locations.parent_id = ? OR location_id = ?", self.id, self.id).joins(:location).all
+    Project.where("locations.parent_id = ? OR location_id = ?", self.id, self.id).joins(:location).includes(:events)
   end
 end

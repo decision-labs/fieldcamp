@@ -1,8 +1,20 @@
 .block
   .content
     = model_title_links(location, t="name")
-    .inner
-      - location.children.map{|loc| [loc.id, loc.name]}.each_slice(10) do |v|
-        - v.each do |l|
-          = link_to l[1], location_path(l[0])
-        %br
+    .inner.child_locations
+      %h3
+        =t(:administrative_level)
+        =location.admin_level+1
+
+      %table.table
+        %tbody
+          - location.children.map{|loc| [loc.id, loc.name]}.each_slice(5) do |v|
+            %tr{:class=>cycle('odd','even')}
+              - v.each do |l|
+                %td
+                  - project_count = Location.find(l[0]).projects.count
+                  - if project_count > 0
+                    %span.location.has_project
+                      = link_to "#{l[1]} (#{pluralize(project_count, 'project')})", location_path(l[0])
+                  - else
+                    %span.location= link_to l[1], location_path(l[0])

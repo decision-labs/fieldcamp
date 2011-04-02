@@ -12,4 +12,17 @@ class Project < ActiveRecord::Base
   #   scope :all, where(:location_id => location_ids)
   # end
 
+  # {
+  #     :type => "FeatureCollection",
+  #     :features => @events.map(&:as_feature_hash)
+  # }
+  def self.events_to_feature_collection(projects)
+    features = []
+    projects.each{ |project| features.concat(Event.events_to_feature_collection(project.events)) }
+
+    {
+      :type => "FeatureCollection",
+      :features => features
+    }
+  end
 end

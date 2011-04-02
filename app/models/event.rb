@@ -20,4 +20,10 @@ class Event < ActiveRecord::Base
   def to_param
     [id, title.parameterize].join('-')
   end
+
+  # return array of feature arrays
+  def self.events_to_feature_collection(events_collection)
+    events_collection.map(&:as_feature_hash)
+  end
+
 end

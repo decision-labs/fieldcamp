@@ -84,6 +84,9 @@ ul.list li .item {
 .item ul li{
   border: 0px;
 }
+.item ol li{
+  border: 0px;
+}
 
 span .locale_links{
   padding-top: 2px;
@@ -161,6 +164,21 @@ li.wmd-button.wmd-code-button{
 .child_locations a {
   color: #7F7F7F;
   text-decoration: none;
+}
+
+.content.location ul li {
+  margin-left: 15px;
+}
+
+.content.location ol li {
+  margin-left: 15px;
+}
+
+.content.location h2{
+  color:#111!important;
+  background-color: #fff!important;
+  padding-left: 0px!important;
+  font-size: 18px;
 }
 
 /* FIXME: li in block content have horizontal margins under them */

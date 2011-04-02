@@ -35,6 +35,9 @@
         var info_window = new google.maps.InfoWindow({content: content_string});
         google.maps.event.addListener(event_marker, 'click', function() {
           info_window.open(map, event_marker);
+          jQuery(function($){
+              $('a.zoombox').zoombox();
+          });
         });
       })
     });
@@ -63,6 +66,9 @@
         var info_window = new google.maps.InfoWindow({content: content_string});
         google.maps.event.addListener(event_marker, 'click', function() {
           info_window.open(map, event_marker);
+          jQuery(function($){
+              $('a.zoombox').zoombox();
+          });
         });
       }
     }

@@ -1,3 +1,4 @@
+
 function detectBrowser() {
   var useragent = navigator.userAgent;
   var mapdiv = document.getElementById("map_canvas");
@@ -55,11 +56,14 @@ function ToggleFullScreen(controlDiv, map) {
 }
 
 function renderJSONEvent(obj){
+  // console.log(obj["id"]);
   title = obj["title"];
   description = obj["description"];
   address = obj["address"];
   updated_at = obj["updated_at"];
+  href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
   html= "<div id='event_infowindow'>"+
+    "<a class='zoombox' href='" + href + "' >Enlarge View</a>" +
     "<h3>"+title+"</h3>"+
     "<p>"+
         "<strong class='label'>Description:</strong> "+ description +"<br>"+
@@ -68,6 +72,7 @@ function renderJSONEvent(obj){
     "</p>"+
   "</div>";
   return(html);
+
 }
 
 function renderJSON(obj) {

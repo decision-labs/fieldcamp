@@ -21,7 +21,11 @@ class EventsController < ApplicationController
     @event = @project.events.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html{
+        if params[:zoombox]
+          render 'show', :layout => 'plain'
+        end
+      } # show.html.erb
       format.json  { render :json => @event.as_feature_hash }
     end
   end

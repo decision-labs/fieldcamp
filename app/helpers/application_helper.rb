@@ -52,4 +52,11 @@ module ApplicationHelper
   def title_fallback
     ['Caritas', controller.controller_name, controller.action_name].compact.join(' :: ')
   end
+
+  def static_map_img_link(event)
+    marker = "marker=size:big|label:E|#{event.geom.y},#{event.geom.x}"
+    center = "center=#{event.geom.y},#{event.geom.x}"
+    "http://staticmaps.cloudmade.com/8ee2a50541944fb9bcedded5165f09d9/staticmap?size=460x200&#{center}&zoom=10&styleid=1&#{marker}"
+  end
+
 end

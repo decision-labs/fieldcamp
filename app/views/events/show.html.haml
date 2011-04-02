@@ -1,18 +1,26 @@
-= render :partial => "nav"
+/ = render :partial => "nav"
 
-%p
-  %b Title:
-  = @event.title
-%p
-  %b Description:
-  = raw(RDiscount.new(@event.description).to_html) rescue nil
-%p
-  %b Geom:
-  = @event.geom
-%p
-  %b Project:
-  = @event.project_id
+#box
+  #block-login.block
+    %h2 Event Details
 
-= link_to 'Edit', edit_project_event_path(@project, @event)
-\|
-= link_to 'Back', project_events_path(@project)
+    .content.location
+      %h1= @event.title
+
+      %p
+        %b Location:
+        %br
+        %img{:src => static_map_img_link(@event) }
+      %p
+        %b Address:
+        = @event.address
+      %p
+        %b Project:
+        =link_to @event.project.title, project_path(@event.project), :target => "_blank"
+      %p
+        %b Description:
+        = raw(RDiscount.new(@event.description).to_html) rescue nil
+
+      / = link_to 'Edit', edit_project_event_path(@project, @event)
+      / \|
+      / = link_to 'Back', project_events_path(@project)

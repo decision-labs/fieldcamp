@@ -32,7 +32,17 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render(:layout => false, :json => @project.location.geom.as_geojson) }
+      format.json {
+        redis ||= REDIS
+        key = "location:"+@project.location.id.to_s
+        if redis.exists(key)
+          geojson = redis.get(key)
+        else
+          geojson =  @project.location.geom.as_geojson
+          redis.setex(key, 1800, geojson)
+        end
+        render(:layout => false, :json => geojson) 
+      }
     end
   end
 

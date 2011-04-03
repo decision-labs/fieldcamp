@@ -35,7 +35,16 @@ class LocationsController < ApplicationController
         # else
         #   render(:layout => false, :json => @location.geom.as_geojson)
         # end
-        render(:layout => false, :json => @location.geom.as_geojson)
+        redis ||= REDIS
+        key = "location:"+@location.id.to_s
+        if redis.exists(key)
+          geojson = redis.get(key)
+        else
+          geojson =  @location.geom.as_geojson
+          redis.setex(key, 1800, geojson)
+        end
+        
+        render(:layout => false, :json => geojson)
       }
     end
   end
@@ -70,6 +79,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
+        redis.del("location:"+@location.id.to_s)
         format.html { redirect_to(@location, :notice => 'Location was successfully updated.') }
       else
         format.html { render :action => "edit" }
@@ -80,6 +90,7 @@ class LocationsController < ApplicationController
   def destroy
     authorize! :destroy, Location
     @location = Location.find(params[:id], :select => @desired_columns)
+    redis.del("location:"+@location.id.to_s)
     @location.destroy
 
     respond_to do |format|

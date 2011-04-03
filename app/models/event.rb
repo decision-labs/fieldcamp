@@ -2,6 +2,9 @@ class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
 
+  validates :title, :presence => true
+  validates_with EventAddressValidator
+
   scope :desc, order("events.updated_at DESC")
 
   def as_feature_hash

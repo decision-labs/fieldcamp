@@ -2,8 +2,14 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello_world: Hello World
-  hello_flash: Hello Flash
+  # activerecord.errors.models.[model_name].attributes.[attribute_name]
+  activerecord:
+    errors:
+      models:
+        event:
+          attributes:
+            address: Please make sure you have entred a valid address and geocoded it.
+
   new: New
   edit: Edit
   show: Show

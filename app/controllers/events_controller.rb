@@ -54,7 +54,7 @@ class EventsController < ApplicationController
     @project = Project.find(params[:project_id])
     wkt = params[:event].delete(:geom)
     @event = @project.events.build(params[:event])
-    @event.geom = Point.from_ewkt(wkt)
+    @event.geom = Point.from_ewkt(wkt) rescue nil
     @event.user = current_user
     authorize! :create, @event
 
@@ -64,7 +64,7 @@ class EventsController < ApplicationController
         format.html { redirect_to(@project, :notice => 'Event was successfully created.') }
         format.mobile { redirect_to(@project) }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :error => 'Please ensure the location has been geo-coded before saving.' }
         format.mobile  { render :action => "new" }
       end
     end

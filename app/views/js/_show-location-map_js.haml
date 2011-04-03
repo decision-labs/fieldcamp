@@ -1,8 +1,6 @@
 :javascript
   $(document).ready(function() {
-    var lat,
-    lon,
-    elev = 0;
+
     var map = null;
     var marker = null;
     var pathname = "#{url_for(:action => controller.action_name)}"
@@ -32,12 +30,13 @@
       province = new GeoJSON(geojson, null);
       province.setMap(map);
     });
-
+    
+    var markers = [];
     geojson = #{Project.events_to_feature_collection(@projects).to_json};
     $.each(geojson.features, function(i, feature) {
       var event_marker = new GeoJSON(feature.geometry, null);
-      event_marker.setAnimation(google.maps.Animation.DROP);
-      event_marker.setMap(map);
+      //event_marker.setAnimation(google.maps.Animation.DROP);
+      //event_marker.setMap(map);
       var content_string = renderJSONEvent(feature.properties);
       var info_window = new google.maps.InfoWindow({content: content_string});
       google.maps.event.addListener(event_marker, 'click', function() {
@@ -46,7 +45,10 @@
             $('a.zoombox').zoombox();
         });
       });
+      markers.push(event_marker);
     })
+    
+    var markerCluster = new MarkerClusterer(map, markers);
 
     // TODO: CHECK: Instead of the above, AJAX is also possible see routes.rb - not sure which is faster though
     // $.getJSON(pathname+'/events.json', function(geojson) {

@@ -205,11 +205,15 @@ li.wmd-button.wmd-code-button{
 }
 
 
-/*.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}*/
+div.field_with_errors input {
+  color: red;
+  border: 1px solid #ffbbbb!important;
+}
+
+div.field_with_errors label {
+  color: red!important;
+  border: none;
+}
 
 /*#error_explanation {
   width: 450px;

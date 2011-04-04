@@ -1,0 +1,30 @@
+= render :partial => "shared/nav"
+
+.block-forms.block
+  .content
+    %h2.title=t(:search)
+    .inner
+      = form_tag :search, :method => "get", :class => 'form' do
+        .columns.wat-cf
+          .column.left
+            .field.group
+              = label_tag :project, t(:project), :class => 'label'
+              = text_field_tag 'search[project]', '', :class => 'text_field'
+
+          .column.right
+            .field.group
+              = label_tag :location, t(:location), :class => 'label'
+              = text_field_tag 'search[location]', '', :class => 'text_field'
+
+          .group.navform.wat-cf
+            = content_tag :button, :type => :submit, :class => 'button' do
+              = image_tag "icons/tick.png"
+              =t(:search)
+
+- if @projects
+  .content
+    .inner
+      %h1
+        = @projects.size
+        = t(:projects_found)
+    =render @projects

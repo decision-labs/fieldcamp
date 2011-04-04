@@ -3,10 +3,10 @@
 
 - content_for :outer do
   = stylesheet_link_tag 'map'
-  = javascript_include_tag 'vendor/GeoJSON', 'vendor/markerclusterer_packed', 'map-helpers'
+  = javascript_include_tag 'vendor/GeoJSON', 'map-helpers'
   = render 'js/show-location-map_js'
 
-= render :partial => "nav"
+= render :partial => "shared/nav"
 
 
 .project.block

@@ -26,7 +26,7 @@
               = f.check_box :remember_me, :class => 'checkbox'
         .group.navform.wat-cf
           .right
-            - content_tag :button, :type => :submit, :class => 'button', :alt => "Sign in" do
+            = content_tag :button, :type => :submit, :class => 'button', :alt => "Sign in" do
               = image_tag "icons/key.png"
               Sign in
             %a.button{:href => root_path}

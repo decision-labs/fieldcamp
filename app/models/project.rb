@@ -25,4 +25,39 @@ class Project < ActiveRecord::Base
       :features => features
     }
   end
+  
+  def self.search(query, location='')
+
+    # TODO: Refactor like mad!
+      if !query.blank? && !location.blank?
+      conditions = <<-EOS
+        to_tsvector('english',
+          coalesce(projects.title, '') || ' ' ||  coalesce(projects.description, '' )
+        ) @@ plainto_tsquery('english', ?) 
+        AND
+        to_tsvector('english', 
+          coalesce(locations.name, '')
+        ) @@ plainto_tsquery('english', ?) 
+      EOS
+      joins(:location).where(conditions, query, location)
+
+    elsif !location.blank?
+      conditions = <<-EOS
+        to_tsvector('english', 
+          coalesce(locations.name, '')
+        ) @@ plainto_tsquery('english', ?) 
+      EOS
+      joins(:location).where(conditions, location)
+
+    elsif !query.blank?
+      conditions = <<-EOS
+        to_tsvector('english',
+          coalesce(projects.title, '') || ' ' ||  coalesce(projects.description, '' )
+        ) @@ plainto_tsquery('english', ?) 
+      EOS
+      where(conditions, query)
+    end
+
+  end
+
 end

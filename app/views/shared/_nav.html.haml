@@ -1,0 +1,6 @@
+- content_for :nav do
+  %li.first{ :class => ("active" if controller.controller_name =~ /projects/i) }=link_to t(:projects), projects_url
+  %li{ :class => ("active" if controller.controller_name =~ /sectors/i) }= link_to t(:sectors), sectors_url
+  %li{ :class => ("active" if controller.controller_name =~ /partners/i) }= link_to t(:partners), partners_url
+  %li{ :class => ("active" if controller.controller_name =~ /locations/i) }=link_to t(:locations), locations_url
+  %li{ :class => ("active" if controller.controller_name =~ /search/i) }=link_to t(:search), search_url

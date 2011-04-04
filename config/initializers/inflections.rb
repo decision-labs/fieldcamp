@@ -1,3 +1,3 @@
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.uncountable %w( settings )
+  inflect.uncountable %w( settings search)
 end

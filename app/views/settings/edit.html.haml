@@ -26,9 +26,9 @@
                 = f.text_field :language, :class => 'text_field'
 
               .group.navform.wat-cf
-                - content_tag :button, :type => :submit, :class => 'button' do
+                = content_tag :button, :type => :submit, :class => 'button' do
                   = image_tag "icons/tick.png"
                   =t(:save)
                 %a.button{:href => settings_path}
                   = image_tag "icons/cross.png", :alt => "Cancel"
-                  Cancel
+                  =t(:cancel)

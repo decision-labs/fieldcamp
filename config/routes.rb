@@ -16,6 +16,8 @@ Caritas::Application.routes.draw do
     resources :projects do
       resources :events
     end
+    match '/search' => 'search#index', :as => 'search'
+
   end # scope(:locale)
 
   root :to => 'projects#index'

@@ -10,6 +10,10 @@ en:
           attributes:
             address: Please make sure you have entred a valid address and geocoded it.
 
+    time:
+      formats:
+        default: "%B %d, %Y %H:%M"
+
   new: New
   edit: Edit
   show: Show
@@ -67,6 +71,8 @@ en:
   sort_options: Sort options
   Next_Administrative_Level: Next Administrative Level
   Administrative_Level: Administrative Level
+  search: Search
+  projects_found: projects found
 
 de:
   hello_world: Hallo Welt
@@ -130,6 +136,8 @@ de:
   sort_options: Sortieren Optionen
   Next_Administrative_Level: Weiter Administrativer Ebene
   Administrative_Level: Administrativer Ebene
+  search: Suche
+  projects_found: Projekte gefunden
 
 ur:
   hello_world: ہیلو دنیا والو
@@ -192,6 +200,8 @@ ur:
   sort_options: ترتیب کے اختیارات
   Next_Administrative_Level: اگلا انتظامی سطح
   Administrative_Level: انتظامی سطح
+  search: تلاش
+  projects_found: منصوبوں پایا
 
 fr:
   hello_world: Bonjour tout le monde
@@ -254,3 +264,6 @@ fr:
   sort_options: Les options de tri
   Next_Administrative_Level: Next Level Administratif
   Administrative_Level: Niveau administratif
+  search: de recherche
+  projects_found: les projets jugés
+

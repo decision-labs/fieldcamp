@@ -23,7 +23,7 @@
         %label.label Preview
         #partner_description-preview.markdown_preview
   .group.navform.wat-cf
-    - content_tag :button, :type => :submit, :class => 'button' do
+    = content_tag :button, :type => :submit, :class => 'button' do
       = image_tag "icons/tick.png"
       =t(:save)
     = link_to t(:back), partners_path, :class => 'button'

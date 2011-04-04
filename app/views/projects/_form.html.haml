@@ -40,7 +40,7 @@
         = select_tag 'project[sector_ids][]', options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true, :class => 'select_tag'
 
   .group.navform.wat-cf
-    - content_tag :button, :type => :submit, :class => 'button' do
+    = content_tag :button, :type => :submit, :class => 'button' do
       = image_tag "icons/tick.png"
       =t(:save)
     = link_to t(:back), projects_path, :class => 'button'

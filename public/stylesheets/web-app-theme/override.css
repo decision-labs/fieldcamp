@@ -68,11 +68,10 @@ input.checkbox {
   *overflow: hidden;
 }
 
-#event_infowindow{
-  width: 250px;
-  height: 150px;
+.infowindow_updated_at{
+  font-size 0.75em;
+  color: #666;
 }
-
 .project-description{
   font-size: 1.3em!important;
 }

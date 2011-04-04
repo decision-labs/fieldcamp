@@ -62,15 +62,13 @@ function renderJSONEvent(obj){
   address = obj["address"];
   updated_at = obj["updated_at"];
   href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
-  html= "<div id='event_infowindow'>"+
-    "<a class='zoombox' href='" + href + "' >Enlarge View</a>" +
+  html= "<a class='zoombox' href='" + href + "' >Enlarge View</a>" +
     "<h3>"+title+"</h3>"+
+    "<strong class='label'>Address:</strong> "+ address         +
     "<p>"+
         "<strong class='label'>Description:</strong> "+ description +"<br>"+
-        "<strong class='label'>Address:</strong> "+ address         +"<br>"+
-        "<strong class='label'>Updated at:</strong> <span id='datetime'>"+updated_at+"</span>"+
-    "</p>"+
-  "</div>";
+        "<span class='infowindow_updated_at'><strong class='label'>Updated at:</strong> <span id='datetime'>"+updated_at+"</span></span>"+
+    "</p>";
   return(html);
 
 }

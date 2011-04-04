@@ -40,10 +40,16 @@ class LocationsController < ApplicationController
         if redis.exists(key)
           geojson = redis.get(key)
         else
-          geojson =  @location.geom.as_geojson
+          unless @location.admin_level == 0
+            geojson =  @location.geom.as_geojson
+          else
+            # TODO FIXME: think of a better way to simplify on serverside (perhaps a second simple_geom column)
+            res = ActiveRecord::Base.connection.execute(
+                    "SELECT ST_AsGeoJson(ST_Simplify(geom, 0.1)) geom from locations where locations.id = #{@location.id}")
+            geojson = res[0]["geom"]
+          end
           redis.setex(key, 1800, geojson)
         end
-        
         render(:layout => false, :json => geojson)
       }
     end

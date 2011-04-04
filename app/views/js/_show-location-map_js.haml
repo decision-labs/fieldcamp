@@ -30,7 +30,7 @@
       province = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
       province.setMap(map);
     });
-    
+
     var markers = [];
     geojson = #{Project.events_to_feature_collection(@projects).to_json};
     $.each(geojson.features, function(i, feature) {
@@ -47,7 +47,7 @@
       });
       markers.push(event_marker);
     })
-    
+
     var markerCluster = new MarkerClusterer(map, markers);
 
     // TODO: CHECK: Instead of the above, AJAX is also possible see routes.rb - not sure which is faster though

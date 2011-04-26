@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
 gem 'pg'
 gem 'haml'
 gem 'georuby',    :git => 'git://github.com/sabman/georuby.git', :require => 'geo_ruby'
@@ -9,13 +9,14 @@ gem 'em-websocket',     :git => 'git://github.com/igrigorik/em-websocket'
 gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'redis'
+gem 'SystemTimer', :platforms => ['ruby_18']
 gem 'json'
 gem 'devise'
 gem 'configatron'
 gem 'cancan'
 gem 'rdiscount'
 gem 'will_paginate', "~> 3.0.pre2"
-# gem 'acts_as_markup'
+gem 'dalli'
 
 group :test, :development do
   gem 'sqlite3'
@@ -35,6 +36,8 @@ group :test, :development do
   gem 'web-app-theme'
   gem 'hpricot'
   gem 'ruby_parser'
+  gem 'ruby-debug', :platforms => ['ruby_18']
+  gem 'ruby-debug19', :platforms => ['ruby_19']
 end
 
 group :development do
@@ -42,13 +45,4 @@ group :development do
   gem "hirb"
   gem "awesome_print"
   gem 'capistrano'
-end
-
-platforms :ruby_18 do
-  gem 'SystemTimer'
-  gem 'ruby-debug'
-end
-
-platforms :ruby_19 do
-  gem 'ruby-debug19'
 end

@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
+  USERNAME, PASSWORD = "caritaspublic", "caritaspublic"
+
   protect_from_forgery
+  before_filter :staging_authentication
   before_filter :set_locale, :prepare_for_mobile
   before_filter :authenticate_user!, :except => ['show', 'index']
   before_filter :set_location_scope
@@ -35,6 +38,12 @@ class ApplicationController < ActionController::Base
         @current_user_location_ids = current_user.settings.location.children.collect(&:id)
         @current_user_location_ids << current_user.settings.location_id
       end
+    end
+  end
+
+  def staging_authentication
+    authenticate_or_request_with_http_basic do |username, password|
+      username == USERNAME && password == PASSWORD
     end
   end
 

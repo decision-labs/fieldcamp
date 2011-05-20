@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110402182806) do
+ActiveRecord::Schema.define(:version => 20110402182403) do
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20110402182806) do
     t.column "project_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "user_id", :integer
     t.column "geom", :point, :srid => 4326, :with_z => true
+    t.column "user_id", :integer
   end
 
   add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
@@ -33,9 +33,9 @@ ActiveRecord::Schema.define(:version => 20110402182806) do
     t.column "admin_level", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "user_id", :integer
     t.column "parent_id", :integer
-    t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "projects_count", :integer, :default => 0
   end
 
@@ -58,13 +58,6 @@ ActiveRecord::Schema.define(:version => 20110402182806) do
   create_table "partners_projects", :id => false, :force => true do |t|
     t.column "partner_id", :integer
     t.column "project_id", :integer
-  end
-
-  create_table "people", :force => true do |t|
-    t.column "first_name", :string, :null => false
-    t.column "last_name", :string, :null => false
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
   end
 
   create_table "projects", :force => true do |t|
@@ -115,7 +108,6 @@ ActiveRecord::Schema.define(:version => 20110402182806) do
   create_table "users", :force => true do |t|
     t.column "email", :string, :default => "", :null => false
     t.column "encrypted_password", :string, :limit => 128, :default => "", :null => false
-    t.column "password_salt", :string, :default => "", :null => false
     t.column "reset_password_token", :string
     t.column "remember_token", :string
     t.column "remember_created_at", :datetime
@@ -127,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110402182806) do
     t.column "confirmation_token", :string
     t.column "confirmed_at", :datetime
     t.column "confirmation_sent_at", :datetime
+    t.column "password_salt", :string
     t.column "role", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime

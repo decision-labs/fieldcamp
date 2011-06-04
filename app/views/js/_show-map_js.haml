@@ -4,12 +4,21 @@
   function initialize() {
     var pathname = "#{url_for(:action => controller.action_name)}"
     var myLatlng = new google.maps.LatLng("#{@project.location.geom.envelope.center.y}", "#{@project.location.geom.envelope.center.x}");
+
+    var useragent = navigator.userAgent;
+    var controlVisible = true;
+    if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) 
+    {
+      controlVisible = false;
+    }
+  
     var myOptions = {
       zoom: 6,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      panControl: true,
-      zoomControl: true,
+      panControl: controlVisible,
+      zoomControl: controlVisible,
+      streetViewControl: controlVisible,
       zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL
       }

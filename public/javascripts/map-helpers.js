@@ -61,9 +61,20 @@ function renderJSONEvent(obj){
   description = obj["description"];
   address = obj["address"];
   updated_at = obj["updated_at"];
-  href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
-  html= "<a class='zoombox' href='" + href + "' >Enlarge View</a>" +
-    "<h3>"+title+"</h3>"+
+
+var useragent = navigator.userAgent;
+html = "";
+  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) 
+  {
+     //do not add enlarge view
+  }
+  else
+  {
+    href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
+    html= "<a class='zoombox' href='" + href + "' >Enlarge View</a>";
+  }
+  
+   html = html +  "<h3>"+title+"</h3>"+
     "<strong class='label'>Address:</strong> "+ address         +
     "<p>"+
         "<strong class='label'>Description:</strong> "+ description +"<br>"+

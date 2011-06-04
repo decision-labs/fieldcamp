@@ -1,7 +1,9 @@
 :javascript
   var map;
 
+
   function initialize() {
+
     var pathname = "#{url_for(:action => controller.action_name)}"
     var myLatlng = new google.maps.LatLng("#{@project.location.geom.envelope.center.y}", "#{@project.location.geom.envelope.center.x}");
 
@@ -12,7 +14,7 @@
       controlVisible = false;
     }
   
-    var myOptions = {
+    var mapOptions = {
       zoom: 6,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
@@ -23,7 +25,8 @@
             style: google.maps.ZoomControlStyle.SMALL
       }
     }
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    //map = new google.maps.Map($('#map_canvas')[0], mapOptions);
 
     var fullScreenControlDiv = document.createElement('DIV');
     var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
@@ -36,10 +39,13 @@
       province.setMap(map);
     });
 
+    var markerCluster = null;
+    var markers = [];
     $.getJSON(pathname+'/events.json', function(geojson) {
       $.each(geojson.features, function(i, feature) {
         var event_marker = new GeoJSON(feature.geometry, null);
-        event_marker.setMap(map);
+        
+        //event_marker.setMap(map);
         var content_string = renderJSONEvent(feature.properties);
         var info_window = new google.maps.InfoWindow({content: content_string});
         google.maps.event.addListener(event_marker, 'click', function() {
@@ -48,8 +54,12 @@
               $('a.zoombox').zoombox();
           });
         });
-      })
+        markers.push(event_marker);
+      });
+      markerCluster = new MarkerClusterer(map, markers);
     });
+
+
   }
 
   function loadScript() {

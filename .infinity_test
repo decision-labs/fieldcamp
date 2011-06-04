@@ -1,0 +1,12 @@
+infinity_test do
+  use :app_framework => :rails
+  use :test_framework => :rspec
+
+  before_run do
+    clear :terminal
+  end
+
+  notifications :growl do
+    show_images :mode => :rails
+  end
+end

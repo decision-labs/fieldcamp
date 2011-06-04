@@ -5,10 +5,17 @@ spacialdb: &spacialdb
   host: beta.spacialdb.com
   port: 9999
 
+local: &local
+  database: caratas_test
+  host: localhost
+  port: 5432
+  username: <username>
+  password:
+  template: template_postgis
+
 development:
   <<: *spacialdb
-  database: spacialdb0_riethmayer
+  database: spacialdb0_<username>
 
 test:
-  <<: *spacialdb
-  database: spacialdb1_riethmayer
+  <<: *local

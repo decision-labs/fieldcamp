@@ -178,8 +178,8 @@ proj_desc = "With help from partner agencies, Caritas Pakistan has since focused
       e = project.events.build(events_attributes[i])
       point = location.geom.envelope.center
 
-      width  = (haiti.geom.envelope.upper_corner.x - haiti.geom.envelope.lower_corner.x).abs/2
-      height = (haiti.geom.envelope.upper_corner.y - haiti.geom.envelope.lower_corner.y).abs/2
+      width  = (country.geom.envelope.upper_corner.x - country.geom.envelope.lower_corner.x).abs/2
+      height = (country.geom.envelope.upper_corner.y - country.geom.envelope.lower_corner.y).abs/2
 
       point.with_z = true
       point.x += width  * rand * 0.1 * [1,-1][rand(2)]

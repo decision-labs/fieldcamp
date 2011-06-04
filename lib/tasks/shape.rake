@@ -5,12 +5,21 @@ include GeoRuby::Shp4r
 
 namespace :db do
   desc "load a shapefile into the locations table."
-  task :load_shapefile, :shapefile_path, :name_field, :description_field, :admin_level, :admin_email, :parent_id, :parent_name_field, :needs => :environment do |t, args|
-    example = "rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de [parent_id=23]"
+  task :load_shapefile,
+    :shapefile_path,
+    :name_field,
+    :description_field,
+    :admin_level,
+    :admin_email,
+    :parent_id,
+    :parent_name_field, :needs => :environment do |t, args|
+
+    example = "\nrake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de [parent_id=23]\n"
+
     if args[:shapefile_path].nil?
-      print "Please provide a path to the .shp file"
+      print "Please provide a path to the .shp file\n"
       print "The path may be relative to the current directory.\n"
-      print "Example: #{example}\n"
+      print "EXAMPLE: #{example}\n"
       exit 0
     end
     if args[:name_field].nil?

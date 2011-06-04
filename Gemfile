@@ -17,6 +17,7 @@ gem 'cancan'
 gem 'rdiscount'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'dalli'
+gem 'rake', '0.8.7'
 
 group :test, :development do
   gem 'sqlite3'

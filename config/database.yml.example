@@ -1,0 +1,14 @@
+spacialdb: &spacialdb
+  adapter: postgresql
+  username: <username>
+  password: <password>
+  host: beta.spacialdb.com
+  port: 9999
+
+development:
+  <<: *spacialdb
+  database: spacialdb0_riethmayer
+
+test:
+  <<: *spacialdb
+  database: spacialdb1_riethmayer

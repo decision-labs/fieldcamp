@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604144417) do
+ActiveRecord::Schema.define(:version => 20110604185344) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(:version => 20110604144417) do
   add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
   add_index "events", ["title"], :name => "index_events_on_title"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
+  create_table "images", :force => true do |t|
+    t.column "file", :string
+    t.column "title", :string
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "images", ["file"], :name => "index_images_on_file"
+  add_index "images", ["title"], :name => "index_images_on_title"
 
   create_table "locations", :force => true do |t|
     t.column "name", :string

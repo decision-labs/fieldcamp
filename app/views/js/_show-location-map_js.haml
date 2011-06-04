@@ -48,7 +48,7 @@
       markers.push(event_marker);
     })
 
-    var markerCluster = new MarkerClusterer(map, markers);
+    var markerCluster = new MarkerClusterer(map, markers, {zoomOnClick: false});
 
     // TODO: CHECK: Instead of the above, AJAX is also possible see routes.rb - not sure which is faster though
     // $.getJSON(pathname+'/events.json', function(geojson) {

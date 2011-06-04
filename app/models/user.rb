@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  ROLES = %w(admin publisher)
+  ROLES = %w(admin publisher public_relations)
 
   has_one :settings
+  has_many :articles, :foreign_key => :author_id
 
   attr_accessible :email,
                   :password,

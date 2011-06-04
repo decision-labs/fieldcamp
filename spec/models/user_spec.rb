@@ -56,4 +56,57 @@ describe User do
       end
     end
   end
+
+  describe "responds to role" do
+    describe "admin" do
+      before :each do
+        @user = User.make(:role => "admin")
+      end
+      it "should be admin" do
+        @user.should be_admin
+      end
+
+      it "should not be_publisher" do
+        @user.should_not be_publisher
+      end
+
+      it "should not be public_relations" do
+        @user.should_not be_public_relations
+      end
+    end
+
+    describe "publisher" do
+      before :each do
+        @user = User.make(:role => "publisher")
+      end
+      it "should not be admin" do
+        @user.should_not be_admin
+      end
+
+      it "should be_publisher" do
+        @user.should be_publisher
+      end
+
+      it "should not be public_relations" do
+        @user.should_not be_public_relations
+      end
+    end
+
+    describe "public_relations" do
+      before :each do
+        @user = User.make(:role => "public_relations")
+      end
+      it "should not be admin" do
+        @user.should_not be_admin
+      end
+
+      it "should not be_publisher" do
+        @user.should_not be_publisher
+      end
+
+      it "should be public_relations" do
+        @user.should be_public_relations
+      end
+    end
+  end
 end

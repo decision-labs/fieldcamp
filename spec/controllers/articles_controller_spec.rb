@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe ArticlesController do
   include Devise::TestHelpers
+  render_views
 
   before :each do
+    @another_article = Article.make
     @article = Article.make
     @author  = @article.author
     sign_in @author
@@ -15,9 +17,21 @@ describe ArticlesController do
   end
 
   describe "GET index" do
-    it "assigns all articles as @articles" do
+    it "assigns owned articles as @articles" do
       get :index
       assigns(:articles).should include(@article)
+    end
+
+    it "doesn't assign articles I do not own" do
+      get :index
+      assigns(:articles).should_not include(@another_article)
+    end
+
+    it "should display all articles for admins" do
+      sign_in User.make(:role => "admin")
+      get :index
+      assigns(:articles).should include(@article)
+      assigns(:articles).should include(@another_article)
     end
   end
 

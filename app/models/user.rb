@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
   before_create :set_role
   before_create :build_settings
 
+  ROLES.each do |role|
+    define_method "#{role}?" do
+      self.role == role
+    end
+  end
+
   private
 
   def set_role

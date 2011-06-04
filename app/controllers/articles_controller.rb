@@ -2,7 +2,11 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
   def index
-    @articles = current_user.articles
+    @articles = if current_user.admin?
+                  Article.all
+                else
+                  current_user.articles
+                end
 
     respond_to do |format|
       format.html # index.html.erb

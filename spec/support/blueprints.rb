@@ -21,6 +21,7 @@ Event.blueprint do
   description { Faker::Lorem.paragraph }
   address { "Multan, Pakistan" }
   project
+  geom { Point.from_x_y_z(rand(70), rand(50), rand(10), 4326) }
 end
 
 Sector.blueprint do

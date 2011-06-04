@@ -22,4 +22,5 @@ Caritas::Application.routes.draw do
 
   root :to => 'projects#index'
   match '/:locale' => 'projects#index'
+  match '/admin/dashboard', :to => "admin/dashboard#index"
 end

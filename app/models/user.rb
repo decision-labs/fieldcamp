@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   ROLES = %w(admin publisher)
 
   has_one :settings
+  has_many :projects
+  has_many :events
 
   attr_accessible :email,
                   :password,
@@ -19,6 +21,10 @@ class User < ActiveRecord::Base
 
   before_create :set_role
   before_create :build_settings
+
+  def events_since_login
+    Event.where("created_at <= ?", last_sign_in_at).all
+  end
 
   private
 

@@ -32,7 +32,7 @@
     map.controls[google.maps.ControlPosition.LEFT_TOP].push(fullScreenControlDiv);
 
     $.getJSON(pathname+'.json', function(geojson) {
-      province = new GeoJSON(geojson, null);
+      province = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
       province.setMap(map);
     });
 

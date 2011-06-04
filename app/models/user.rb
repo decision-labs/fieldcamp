@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  ROLES = %w(admin publisher)
+  ROLES = %w(admin publisher public_relations)
 
   has_one :settings
+  has_many :articles, :foreign_key => :author_id
 
   attr_accessible :email,
                   :password,
@@ -19,6 +20,12 @@ class User < ActiveRecord::Base
 
   before_create :set_role
   before_create :build_settings
+
+  ROLES.each do |role|
+    define_method "#{role}?" do
+      self.role == role
+    end
+  end
 
   private
 

@@ -37,6 +37,11 @@ User.blueprint do
   password_confirmation { 'secret' }
 end
 
+Article.blueprint do
+  author  { User.make(:role => "public_relations") }
+  content { File.open(File.join(Rails.root,"spec","fixtures","example_article.markdown")).read }
+end
+
 # Location.blueprint(:child) do
 #   name
 #   description

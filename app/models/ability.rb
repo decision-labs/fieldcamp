@@ -14,6 +14,8 @@ class Ability
       can :destroy, Event, :user_id => user.id
       can :update,  Event, :user_id => user.id
       can :create,  Event
+    when 'public_relations'
+      can :manage, Article, :author_id => user.id
     else
       can :read, :all
     end

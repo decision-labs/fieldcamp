@@ -118,8 +118,8 @@ Devise.setup do |config|
   # access, but formats like :xml or :json, should return 401.
   # If you have any extra navigational formats, like :iphone or :mobile, you
   # should add them to the navigational formats lists. Default is [:html]
-  config.navigational_formats = [:html, :mobile]
-
+  config.navigational_formats = [:"*/*", "*/*", :html, :mobile]
+  
   # ==> Warden configuration
   # If you want to use other strategies, that are not (yet) supported by Devise,
   # you can configure them inside the config.warden block. The example below
@@ -135,4 +135,8 @@ Devise.setup do |config|
   # end
 
   # config.case_insensitive_keys = [:email]
+end
+
+ActionController::Responder.class_eval do
+  alias :to_mobile :to_html
 end

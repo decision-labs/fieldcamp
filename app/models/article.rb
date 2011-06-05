@@ -1,15 +1,19 @@
 class Article < ActiveRecord::Base
 
-  attr_accessible :title, :content, :published_at, :draft, :project_id, :published
+  attr_accessible :title, :content, :published_at, :draft, :project_id, :published, :author_id
 
   belongs_to :author, :class_name => "User"
   belongs_to :project
+  belongs_to :article
 
-  validates :author_id, :presence => true
   validates :project_id, :presence => true
+  validates :author_id, :presence => true
+  validates :content, :presence => true
+  validates :title, :presence => true
 
   scope :chronological, lambda { |ascending| ascending ? order('created_at ASC') : order('created_at DESC') }
   scope :published, where(:published => true).where("published_at < ?", Time.now)
+
 
   def published?
     published_at && published_at < Time.now

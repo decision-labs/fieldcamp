@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
     @articles = if current_user.admin?
                   Article.all
                 else
-                  current_user.articles
+                  current_user.articles.all
                 end
 
     respond_to do |format|
@@ -44,7 +44,6 @@ class ArticlesController < ApplicationController
   def edit
     @article = current_user.articles.find(params[:id])
     @project = @article.project
-
     authorize! :edit, @article
   end
 
@@ -72,9 +71,10 @@ class ArticlesController < ApplicationController
   def update
     @article = current_user.articles.find(params[:id])
     @project = @article.project
+    authorize! :edit, @article
 
     params[:article][:published] = true if params[:article][:published]
-    unauthorze! unless @article
+
     respond_to do |format|
       if @article.update_attributes(params[:article])
         format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
@@ -90,10 +90,11 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.xml
   def destroy
     @article = current_user.articles.find(params[:id])
+    authorize! :destroy, @article
     @article.destroy
 
     respond_to do |format|
-      format.html { redirect_to(articles_url) }
+      format.html { redirect_to(:articles) }
       format.xml  { head :ok }
     end
   end

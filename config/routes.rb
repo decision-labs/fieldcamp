@@ -1,6 +1,5 @@
 Caritas::Application.routes.draw do
 
-
   resources :images
 
   scope "(:locale)" do
@@ -39,6 +38,7 @@ Caritas::Application.routes.draw do
 
     resources :projects do
       resources :events
+      resources :articles, :only => [:show]
     end
 
   end # scope(:locale)

@@ -39,6 +39,7 @@ User.blueprint do
 end
 
 Article.blueprint do
+  title { Faker::Lorem.sentence }
   author  { User.make(:role => "public_relations") }
   content { File.open(File.join(Rails.root,"spec","fixtures","example_article.markdown")).read }
   project

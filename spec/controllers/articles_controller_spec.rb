@@ -13,6 +13,7 @@ describe ArticlesController do
 
   def valid_attributes
     { :published_at => 2.days.from_now,
+      :title => "this is a title",
       :content => @article.content,
       :project_id => @article.project_id }
   end

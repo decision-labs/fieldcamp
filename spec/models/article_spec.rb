@@ -3,7 +3,8 @@ require 'spec_helper'
 describe Article do
 
   before :each do
-    @article = Article.make
+    @project = Project.make
+    @article = Article.make(:project_id => @project.id)
   end
 
   # fixture tests

@@ -19,6 +19,12 @@
     };
     map = new google.maps.Map($('#map_canvas')[0], mapOptions);
     // map.fitBounds(mapBounds);
+    
+    var resetControlDiv = document.createElement('DIV');
+    var resetControl = new ResetControl(resetControlDiv, map, center);
+
+    resetControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(resetControlDiv);
 
     var fullScreenControlDiv = document.createElement('DIV');
     var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
@@ -46,7 +52,7 @@
         });
       });
       markers.push(event_marker);
-    })
+    });
 
     var markerCluster = new MarkerClusterer(map, markers, {zoomOnClick: false});
 

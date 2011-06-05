@@ -12,6 +12,38 @@ function detectBrowser() {
   }
 }
 
+function ResetControl(controlDiv, map, center) {
+ 
+  // Set CSS styles for the DIV containing the control
+  // Setting padding to 5 px will offset the control
+  // from the edge of the map
+  controlDiv.style.padding = '5px';
+ 
+  // Set CSS for the control border
+  var controlUI = document.createElement('DIV');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '2px';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Click to reset the map';
+  controlDiv.appendChild(controlUI);
+ 
+  // Set CSS for the control interior
+  var controlText = document.createElement('DIV');
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = '<b>Reset</b>';
+  controlUI.appendChild(controlText);
+ 
+  // Setup the click event listeners: simply set the map to the center
+  google.maps.event.addDomListener(controlUI, 'click', function() {
+    map.setCenter(center)
+  });
+}
+
 function ToggleFullScreen(controlDiv, map) {
   // Set CSS styles for the DIV containing the control
   // Setting padding to 5 px will offset the control

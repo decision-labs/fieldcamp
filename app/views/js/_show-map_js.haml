@@ -56,7 +56,7 @@
         });
         markers.push(event_marker);
       });
-      markerCluster = new MarkerClusterer(map, markers);
+      markerCluster = new MarkerClusterer(map, markers, {zoomOnClick: false});
     });
 
 

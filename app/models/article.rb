@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
   belongs_to :project
   belongs_to :article
 
+  validates :title, :presence => true
   validates :project_id, :presence => true
   validates :author_id, :presence => true
   validates :content, :presence => true

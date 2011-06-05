@@ -15,7 +15,8 @@ describe ArticlesController do
     { :published_at => 2.days.from_now,
       :title => "this is a title",
       :content => @article.content,
-      :project_id => @article.project_id }
+      :project_id => @article.project_id
+    }.stringify_keys!
   end
 
   describe "GET index" do

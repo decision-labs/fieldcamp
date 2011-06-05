@@ -5,7 +5,7 @@
     = article_title_links(@article, t="title")
     .inner
       %p= raw(RDiscount.new(@article.content).to_html) rescue nil
-      
+
 .block
   .content
     .inner

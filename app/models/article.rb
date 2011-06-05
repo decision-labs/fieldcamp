@@ -1,10 +1,11 @@
 class Article < ActiveRecord::Base
 
-  attr_accessible :content, :published_at
+  attr_accessible :content, :published_at, :title
 
   belongs_to :author, :class_name => "User"
   belongs_to :article
 
+  validates :title, :presence => true
   validates :project_id, :presence => true
   validates :author_id, :presence => true
   validates :content, :presence => true

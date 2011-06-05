@@ -38,6 +38,7 @@ User.blueprint do
 end
 
 Article.blueprint do
+  title "Article title"
   author  { User.make(:role => "public_relations") }
   content { File.open(File.join(Rails.root,"spec","fixtures","example_article.markdown")).read }
 end

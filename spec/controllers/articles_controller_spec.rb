@@ -15,7 +15,8 @@ describe ArticlesController do
   def valid_attributes
     { :published_at => 2.days.from_now,
       :content => "this is some content",
-      :author_id => @author.id
+      :author_id => @author.id,
+      :title => "Some Title"
     }.stringify_keys!
   end
 

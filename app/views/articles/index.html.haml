@@ -2,6 +2,7 @@
 
 %table
   %tr
+    %th Title
     %th Content
     %th Published at
     %th Author
@@ -11,6 +12,7 @@
 
   - @articles.each do |article|
     %tr
+      %td= article.title
       %td= article.content_html
       %td= article.published_at
       %td= article.author_id

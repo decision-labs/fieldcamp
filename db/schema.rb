@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110605114944) do
+ActiveRecord::Schema.define(:version => 20110605150424) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110605114944) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
     t.column "project_id", :integer
+    t.column "title", :string
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"

@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   before_create :build_settings
 
   def events_since_login
-    Event.where("created_at <= ?", last_sign_in_at).all
+    Event.where("created_at > ?", last_sign_in_at).all
   end
 
   private

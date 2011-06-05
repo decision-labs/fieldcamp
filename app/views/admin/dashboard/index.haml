@@ -1,14 +1,28 @@
+= stylesheet_link_tag 'compiled/dashboard.css', :media => 'screen, projection'
+
 = render :partial => "shared/nav"
 
 .block-forms.block
-  .content
-    %h2=t('Dashboard')
-    .inner
-      %h3 Activity since last login:
-      .project
-        %h1 Project Title
-        .events
-          %ul
-            %li event 1
-            %li event 2
-            %li event 3                        
+  .dashboard
+    #content.content
+      %h2=t('dashboard')
+      .inner
+        #left
+          %h3=t('recently_changed_projects')
+          - @projects.each do |project_id, events|
+            %h4=events.first.project.title
+        #right
+          %h3=t('events_since_login')
+          - @projects.each do |project_id, events|
+            %h4=events.first.project.title
+            -events.each do |event|
+              %a{:href => project_event_path(project_id, event) }
+                #event
+                  %span.description
+                    =event.title
+                    =truncate(event.description, :lenght => 30)
+                  %span.age
+                    (
+                    =time_ago_in_words(event.created_at)
+                    )
+            %br

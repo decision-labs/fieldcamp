@@ -40,7 +40,8 @@ function ResetControl(controlDiv, map, center) {
  
   // Setup the click event listeners: simply set the map to the center
   google.maps.event.addDomListener(controlUI, 'click', function() {
-    map.setCenter(center)
+    map.setCenter(center);
+    map.setZoom(6);
   });
 }
 
@@ -59,7 +60,7 @@ function ToggleFullScreen(controlDiv, map) {
 
   var fullscreenIcon = document.createElement('IMG');
   fullscreenIcon.src = '/images/icons/fullscreen.png';
-  fullscreenIcon.style.paddingLeft = '30px';
+  fullscreenIcon.style.paddingLeft = '0px';
 
   controlUI.appendChild(fullscreenIcon);
 

@@ -18,15 +18,21 @@
       zoom: 6,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      panControl: controlVisible,
+      panControl: false,
       zoomControl: controlVisible,
-      streetViewControl: controlVisible,
+      streetViewControl: false,
       zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL
       }
     }
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     //map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+    
+    var resetControlDiv = document.createElement('DIV');
+    var resetControl = new ResetControl(resetControlDiv, map, myLatlng);
+
+    resetControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(resetControlDiv);
 
     var fullScreenControlDiv = document.createElement('DIV');
     var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
@@ -56,7 +62,7 @@
         });
         markers.push(event_marker);
       });
-      markerCluster = new MarkerClusterer(map, markers);
+      markerCluster = new MarkerClusterer(map, markers, {zoomOnClick: false});
     });
 
 

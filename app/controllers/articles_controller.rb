@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.xml
+
+  before_filter :authorize
+
   def index
     @articles = if current_user.admin?
                   Article.all
@@ -39,11 +42,13 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = current_user.articles.find(params[:id])
+    authorize! :edit, @article
   end
 
   # POST /articles
   # POST /articles.xml
   def create
+    authorize! :create, Article
     @article = current_user.articles.build(params[:article])
 
     respond_to do |format|
@@ -61,7 +66,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.xml
   def update
     @article = current_user.articles.find(params[:id])
-
+    unauthorze! unless @article
     respond_to do |format|
       if @article.update_attributes(params[:article])
         format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
@@ -84,4 +89,9 @@ class ArticlesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def authorize
+    unauthorized! unless current_user
+  end
+  private :authorize
 end

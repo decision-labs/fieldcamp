@@ -95,8 +95,8 @@ describe ArticlesController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested article" do
-          Article.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-          put :update, :id => @article.id, :article => {'these' => 'params'}
+          put :update, :id => @article.id, :article => {:content => 'new content'}
+          Article.find(@article.id).content.should == "new content"
         end
 
         it "assigns the requested article as @article" do

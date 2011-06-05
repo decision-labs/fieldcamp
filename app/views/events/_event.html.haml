@@ -5,7 +5,8 @@
       -if (can? :update,  event)
         = link_to_icon 'edit', t(:edit), edit_project_event_path(project, event)
       -if (can? :destroy,  event)
-        = link_to_icon 'destroy', t(:destroy), project_event_path(project, event), :confirm => "#{t(:do_you_want_to_delete)} '#{event.title}'?", :method => :delete
+        = link_to_icon 'destroy', t(:destroy), project_event_path(project, event), 
+          :confirm => "#{t(:do_you_want_to_delete, :event_title => event.title)}", :method => :delete
 
     %p.event-location
       %strong

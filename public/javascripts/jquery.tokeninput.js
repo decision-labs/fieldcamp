@@ -343,6 +343,8 @@ $.TokenList = function (input, url_or_data, settings) {
         var this_token = $("<li><p>"+ value +"</p> </li>")
           .addClass(settings.classes.token)
           .insertBefore(input_token);
+          
+          
 
         // The 'delete token' button
         $("<span>" + settings.deleteText + "</span>")

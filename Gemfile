@@ -30,6 +30,7 @@ group :test, :development do
   gem 'haml-rails'
   gem 'rails3-generators'
   gem 'machinist'# , '>= 2.0.0.beta1'
+  gem 'infinity_test'
   gem 'dbf'
   gem 'sham'
   gem 'faker'

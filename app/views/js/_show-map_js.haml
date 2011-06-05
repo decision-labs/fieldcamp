@@ -1,20 +1,38 @@
 :javascript
   var map;
 
+
   function initialize() {
+
     var pathname = "#{url_for(:action => controller.action_name)}"
     var myLatlng = new google.maps.LatLng("#{@project.location.geom.envelope.center.y}", "#{@project.location.geom.envelope.center.x}");
-    var myOptions = {
+
+    var useragent = navigator.userAgent;
+    var controlVisible = true;
+    if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) 
+    {
+      controlVisible = false;
+    }
+  
+    var mapOptions = {
       zoom: 6,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      panControl: true,
-      zoomControl: true,
+      panControl: false,
+      zoomControl: controlVisible,
+      streetViewControl: false,
       zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL
       }
     }
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    //map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+    
+    var resetControlDiv = document.createElement('DIV');
+    var resetControl = new ResetControl(resetControlDiv, map, myLatlng);
+
+    resetControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(resetControlDiv);
 
     var fullScreenControlDiv = document.createElement('DIV');
     var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
@@ -23,14 +41,17 @@
     map.controls[google.maps.ControlPosition.LEFT_TOP].push(fullScreenControlDiv);
 
     $.getJSON(pathname+'.json', function(geojson) {
-      province = new GeoJSON(geojson, null);
+      province = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
       province.setMap(map);
     });
 
+    var markerCluster = null;
+    var markers = [];
     $.getJSON(pathname+'/events.json', function(geojson) {
       $.each(geojson.features, function(i, feature) {
         var event_marker = new GeoJSON(feature.geometry, null);
-        event_marker.setMap(map);
+        
+        //event_marker.setMap(map);
         var content_string = renderJSONEvent(feature.properties);
         var info_window = new google.maps.InfoWindow({content: content_string});
         google.maps.event.addListener(event_marker, 'click', function() {
@@ -39,8 +60,12 @@
               $('a.zoombox').zoombox();
           });
         });
-      })
+        markers.push(event_marker);
+      });
+      markerCluster = new MarkerClusterer(map, markers, {zoomOnClick: false});
     });
+
+
   }
 
   function loadScript() {

@@ -12,6 +12,39 @@ function detectBrowser() {
   }
 }
 
+function ResetControl(controlDiv, map, center) {
+ 
+  // Set CSS styles for the DIV containing the control
+  // Setting padding to 5 px will offset the control
+  // from the edge of the map
+  controlDiv.style.padding = '5px';
+ 
+  // Set CSS for the control border
+  var controlUI = document.createElement('DIV');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '2px';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.textAlign = 'center';
+  controlUI.title = 'Click to reset the map';
+  controlDiv.appendChild(controlUI);
+ 
+  // Set CSS for the control interior
+  var controlText = document.createElement('DIV');
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = '<b>Reset</b>';
+  controlUI.appendChild(controlText);
+ 
+  // Setup the click event listeners: simply set the map to the center
+  google.maps.event.addDomListener(controlUI, 'click', function() {
+    map.setCenter(center);
+    map.setZoom(6);
+  });
+}
+
 function ToggleFullScreen(controlDiv, map) {
   // Set CSS styles for the DIV containing the control
   // Setting padding to 5 px will offset the control
@@ -27,7 +60,7 @@ function ToggleFullScreen(controlDiv, map) {
 
   var fullscreenIcon = document.createElement('IMG');
   fullscreenIcon.src = '/images/icons/fullscreen.png';
-  fullscreenIcon.style.paddingLeft = '30px';
+  fullscreenIcon.style.paddingLeft = '0px';
 
   controlUI.appendChild(fullscreenIcon);
 
@@ -61,9 +94,20 @@ function renderJSONEvent(obj){
   description = obj["description"];
   address = obj["address"];
   updated_at = obj["updated_at"];
-  href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
-  html= "<a class='zoombox' href='" + href + "' >Enlarge View</a>" +
-    "<h3>"+title+"</h3>"+
+
+var useragent = navigator.userAgent;
+html = "";
+  if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) 
+  {
+     //do not add enlarge view
+  }
+  else
+  {
+    href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
+    html= "<a class='zoombox' href='" + href + "' >Enlarge View</a>";
+  }
+  
+   html = html +  "<h3>"+title+"</h3>"+
     "<strong class='label'>Address:</strong> "+ address         +
     "<p>"+
         "<strong class='label'>Description:</strong> "+ description +"<br>"+

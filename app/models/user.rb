@@ -7,11 +7,12 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  ROLES = %w(admin publisher)
+  ROLES = %w(admin publisher public_relations)
 
   has_one :settings
   has_many :projects
   has_many :events
+  has_many :articles, :foreign_key => :author_id
 
   attr_accessible :email,
                   :password,
@@ -24,6 +25,12 @@ class User < ActiveRecord::Base
 
   def events_since_login
     Event.where("created_at > ?", last_sign_in_at).all
+  end
+
+  ROLES.each do |role|
+    define_method "#{role}?" do
+      self.role == role
+    end
   end
 
   private

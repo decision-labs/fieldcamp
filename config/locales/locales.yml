@@ -20,7 +20,7 @@ en:
   destroy: Destroy
   back: Back
   cancel: Cancel
-  do_you_want_to_delete: Do you want to delete
+  do_you_want_to_delete: Do you want to delete %{event_title}?
   are_you_sure: Are you sure?
   save: Save
   project: Project
@@ -80,37 +80,37 @@ de:
   new: Neu
   edit: Bearbeiten
   show: Zeigen
-  destroy: Zerstören
+  destroy: Löschen
   back: Zurück
   cancel: Abbrechen
-  do_you_want_to_delete: Wollen Sie löschen
+  do_you_want_to_delete: "Wollen Sie %{event_title} löschen?"
   are_you_sure: Sind Sie sicher?
   save: Speichern
   project: Projekt
   Project: Projekt
   projects: Projekte
   new_project: Neues Projekt
-  editing_project: Bearbeiten von Projekt
-  sectors: Branchen
+  editing_project: Projekt bearbeiten
+  sectors: Bereich
   partners: Partner
   new_event: Neues Ereignis
   editing_event: Ereignis bearbeiten
   recent_events: Aktuelle Ereignisse
-  add_a_new_event: Fügen Sie ein neues Ereignis hinzu
-  create_a_new_project: Erstellen eines neuen Projekts
-  create_a_new_sector: Create a neuen Branchen
+  add_a_new_event: Neues Ereignis hinzufügen
+  create_a_new_project: Neues Projekt erstellen
+  create_a_new_sector: Neuen Bereich erstellen
   back_to_current_project: Zurück zum aktuellen Projekt
-  back_to_projects: Zurück zu Projekte
-  back_to_sectors: Zurück zu Branchen
-  use_current_location: Verwenden Sie aktuellen Standort
+  back_to_projects: Zurück zum Projekte
+  back_to_sectors: Zurück zum Bereich
+  use_current_location: Aktuellen Standort verwenden
   geocode_this_address: Geocode diese Adresse
-  create_a_new_partner: Erstellen Sie einen neuen Partner
-  back_to_partners: Zurück zu Partner
+  create_a_new_partner: Neuen Partner erstellen
+  back_to_partners: Zurück zum Partner
   locations: Standorte
   location: Standort
   back_to_locations: Zurück zu Standorte
   logout: Abmelden
-  login: Login
+  login: Anmelden
   start_date: Startdatum
   end_date: Enddatum
   editing_partner: Bearbeiten Partner
@@ -120,21 +120,21 @@ de:
   new_sector: Neuen Sektor
   unauthorized: Nicht berechtigt, %{action} %{subject}
   edit_user_settings: Ändern
-  set_your_location_label: Bitte setzen Sie Einsatzort
+  set_your_location_label: Bitte setzen Sie einen Einsatzort
   Settings: Einstellungen
   account_settings: Konto-Einstellungen
   settings_update_success_message: Einstellungen wurden erfolgreich aktualisiert
   logged_in_label: "Angemeldet als: %{email}"
   address_unverified: ungeprüfter Adresse
-  address_verified: verifiziert Adresse
-  alphabetical_asc: Order A-Z
-  alphabetical_desc: Order Z-A
-  created_at_asc: Order oldest
-  created_at_desc: Order newest
-  updated_at_asc: Oldest update first
-  updated_at_desc: Recent update first
-  sort_options: Sortieren Optionen
-  Next_Administrative_Level: Weiter Administrativer Ebene
+  address_verified: verifizierte Adresse
+  alphabetical_asc: Sortieren von A-Z
+  alphabetical_desc: Sortieren von Z-A
+  created_at_asc: Sortieren nach Ältestem
+  created_at_desc: Sortieren nach Neustem
+  updated_at_asc: Ältestes Update zuerst
+  updated_at_desc: Neustes Update zuerst
+  sort_options: Sortier Optionen
+  Next_Administrative_Level: Nächste Administrativer Ebene
   Administrative_Level: Administrativer Ebene
   search: Suche
   projects_found: Projekte gefunden
@@ -212,7 +212,7 @@ fr:
   destroy: Détruire
   back: Retour
   cancel: Annuler
-  do_you_want_to_delete: Voulez-vous supprimer
+  do_you_want_to_delete: Voulez-vous supprimer %{event_title}?
   are_you_sure: Etes-vous sûr?
   save: Enregistrer
   project: Projet
@@ -235,7 +235,7 @@ fr:
   create_a_new_partner: Créer un nouveau partenaire
   back_to_partners: Retour aux Partenaires
   locations: Emplacements
-  location: Lieu
+  location: Emplacement
   back_to_locations: Retour à Lieux
   logout: Déconnexion
   login: Connectez-vous
@@ -255,12 +255,12 @@ fr:
   logged_in_label: "Connecté en tant que: %{email}"
   address_unverified: non vérifiés adresse
   address_verified: vérifié l'adresse
-  alphabetical_asc: Order A-Z
-  alphabetical_desc: Order Z-A
-  created_at_asc: Order oldest
-  created_at_desc: Order newest
-  updated_at_asc: Oldest update first
-  updated_at_desc: Recent update first
+  alphabetical_asc: classe par ordre alphabétique (A-Z)
+  alphabetical_desc: classe par ordre alphabétique (Z-A)
+  created_at_asc: Aîné en premier
+  created_at_desc: Récent au plus ancien
+  updated_at_asc: Aîné modifé en premier
+  updated_at_desc: Récent modifé en premier
   sort_options: Les options de tri
   Next_Administrative_Level: Next Level Administratif
   Administrative_Level: Niveau administratif

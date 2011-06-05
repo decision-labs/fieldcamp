@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604144417) do
+ActiveRecord::Schema.define(:version => 20110605114944) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(:version => 20110604144417) do
     t.column "author_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "project_id", :integer
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
+  add_index "articles", ["project_id"], :name => "index_articles_on_project_id"
   add_index "articles", ["published_at"], :name => "index_articles_on_published_at"
 
   create_table "events", :force => true do |t|

@@ -1,7 +1,5 @@
 Caritas::Application.routes.draw do
 
-  resources :articles
-
   scope "(:locale)" do
     devise_for :users
     get 'settings' => 'settings#show'
@@ -17,6 +15,7 @@ Caritas::Application.routes.draw do
 
     resources :projects do
       resources :events
+      resources :articles
     end
     match '/search' => 'search#index', :as => 'search'
 

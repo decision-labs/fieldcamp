@@ -1,5 +1,6 @@
-%h1 New article
+- content_for :sidebar do
+  %h1 New article
 
 = render 'form'
 
-= link_to 'Back', articles_path
+= link_to 'Back', [@project, :articles]

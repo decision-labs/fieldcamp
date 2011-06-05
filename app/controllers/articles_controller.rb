@@ -3,12 +3,14 @@ class ArticlesController < ApplicationController
   # GET /articles.xml
 
   before_filter :authorize
+  before_filter :set_project
+  before_filter :set_author
 
   def index
     @articles = if current_user.admin?
-                  Article.all
+                  @project.articles
                 else
-                  current_user.articles
+                  @project.articles.where(:author_id => current_user.id)
                 end
 
     respond_to do |format|
@@ -20,7 +22,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.xml
   def show
-    @article = current_user.articles.find(params[:id])
+    @article = @project.articles.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,7 +33,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.xml
   def new
-    @article = current_user.articles.build
+    @article = current_user.articles.build(:project_id => @project.id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,19 +43,18 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = current_user.articles.find(params[:id])
+    @article = @project.articles.find(params[:id])
     authorize! :edit, @article
   end
 
   # POST /articles
   # POST /articles.xml
   def create
-    authorize! :create, Article
-    @article = current_user.articles.build(params[:article])
-
+    @article = @project.articles.build(params[:article])
+    @article.author = current_user
     respond_to do |format|
       if @article.save
-        format.html { redirect_to(@article, :notice => 'Article was successfully created.') }
+        format.html { redirect_to([@project,@article], :notice => 'Article was successfully created.') }
         format.xml  { render :xml => @article, :status => :created, :location => @article }
       else
         format.html { render :action => "new" }
@@ -65,11 +66,12 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.xml
   def update
-    @article = current_user.articles.find(params[:id])
-    unauthorze! unless @article
+    @article = @project.articles.find(params[:id])
+    authorize! :edit, @article
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
+        format.html { redirect_to([@project,@article],
+                                  :notice => 'Article was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,11 +83,12 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.xml
   def destroy
-    @article = current_user.articles.find(params[:id])
+    @article = @project.articles.find(params[:id])
+    authorize! :destroy, @article
     @article.destroy
 
     respond_to do |format|
-      format.html { redirect_to(articles_url) }
+      format.html { redirect_to([@project,:articles]) }
       format.xml  { head :ok }
     end
   end
@@ -94,4 +97,14 @@ class ArticlesController < ApplicationController
     unauthorized! unless current_user
   end
   private :authorize
+
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+  private :set_project
+
+  def set_author
+    params[:article].merge!({:author_id => @current_user.id}) if params[:article]
+  end
+  private :set_author
 end

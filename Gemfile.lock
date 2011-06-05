@@ -179,6 +179,7 @@ GEM
     rake (0.8.7)
     rdiscount (1.6.8)
     redis (2.2.0)
+    rmagick (2.13.1)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -269,9 +270,10 @@ DEPENDENCIES
   rails (= 3.0.7)
   rails-erd
   rails3-generators
-  rake (= 0.8.7)
+  rake (~> 0.8.7)
   rdiscount
   redis
+  rmagick
   rspec
   rspec-rails
   ruby-debug

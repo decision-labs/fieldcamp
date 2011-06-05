@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(:version => 20110604185344) do
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "images", :force => true do |t|
-    t.column "file", :string
+    t.column "asset", :string
     t.column "title", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
 
-  add_index "images", ["file"], :name => "index_images_on_file"
+  add_index "images", ["asset"], :name => "index_images_on_asset"
   add_index "images", ["title"], :name => "index_images_on_title"
 
   create_table "locations", :force => true do |t|

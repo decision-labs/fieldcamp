@@ -1,5 +1,7 @@
 Caritas::Application.routes.draw do
 
+  resources :images
+
   resources :articles
 
   scope "(:locale)" do

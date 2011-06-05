@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
-  attr_accessible :file, :title
   validates :title, :presence => true
-  mount_uploader :file, ImageUploader
+  validates :asset, :presence => true
+
+  mount_uploader :asset, ImageUploader
 end

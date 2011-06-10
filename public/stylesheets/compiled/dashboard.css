@@ -6,13 +6,12 @@ Syntax error: Invalid CSS after "        @i": expected "{", was "@include back
 47:       }
 48:     }
 49: 
-50:     #project{ height: 80px; 
+50:     #project{ height: 80px;
 51:         @include background-image(linear-gradient(left top, white, #dddddd));
 52:     }
-53:     
-54: 
-55:     /*This yields a linear gradient spanning from the upper left corner to the lower right corner*/
-56: }
+53: 
+54:     /*This yields a linear gradient spanning from the upper left corner to the lower right corner*/
+55: }
 
 Backtrace:
 /Users/shoaib/Dropbox/Sites/projects/caritas/app/stylesheets/dashboard.scss:51
@@ -99,4 +98,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Invalid CSS after \"        @i\": expected \"{\", was \"@include backgr...\"\A         on line 51 of /Users/shoaib/Dropbox/Sites/projects/caritas/app/stylesheets/dashboard.scss\A \A 46:         color: #aaa;\A 47:       }\A 48:     }\A 49: \A 50:     #project{ height: 80px; \A 51:         @include background-image(linear-gradient(left top, white, #dddddd));\A 52:     }\A 53:     \A 54: \A 55:     /*This yields a linear gradient spanning from the upper left corner to the lower right corner*/\A 56: }"; }
+  content: "Syntax error: Invalid CSS after \"        @i\": expected \"{\", was \"@include backgr...\"\A         on line 51 of /Users/shoaib/Dropbox/Sites/projects/caritas/app/stylesheets/dashboard.scss\A \A 46:         color: #aaa;\A 47:       }\A 48:     }\A 49: \A 50:     #project{ height: 80px;\A 51:         @include background-image(linear-gradient(left top, white, #dddddd));\A 52:     }\A 53: \A 54:     /*This yields a linear gradient spanning from the upper left corner to the lower right corner*/\A 55: }"; }

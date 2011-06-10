@@ -28,10 +28,8 @@
             .column.left
               .field.group
                 = f.label :locations, :class => 'label'
-                // TODO: New Design
-                //= f.select :location_id, @locations.collect{ |l| ["... "*l.admin_level+"#{l.admin_level} : #{l.name}", l.id ]}, :class => 'select'
-                //%input{:id => 'settingsSearch'}
-                %input{:autosave => "bsn_srch", :placeholder => "Search...", :results => "5", :type => "search", :id => 'settingsSearch'}
+                = f.text_field :location_id,
+                  "data-pre" => [{:id => @settings.location.id, :name => @settings.location.name}].to_json
                 :javascript
                   var resultsOverlays = [];
                   function clearOverlays() {
@@ -55,18 +53,13 @@
                     }
                   }
 
-                  $(document).ready(function () {$("#settingsSearch").tokenInput("/search/locations",
-                  { onAdd: updateMap, tokenLimit: 2, minChars: 3, onResult: preprocess_results, onDelete: function(item){clearOverlay(item.id)} })});
-
                   function preprocess_results(results) {return results; };
 
                   function updateMap(item){
                     $.getJSON('/locations/'+item.id+'.json', function(geojson) {
-                      // clearOverlays();
                       var l = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
                       l.setMap(map);
                       resultsOverlays.push({"id": item.id, "overlay": l});
-                      console.log(resultsOverlays);
                       var bounds = l.getBounds();
                       map.panToBounds(bounds);
                       map.fitBounds(bounds);
@@ -74,14 +67,28 @@
                     return false;
                   }
 
+                  $(document).ready(function () {
+                    $("#settings_location_id").tokenInput("/search/locations",{
+                      onAdd: updateMap,
+                      tokenLimit: 2,
+                      minChars: 3,
+                      onResult: preprocess_results,
+                      onDelete: function(item){clearOverlay(item.id)},
+                      prePopulate: $('#settings_location_id').data("pre")});
+
+                      updateMap({"id":"#{@settings.location.id}"});
+                    });
+
+
             .column.right
               #map
                 #map_canvas      
-              %br
-              .group.navform.wat-cf
-                = content_tag :button, :type => :submit, :class => 'button' do
-                  = image_tag "icons/tick.png"
-                  =t(:save)
-                %a.button{:href => settings_path}
-                  = image_tag "icons/cross.png", :alt => "Cancel"
-                  =t(:cancel)
+              .actions-bar.wat-cf
+                .actions
+                  .group.navform.wat-cf
+                    = content_tag :button, :type => :submit, :class => 'button' do
+                      = image_tag "icons/tick.png"
+                      =t(:save)
+                    %a.button{:href => settings_path}
+                      = image_tag "icons/cross.png", :alt => "Cancel"
+                      =t(:cancel)

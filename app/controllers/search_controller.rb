@@ -8,8 +8,7 @@ class SearchController < ApplicationController
 
   def locations
     unless params[:q].blank?
-      locations = Location.search(params[:q])
-      results = locations.as_json.collect{|l| l["location"]}
+      results = Location.search(params[:q])
       render :json => results.to_json
     else
       render :json => {}

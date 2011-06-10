@@ -5,6 +5,7 @@ Caritas::Application.routes.draw do
   scope "(:locale)" do
     match '/search' => 'search#index', :as => 'search'
     match '/search/locations' => 'search#locations', :as => 'search_locations'
+    match '/admin/dashboard', :to => "admin/dashboard#index"
 
     devise_for :users
     get 'settings' => 'settings#show'
@@ -26,5 +27,4 @@ Caritas::Application.routes.draw do
 
   root :to => 'projects#index'
   match '/:locale' => 'projects#index'
-  match '/admin/dashboard', :to => "admin/dashboard#index"
 end

@@ -19,10 +19,24 @@ class Location < ActiveRecord::Base
   end
 
   def self.search(location)
-    parent = Location.find_by_sql("SELECT id FROM locations WHERE lower(name) LIKE \'%#{location}%\' limit 1").first
-    Location.find_by_sql("SELECT id, name
-      FROM locations
-      WHERE parent_id = #{parent.id} OR id = #{parent.id};")
+    parent = Location.find_by_sql(
+      "SELECT id FROM locations
+        WHERE lower(name) LIKE \'%#{location.downcase}%\' limit 1").first
+
+    return [] if parent.blank?
+
+    locations = Location.find_by_sql(
+      "SELECT id, name, ST_Envelope(geom) as geom
+        FROM locations
+        WHERE parent_id = #{parent.id} OR id = #{parent.id};")
+
+    results = locations.as_json.collect{|l|
+      loc         = l["location"]
+      geom        = loc["geom"]
+      loc["geom"] = JSON.parse(geom.as_geojson)
+      loc["center"] = {:x => geom.envelope.center.x, :y => geom.envelope.center.y }
+      loc
+    }
   end
 
 end

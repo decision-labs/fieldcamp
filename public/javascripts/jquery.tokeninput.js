@@ -405,6 +405,12 @@ $.TokenList = function (input, url_or_data, settings) {
         if(settings.tokenLimit !== null && token_count >= settings.tokenLimit) {
             input_box.hide();
             hide_dropdown();
+
+            // ===========START OF INSERTED CODE: Execute the onAdd callback if defined
+            if ($.isFunction(callback)) {
+                callback(li_data);
+            } // =================== END OF INSERTED CODE
+
             return;
         } else {
             input_box.focus();

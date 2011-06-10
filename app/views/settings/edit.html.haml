@@ -33,7 +33,7 @@
                 //%input{:id => 'settingsSearch'}
                 %input{:autosave => "bsn_srch", :placeholder => "Search...", :results => "5", :type => "search", :id => 'settingsSearch'}
                 :javascript
-                  $(document).ready(function () {$("#settingsSearch").tokenInput("/en/locations/1.json")});
+                  $(document).ready(function () {$("#settingsSearch").tokenInput("/search/locations")});
             .column.right
               #map
                 #map_canvas      

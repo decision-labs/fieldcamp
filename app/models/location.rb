@@ -19,10 +19,10 @@ class Location < ActiveRecord::Base
   end
 
   def self.search(location)
-    Location.find_by_sql(
-      "SELECT id, name, ST_Envelope(geom) as geom FROM locations WHERE parent_id IN
-        (SELECT id FROM locations WHERE lower(name) LIKE \'#{location}%\');"
-    ) or id = parent_id
+    parent = Location.find_by_sql("SELECT id FROM locations WHERE lower(name) LIKE \'%#{location}%\' limit 1").first
+    Location.find_by_sql("SELECT id, name
+      FROM locations
+      WHERE parent_id = #{parent.id} OR id = #{parent.id};")
   end
 
 end

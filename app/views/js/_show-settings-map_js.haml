@@ -1,0 +1,43 @@
+:javascript
+  $(document).ready(function() {
+
+    var map = null;
+    var marker = null;
+    var pathname = "#{url_for(:action => controller.action_name)}"
+
+    var center = new google.maps.LatLng(30, 80);
+    var sw = new google.maps.LatLng(20, 90);
+    var ne = new google.maps.LatLng(20, 90);
+    var mapBounds = new google.maps.LatLngBounds(sw, ne); // LatLngBounds(sw?:LatLng, ne?:LatLng)
+    var mapOptions = {
+      zoom: 5,
+      center: new google.maps.LatLng(0, 1),
+      mapTypeId: google.maps.MapTypeId.TERRAIN,
+      zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL
+      }
+    };
+    map = new google.maps.Map($('#map_canvas')[0], mapOptions);
+    // map.fitBounds(mapBounds);
+
+    var fullScreenControlDiv = document.createElement('DIV');
+    var fullScreenControl = new ToggleFullScreen(fullScreenControlDiv, map);
+
+    fullScreenControlDiv.index = 1;
+    map.controls[google.maps.ControlPosition.LEFT_TOP].push(fullScreenControlDiv);
+
+    // TODO: CHECK: Instead of the above, AJAX is also possible see routes.rb - not sure which is faster though
+    // $.getJSON(pathname+'/events.json', function(geojson) {
+    //   $.each(geojson.features, function(i, feature) {
+    //     var event_marker = new GeoJSON(feature.geometry, null);
+    //     event_marker.setAnimation(google.maps.Animation.DROP);
+    //     event_marker.setMap(map);
+    //     var content_string = renderJSONEvent(feature.properties);
+    //     var info_window = new google.maps.InfoWindow({content: content_string});
+    //     google.maps.event.addListener(event_marker, 'click', function() {
+    //       info_window.open(map, event_marker);
+    //     });
+    //   })
+    // });
+
+  })

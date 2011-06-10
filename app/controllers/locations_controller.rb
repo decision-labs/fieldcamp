@@ -50,7 +50,7 @@ class LocationsController < ApplicationController
           end
           redis.setex(key, 1800, geojson)
         end
-        render(:layout => false, :json => geojson)
+       render(:layout => false, :json => [{:name => "Chorweiler, Köln, Deutschland"}, {:name => "Baluchistan, Pakistan"}].to_json)
       }
     end
   end

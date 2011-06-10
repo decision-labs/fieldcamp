@@ -7,6 +7,10 @@ class SettingsController < ApplicationController
     else
       @settings = current_user.settings
     end
+    respond_to do |format|
+      format.html{}
+      format.json{render :json => @settings.attributes.to_json}
+    end
   end
 
   def edit

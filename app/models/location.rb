@@ -17,4 +17,12 @@ class Location < ActiveRecord::Base
     # join projects on location.parent_id = self.id
     Project.where("locations.parent_id = ? OR location_id = ?", self.id, self.id).joins(:location).includes(:events)
   end
+
+  def self.search(location)
+    Location.find_by_sql(
+      "SELECT id, name, ST_Envelope(geom) as geom FROM locations WHERE parent_id IN
+        (SELECT id FROM locations WHERE lower(name) LIKE \'#{location}%\');"
+    ) or id = parent_id
+  end
+
 end

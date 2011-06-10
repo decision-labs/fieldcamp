@@ -8,10 +8,13 @@
       %h2=t('dashboard')
       .inner
         #left
+          / recent projects
           %h3=t('recently_changed_projects')
           - @projects.each do |project_id, events|
             %h4=events.first.project.title
+
         #right
+          / recent events
           %h3=t('events_since_login')
           - @projects.each do |project_id, events|
             %h4=events.first.project.title

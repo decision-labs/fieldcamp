@@ -46,4 +46,10 @@ $blueprint_grid_width: 60px;
         color: #aaa;
       }
     }
+
+    #project{ height: 80px;
+        @include background-image(linear-gradient(left top, white, #dddddd));
+    }
+
+    /*This yields a linear gradient spanning from the upper left corner to the lower right corner*/
 }

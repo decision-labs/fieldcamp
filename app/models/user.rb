@@ -24,7 +24,14 @@ class User < ActiveRecord::Base
   before_create :build_settings
 
   def events_since_login
-    Event.where("created_at > ?", last_sign_in_at).all
+
+    unless settings.location.nil?
+      current_user_location_ids = settings.location.children.collect(&:id)
+      current_user_location_ids << settings.location_id
+      Event.joins(:project).where("events.created_at > ? AND projects.location_id IN (?)", last_sign_in_at, current_user_location_ids)
+    else
+      return []
+    end
   end
 
   ROLES.each do |role|

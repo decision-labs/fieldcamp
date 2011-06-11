@@ -242,3 +242,8 @@ div.field_with_errors label {
   margin-left: 30px;
   padding-bottom: 5px;
 }
+
+#sidebar {
+  width: 240px;
+  float: right;
+}

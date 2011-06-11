@@ -1,5 +1,4 @@
-$blueprint_grid_columns: 16;
-$blueprint_grid_width: 60px;
+/*width = 960*/
   
 @import "blueprint";
 @import "blueprint/colors";
@@ -17,39 +16,36 @@ $blueprint_grid_width: 60px;
       @include link-colors(#006, #0cc, #c0c, #888, #cc0); }
 
     #content {
-        @include column(16);
-        #left { @include column(6); }
+        @include column(24);
+        #left { @include column(11); }
         #right {
           border-left: 1px solid #eee;
           padding-left: 20px;
-          @include column(7, true); }
-    }
+          @include column(11, true); }}
 
-    #event{
+    #event {
+      @include background-image(linear-gradient(#eee, #eee));
       @include border-radius(5px);
-      background-color: #eee;
-      margin-top: 2px;
-      margin-bottom: 2px;
-      padding-top: 5px;
-      padding-left: 4px;
-      height: 40px;
-      padding-right: 4px!important;
-
-      .description{
-        @include column(5);
-      }
+      padding: 4px;
+      margin: 20px 0px;
+      .description{ @include column(9); }
       .age {
-        @include column(2, true);
-        float:right!important;
-        font-size: 80%;
+        font-size: 80%!important;
         text-align: right;
-        color: #aaa;
-      }
-    }
+        padding-right: 2px;
+        color: #aaa;}}
 
-    #project{ height: 80px;
-        @include background-image(linear-gradient(left top, white, #dddddd));
-    }
+    #project {
+      @include background-image(linear-gradient(#eee, #eee));
+      @include border-radius(5px);
+      padding: 4px;
+      margin: 20px 0px;}
 
-    /*This yields a linear gradient spanning from the upper left corner to the lower right corner*/
+    #section_footer {
+      padding: 4px;
+      margin: 20px 0px;
+      a { @include link-colors(#006, #0cc, #c0c, #888, #cc0); } 
+      .action { font-weight: bold; }}
+
+    .right{ float:right }
 }

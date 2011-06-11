@@ -1,0 +1,16 @@
+
+#event
+  .content.location
+    %h3= event.title
+
+    %p
+      %strong
+        Address:
+      = event.address
+    %p=truncate(event.description, :lenght => 40)
+    %p=link_to t('project_details'), project_path(event.project_id), :target => "_blank"
+    %p.age
+      created
+      =time_ago_in_words(event.created_at)
+      ago
+

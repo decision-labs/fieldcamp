@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
+  has_one :location, :through => :project
 
   validates_presence_of :title, :message => "Title can't be blank."
   validates_with EventAddressValidator

@@ -1,0 +1,11 @@
+= stylesheet_link_tag 'compiled/dashboard.css', :media => 'screen, projection'
+
+.block-forms.block
+  .dashboard
+    #content.content
+      %h2 Event Feed
+      .inner
+        = render :partial => 'event', :collection => @events
+        .actions-bar.wat-cf
+          .actions
+            = paginate @events

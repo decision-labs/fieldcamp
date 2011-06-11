@@ -139,6 +139,8 @@ GEM
       thor (~> 0.14)
     json (1.5.1)
     json_pure (1.5.1)
+    kaminari (0.12.4)
+      rails (>= 3.0.0)
     linecache (0.43)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
@@ -275,6 +277,7 @@ DEPENDENCIES
   infinity_test
   jquery-rails
   json
+  kaminari
   machinist
   pg
   postgis_adapter!

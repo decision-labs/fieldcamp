@@ -21,6 +21,7 @@ gem 'compass', '>= 0.10.6'
 gem 'rake', '~> 0.8.7'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'kaminari'
 
 group :test, :development do
   gem 'sqlite3'

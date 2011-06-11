@@ -9,9 +9,25 @@
       .inner
         #left
           / recent projects
-          %h3=t('recently_changed_projects')
+          %h3=t('projects_changed_since_login')
+          - if @projects.blank?
+            #empty=t('none') 
           - @projects.each do |project_id, events|
-            %h4=events.first.project.title
+            #project
+              %h4=events.first.project.title
+              .description=events.first.project.description
+              %br
+              .location
+                %strong=t('location')
+                =events.first.project.location.name
+              %br
+              .partners
+                %strong=t('partners')
+                =events.first.project.partners.map(&:name).join(', ')
+              %br
+              .sectors
+                %strong=t('Sectors')
+                =events.first.project.sectors.map(&:name).join(', ')
 
         #right
           / recent events
@@ -28,4 +44,6 @@
                     (
                     =time_ago_in_words(event.created_at)
                     )
-            %br
+          #section_footer
+            - if @has_more_events
+              =link_to "more ...", events_feed_path, :class => "right action"

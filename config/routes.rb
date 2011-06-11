@@ -1,6 +1,6 @@
 Caritas::Application.routes.draw do
 
-  resources :articles
+  resources :images
 
   scope "(:locale)" do
     match '/public', :to => 'application#public', :as => :public
@@ -17,7 +17,6 @@ Caritas::Application.routes.draw do
       root :to => "admin/dashboard#index"
     end
 
-
     get 'settings' => 'settings#show'
     get 'settings/edit' => 'settings#edit', :as => 'edit_settings'
     put 'settings' => 'settings#update'
@@ -25,6 +24,7 @@ Caritas::Application.routes.draw do
     # CHECK: if doing ajax is faster than using the cached geometry
     # get 'locations/:id/events' => 'locations#show', :defaults => {:format => "json", :events => true }
 
+    resources :articles
     resources :locations
     resources :partners
     resources :sectors

@@ -71,7 +71,7 @@ hr {
   right: 25px;
 }
 
-#user-navigation a.logout {
+#user-navigation a.logout, a.login {
   background: #ccc;
   padding: 1px 4px;
 }
@@ -459,8 +459,8 @@ a.button, button.button, .pagination a, .pagination span {
   border-radius: 5px;
 }
 
-#user-navigation a.logout {
+#user-navigation a.logout, a.login {
   -moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
+  -webkit-border-radius: 4px;
   border-radius: 4px;
 }

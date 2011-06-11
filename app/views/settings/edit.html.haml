@@ -29,7 +29,7 @@
               .field.group
                 = f.label :locations, :class => 'label'
                 = f.text_field :location_id,
-                  "data-pre" => [{:id => @settings.location.id, :name => @settings.location.name}].to_json
+                  "data-pre" => @pre_populate_location.to_json
                 :javascript
                   var resultsOverlays = [];
                   function clearOverlays() {
@@ -76,7 +76,7 @@
                       onDelete: function(item){clearOverlay(item.id)},
                       prePopulate: $('#settings_location_id').data("pre")});
 
-                      updateMap({"id":"#{@settings.location.id}"});
+                      updateMap({"id":"#{@settings.location.id rescue 0}"});
                     });
 
 

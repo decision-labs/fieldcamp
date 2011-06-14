@@ -2,6 +2,9 @@ class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
   has_one :location, :through => :project
+  has_many :images, :dependent => :destroy
+
+  accepts_nested_attributes_for :images, :allow_destroy => true
 
   validates_presence_of :title, :message => "Title can't be blank."
   validates_with EventAddressValidator

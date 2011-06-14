@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
-  validates :title, :presence => true
+  belongs_to :event
+
   validates :asset, :presence => true
 
   mount_uploader :asset, ImageUploader

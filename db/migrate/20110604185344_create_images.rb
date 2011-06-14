@@ -3,6 +3,7 @@ class CreateImages < ActiveRecord::Migration
     create_table :images do |t|
       t.string :asset
       t.string :title
+      t.integer :event_id
 
       t.timestamps
     end

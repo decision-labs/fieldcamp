@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20110604185344) do
   create_table "images", :force => true do |t|
     t.column "asset", :string
     t.column "title", :string
+    t.column "event_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end

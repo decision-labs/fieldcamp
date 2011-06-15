@@ -16,7 +16,11 @@ class Location < ActiveRecord::Base
   def child_projects
     # find projects with location.parent_id = self.id
     # join projects on location.parent_id = self.id
-    Project.where("locations.parent_id = ? OR location_id = ?", self.id, self.id).joins(:location).includes(:events)
+    Project.where("locations.parent_id = ? OR location_id = ?",self.id, self.id).joins(:location).includes(:events)
+  end
+
+  def world?
+    (self.id == Location.where(:name => "World").first.id)
   end
 
   def self.search(location)
@@ -29,7 +33,8 @@ class Location < ActiveRecord::Base
     locations = Location.find_by_sql(
       "SELECT id, name, ST_Envelope(geom) as geom
         FROM locations
-        WHERE parent_id = #{parent.id} OR id = #{parent.id};")
+        WHERE parent_id = #{parent.id} OR id = #{parent.id}
+        ORDER BY id ASC;")
 
     results = locations.as_json.collect{|l|
       loc         = l["location"]
@@ -39,5 +44,6 @@ class Location < ActiveRecord::Base
       loc
     }
   end
+
 
 end

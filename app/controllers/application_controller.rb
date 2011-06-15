@@ -36,9 +36,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_location_scope
+    #FIXME: Dry this to somehow set a default scope
+    @current_user_location_ids ||= []
     unless (current_user.nil? || current_user.settings.nil?)
       @settings = current_user.settings
-      unless @settings.location.nil?
+      unless @settings.location.nil? || @settings.location.world?
         @current_user_location_ids = current_user.settings.location.children.collect(&:id)
         @current_user_location_ids << current_user.settings.location_id
       end

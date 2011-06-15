@@ -39,8 +39,20 @@
             =link_to t(:use_current_location), nil, :class => 'use_current_location button'
         .field.group
           %label.label New Images:
-          = f.fields_for :images do |image_fields|
-            = image_fields.file_field :asset, :class => 'file_field'
+          =f.fields_for :images do |image_fields|
+            -if image_fields.object.new_record?
+              .field.group
+                = image_fields.file_field :asset, :class => 'file_field'
+                = image_fields.text_field :title, :class => 'text_field'
+                %span.description Image Caption
+        
+        .field.group
+          %label.label Old Images:
+          =f.fields_for :images do |image_fields|
+            -unless image_fields.object.new_record?
+              .field.group
+                =image_tag image_fields.object.asset_url(:thumb).to_s, :alt =>image_fields.object.title
+                =link_to 'Delete', {:controller => 'images', :action => 'destroy', :id => image_fields.object}, :method => :delete, :confirm => 'Are you sure?', :class => 'button'
 
     .column.right
       #map

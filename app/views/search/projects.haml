@@ -1,0 +1,43 @@
+:javascript
+  $(document).ready(function () {
+
+    $("#search_location_ids").tokenInput("/search/locations",{
+      minChars: 3,
+      onDelete: function(item){clearOverlay(item.id)}});
+
+    $("#search_sector_ids").tokenInput("/search/sectors",{
+      minChars: 3,
+      onDelete: function(item){clearOverlay(item.id)}});
+
+    $("#search_partner_ids").tokenInput("/search/partners",{
+      minChars: 2,
+      onDelete: function(item){clearOverlay(item.id)}});
+
+    });
+
+= render :partial => "shared/nav"
+
+.block-forms.block
+  .content
+    %h2.title=t(:advance_projects_search)
+    .inner
+      = form_tag :search, :method => "get", :class => 'form' do
+        .field.group
+          = label_tag :locations, t(:locations), :class => 'label'
+          = text_field_tag 'search[location_ids]', '', :class => 'text_field'
+        .field.group
+          = label_tag :sectors, t(:sectors), :class => 'label'
+          = text_field_tag 'search[sector_ids]', '', :class => 'text_field'
+        .field.group
+          = label_tag :partners, t(:partners), :class => 'label'
+          = text_field_tag 'search[partner_ids]', '', :class => 'text_field'
+
+        .group.navform.wat-cf
+          = content_tag :button, :type => :submit, :class => 'button' do
+            = image_tag "icons/tick.png"
+            =t(:search)
+      - unless @results.blank?
+        %h3 Results
+        %ul
+        - @results.each do |result|
+          %li= link_to result.title, project_path(result)

@@ -1,8 +1,5 @@
 class SearchController < ApplicationController
-  # TODO: later refactor to Search::BaseController with Search::{Projects,Sectors,Partners}Controller
-  def new
-    # render new
-  end
+  # FIXME: later refactor to Search::BaseController with Search::{Projects,Sectors,Partners}Controller
 
   def index
     @projects = nil
@@ -45,9 +42,9 @@ class SearchController < ApplicationController
     @project_search = ProjectSearch.new(params)
     unless @project_search.results.nil?
       if @project_search.results.empty?
-        flash[:notice] = t('no_results_found')
+        flash[:notice] = t('no_results_found') + " <a href='#{search_path}'>try another</a>"
       elsif
-        flash[:notice] = t('n_results_found', :n => @project_search.results.size)
+        flash[:notice] = "<a href='#{request.fullpath}'>" + t('n_results_found', :n => @project_search.results.size) + "</a>"
       end
     end
   end

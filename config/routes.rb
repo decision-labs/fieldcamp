@@ -7,10 +7,10 @@ Caritas::Application.routes.draw do
     match "/events_feed", :to => "events_feed#index",  :as => "events_feed"
     match '/public', :to => 'application#public', :as => :public
 
-    match '/search' => 'search#projects', :as => 'search'
     match '/search/locations' => 'search#locations',  :as => 'search_locations'
     match '/search/partners'  => 'search#partners',   :as => 'search_partners'
     match '/search/sectors'   => 'search#sectors',    :as => 'search_sectors'
+    match '/search'           => 'search#projects',   :as => 'search'
     match '/admin/dashboard', :to => "admin/dashboard#index"
 
     devise_for :users

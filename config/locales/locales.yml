@@ -73,6 +73,8 @@ en:
   Administrative_Level: Administrative Level
   search: Search
   projects_found: projects found
+  no_results_found: no results found
+  n_results_found: "%{n} results found"
 
 de:
   hello_world: Hallo Welt

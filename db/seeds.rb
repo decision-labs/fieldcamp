@@ -5,6 +5,8 @@ include GeoRuby::Shp4r
 require 'geokit'
 include Geokit::Geocoders
 
+# TODO: set locations for new users by creating a world location by default and set to that
+
 # -------------------------------
 # Delete all unless in production
 # -------------------------------

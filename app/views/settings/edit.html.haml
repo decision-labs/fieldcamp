@@ -33,7 +33,6 @@
                 :javascript
                   var resultsOverlays = [];
                   function clearOverlays() {
-                    console.log(resultsOverlays);
                     if (resultsOverlays) {
                       $.each(resultsOverlays, function(index, value) {
                         value.overlay.setMap(null);
@@ -41,7 +40,6 @@
                     }
                   }
                   function clearOverlay(id) {
-                    console.log(resultsOverlays);
                     if (resultsOverlays) {
                       $.each(resultsOverlays, function(index, value) {
                         if (value.id == id) {
@@ -68,7 +66,7 @@
                   }
 
                   $(document).ready(function () {
-                    $("#settings_location_id").tokenInput("/search/locations",{
+                    $("#settings_location_id").tokenInput("/search/locations?change_settings=true",{
                       onAdd: updateMap,
                       tokenLimit: 2,
                       minChars: 3,

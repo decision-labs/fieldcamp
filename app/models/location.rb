@@ -23,10 +23,20 @@ class Location < ActiveRecord::Base
     (self.id == Location.where(:name => "World").first.id)
   end
 
-  def self.search(location)
-    parent = Location.find_by_sql(
-      "SELECT id FROM locations
-        WHERE lower(name) LIKE \'%#{location.downcase}%\' limit 1").first
+  def self.search(params)
+    location = params[:q]
+    user_location_id = params[:user_location_id]
+    # TODO refactor to use activerecord where
+    if user_location_id
+      parent = Location.find_by_sql(
+        "SELECT id FROM locations
+          WHERE lower(name) LIKE \'%#{location.downcase}%\'
+            AND id=#{user_location_id} limit 1").first
+      else
+      parent = Location.find_by_sql(
+        "SELECT id FROM locations
+          WHERE lower(name) LIKE \'%#{location.downcase}%\' limit 1").first
+      end
 
     return [] if parent.blank?
 

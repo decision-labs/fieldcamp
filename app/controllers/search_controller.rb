@@ -10,7 +10,8 @@ class SearchController < ApplicationController
 
   def locations
     unless params[:q].blank?
-      results = Location.search(params[:q])
+      params.merge!(:user_location_id => current_user.settings.location_id) unless params[:change_settings]
+      results = Location.search(params)
       render :json => results.to_json
     else
       render :json => {}

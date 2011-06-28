@@ -36,7 +36,8 @@ class ApplicationController < ActionController::Base
   end
 
   def set_location_scope
-    #FIXME: Dry this to somehow set a default scope
+    #FIXME: Dry this to somehow set a default scope - remove dependence on this instance variable
+    # everything should just go through current_user.settings
     @current_user_location_ids ||= []
     unless (current_user.nil? || current_user.settings.nil?)
       @settings = current_user.settings

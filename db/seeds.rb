@@ -54,6 +54,14 @@ shoaib = User.create(
 )
 shoaib.settings = Settings.create!
 
+public_relations = User.create(
+  :email                 => 'public_relations@caritas.de',
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
+  :role                  => 'public_relations'
+)
+public_relations.settings = Settings.create!
+
 # -----------------------------------
 # Load Locations data from shapefiles
 # -----------------------------------

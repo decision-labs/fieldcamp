@@ -24,26 +24,23 @@ class Location < ActiveRecord::Base
   end
 
   def self.search(params)
-    location = params[:q]
-    user_location_id = params[:user_location_id]
-    # TODO refactor to use activerecord where
-    if user_location_id
-      parent = Location.find_by_sql(
-        "SELECT id FROM locations
-          WHERE lower(name) LIKE \'%#{location.downcase}%\'
-            AND id=#{user_location_id} limit 1").first
-      else
-      parent = Location.find_by_sql(
-        "SELECT id FROM locations
-          WHERE lower(name) LIKE \'%#{location.downcase}%\' limit 1").first
-      end
+    query_str = params[:q]
+    user_location_id = params[:user_location_id].to_i
 
-    return [] if parent.blank?
+    parent_result = Location.find_by_sql(
+      "SELECT id, parent_id FROM locations
+        WHERE lower(name) LIKE \'%#{query_str.downcase}%\' limit 1").first
+
+    return [] if parent_result.blank?
+
+    if user_location_id && user_location_id != parent_result.id
+      return [] unless self.has_ancestor?(parent_result, user_location_id)
+    end
 
     locations = Location.find_by_sql(
       "SELECT id, name, ST_Envelope(geom) as geom
         FROM locations
-        WHERE parent_id = #{parent.id} OR id = #{parent.id}
+        WHERE parent_id = #{parent_result.id} OR id = #{parent_result.id}
         ORDER BY id ASC;")
 
     results = locations.as_json.collect{|l|
@@ -55,5 +52,13 @@ class Location < ActiveRecord::Base
     }
   end
 
+  private
+  
+  def self.has_ancestor?(loc, ancestor_id)
+    return true  if loc.parent_id == ancestor_id
+    return false if loc.parent.world?
+
+    has_ancestor?(loc.parent, ancestor_id)
+  end
 
 end

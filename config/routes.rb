@@ -11,7 +11,7 @@ Caritas::Application.routes.draw do
     match '/search/partners'  => 'search#partners',   :as => 'search_partners'
     match '/search/sectors'   => 'search#sectors',    :as => 'search_sectors'
     match '/search'           => 'search#projects',   :as => 'search'
-    match '/admin/dashboard', :to => "admin/dashboard#index"
+    match '/admin/dashboard', :to => "admin/dashboard#index", :as => "dashboard"
 
     devise_for :users
 

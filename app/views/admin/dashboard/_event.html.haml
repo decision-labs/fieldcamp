@@ -1,0 +1,9 @@
+%a{:href => project_event_path(event.project_id, event) }
+  #event
+    %span.description
+      =event.title
+      =truncate(event.description, :lenght => 30)
+    %span.age
+      (
+      =time_ago_in_words(event.created_at)
+      )

@@ -1,3 +1,4 @@
+@import "partials/base";
 @import "blueprint";
 @import "blueprint/colors";
 @import "compass/typography/links/hover-link";
@@ -26,19 +27,17 @@
       padding: 4px;
       margin: 20px 0px;
       .description{ @include column(9); }
-      .age {
-        font-size: 80%!important;
-        text-align: right;
-        padding-right: 2px;
-        color: #aaa;}}
+      .age { @include timestamp; }}
 
     #project {
       @include background-image(linear-gradient(#eee, #eee));
       @include border-radius(5px);
       padding: 4px;
-      margin: 20px 0px;}
+      margin: 20px 0px;
+      .date{ @include timestamp; }}
 
     #section_footer {
+      @include column(22);
       padding: 4px;
       margin: 20px 0px;
       a { @include link-colors(#006, #0cc, #c0c, #888, #cc0); } 

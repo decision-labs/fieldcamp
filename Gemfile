@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8'
+gem 'rails', '3.0.9'
 gem 'pg'
 gem 'haml'
 gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'

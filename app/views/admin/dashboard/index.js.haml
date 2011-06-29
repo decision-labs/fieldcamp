@@ -1,0 +1,4 @@
+:plain
+  $('#events').html("#{escape_javascript render(:partial => "event", :collection => @events)}");
+  $('#projects').html("#{escape_javascript render(:partial => "project", :collection => @projects)}");
+  $('#paginator').html("#{escape_javascript(paginate(@events, :remote => true).to_s)}");

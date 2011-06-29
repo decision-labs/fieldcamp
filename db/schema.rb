@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604185344) do
+ActiveRecord::Schema.define(:version => 20110629134126) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -18,10 +18,15 @@ ActiveRecord::Schema.define(:version => 20110604185344) do
     t.column "author_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
+    t.column "published", :boolean
+    t.column "title", :string
+    t.column "project_id", :integer
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
+  add_index "articles", ["project_id"], :name => "index_articles_on_project_id"
   add_index "articles", ["published_at"], :name => "index_articles_on_published_at"
+  add_index "articles", ["title"], :name => "index_articles_on_title"
 
   create_table "events", :force => true do |t|
     t.column "title", :string

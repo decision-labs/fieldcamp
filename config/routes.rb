@@ -28,7 +28,10 @@ Caritas::Application.routes.draw do
     # CHECK: if doing ajax is faster than using the cached geometry
     # get 'locations/:id/events' => 'locations#show', :defaults => {:format => "json", :events => true }
 
-    resources :articles
+    resources :articles do
+      get 'projects', :on => :collection
+    end
+
     resources :locations
     resources :partners
     resources :sectors

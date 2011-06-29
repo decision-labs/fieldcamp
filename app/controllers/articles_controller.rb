@@ -28,7 +28,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.xml
   def new
-    @article = current_user.articles.build
+    @article = current_user.articles.build(:project_id => params[:project_id])
+    @project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -83,5 +84,9 @@ class ArticlesController < ApplicationController
       format.html { redirect_to(articles_url) }
       format.xml  { head :ok }
     end
+  end
+
+  def projects
+    @projects = Project.order('created_at desc').page(params[:page]).per(5)
   end
 end

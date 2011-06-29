@@ -1,0 +1,9 @@
+/ TODO: styling
+%a{:href => new_article_path(:project_id => project.id) }
+  #project
+    %h4=project.title
+    .description=truncate(project.description, :length => 30)
+    %br
+    .location
+      %strong=t('location')
+      =project.location.name

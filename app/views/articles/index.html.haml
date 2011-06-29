@@ -1,23 +1,33 @@
-%h1 Listing articles
+= render :partial => "shared/nav"
 
-%table
-  %tr
-    %th Content
-    %th Published at
-    %th Author
-    %th
-    %th
-    %th
+- content_for :sidebar do
+  -if (can? :create,  Article)
+    .block
+      %h3=t(:articles)
+      .content
+        .actions-bar.wat-cf
+          .actions
+            / .addlink= link_to t(:create_a_new_article), new_article_path, :class => 'button'
+            .addlink= link_to t(:create_a_new_article), projects_articles_path, :class => 'button'
 
-  - @articles.each do |article|
-    %tr
-      %td= article.content_html
-      %td= article.published_at
-      %td= article.author_id
-      %td= link_to 'Show', article
-      %td= link_to 'Edit', edit_article_path(article)
-      %td= link_to 'Destroy', article, :confirm => 'Are you sure?', :method => :delete
+  / TODO: Refactor to helper
+  .block
+    %h3=t(:sort_options)
+    .content
+      %ul.navigation
+        %li{:class => ("current_sort" if session[:articles_sort_order] == 'articles.name asc') }
+          = link_to_unless(session[:articles_sort_order] == 'articles.name asc', t(:alphabetical_asc), articles_path(:sort_order => 'articles.name asc'))
+        %li{:class => ("current_sort" if session[:articles_sort_order] == 'articles.name desc') }
+          = link_to_unless(session[:articles_sort_order] == 'articles.name desc', t(:alphabetical_desc), articles_path(:sort_order => 'articles.name desc'))
 
-%br
+        %li{:class => ("current_sort" if session[:articles_sort_order] == 'articles.created_at asc') }
+          = link_to_unless(session[:articles_sort_order] == 'articles.created_at asc', t(:created_at_asc), articles_path(:sort_order => 'articles.created_at asc'))
+        %li{:class => ("current_sort" if session[:articles_sort_order] == 'articles.created_at desc') }
+          = link_to_unless(session[:articles_sort_order] == 'articles.created_at desc', t(:created_at_desc), articles_path(:sort_order => 'articles.created_at desc'))
 
-= link_to 'New Article', new_article_path
+        %li{:class => ("current_sort" if session[:articles_sort_order] == 'articles.updated_at asc' )}
+          = link_to_unless(session[:articles_sort_order] == 'articles.updated_at asc', t(:updated_at_asc), articles_path(:sort_order => 'articles.updated_at asc'))
+        %li{:class => ("current_sort" if session[:articles_sort_order] == 'articles.updated_at desc')}
+          = link_to_unless(session[:articles_sort_order] == 'articles.updated_at desc', t(:updated_at_desc), articles_path(:sort_order => 'articles.updated_at desc'))
+
+= render @articles

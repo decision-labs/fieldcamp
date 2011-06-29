@@ -141,7 +141,7 @@ li.wmd-button.wmd-code-button{
   margin-left: 15px;
 }
 
-#description-button-bar li{
+#description-button-bar, #content-button-bar li{
   margin-left: 0px;
 }
 

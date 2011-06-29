@@ -1,5 +1,14 @@
-%h1 New article
+= render :partial => "shared/nav"
 
-= render 'form'
+.block
+  .content
+    %h2.title
+      =t(:new_article)
+    =link_to t('jump_to_project'), '', :anchor => "project"
+    .inner
+      .form
+        = render 'form'
 
-= link_to 'Back', articles_path
+=link_to t('jump_to_project')
+
+#project=render @project

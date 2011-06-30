@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = current_user.articles.build(:project_id => params[:project_id])
+    @project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,6 +46,7 @@ class ArticlesController < ApplicationController
   # POST /articles.xml
   def create
     @article = current_user.articles.build(params[:article])
+    @article.project = Project.find(params[:article][:project_id])
 
     respond_to do |format|
       if @article.save

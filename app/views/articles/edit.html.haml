@@ -1,7 +1,13 @@
-%h1 Editing article
+= render :partial => "shared/nav"
 
-= render 'form'
+.block
+  .content
+    %h2.title
+      = t(:editing_article)
+    .inner
+      .form
+        = render 'form'
 
-= link_to 'Show', @article
+= link_to raw("&larr; #{t(:show_article)} (#{@article.title})"), @article
 \|
-= link_to 'Back', articles_path
+= link_to raw("&larr; #{t(:back_to_articles)}"), articles_path

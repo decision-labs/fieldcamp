@@ -28,7 +28,7 @@
       = f.label :published_at, :class => 'label'
       = f.datetime_select :published_at
 
-      = f.hidden_field :project_id, :value => @article.project_id
+      = f.hidden_field :project_id, :value => @project.id
 
     .actions
       = f.submit 'Save'

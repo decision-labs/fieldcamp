@@ -1,15 +1,14 @@
-%p#notice= notice
+= render :partial => "shared/nav"
 
-%p
-  %b Content:
-  = @article.content_html
-%p
-  %b Published at:
-  = @article.published_at
-%p
-  %b Author:
-  = @article.author_id
-
-= link_to 'Edit', edit_article_path(@article)
-\|
-= link_to 'Back', articles_path
+.block
+  .content
+    = model_title_links(@article, t="title")
+    .inner
+      %p= raw(RDiscount.new(@article.content).to_html) rescue nil
+      
+.block
+  .content
+    .inner
+      .actions-bar.wat-cf
+        .actions
+          = link_to raw("&larr; #{t(:back_to_articles)}"), articles_path, :class => "button"

@@ -1,10 +1,12 @@
 class Article < ActiveRecord::Base
 
-  attr_accessible :content, :published_at
+  attr_accessible :title, :content, :published_at
 
   belongs_to :author, :class_name => "User"
+  belongs_to :project
 
   validates :author_id, :presence => true
+  validates :project_id, :presence => true
 
   def published?
     published_at && published_at < Time.now

@@ -1,14 +1,41 @@
+= javascript_include_tag 'jquery-ui.min', :cache => true
+= javascript_include_tag 'vendor/jquery.slideto.min', :cache => true
+
 = render :partial => "shared/nav"
 
-.block
+#new_article.block
   .content
     %h2.title
       =t(:new_article)
-    =link_to t('jump_to_project'), '', :anchor => "project"
     .inner
+      .action
+        %button{:id => "jump_to_project", :class => "button"}=t('jump_to_project')
+      .clear
+      %br
       .form
         = render 'form'
 
-=link_to t('jump_to_project')
+.action
+  %button{:id => "jump_to_article", :class => "button"}=t('jump_to_article')
+.clear
+%br
 
-#project=render @project
+=render @project
+
+
+:javascript
+  $(document).ready(function(){
+    $('a.icon.show').zoombox({width: 960, height: 600, overflow: true});
+
+    $("#jump_to_project").bind('click', function(){
+      $(".project.block").slideto({
+        //highlight_duration: 'fast'
+      });
+    });
+
+    $("#jump_to_article").bind('click', function(){
+      $("#new_article.block").slideto({
+        //highlight_duration: 'fast'
+      });
+    });
+  });

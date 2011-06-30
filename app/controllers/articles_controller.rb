@@ -29,7 +29,6 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = current_user.articles.build(:project_id => params[:project_id])
-    @project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb

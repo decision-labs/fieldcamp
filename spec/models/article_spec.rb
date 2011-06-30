@@ -15,6 +15,10 @@ describe Article do
     @article.author.should_not be_nil
   end
 
+  it "should belong to a project default" do
+    @article.project.should_not be_nil
+  end
+
   # publishing
   it "should be publishable" do
     @article.publish

@@ -34,9 +34,10 @@
 
     .actions-bar.wat-cf
       .actions
-        = link_to t("cancel"), (@article.persisted? ? @article : articles_path), :class => "fancy-button"
-        %span.right
-          = f.submit t("save"), :class => "fancy-button"
+        %span.cancel_button
+          = link_to t("cancel"), (@article.persisted? ? @article : articles_path), :class => "fancy-button"
+        = f.submit t("save"), :class => "fancy-button"
+        -if @article.draft?
           = f.submit t("publish"), :name => "article[publish]", :class => "fancy-button"
 
 :javascript

@@ -24,7 +24,7 @@
         .flash
           - flash.each do |type, message|
             %div{:class => "message #{type}"}
-              %p= message
+              %p=raw(message)
         #main
           = yield
           #footer
@@ -33,7 +33,7 @@
                 Copyright &copy; #{Time.now.year}
         #sidebar
           = yield :sidebar
-          -unless( params[:controller] =~ /settings/ || !user_signed_in?)
+          -unless( params[:controller] =~ /articles/ || params[:controller] =~ /settings/ || !user_signed_in?)
             .block
               %h3=t(:Settings)
               .content

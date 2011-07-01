@@ -1,0 +1,16 @@
+%a{:href => project_path(project) }
+  #project
+    %h4= project.title
+    .description=project.description
+    %br
+    .location
+      %strong=t('location')
+      =project.location.name
+    %br
+    .partners
+      %strong=t('partners')
+      =project.partners.map(&:name).join(', ')
+    %br
+    .sectors
+      %strong=t('Sectors')
+      =project.sectors.map(&:name).join(', ')

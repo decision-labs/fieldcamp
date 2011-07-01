@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :staging_authentication
   before_filter :set_locale, :prepare_for_mobile
-  before_filter :authenticate_user!, :except => ['show', 'index']
+  before_filter :authenticate_user!
   before_filter :set_location_scope
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -32,9 +32,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_location_scope
+    #FIXME: Dry this to somehow set a default scope - remove dependence on this instance variable
+    # everything should just go through current_user.settings
+    @current_user_location_ids ||= []
     unless (current_user.nil? || current_user.settings.nil?)
       @settings = current_user.settings
-      unless @settings.location.nil?
+      unless @settings.location.nil? || @settings.location.world?
         @current_user_location_ids = current_user.settings.location.children.collect(&:id)
         @current_user_location_ids << current_user.settings.location_id
       end

@@ -1,6 +1,10 @@
 class Event < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
+  has_one :location, :through => :project
+  has_many :images, :dependent => :destroy
+
+  accepts_nested_attributes_for :images, :allow_destroy => true,  :reject_if => :all_blank
 
   validates_presence_of :title, :message => "Title can't be blank."
   validates_with EventAddressValidator
@@ -13,7 +17,7 @@ class Event < ActiveRecord::Base
     props["updated_at"] = attributes["updated_at"].to_formatted_s(:long) # FIXME: should be done via locales
     props.delete('geom')
     geojson = {
-      :id => to_param,
+      :id => id_title,
       :type => 'Feature',
       :properties => props,
       :geometry => JSON.parse(geom.as_geojson)
@@ -21,7 +25,7 @@ class Event < ActiveRecord::Base
     geojson
   end
 
-  def to_param
+  def id_title
     [id, title.parameterize].join('-')
   end
 

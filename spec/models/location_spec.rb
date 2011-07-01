@@ -21,4 +21,14 @@ describe Location do
       @parent_location.child_projects.all.should include(@project_parent)
     end
   end
+
+  describe '.search' do
+    it "should scope query by setting if user_location_id is passed"
+    it "should not scope query by setting if user_location_id is not passed"
+  end
+
+  describe '.world' do
+    it "should return world"
+  end
+
 end

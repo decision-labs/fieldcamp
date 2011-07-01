@@ -1,0 +1,56 @@
+:javascript
+  $(document).ready(function () {
+
+    $("#search_location_ids").tokenInput("/search/locations",{
+      minChars: 3, hintText: "Type in a location name", deleteText: "", preventDuplicates: false,
+      prePopulate: $('#search_location_ids').data("location_pre"),
+      onDelete: function(item){removeUrlParams('search[location_ids]', item.id)}
+    });
+
+    $("#search_sector_ids").tokenInput("/search/sectors",{
+      minChars: 3, hintText: "Type in a sector name", deleteText: "", preventDuplicates: false,
+      prePopulate: $('#search_sector_ids').data("sector_pre"),
+      onDelete: function(item){removeUrlParams('search[sector_ids]', item.id)}
+    });
+
+    $("#search_partner_ids").tokenInput("/search/partners",{
+      minChars: 2, hintText: "Type in a partner name", deleteText: "", preventDuplicates: false,
+      prePopulate: $('#search_partner_ids').data("partner_pre"),
+      onDelete: function(item){removeUrlParams('search[partner_ids]', item.id)}
+    });
+    function removeUrlParams(key, value){}
+  }); // on document ready
+
+= render :partial => "shared/nav"
+
+.block-forms.block
+  .content
+    %h2.title=t(:advance_projects_search)
+    .inner
+      = form_tag :search, :method => "get", :class => 'form' do
+        .field.group
+          = label_tag :locations, t(:locations), :class => 'label' 
+          = text_field_tag 'search[location_ids]', '', :class => 'text_field',
+              "data-location_pre" => @project_search.tokens[:locations].to_json
+        .field.group
+          = label_tag :sectors, t(:sectors), :class => 'label'
+          = text_field_tag 'search[sector_ids]', '', :class => 'text_field',
+              "data-sector_pre" => @project_search.tokens[:sectors].to_json
+        .field.group
+          = label_tag :partners, t(:partners), :class => 'label'
+          = text_field_tag 'search[partner_ids]', '', :class => 'text_field',
+              "data-partner_pre" => @project_search.tokens[:partners].to_json
+        .group.navform.wat-cf
+          = content_tag :button, :type => :submit, :class => 'button' do
+            = image_tag "icons/tick.png"
+            =t(:search)
+          %a.button{:href => search_path}
+            = image_tag "icons/cross.png", :alt => "Cancel"
+            =t('clear_results')
+
+      / results
+      - unless @project_search.results.nil?
+        #projects
+          %h3=t('results') + " (#{@project_search.results.size})"
+          -projects_search_description(@project_search.tokens)
+          =render :partial => "project", :collection => @project_search.results

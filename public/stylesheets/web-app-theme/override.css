@@ -1,4 +1,5 @@
 /* Override here any style defined by web-app-theme */
+#main{ width: 960px }
 .inner .columns .column {
   width: 48%;
 }
@@ -140,7 +141,7 @@ li.wmd-button.wmd-code-button{
   margin-left: 15px;
 }
 
-#description-button-bar li{
+#description-button-bar, #content-button-bar li{
   margin-left: 0px;
 }
 
@@ -240,4 +241,9 @@ div.field_with_errors label {
   list-style: square;
   margin-left: 30px;
   padding-bottom: 5px;
+}
+
+#sidebar {
+  width: 240px;
+  float: right;
 }

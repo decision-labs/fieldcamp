@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110605150424) do
+ActiveRecord::Schema.define(:version => 20110629134126) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -18,13 +18,15 @@ ActiveRecord::Schema.define(:version => 20110605150424) do
     t.column "author_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "project_id", :integer
+    t.column "published", :boolean
     t.column "title", :string
+    t.column "project_id", :integer
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
   add_index "articles", ["project_id"], :name => "index_articles_on_project_id"
   add_index "articles", ["published_at"], :name => "index_articles_on_published_at"
+  add_index "articles", ["title"], :name => "index_articles_on_title"
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -33,13 +35,24 @@ ActiveRecord::Schema.define(:version => 20110605150424) do
     t.column "project_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "geom", :point, :srid => 4326, :with_z => true
     t.column "user_id", :integer
+    t.column "geom", :point, :srid => 4326, :with_z => true
   end
 
   add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
   add_index "events", ["title"], :name => "index_events_on_title"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
+  create_table "images", :force => true do |t|
+    t.column "asset", :string
+    t.column "title", :string
+    t.column "event_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "images", ["asset"], :name => "index_images_on_asset"
+  add_index "images", ["title"], :name => "index_images_on_title"
 
   create_table "locations", :force => true do |t|
     t.column "name", :string
@@ -47,9 +60,9 @@ ActiveRecord::Schema.define(:version => 20110605150424) do
     t.column "admin_level", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
-    t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "user_id", :integer
     t.column "parent_id", :integer
+    t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "projects_count", :integer, :default => 0
   end
 
@@ -72,6 +85,13 @@ ActiveRecord::Schema.define(:version => 20110605150424) do
   create_table "partners_projects", :id => false, :force => true do |t|
     t.column "partner_id", :integer
     t.column "project_id", :integer
+  end
+
+  create_table "people", :force => true do |t|
+    t.column "first_name", :string, :null => false
+    t.column "last_name", :string, :null => false
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
   end
 
   create_table "projects", :force => true do |t|
@@ -122,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20110605150424) do
   create_table "users", :force => true do |t|
     t.column "email", :string, :default => "", :null => false
     t.column "encrypted_password", :string, :limit => 128, :default => "", :null => false
+    t.column "password_salt", :string, :default => "", :null => false
     t.column "reset_password_token", :string
     t.column "remember_token", :string
     t.column "remember_created_at", :datetime
@@ -133,7 +154,6 @@ ActiveRecord::Schema.define(:version => 20110605150424) do
     t.column "confirmation_token", :string
     t.column "confirmed_at", :datetime
     t.column "confirmation_sent_at", :datetime
-    t.column "password_salt", :string
     t.column "role", :string
     t.column "created_at", :datetime
     t.column "updated_at", :datetime

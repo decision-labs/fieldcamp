@@ -1,0 +1,12 @@
+= render :partial => "shared/nav"
+
+.block
+  .content
+    %h2.title
+      Please select the project to write an article about
+    .inner
+      =render :partial => "project_summary", :collection => @projects, :as => :project
+
+      #paginator
+        = paginate @projects
+      %br

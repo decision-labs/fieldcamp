@@ -12,9 +12,14 @@ class ProjectsController < ApplicationController
     end
 
     if current_user
-      @projects = Project.all(
-        :conditions => {'projects.location_id' => @current_user_location_ids},
-        :order => session[:projects_sort_order])
+      #FIXME: Dry this branching
+      unless @current_user_location_ids.blank?
+        @projects = Project.all(
+          :conditions => {'projects.location_id' => @current_user_location_ids},
+          :order => session[:projects_sort_order])
+      else
+        @projects = Project.all(:order => session[:projects_sort_order])
+      end
     else
       @projects = Project.all(:order => session[:projects_sort_order])
     end
@@ -23,9 +28,13 @@ class ProjectsController < ApplicationController
 
   def show
     if current_user
-      @project = Project.find(params[:id],
-              :include => [:location, :events],
-              :conditions => {'projects.location_id' => @current_user_location_ids})
+      #FIXME: Dry this branching
+      unless @current_user_location_ids.blank?
+        @project = Project.find(params[:id], :include => [:location, :events],
+          :conditions => {'projects.location_id' => @current_user_location_ids})
+      else
+        @project = Project.find(params[:id], :include => [:location, :events])
+      end
     else
       @project = Project.find(params[:id], :include => [:location, :events])
     end

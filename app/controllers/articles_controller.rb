@@ -1,16 +1,14 @@
 class ArticlesController < ApplicationController
-  # GET /articles
-  # GET /articles.xml
 
   before_filter :authorize
-  before_filter :set_project
-  before_filter :set_author
 
+  # GET /articles
+  # GET /articles.xml
   def index
     @articles = if current_user.admin?
-                  @project.articles
+                  Article.all
                 else
-                  @project.articles.where(:author_id => current_user.id)
+                  current_user.articles.all
                 end
 
     respond_to do |format|
@@ -22,7 +20,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.xml
   def show
-    @article = @project.articles.find(params[:id])
+    @article = current_user.articles.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,7 +31,8 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   # GET /articles/new.xml
   def new
-    @article = current_user.articles.build(:project_id => @project.id)
+    @article = current_user.articles.build(:project_id => params[:project_id])
+    @project = Project.find(@article.project_id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,18 +42,22 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = @project.articles.find(params[:id])
+    @article = current_user.articles.find(params[:id])
+    @project = @article.project
     authorize! :edit, @article
   end
 
   # POST /articles
   # POST /articles.xml
   def create
-    @article = @project.articles.build(params[:article])
-    @article.author = current_user
+    params[:article][:published] = true if params[:article][:published]
+    authorize! :create, Article
+    @article = current_user.articles.build(params[:article])
+    @project = Project.find(@article.project_id)
+
     respond_to do |format|
       if @article.save
-        format.html { redirect_to([@project,@article], :notice => 'Article was successfully created.') }
+        format.html { redirect_to(@article, :notice => 'Article was successfully created.') }
         format.xml  { render :xml => @article, :status => :created, :location => @article }
       else
         format.html { render :action => "new" }
@@ -66,12 +69,15 @@ class ArticlesController < ApplicationController
   # PUT /articles/1
   # PUT /articles/1.xml
   def update
-    @article = @project.articles.find(params[:id])
+    @article = current_user.articles.find(params[:id])
+    @project = @article.project
     authorize! :edit, @article
+
+    params[:article][:published] = true if params[:article][:published]
+
     respond_to do |format|
       if @article.update_attributes(params[:article])
-        format.html { redirect_to([@project,@article],
-                                  :notice => 'Article was successfully updated.') }
+        format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -83,13 +89,31 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.xml
   def destroy
-    @article = @project.articles.find(params[:id])
+    @article = current_user.articles.find(params[:id])
     authorize! :destroy, @article
     @article.destroy
 
     respond_to do |format|
-      format.html { redirect_to([@project,:articles]) }
+      format.html { redirect_to(:articles) }
       format.xml  { head :ok }
+    end
+  end
+
+  def projects
+    @projects = Project.order('created_at desc').page(params[:page]).per(5)
+  end
+
+  def unpublish
+    @article = current_user.articles.find(params[:id])
+
+    respond_to do |format|
+      if @article.unpublish!
+        format.html { redirect_to(@article, :notice => 'Article was successfully unpublished.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
+      end
     end
   end
 
@@ -98,13 +122,4 @@ class ArticlesController < ApplicationController
   end
   private :authorize
 
-  def set_project
-    @project = Project.find(params[:project_id])
-  end
-  private :set_project
-
-  def set_author
-    params[:article].merge!({:author_id => @current_user.id}) if params[:article]
-  end
-  private :set_author
 end

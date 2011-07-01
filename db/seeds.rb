@@ -5,6 +5,8 @@ include GeoRuby::Shp4r
 require 'geokit'
 include Geokit::Geocoders
 
+# TODO: set locations for new users by creating a world location by default and set to that
+
 # -------------------------------
 # Delete all unless in production
 # -------------------------------
@@ -51,6 +53,14 @@ shoaib = User.create(
   :role                  => 'admin'
 )
 shoaib.settings = Settings.create!
+
+public_relations = User.create(
+  :email                 => 'public_relations@caritas.de',
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
+  :role                  => 'public_relations'
+)
+public_relations.settings = Settings.create!
 
 # -----------------------------------
 # Load Locations data from shapefiles

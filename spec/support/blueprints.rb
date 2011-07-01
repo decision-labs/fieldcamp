@@ -21,6 +21,7 @@ Event.blueprint do
   description { Faker::Lorem.paragraph }
   address { "Multan, Pakistan" }
   project
+  geom { Point.from_x_y_z(rand(70), rand(50), rand(10), 4326) }
 end
 
 Sector.blueprint do
@@ -38,9 +39,10 @@ User.blueprint do
 end
 
 Article.blueprint do
-  title "Article title"
+  title { Faker::Lorem.sentence }
   author  { User.make(:role => "public_relations") }
   content { File.open(File.join(Rails.root,"spec","fixtures","example_article.markdown")).read }
+  project
 end
 
 # Location.blueprint(:child) do

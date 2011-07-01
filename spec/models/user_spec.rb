@@ -17,6 +17,32 @@ describe User do
     assert ability.cannot?(:destroy, Project.new(:user => User.make(:role => 'admin')))
   end
 
+  describe '#events_since_login', :wip => true do
+    it "event feed since last log in" do
+      project = Project.make
+      project.save
+      user = project.user
+      events_since_login = []
+      4.times do
+        event = Event.make(:project => nil)
+
+        p = Point.from_x_y_z(rand(70), rand(50), rand(10), 4326)
+        event.geom = p
+
+        project.events << event
+        events_since_login << event
+      end
+
+      user.update_attribute('last_sign_in_at', 5.hours.ago)
+      user.events_since_login.size == 4
+
+      user.events_since_login == events_since_login
+
+      user.update_attribute('last_sign_in_at', Time.now)
+      user.events_since_login.size == 0
+    end # it
+  end # describe #events_since_login
+
   describe "articles" do
     before :each do
       @article = Article.make
@@ -54,7 +80,7 @@ describe User do
           @ability.cannot?(:edit, @article).should == true
         end
       end
-    end
+    end # describe author
   end
 
   describe "responds to role" do
@@ -108,5 +134,5 @@ describe User do
         @user.should be_public_relations
       end
     end
-  end
+  end # responds to role
 end

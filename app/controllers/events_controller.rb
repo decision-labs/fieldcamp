@@ -35,6 +35,7 @@ class EventsController < ApplicationController
     authorize! :new, Event
     @project = Project.find(params[:project_id])
     @event = Event.new
+    3.times { @event.images.build }
 
     respond_to do |format|
       format.html
@@ -46,6 +47,7 @@ class EventsController < ApplicationController
   def edit
     @project = Project.find(params[:project_id])
     @event = @project.events.find(params[:id])
+    3.times { @event.images.build }
     authorize! :edit, @event
   end
 

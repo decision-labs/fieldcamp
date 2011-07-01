@@ -1,0 +1,15 @@
+@import "compass/css3"
+@import "compass/typography/links/unstyled-link"
+@import "compass/typography/links/link-colors"
+
+#projects
+  a
+    +unstyled-link
+    // link-colors($normal, $hover, $active, $visited, $focus)
+    +link-colors(#555, #222, #c0c, #888, #009)
+
+#project
+  +background-image(linear-gradient(#eee, #eee))
+  +border-radius(5px)
+  padding: 4px
+  margin: 20px 0px

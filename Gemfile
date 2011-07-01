@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.9'
 gem 'pg'
 gem 'haml'
 gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'
@@ -17,7 +17,11 @@ gem 'cancan'
 gem 'rdiscount'
 gem 'will_paginate', "~> 3.0.pre2"
 gem 'dalli'
-gem 'rake', '0.8.7'
+gem 'compass', '>= 0.10.6'
+gem 'carrierwave'
+gem 'rmagick'
+gem 'kaminari'
+gem 'squeel'
 
 group :test, :development do
   gem 'sqlite3'

@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b File:
+  = image_tag(@image.asset_url.to_s, :alt => @image.title)
+%p
+  %b Title:
+  = @image.title
+
+= link_to 'Edit', edit_image_path(@image)
+\|
+= link_to 'Back', images_path

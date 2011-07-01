@@ -1,4 +1,14 @@
-= render :partial => 'nav'
+-content_for :head do
+  =javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
+
+
+- content_for :outer do
+  = stylesheet_link_tag 'map'
+  = javascript_include_tag 'vendor/GeoJSON', 'map-helpers', 'vendor/markerclusterer_packed'
+  = render 'js/show-settings-map_js'
+
+= render :partial => "shared/nav"
+
 
 .block
   .content
@@ -18,17 +28,65 @@
             .column.left
               .field.group
                 = f.label :locations, :class => 'label'
-                / TODO: Tree Selection
-                = f.select :location_id, @locations.collect{ |l| ["... "*l.admin_level+"#{l.admin_level} : #{l.name}", l.id ]}, :class => 'select'
+                = f.text_field :location_id,
+                  "data-pre" => @pre_populate_location.to_json
+                :javascript
+                  var resultsOverlays = [];
+                  function clearOverlays() {
+                    if (resultsOverlays) {
+                      $.each(resultsOverlays, function(index, value) {
+                        value.overlay.setMap(null);
+                      });
+                    }
+                  }
+                  function clearOverlay(id) {
+                    if (resultsOverlays) {
+                      $.each(resultsOverlays, function(index, value) {
+                        if (value.id == id) {
+                          value.overlay.setMap(null);
+                          value.overlay = null;
+                          resultsOverlays.splice(index, 1);
+                        }
+                      });
+                    }
+                  }
 
-              .field.group
-                = f.label :language, :class => 'label'
-                = f.text_field :language, :class => 'text_field'
+                  function preprocess_results(results) {return results; };
 
-              .group.navform.wat-cf
-                = content_tag :button, :type => :submit, :class => 'button' do
-                  = image_tag "icons/tick.png"
-                  =t(:save)
-                %a.button{:href => settings_path}
-                  = image_tag "icons/cross.png", :alt => "Cancel"
-                  =t(:cancel)
+                  function updateMap(item){
+                    $.getJSON('/locations/'+item.id+'.json', function(geojson) {
+                      var l = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
+                      l.setMap(map);
+                      resultsOverlays.push({"id": item.id, "overlay": l});
+                      var bounds = l.getBounds();
+                      map.panToBounds(bounds);
+                      map.fitBounds(bounds);
+                    });
+                    return false;
+                  }
+
+                  $(document).ready(function () {
+                    $("#settings_location_id").tokenInput("/search/locations?change_settings=true",{
+                      onAdd: updateMap,
+                      tokenLimit: 2,
+                      minChars: 3,
+                      onResult: preprocess_results,
+                      onDelete: function(item){clearOverlay(item.id)},
+                      prePopulate: $('#settings_location_id').data("pre")});
+
+                      updateMap({"id":"#{@settings.location.id rescue 0}"});
+                    });
+
+
+            .column.right
+              #map
+                #map_canvas      
+              .actions-bar.wat-cf
+                .actions
+                  .group.navform.wat-cf
+                    = content_tag :button, :type => :submit, :class => 'button' do
+                      = image_tag "icons/tick.png"
+                      =t(:save)
+                    %a.button{:href => settings_path}
+                      = image_tag "icons/cross.png", :alt => "Cancel"
+                      =t(:cancel)

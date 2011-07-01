@@ -15,6 +15,7 @@ class Article < ActiveRecord::Base
   def publish(date=nil)
     date ||= Time.now
     update_attribute :published_at, date
+    update_attribute :published, true
   end
 
   def draft
@@ -29,5 +30,6 @@ class Article < ActiveRecord::Base
 
   def unpublish!
     update_attribute :published_at, nil
+    update_attribute :published, false
   end
 end

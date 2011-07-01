@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+
+  before_filter :authorize
+
   # GET /articles
   # GET /articles.xml
   def index
@@ -29,7 +32,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = current_user.articles.build(:project_id => params[:project_id])
-    @project = Project.find(params[:project_id])
+    @project = Project.find(@article.project_id)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,15 +44,17 @@ class ArticlesController < ApplicationController
   def edit
     @article = current_user.articles.find(params[:id])
     @project = @article.project
+
+    authorize! :edit, @article
   end
 
   # POST /articles
   # POST /articles.xml
   def create
     params[:article][:published] = true if params[:article][:published]
-
+    authorize! :create, Article
     @article = current_user.articles.build(params[:article])
-    # @article.project = Project.find(params[:article][:project_id])
+    @project = Project.find(@article.project_id)
 
     respond_to do |format|
       if @article.save
@@ -66,9 +71,10 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.xml
   def update
     @article = current_user.articles.find(params[:id])
+    @project = @article.project
 
     params[:article][:published] = true if params[:article][:published]
-
+    unauthorze! unless @article
     respond_to do |format|
       if @article.update_attributes(params[:article])
         format.html { redirect_to(@article, :notice => 'Article was successfully updated.') }
@@ -109,4 +115,10 @@ class ArticlesController < ApplicationController
       end
     end
   end
+
+  def authorize
+    unauthorized! unless current_user
+  end
+  private :authorize
+
 end

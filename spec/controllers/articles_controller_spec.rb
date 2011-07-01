@@ -13,7 +13,8 @@ describe ArticlesController do
 
   def valid_attributes
     { :published_at => 2.days.from_now,
-      :content => @article.content }
+      :content => @article.content,
+      :project_id => @article.project_id }
   end
 
   describe "GET index" do
@@ -44,7 +45,7 @@ describe ArticlesController do
 
   describe "GET new" do
     it "assigns a new article as @article" do
-      get :new
+      get :new, :project_id => @article.project_id
       assigns(:article).should be_a_new(Article)
     end
   end
@@ -80,14 +81,14 @@ describe ArticlesController do
       it "assigns a newly created but unsaved article as @article" do
         # Trigger the behavior that occurs when invalid params are submitted
         Article.any_instance.stub(:save).and_return(false)
-        post :create, :article => {}
+        post :create, :article => {:project_id => @article.project_id}
         assigns(:article).should be_a_new(Article)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Article.any_instance.stub(:save).and_return(false)
-        post :create, :article => {}
+        post :create, :article => {:project_id => @article.project_id}
         response.should render_template("new")
       end
     end
@@ -95,8 +96,8 @@ describe ArticlesController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested article" do
-          Article.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-          put :update, :id => @article.id, :article => {'these' => 'params'}
+          put :update, :id => @article.id, :article => {:content => 'new content'}
+          Article.find(@article.id).content.should == "new content"
         end
 
         it "assigns the requested article as @article" do
@@ -110,9 +111,7 @@ describe ArticlesController do
         end
 
         it "saves draft" do
-          params = valid_attributes.merge(:draft => true)
-
-          put :update, :id => @article.id, :article => params
+          put :update, :id => @article.id, :article => valid_attributes
           response.should redirect_to(@article)
           @article.should be_a_draft
         end

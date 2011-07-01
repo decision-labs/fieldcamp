@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :staging_authentication
   before_filter :set_locale, :prepare_for_mobile
-  before_filter :authenticate_user!, :except => ['public']
+  before_filter :authenticate_user!
   before_filter :set_location_scope
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -19,10 +19,6 @@ class ApplicationController < ActionController::Base
   def default_url_options(options={})
     # logger.debug "default_url_options is passed options: #{options.inspect}\n"
     { :locale => I18n.locale }
-  end
-
-  def public
-    render :template => 'public'
   end
 
   private

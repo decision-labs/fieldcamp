@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.xml
   def new
     @article = current_user.articles.build(:project_id => params[:project_id])
+    @project = Project.find(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,12 +40,14 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = current_user.articles.find(params[:id])
+    @project = @article.project
   end
 
   # POST /articles
   # POST /articles.xml
   def create
     @article = current_user.articles.build(params[:article])
+    # @article.project = Project.find(params[:article][:project_id])
 
     respond_to do |format|
       if @article.save
@@ -87,5 +90,19 @@ class ArticlesController < ApplicationController
 
   def projects
     @projects = Project.order('created_at desc').page(params[:page]).per(5)
+  end
+
+  def unpublish
+    @article = current_user.articles.find(params[:id])
+
+    respond_to do |format|
+      if @article.unpublish!
+        format.html { redirect_to(@article, :notice => 'Article was successfully unpublished.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @article.errors, :status => :unprocessable_entity }
+      end
+    end
   end
 end

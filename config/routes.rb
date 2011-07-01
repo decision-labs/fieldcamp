@@ -30,6 +30,7 @@ Caritas::Application.routes.draw do
 
     resources :articles do
       get 'projects', :on => :collection
+      put 'unpublish', :on => :member
     end
 
     resources :locations

@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
 
-  attr_accessible :title, :content, :published_at
+  attr_accessible :title, :content, :published_at, :draft
 
   belongs_to :author, :class_name => "User"
   belongs_to :project
@@ -17,8 +17,17 @@ class Article < ActiveRecord::Base
     update_attribute :published_at, date
   end
 
+  def draft
+    !published?
+  end
+
+  alias_method :draft?, :draft
+
   def content_html
     RDiscount.new(self.content).to_html.html_safe
   end
 
+  def unpublish!
+    update_attribute :published_at, nil
+  end
 end

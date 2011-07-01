@@ -108,6 +108,15 @@ describe ArticlesController do
           put :update, :id => @article.id, :article => valid_attributes
           response.should redirect_to(@article)
         end
+
+        it "saves draft" do
+          params = valid_attributes.merge(:draft => true)
+
+          put :update, :id => @article.id, :article => params
+          response.should redirect_to(@article)
+          @article.should be_a_draft
+        end
+
       end
 
       describe "with invalid params" do
@@ -137,6 +146,18 @@ describe ArticlesController do
       it "redirects to the articles list" do
         delete :destroy, :id => @article.id.to_s
         response.should redirect_to(articles_url)
+      end
+    end
+
+    describe "PUT unpublish" do
+      it "unpublishes an article" do
+        @article.publish
+        @article.should be_published
+        put :unpublish, :id => @article.id.to_s
+
+        @article.reload
+        @article.should_not be_published
+        @article.should be_a_draft
       end
     end
   end

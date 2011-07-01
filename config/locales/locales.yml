@@ -75,6 +75,8 @@ en:
   projects_found: projects found
   no_results_found: no results found
   n_results_found: "%{n} results found"
+  publish: publish
+  save_draft: save draft
 
 de:
   hello_world: Hallo Welt

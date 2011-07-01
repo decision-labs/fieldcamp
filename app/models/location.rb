@@ -10,6 +10,8 @@ class Location < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 5
 
+  scope :world, where(:name => 'World')
+
   # def self.user_location_scoped(location_ids)
   #   scope :all, where(:id => location_ids)
   # end
@@ -25,7 +27,7 @@ class Location < ActiveRecord::Base
 
   def self.search(params)
     query_str = params[:q]
-    user_location_id = params[:user_location_id].to_i
+    user_location_id = params[:user_location_id]
 
     parent_result = Location.find_by_sql(
       "SELECT id, parent_id FROM locations

@@ -46,6 +46,8 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.xml
   def create
+    params[:article][:published] = true if params[:article][:published]
+
     @article = current_user.articles.build(params[:article])
     # @article.project = Project.find(params[:article][:project_id])
 
@@ -64,6 +66,8 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.xml
   def update
     @article = current_user.articles.find(params[:id])
+
+    params[:article][:published] = true if params[:article][:published]
 
     respond_to do |format|
       if @article.update_attributes(params[:article])

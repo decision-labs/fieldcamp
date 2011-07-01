@@ -38,7 +38,7 @@
           = link_to t("cancel"), (@article.persisted? ? @article : articles_path), :class => "fancy-button"
         = f.submit t("save"), :class => "fancy-button"
         -if @article.draft?
-          = f.submit t("publish"), :name => "article[publish]", :class => "fancy-button"
+          = f.submit t("publish"), :name => "article[published]", :class => "fancy-button"
 
 :javascript
   setup_wmd({

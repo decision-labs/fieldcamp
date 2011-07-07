@@ -1,0 +1,12 @@
+.field.group
+  %label.label Old Images:
+  =f.fields_for :images do |image_fields|
+    -unless image_fields.object.new_record?
+      .field.group{:id => "image_#{image_fields.object.id}"}
+        =image_tag image_fields.object.asset_url(:thumb).to_s, :alt =>image_fields.object.title
+        =link_to 'Delete', image_path(image_fields.object), :method => :delete, :remote => true, :confirm => 'Are you sure?', :class => 'button', :id => "delete_image_#{image_fields.object.id}"
+        :javascript
+           $("#delete_image_#{image_fields.object.id}").bind('ajax:success', function() {
+             $(this).parent().fadeOut();
+             $("input:regex(id,event_images_attributes_([0-9]+)_id)[value=#{image_fields.object.id}]").remove();
+           });

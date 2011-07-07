@@ -89,7 +89,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to(project_url(@project), :notice => 'Event was successfully updated.') }
+        format.html { redirect_to(project_url(@project, :anchor => "event_#{@event.id}"), :notice => 'Event was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end

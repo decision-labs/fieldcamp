@@ -1,4 +1,4 @@
-%li
+%li.event{:id => "event_#{event.id}" }
   .item
     %h3.title
       = event.title
@@ -14,4 +14,8 @@
       = event.address
 
     %p.event-description= raw(RDiscount.new(event.description).to_html) rescue nil
-    %strong.gray.right.time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:long)
+    -event.images.each do |image|
+      =image_tag image.asset_url(:thumb).to_s, :alt =>image.title
+
+    %p
+      %strong.gray.right.time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:long)

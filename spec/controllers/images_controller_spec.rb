@@ -134,9 +134,11 @@ describe ImagesController do
     end
 
     it "redirects to the images list" do
-      image = Image.create! valid_attributes
+      event = Event.make(:project_id => Project.make.id)
+      puts valid_attributes.merge(:event_id => event.id)
+      image = Image.create! valid_attributes.merge(:event_id => event.id)
       delete :destroy, :id => image.id.to_s
-      response.should redirect_to(images_url)
+      response.should redirect_to(project)
     end
   end
 end

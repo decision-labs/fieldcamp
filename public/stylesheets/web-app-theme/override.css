@@ -1,5 +1,9 @@
 /* Override here any style defined by web-app-theme */
-#main{ width: 960px }
+#container {
+  min-width: 1250px;
+}
+
+/*#main{ width: 960px }*/
 .inner .columns .column {
   width: 48%;
 }
@@ -141,9 +145,10 @@ li.wmd-button.wmd-code-button{
   margin-left: 15px;
 }
 
-#description-button-bar, #content-button-bar li{
-  margin-left: 0px;
-}
+#description-button-bar, #content-button-bar li{ margin-left: 0px; }
+ul.wmd-button-row{ margin: 8px; }
+li.wmd-button{ margin: 4px; }
+li.wmd-spacer{ margin: 4px; }
 
 .child_locations span.location{
   padding-left: 10px;
@@ -247,3 +252,9 @@ div.field_with_errors label {
   width: 240px;
   float: right;
 }
+
+.event{
+  background-color: #DDD;
+}
+
+%span.right { text-align: right;}

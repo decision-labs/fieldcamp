@@ -14,9 +14,10 @@
     .sectors
       %strong=t('Sectors')
       =project.sectors.map(&:name).join(', ')
-    .date
-      %strong=t('created_at')
-      =project.created_at.to_s(:long)
-    .date
-      %strong=t('updated_at')
-      =project.updated_at.to_s(:long) 
+    .dates
+      .date
+        %strong=t('created_at')
+        =project.created_at.to_s(:long)
+      .date
+        %strong=t('updated_at')
+        =project.updated_at.to_s(:long)

@@ -9,17 +9,17 @@
         #paginator
           = paginate @events, :remote => true
         .clear
-        #left
-          / recent events
-          %h3=t('events_since_login')
-          #events
-            =render :partial => "event", :collection => @events
+        %form
+          .columns.wat-cf
+            .column.left
+              / recent events
+              %h3=t('events_since_login')
+              #events
+                =render :partial => "event", :collection => @events
 
-        #right
-          / recent projects
-          %h3=t('projects_changed_since_login')
-          - if @projects.blank?
-            #empty=t('none') 
-          -else
-            #projects
-              =render :partial => "project", :collection => @projects
+            .column.right
+              / recent projects
+              %h3=t('projects_changed_since_login')
+              - unless @projects.blank?
+                #projects
+                  =render :partial => "project", :collection => @projects

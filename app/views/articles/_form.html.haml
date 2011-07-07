@@ -1,7 +1,7 @@
 -content_for :head do
   = stylesheet_link_tag 'wmd/wmd.css'
   = javascript_include_tag 'vendor/wmd/wmd.combined.min'
-  = stylesheet_link_tag 'compiled/articles', :cache => true
+  = stylesheet_link_tag 'compiled/articles'
 
 = form_for @article do |f|
   -if @article.errors.any?

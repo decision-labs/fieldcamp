@@ -8,39 +8,44 @@
 @import "compass/utilities";
 
 .dashboard {
-    @include container;
+    /*@include container;*/
     a {
       @include unstyled-link; 
       @include link-colors(#006, #0cc, #c0c, #888, #cc0); }
 
     #content {
-        @include column(24);
-        #left { @include column(11); }
+        /*@include column(24);*/
+        width: 100%;
+        #left { /*@include column(11);*/ }
         #right {
           border-left: 1px solid #eee;
           padding-left: 20px;
-          @include column(11, true); }}
+          /*@include column(11, true);*/ }}
 
+    #left { width: 45%; }
+    #right { width: 45%; }
     #event {
       @include background-image(linear-gradient(#eee, #eee));
       @include border-radius(5px);
       padding: 4px;
       margin: 20px 0px;
-      .description{ @include column(9); }
-      .age { @include timestamp; }}
+      .description{ /*@include column(9);*/ }
+      .age { @include timestamp; float:right; }}
 
     #project {
       @include background-image(linear-gradient(#eee, #eee));
       @include border-radius(5px);
       padding: 4px;
       margin: 20px 0px;
-      .date{ @include timestamp; }}
+      .dates{ margin-top:4px; }
+      .date{
+        @include timestamp; }}
 
     #section_footer {
-      @include column(22);
+      /*@include column(22);*/
       padding: 4px;
       margin: 20px 0px;
-      a { @include link-colors(#006, #0cc, #c0c, #888, #cc0); } 
+      a { @include link-colors(#006, #0cc, #c0c, #888, #cc0); }
       .action { font-weight: bold; }}
 
     .right{ float:right }

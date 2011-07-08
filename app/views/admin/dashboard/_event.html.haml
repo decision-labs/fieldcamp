@@ -1,4 +1,4 @@
-%a{:href => project_event_path(event.project_id, event) }
+%a{:href => project_path(event.project_id, :anchor => "event_#{event.id}") }
   #event
     %span.description
       =event.title

@@ -249,8 +249,7 @@ div.field_with_errors label {
 }
 
 #sidebar {
-  width: 240px;
-  float: right;
+  #stats{ }
 }
 
 .event{

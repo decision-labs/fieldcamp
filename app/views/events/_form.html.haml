@@ -64,3 +64,19 @@
       preview: "event_description-preview"
       // output: "copy_html"
   });
+
+-content_for :sidebar do
+  .block.notice
+    %h4=t('project_information')
+    %p
+      %strong=t('title')
+      =@project.title
+    %p
+      %strong=t('location')
+      =@project.location.name
+    %p
+      %strong=t('sectors')
+      =@project.sectors.map(&:name).join(', ')
+    %p
+      %strong=t('partners')
+      =@project.partners.map(&:name).join(', ')

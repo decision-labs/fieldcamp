@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.9'
+# gem 'rake', '0.8.7'
 gem 'pg'
 gem 'haml'
 gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'
@@ -27,6 +28,7 @@ group :test, :development do
   gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
+  gem "gherkin", "~> 2.4.1"
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'capybara'
@@ -52,4 +54,8 @@ group :development do
   gem "hirb"
   gem "awesome_print"
   gem 'capistrano'
+end
+
+group :test do
+  gem "shoulda"
 end

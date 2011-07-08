@@ -51,6 +51,10 @@
     .column.right
       #map
         #map_canvas
+      %br
+      .field.group
+        = f.label :sector_tokens, t('sectors'), :class => 'label'
+        = f.text_field :sector_tokens, :class => 'text_field', "data-pre" => @event.sectors.map(&:attributes).to_json
 
   .group.navform.wat-cf
     = content_tag :button, :type => :submit, :class => 'button' do
@@ -58,13 +62,17 @@
       =t(:save)
 
 :javascript
-  setup_wmd({
-      input: "event_description",
-      button_bar: "description-button-bar",
-      preview: "event_description-preview"
-      // output: "copy_html"
+  $(document).ready(function () {
+    setup_wmd({
+        input: "event_description",
+        button_bar: "description-button-bar",
+        preview: "event_description-preview"
+        // output: "copy_html"
+    });
+    $('#event_sector_tokens').tokenInput('/search/sectors',{
+      minChars: 3, hintText: "Type in a sector name", prePopulate: $('#event_sector_tokens').data('pre')
+    })
   });
-
 -content_for :sidebar do
   .block.notice
     %h4=t('project_information')

@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_one :location, :through => :project
   has_many :images, :dependent => :destroy
+  has_and_belongs_to_many :partners
+  has_and_belongs_to_many :sectors
 
   accepts_nested_attributes_for :images, :allow_destroy => true,  :reject_if => :all_blank
 
@@ -10,6 +12,13 @@ class Event < ActiveRecord::Base
   validates_with EventAddressValidator
 
   scope :desc, order("events.updated_at DESC")
+
+  attr_accessible :sector_tokens
+  attr_reader :sector_tokens
+
+  def sector_tokens=(ids)
+    self.sector_ids = ids.split(',')
+  end
 
   def as_feature_hash
     props = attributes

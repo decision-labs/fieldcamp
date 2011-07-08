@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     @project = Project.find(params[:project_id])
     wkt = params[:event].delete(:geom)
     @event = @project.events.build(params[:event])
-    @event.geom = Point.from_ewkt(wkt) rescue nil
+    @event.geom = Point.from_ewkt(wkt) rescue nil # TODO: move to virtual attribute
     @event.user = current_user
     authorize! :create, @event
 

@@ -55,6 +55,10 @@
       .field.group
         = f.label :sector_tokens, t('sectors'), :class => 'label'
         = f.text_field :sector_tokens, :class => 'text_field', "data-pre" => @event.sectors.map(&:attributes).to_json
+      %br
+      .field.group
+        = f.label :partner_tokens, t('partners'), :class => 'label'
+        = f.text_field :partner_tokens, :class => 'text_field', "data-pre" => @event.partners.map(&:attributes).to_json
 
   .group.navform.wat-cf
     = content_tag :button, :type => :submit, :class => 'button' do
@@ -71,6 +75,9 @@
     });
     $('#event_sector_tokens').tokenInput('/search/sectors',{
       minChars: 3, hintText: "Type in a sector name", prePopulate: $('#event_sector_tokens').data('pre')
+    })
+    $('#event_partner_tokens').tokenInput('/search/partners',{
+      minChars: 2, hintText: "Type in a partner name", prePopulate: $('#event_partner_tokens').data('pre')
     })
   });
 -content_for :sidebar do

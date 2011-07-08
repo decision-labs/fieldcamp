@@ -22,6 +22,28 @@ describe EventsController do
     @mock_publisher_user ||= mock_model(User, stubs.merge(:role => 'publisher'))
   end
 
+  def mock_settings(stubs={})
+    @mock_settings ||= mock_model(Settings, stubs.merge(:location => stubs[:location] || mock_location) )
+  end
+
+  def mock_location(stubs={})
+    @mock_location ||= mock_model(Location, stubs.merge(:world? => stubs[:world?] || true))
+  end
+
+  def valid_params
+    {
+      :project_id => "1",
+      :event => {
+        :title => "Testing Event from Berlin",
+        :description => "Donec sed odio dui. Fusce dapibus.",
+        :geom => "POINT(68.36646999999994 25.38019 0)",
+        :address => "Hyderabad, Pakistan",
+        :sector_tokens => "1,2",
+        :partner_tokens => "2,1"
+      }
+    }
+  end
+
   describe "publisher user" do
     before(:each) do
       # sign_in mock_user
@@ -77,8 +99,28 @@ describe EventsController do
     end
 
     describe "POST create" do
+      before(:each) do
+        # sign_in mock_user
+        request.env['warden'] = mock( Warden,
+                                      :authenticate  => mock_admin_user(:settings => mock_settings),
+                                      :authenticate! => mock_admin_user(:settings => mock_settings))
+      end
+
       describe "with valid params" do
-        it "assigns a newly created event as @event"
+        it "assigns a newly created event as @event" do
+          geom = Point.from_ewkt(valid_params[:event][:geom])
+          Project.stub(:find).with("1") { mock_project }
+          mock_event.stub(:geom=).with(geom){ geom }
+          mock_event.stub(:user=).with(mock_admin_user){ mock_admin_user }
+          mock_project.stub_chain(:events, :build){ mock_event.as_new_record }
+          mock_event.stub(:save).and_return(true)
+          mock_event.stub(:as_feature_hash)
+
+          post :create, valid_params
+          assigns(:event).should be_a(Event)
+          response.should be_redirect
+        end
+
         it "redirects to the project of the created event"
       end
     end

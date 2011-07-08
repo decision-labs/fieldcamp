@@ -13,11 +13,15 @@ class Event < ActiveRecord::Base
 
   scope :desc, order("events.updated_at DESC")
 
-  attr_accessible :sector_tokens
-  attr_reader :sector_tokens
+  attr_accessible :sector_tokens, :partner_tokens, :title, :description, :address, :project_id
+  attr_reader :sector_tokens, :partner_tokens
 
   def sector_tokens=(ids)
     self.sector_ids = ids.split(',')
+  end
+
+  def partner_tokens=(ids)
+    self.partner_ids = ids.split(',')
   end
 
   def as_feature_hash

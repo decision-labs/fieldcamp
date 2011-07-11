@@ -21,7 +21,7 @@ class SearchController < ApplicationController
   def sectors
     unless params[:q].blank?
       q = params[:q]
-      results = Sector.find_by_sql "SELECT * FROM sectors WHERE (LOWER(name) LIKE \'%#{q.downcase}%\')"
+      results = Sector.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
       render :json => results.map(&:attributes)
     else
       render :json => {}
@@ -31,7 +31,7 @@ class SearchController < ApplicationController
   def partners
     unless params[:q].blank?
       q = params[:q]
-      results = Partner.find_by_sql "SELECT * FROM partners WHERE (LOWER(name) LIKE \'%#{q.downcase}%\')"
+      results = Partner.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
       render :json => results.map(&:attributes)
     else
       render :json => {}

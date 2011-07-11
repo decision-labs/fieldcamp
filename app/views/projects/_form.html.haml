@@ -30,10 +30,10 @@
     .column.right
       .field.group
         = f.label :start_date, :class => 'label'
-        = f.date_select :start_date, :class => 'date_select'
+        = f.text_field :start_date, :class => 'text_field'
       .field.group
         = f.label :end_date, :class => 'label'
-        = f.date_select :end_date, :class => 'date_select'
+        = f.text_field :end_date, :class => 'text_field'
       .field.group
         = f.label :partners, :class => 'label'
         = select_tag 'project[partner_ids][]',
@@ -80,4 +80,7 @@
         noneSelectedText: 'Select sectors',
         header: 'Select sectors from list:'
      }).multiselectfilter({placeholder: "enter sector" });
+
+     $("#project_start_date").datepicker({ dateFormat: 'yy-mm-dd', changeYear: true });
+     $("#project_end_date").datepicker({ dateFormat: 'yy-mm-dd', changeYear: true });
   });

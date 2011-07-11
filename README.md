@@ -79,3 +79,5 @@ rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.s
 3) [Optional] Remove password_salt in a new recent migration. Bcrypt does not require it anymore.
 
 * In index page add some useful summary info e.g location of project, number of events, last updated (how many days ago)
+
+* FIXME: somehow there are multiple jquery-ui in the project!

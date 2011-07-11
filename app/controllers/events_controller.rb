@@ -35,7 +35,7 @@ class EventsController < ApplicationController
     authorize! :new, Event
     @project = Project.find(params[:project_id])
     @event = Event.new
-    3.times { @event.images.build }
+    # 3.times { @event.images.build }
 
     respond_to do |format|
       format.html
@@ -47,7 +47,7 @@ class EventsController < ApplicationController
   def edit
     @project = Project.find(params[:project_id])
     @event = @project.events.find(params[:id])
-    3.times { @event.images.build }
+    # 3.times { @event.images.build }
     authorize! :edit, @event
   end
 
@@ -63,7 +63,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         Caritas::WebSocket.queue_for_broadcast(@event.as_feature_hash)
-        format.html { redirect_to(@project, :notice => 'Event was successfully created.') }
+        format.html { redirect_to(project_url(@project, :anchor => "event_#{@event.id}"), :notice => 'Event was successfully created.') }
         format.mobile { redirect_to(@project) }
       else
         format.html { render :action => "new", :error => 'Please ensure the location has been geo-coded before saving.' }
@@ -86,6 +86,9 @@ class EventsController < ApplicationController
     # rescue GeoRuby::SimpleFeatures::EWKTFormatError
     #   @event.geom = Point.from_ewkb(wkt)
     # end
+
+    params[:event][:partner_ids] ||= []
+    params[:event][:sector_ids] ||= []
 
     respond_to do |format|
       if @event.update_attributes(params[:event])

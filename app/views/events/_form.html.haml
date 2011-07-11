@@ -1,7 +1,8 @@
 -content_for :head do
   = stylesheet_link_tag 'wmd/wmd.css'
   = javascript_include_tag 'vendor/wmd/wmd.combined.min'
-
+  = stylesheet_link_tag 'flick/jquery-ui', 'jquery.multiselect', 'jquery.multiselect.filter'
+  = javascript_include_tag  'vendor/jquery-ui.min', 'vendor/jquery.multiselect', 'vendor/jquery.multiselect.filter'
 
 = form_for [@project, @event], :html => { :multipart => true }  do |f|
   -if @event.errors.any?
@@ -15,6 +16,7 @@
       .field.group
         = f.label :title, :class => 'label'
         = f.text_field :title, :class => 'text_field'
+
       .field.group
         = f.label :description, :class => 'label'
         #description-button-bar
@@ -23,6 +25,7 @@
         %label.label Preview
         #event_description-preview.markdown_preview
 
+      / address field geocoding
       .field.group
         = f.hidden_field :geom, :class => 'hidden_field', :value => @event.geom.try(:as_ewkt)
       .field.group
@@ -37,14 +40,10 @@
             %span.geocode_link=link_to t(:geocode_this_address), nil, :class => 'geocode_address button'
             / FIXME: OR needed
             =link_to t(:use_current_location), nil, :class => 'use_current_location button'
-        .field.group
-          %label.label New Images:
-          =f.fields_for :images do |image_fields|
-            -if image_fields.object.new_record?
-              .field.group
-                = image_fields.file_field :asset, :class => 'file_field'
-                = image_fields.text_field :title, :class => 'text_field'
-                %span.description Image Caption
+
+        / images
+        #new_images_form
+          =render :partial => "form_blank_images", :locals => {:old_image_count => @event.images.count}
         #image_list
           =render :partial => "form_images", :locals => {:f => f}
 
@@ -54,11 +53,15 @@
       %br
       .field.group
         = f.label :sector_tokens, t('sectors'), :class => 'label'
-        = f.text_field :sector_tokens, :class => 'text_field', "data-pre" => @event.sectors.map(&:attributes).to_json
+        = select_tag 'event[sector_ids][]',
+          options_from_collection_for_select(Sector.all, "id", "name", Proc.new{ |rec| @event.sectors.map(&:id).include?(rec.id) } ),
+          :multiple=>true, :class => 'multiselect jqui-multiselect'
       %br
       .field.group
         = f.label :partner_tokens, t('partners'), :class => 'label'
-        = f.text_field :partner_tokens, :class => 'text_field', "data-pre" => @event.partners.map(&:attributes).to_json
+        = select_tag 'event[partner_ids][]',
+          options_from_collection_for_select(Partner.all, "id", "name", Proc.new{ |rec| @event.partners.map(&:id).include?(rec.id) } ),
+          :multiple=>true, :class => 'multiselect jqui-multiselect'
 
   .group.navform.wat-cf
     = content_tag :button, :type => :submit, :class => 'button' do
@@ -73,13 +76,19 @@
         preview: "event_description-preview"
         // output: "copy_html"
     });
-    $('#event_sector_tokens').tokenInput('/search/sectors',{
-      minChars: 3, hintText: "Type in a sector name", prePopulate: $('#event_sector_tokens').data('pre')
-    })
-    $('#event_partner_tokens').tokenInput('/search/partners',{
-      minChars: 2, hintText: "Type in a partner name", prePopulate: $('#event_partner_tokens').data('pre')
-    })
+
+    $("#event_partner_ids_").multiselect({
+       noneSelectedText: 'Select partner organisations',
+       header: 'Select partners from list:'
+    }).multiselectfilter({placeholder: "enter partner" });
+
+    $("#event_sector_ids_").multiselect({
+       noneSelectedText: 'Select sectors',
+       header: 'Select sectors from list:'
+    }).multiselectfilter({placeholder: "enter sector" });
+
   });
+
 -content_for :sidebar do
   .block.notice
     %h4=t('project_information')

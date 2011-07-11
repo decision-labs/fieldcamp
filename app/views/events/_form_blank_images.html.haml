@@ -1,0 +1,14 @@
+.field.group
+  %label.label New Images:
+  .field.group
+    %input#event_images_attributes_0_asset.file_field{:name => "event[images_attributes][#{old_image_count}][asset]",:type => "file"}
+      %input#event_images_attributes_0_title.text_field{:name => "event[images_attributes][#{old_image_count}][title]", :size => "30", :type => "text"}
+        %span.description Image Caption
+  .field.group
+    %input#event_images_attributes_1_asset.file_field{:name => "event[images_attributes][#{old_image_count+1}][asset]", :type => "file"}
+      %input#event_images_attributes_1_title.text_field{:name => "event[images_attributes][#{old_image_count+1}][title]", :size => "30", :type => "text"}
+        %span.description Image Caption
+  .field.group
+    %input#event_images_attributes_2_asset.file_field{:name => "event[images_attributes][#{old_image_count+2}][asset]", :type => "file"}
+      %input#event_images_attributes_2_title.text_field{:name => "event[images_attributes][#{old_image_count+2}][title]", :size => "30", :type => "text"}
+        %span.description Image Caption

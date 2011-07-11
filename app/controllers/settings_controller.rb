@@ -14,18 +14,19 @@ class SettingsController < ApplicationController
   end
 
   def edit
-    @locations ||= Location.all(:order => 'created_at asc', :select => ["id","admin_level", "name"])
-    if @settings.location.blank?
-      @pre_populate_location =  []
-    else 
-      @pre_populate_location = {:id => @settings.location.id, :name => @settings.location.name}
-    end
-
+    # FIXME: Bad smell - part of this logic is in applications_controller
     if current_user.settings.nil?
       @settings = Settings.new(:user_id => current_user.id)
       @settings.save
     else
       @settings = current_user.settings
+    end
+
+    @locations ||= Location.all(:order => 'created_at asc', :select => ["id", "admin_level", "name"]) # TODO: update syntax
+    if @settings.location.blank?
+      @pre_populate_location =  []
+    else
+      @pre_populate_location = [{:id => @settings.location_id, :name => @settings.location.name}]
     end
   end
 

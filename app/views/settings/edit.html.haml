@@ -30,57 +30,7 @@
                 = f.label :locations, :class => 'label'
                 = f.text_field :location_id,
                   "data-pre" => @pre_populate_location.to_json
-                :javascript
-                  var resultsOverlays = [];
-                  function clearOverlays() {
-                    if (resultsOverlays) {
-                      $.each(resultsOverlays, function(index, value) {
-                        value.overlay.setMap(null);
-                      });
-                    }
-                  }
-                  function clearOverlay(id) {
-                    if (resultsOverlays) {
-                      $.each(resultsOverlays, function(index, value) {
-                        if (value.id == id) {
-                          value.overlay.setMap(null);
-                          value.overlay = null;
-                          resultsOverlays.splice(index, 1);
-                        }
-                      });
-                    }
-                  }
 
-                  function preprocess_results(results) {return results; };
-
-                  function updateMap(item){
-                    $.getJSON('/locations/'+item.id+'.json', function(geojson) {
-                      var l = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
-                      l.setMap(map);
-                      resultsOverlays.push({"id": item.id, "overlay": l});
-                      var bounds = l.getBounds();
-                      map.panToBounds(bounds);
-                      map.fitBounds(bounds);
-                    });
-                    return false;
-                  }
-
-                  $(document).ready(function () {
-                    $("#settings_location_id").tokenInput("/search/locations?change_settings=true",{
-                      onAdd: updateMap,
-                      tokenLimit: 2,
-                      minChars: 3,
-                      onResult: preprocess_results,
-                      onDelete: function(item){clearOverlay(item.id)},
-                      prePopulate: $('#settings_location_id').data("pre")});
-
-                      updateMap({"id":"#{@settings.location.id rescue 0}"});
-                    });
-
-
-            .column.right
-              #map
-                #map_canvas      
               .actions-bar.wat-cf
                 .actions
                   .group.navform.wat-cf
@@ -90,3 +40,56 @@
                     %a.button{:href => settings_path}
                       = image_tag "icons/cross.png", :alt => "Cancel"
                       =t(:cancel)
+
+
+            .column.right
+              #map
+                #map_canvas
+
+:javascript
+  var resultsOverlays = [];
+  function clearOverlays() {
+    if (resultsOverlays) {
+      $.each(resultsOverlays, function(index, value) {
+        value.overlay.setMap(null);
+      });
+    }
+  }
+
+  function clearOverlay(id) {
+    if (resultsOverlays) {
+      $.each(resultsOverlays, function(index, value) {
+        if (value.id == id) {
+          value.overlay.setMap(null);
+          value.overlay = null;
+          resultsOverlays.splice(index, 1);
+        }
+      });
+    }
+  }
+
+  function updateMap(item){
+    $.getJSON('/locations/'+item.id+'.json', function(geojson) {
+      var l = new GeoJSON(geojson, { strokeColor: "#444", strokeWeight:1, strokeOpacity: 0.75 });
+      l.setMap(map);
+      resultsOverlays.push({"id": item.id, "overlay": l});
+      var bounds = l.getBounds();
+      map.panToBounds(bounds);
+      map.fitBounds(bounds);
+    });
+    return false;
+  }
+
+  $(document).ready(function () {
+    $("#settings_location_id").tokenInput("/search/locations?change_settings=true",{
+      onAdd: updateMap,
+      tokenLimit: 1,
+      minChars: 3,
+      prePopulate: $('#settings_location_id').data('pre'),
+      onDelete: function(item){clearOverlay(item.id)}
+    });
+
+    updateMap({
+      "id":"#{@settings.location.id rescue 0}"
+    });
+  });

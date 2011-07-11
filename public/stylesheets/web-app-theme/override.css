@@ -257,3 +257,5 @@ div.field_with_errors label {
 }
 
 %span.right { text-align: right;}
+
+.jqui-multiselect { width: 410px }

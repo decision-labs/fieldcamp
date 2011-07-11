@@ -28,7 +28,7 @@ class ProjectsController < ApplicationController
 
   def show
     if current_user
-      #FIXME: Dry this branching
+      #FIXME: Dry this branching, also in view we iterate over all projects again to find events.
       unless @current_user_location_ids.blank?
         @project = Project.find(params[:id], :include => [:location, :events],
           :conditions => {'projects.location_id' => @current_user_location_ids})
@@ -86,6 +86,9 @@ class ProjectsController < ApplicationController
   def update
     authorize! :update, Project
     @project = Project.find(params[:id])
+
+    params[:project][:partner_ids] ||= []
+    params[:project][:sector_ids] ||= []
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

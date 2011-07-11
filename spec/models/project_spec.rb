@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Project do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:end_date) }
+  it { should validate_presence_of(:start_date) }
+  it { should validate_presence_of(:description) }
+  it { should validate_presence_of(:title) }
 end

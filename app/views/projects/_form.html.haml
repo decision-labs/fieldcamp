@@ -2,6 +2,8 @@
   = stylesheet_link_tag 'wmd/wmd.css'
   = javascript_include_tag 'vendor/wmd/wmd.combined.min'
 
+  = stylesheet_link_tag 'flick/jquery-ui', 'jquery.multiselect', 'jquery.multiselect.filter'
+  = javascript_include_tag  'vendor/jquery-ui.min', 'vendor/jquery.multiselect', 'vendor/jquery.multiselect.filter'
 
 = form_for @project do |f|
   -if @project.errors.any?
@@ -23,8 +25,8 @@
         %label.label Preview
         #project_description-preview.markdown_preview
       .field.group
-        = f.label :location, :class => 'label'
-        = f.select :location_id, @locations.collect {|p| [ p.name, p.id ] }, :class => 'select'
+        = f.label :location, t('location'), :class => 'label'
+        = f.text_field :location_id, :class => 'text_field', "data-pre" => @project.location_token.to_json
     .column.right
       .field.group
         = f.label :start_date, :class => 'label'
@@ -34,10 +36,17 @@
         = f.date_select :end_date, :class => 'date_select'
       .field.group
         = f.label :partners, :class => 'label'
-        = select_tag 'project[partner_ids][]', options_from_collection_for_select(Partner.all, "id", "name"), :multiple=>true, :class => 'select_tag'
+        = select_tag 'project[partner_ids][]',
+          options_from_collection_for_select(Partner.all, "id", "name", Proc.new{ |rec| @project.partners.map(&:id).include?(rec.id) } ),
+          :multiple=>true, :class => 'multiselect jqui-multiselect'
+
+
       .field.group
         = f.label :sectors, :class => 'label'
-        = select_tag 'project[sector_ids][]', options_from_collection_for_select(Sector.all, "id", "name"), :multiple=>true, :class => 'select_tag'
+        = select_tag 'project[sector_ids][]',
+          options_from_collection_for_select(Sector.all, "id", "name", Proc.new{ |rec| @project.sectors.map(&:id).include?(rec.id) } ),
+          :multiple=>true, :class => 'multiselect jqui-multiselect'
+
 
   .group.navform.wat-cf
     = content_tag :button, :type => :submit, :class => 'button' do
@@ -46,9 +55,29 @@
     = link_to t(:back), projects_path, :class => 'button'
 
 :javascript
-  setup_wmd({
-      input: "project_description",
-      button_bar: "description-button-bar",
-      preview: "project_description-preview"
-      // output: "copy_html"
+  $(document).ready(function () {
+
+    setup_wmd({
+        input: "project_description",
+        button_bar: "description-button-bar",
+        preview: "project_description-preview"
+        // output: "copy_html"
+    });
+
+    $("#project_location_id").tokenInput("/search/locations", {
+        minChars: 3,
+        hintText: "Type in a location name",
+        tokenLimit: 1,
+        prePopulate: $('#project_location_id').data("pre")
+    });
+
+     $("#project_partner_ids_").multiselect({
+        noneSelectedText: 'Select partner organisations',
+        header: 'Select partners from list:'
+     }).multiselectfilter({placeholder: "enter partner" });
+
+     $("#project_sector_ids_").multiselect({
+        noneSelectedText: 'Select sectors',
+        header: 'Select sectors from list:'
+     }).multiselectfilter({placeholder: "enter sector" });
   });

@@ -4,12 +4,11 @@ class Project < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_many :articles, :dependent => :destroy
 
-  validate :title, :presence => true
-  validate :description, :presence => true
-  validate :start_date, :presence => true
-  validate :end_date, :presence => true
-  validate :location_id, :presence => true
-  validates_numericality_of :location_id, :message => "is not valid"
+  validates :title, :presence => true
+  validates :description, :presence => true
+  validates :start_date, :presence => true
+  validates :end_date, :presence => true
+  validates :location_id, :presence => true, :format => { :with => /[A-Za-z0-9]+/ }
 
   has_and_belongs_to_many :sectors
   has_and_belongs_to_many :partners

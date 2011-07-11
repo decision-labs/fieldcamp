@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   validates :description, :presence => true
   validates :start_date, :presence => true
   validates :end_date, :presence => true
-  validates :location_id, :presence => true, :format => { :with => /[A-Za-z0-9]+/ }
+  validates :location_id, :presence => true, :format => { :with => /[0-9]+/ }
 
   has_and_belongs_to_many :sectors
   has_and_belongs_to_many :partners

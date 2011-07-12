@@ -31,4 +31,8 @@ describe Location do
     it "should return world"
   end
 
+  describe '.countries' do
+    it "should return countries"
+  end
+
 end

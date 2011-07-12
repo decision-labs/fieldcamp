@@ -7,6 +7,8 @@ Project.blueprint do
   description { Faker::Lorem.paragraph }
   user
   location
+  start_date { Date.today }
+  end_date { Date.yesterday }
 end
 
 Location.blueprint do

@@ -1,3 +1,31 @@
+-content_for :head do
+
+  %script{:src => "https://www.google.com/jsapi", :type => "text/javascript"}
+
+  :javascript
+    google.load('visualization', '1', {'packages': ['geochart']});
+    google.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+      var countries = JSON.parse('#{@countries_attributes.to_json}')
+      var data = new google.visualization.DataTable();
+
+      data.addRows(countries.length);
+      data.addColumn('string', 'Country');
+      data.addColumn('number', 'Projects');
+
+      jQuery.each(countries, function(index, country) {
+        data.setValue(index, 0, country.name);
+        data.setValue(0, 1, country.total_projects);
+      });
+
+      var options = {};
+
+      var container = document.getElementById('map_canvas');
+      var geochart = new google.visualization.GeoChart(container);
+      geochart.draw(data, options);
+    };
+
 = stylesheet_link_tag 'compiled/dashboard.css', :media => 'screen, projection'
 
 = render :partial => "shared/nav"
@@ -6,6 +34,8 @@
   .dashboard
     #content.content
       .inner
+        #map_canvas{ :style => "margin: 0 auto; width:650px; height:390px;" }
+
         #paginator
           = paginate @events, :remote => true
         .clear

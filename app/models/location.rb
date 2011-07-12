@@ -8,17 +8,33 @@ class Location < ActiveRecord::Base
   acts_as_geom :geom => :multi_polygon
 
   cattr_reader :per_page
+
+  attr_reader :projects_count, :total_projects
+
   @@per_page = 5
 
-  scope :world, where(:name => 'World')
+  scope :world,     where(:admin_level => 0)
+  scope :countries, where(:admin_level => 1)
+  scope :provinces, where(:admin_level => 2)
 
   # def self.user_location_scoped(location_ids)
   #   scope :all, where(:id => location_ids)
   # end
+
   def child_projects
     # find projects with location.parent_id = self.id
     # join projects on location.parent_id = self.id
     Project.where("locations.parent_id = ? OR location_id = ?",self.id, self.id).joins(:location).includes(:events)
+  end
+
+  def total_projects(opts={})
+    count = 0
+    if opts[:include_children]
+      count = self.child_projects.count
+    else
+      count = self.projects.count
+    end
+    count
   end
 
   def world?

@@ -7,7 +7,7 @@
     google.setOnLoadCallback(drawRegionsMap);
 
     function drawRegionsMap() {
-      var countries = JSON.parse('#{@countries_attributes.to_json}')
+      var countries = JSON.parse('#{escape_javascript(@countries_attributes.to_json)}')
       var data = new google.visualization.DataTable();
 
       data.addRows(countries.length);

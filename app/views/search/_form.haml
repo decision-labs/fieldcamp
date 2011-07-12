@@ -1,0 +1,60 @@
+-content_for :head do
+  = stylesheet_link_tag 'flick/jquery-ui', 'ui.selectmenu'
+  = javascript_include_tag  'vendor/jquery-ui.selectmenu'
+
+  :javascript
+    $(document).ready(function () {
+
+      $("#search_location_ids").tokenInput("/search/locations",{
+        minChars: 3, hintText: "Type in a location name", deleteText: "", preventDuplicates: false,
+        prePopulate: $('#search_location_ids').data("location_pre"),
+        onDelete: function(item){removeUrlParams('search[location_ids]', item.id)}
+      });
+
+      $("#search_sector_ids").tokenInput("/search/sectors",{
+        minChars: 3, hintText: "Type in a sector name", deleteText: "", preventDuplicates: false,
+        prePopulate: $('#search_sector_ids').data("sector_pre"),
+        onDelete: function(item){removeUrlParams('search[sector_ids]', item.id)}
+      });
+
+      $("#search_partner_ids").tokenInput("/search/partners",{
+        minChars: 2, hintText: "Type in a partner name", deleteText: "", preventDuplicates: false,
+        prePopulate: $('#search_partner_ids').data("partner_pre"),
+        onDelete: function(item){removeUrlParams('search[partner_ids]', item.id)}
+      });
+      function removeUrlParams(key, value){} //TODO: allow removing tokens later
+
+      $("#selectsearch").change(function() {
+        var action = $(this).val() == "projects" ? "projects" : "events";
+        console.log(action);
+        $("#search-form").attr("action", "/#{I18n.locale}/search/" + action);
+      });
+
+      $('select#selectsearch').selectmenu({style:'dropdown', width: 220});
+
+    }); // on document ready
+
+= form_tag :search, :method => "get", :class => 'form', :id => "search-form" do
+  .field.group
+    %select#selectsearch.form-select{:name => "selectsearch"}
+      %option{:value => "projects"}="#{t('search_for_projects')} - (default)"
+      %option{:value => "events"}=t('search_for_events')
+  .field.group
+    = label_tag :locations, t(:locations), :class => 'label' 
+    = text_field_tag 'search[location_ids]', '', :class => 'text_field',
+        "data-location_pre" => search_object.tokens[:locations].to_json
+  .field.group
+    = label_tag :sectors, t(:sectors), :class => 'label'
+    = text_field_tag 'search[sector_ids]', '', :class => 'text_field',
+        "data-sector_pre" => search_object.tokens[:sectors].to_json
+  .field.group
+    = label_tag :partners, t(:partners), :class => 'label'
+    = text_field_tag 'search[partner_ids]', '', :class => 'text_field',
+        "data-partner_pre" => search_object.tokens[:partners].to_json
+  .group.navform.wat-cf
+    = content_tag :button, :type => :submit, :class => 'button', :id => 'search-button' do
+      = image_tag "icons/tick.png"
+      =t('search')
+    %a.button{:href => search_path}
+      = image_tag "icons/cross.png", :alt => "Cancel"
+      =t('clear_results')

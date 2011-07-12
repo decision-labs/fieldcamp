@@ -77,6 +77,10 @@ en:
   n_results_found: "%{n} results found"
   publish: publish
   save_draft: save draft
+  search_for_events: Search for Events
+  search_for_projects: Search for Projects
+  advance_projects_search: Advance Projects Search
+  advance_events_search: Advance Events Search
 
 de:
   hello_world: Hallo Welt

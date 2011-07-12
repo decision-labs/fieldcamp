@@ -10,6 +10,7 @@ Caritas::Application.routes.draw do
     match '/search/partners'  => 'search#partners',   :as => 'search_partners'
     match '/search/sectors'   => 'search#sectors',    :as => 'search_sectors'
     match '/search'           => 'search#projects',   :as => 'search'
+    match '/search/projects'  => 'search#projects',   :as => 'search_projects'
     match '/search/events'    => 'search#events',     :as => 'search_events'
     match '/admin/dashboard', :to => "admin/dashboard#index", :as => 'dashboard'
 

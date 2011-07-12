@@ -1,0 +1,16 @@
+%a{:href => project_event_path(event.project_id,event) }
+  #event
+    %h4= event.title
+    .description=event.description
+    %br
+    .address
+      %strong=t('address')
+      =event.address
+    %br
+    .partners
+      %strong=t('partners')
+      =event.partners.map(&:name).join(', ')
+    %br
+    .sectors
+      %strong=t('Sectors')
+      =event.sectors.map(&:name).join(', ')

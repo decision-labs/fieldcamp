@@ -49,4 +49,17 @@ class SearchController < ApplicationController
       end
     end
   end
+
+  def events
+    flash.delete(:notice)
+    @event_search = EventSearch.new(params)
+    unless @event_search.results.nil?
+      if @event_search.results.empty?
+        flash[:notice] = t('no_results_found') + " <a href='#{search_path}'>try another</a>"
+      elsif
+        flash[:notice] = "<a href='#{request.fullpath}'>" + t('n_results_found', :n => @event_search.results.size) + "</a>"
+      end
+    end
+  end
+
 end

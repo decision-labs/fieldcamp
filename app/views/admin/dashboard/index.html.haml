@@ -16,7 +16,7 @@
 
       jQuery.each(countries, function(index, country) {
         data.setValue(index, 0, country.name);
-        data.setValue(0, 1, country.total_projects);
+        data.setValue(index, 1, country.total_projects);
       });
 
       var options = {};

@@ -1,10 +1,22 @@
+= render :partial => "shared/nav"
+
+
 -content_for :head do
+  = stylesheet_link_tag 'compiled/dashboard.css', :media => 'screen, projection'
+  = stylesheet_link_tag 'flick/jquery-ui'
 
   %script{:src => "https://www.google.com/jsapi", :type => "text/javascript"}
 
   :javascript
-    google.load('visualization', '1', {'packages': ['geochart']});
-    google.setOnLoadCallback(drawRegionsMap);
+    function loadGoogleChartsContent() {
+      drawRegionsMap();
+      $(document).ready(function() {
+        $("#map_tabs").tabs();
+      });
+    }
+
+    google.load('visualization', '1.1', {'packages': ['geochart']});
+    google.setOnLoadCallback(loadGoogleChartsContent);
 
     function drawRegionsMap() {
       var countries = JSON.parse('#{escape_javascript(@countries_attributes.to_json)}')
@@ -19,22 +31,47 @@
         data.setValue(index, 1, country.total_projects);
       });
 
-      var options = {};
+      // var options = {};
+      var options = {width: 400, height: 300 }
 
-      var container = document.getElementById('map_canvas');
-      var geochart = new google.visualization.GeoChart(container);
-      geochart.draw(data, options);
-    };
+      regions = [
+                  {"name":"World",          "id":"world"},
+                  {"name":"Southern Asia",  "id":"034"},
+                  {"name":"Caribbean",      "id":"029"},
+                  {"name":"Africa",         "id":"002"},
+                  {"name":"Asia Pacific",   "id":"035"}
+                ]
 
-= stylesheet_link_tag 'compiled/dashboard.css', :media => 'screen, projection'
+      jQuery.each(regions, function(i, region) {
+        div_id = 'map_canvas_' + region.name.replace(/ /, '_')
 
-= render :partial => "shared/nav"
+        // tabs ul li
+        $("#map_tabs ul").append('<li><a href="#'+ div_id + '">' + region.name + '</a></li>')
+
+        // content div for map
+        var div = '<div id="'+div_id+'">'+region.name+'</div>';
+
+        var info_container = '<div style="width:480px; float:right;" id="'+div_id+'_info">'+region.name+'</div>';
+
+        console.log(info_container);
+
+        $('#map_tabs').append(div);
+
+        options = {width: 400, height: 300, region: region.id }
+        var container = document.getElementById(div_id);
+        var geochart = new google.visualization.GeoChart(container);
+        geochart.draw(data, options);
+        $("#"+div_id).append(info_container);
+      });
+    }; // drawRegionsMap
 
 .block-forms.block
   .dashboard
     #content.content
       .inner
-        #map_canvas{ :style => "margin: 0 auto; width:650px; height:390px;" }
+        %h2=t('regional_overview')
+        #map_tabs
+          %ul
 
         #paginator
           = paginate @events, :remote => true

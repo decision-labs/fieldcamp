@@ -81,6 +81,8 @@ en:
   search_for_projects: Search for Projects
   advance_projects_search: Advance Projects Search
   advance_events_search: Advance Events Search
+  advance_x_search: "Advance %{item} Search"
+  advance_search: Advance Search
 
 de:
   hello_world: Hallo Welt

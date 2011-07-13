@@ -1,9 +1,9 @@
 -content_for :head do
   = stylesheet_link_tag 'wmd/wmd.css'
-  = javascript_include_tag 'vendor/wmd/wmd.combined.min'
-
   = stylesheet_link_tag 'flick/jquery-ui', 'jquery.multiselect', 'jquery.multiselect.filter'
-  = javascript_include_tag  'vendor/jquery-ui.min', 'vendor/jquery.multiselect', 'vendor/jquery.multiselect.filter'
+
+  = javascript_include_tag 'vendor/wmd/wmd.combined.min'
+  = javascript_include_tag  'jquery-ui.min', 'vendor/jquery.multiselect', 'vendor/jquery.multiselect.filter'
 
 = form_for @project do |f|
   -if @project.errors.any?

@@ -36,6 +36,10 @@ rake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.s
 
 `bundle exec ruby ./script/websocket_server.rb`
 
+`infinity_test`
+
+`tail -f log/development.log`
+
 `rails s`
 
 # Testing:

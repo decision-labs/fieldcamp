@@ -103,6 +103,10 @@ GEM
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
     diff-lcs (1.1.2)
+    erb2haml (0.1.2)
+      haml
+      hpricot
+      ruby_parser
     erubis (2.6.6)
       abstract (>= 1.0.0)
     eventmachine (0.12.10)
@@ -148,6 +152,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    nested_form (0.1.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -270,6 +275,7 @@ DEPENDENCIES
   dbf
   devise
   em-websocket!
+  erb2haml
   faker
   geokit
   georuby!
@@ -284,6 +290,7 @@ DEPENDENCIES
   json
   kaminari
   machinist
+  nested_form
   pg
   postgis_adapter!
   rails (= 3.0.9)

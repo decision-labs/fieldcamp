@@ -23,8 +23,10 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
 gem 'squeel'
+gem 'nested_form'
 
 group :test, :development do
+  gem 'erb2haml' # only used when converting devise views to haml
   gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'

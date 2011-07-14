@@ -3,6 +3,6 @@ class Distribution < ActiveRecord::Base
   validates :item, :presence => true
   validates :quantity_of_items, :presence => true
   validates :quantity_of_items, :numericality => true
-  validates :number_of_recepiants, :numericality => true
+  validates :number_of_recipients, :numericality => true
   validates :event_id, :numericality => true
 end

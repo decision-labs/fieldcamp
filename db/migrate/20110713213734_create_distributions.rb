@@ -5,7 +5,7 @@ class CreateDistributions < ActiveRecord::Migration
       t.integer :quantity_of_items
       t.string :unit
       t.string :recipient
-      t.integer :number_of_recepiants
+      t.integer :number_of_recipients
       t.integer :event_id
 
       t.timestamps

@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(:version => 20110713213734) do
     t.column "quantity_of_items", :integer
     t.column "unit", :string
     t.column "recipient", :string
-    t.column "number_of_recepiants", :integer
+    t.column "number_of_recipients", :integer
     t.column "event_id", :integer
     t.column "created_at", :datetime
     t.column "updated_at", :datetime

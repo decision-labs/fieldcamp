@@ -259,3 +259,6 @@ div.field_with_errors label {
 %span.right { text-align: right;}
 
 .jqui-multiselect { width: 410px }
+
+a.button.add_nested_fields{ color:darkgreen }
+a.button.remove_nested_fields{ color:darkred }

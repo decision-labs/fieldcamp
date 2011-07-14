@@ -4,6 +4,15 @@
 en:
   # activerecord.errors.models.[model_name].attributes.[attribute_name]
   activerecord:
+    attributes:
+      distribution:
+        item: item
+        item_name: item name
+        quantity_of_items: quantity of items
+        unit: unit
+        recipient: recipients
+        number_of_recipients: number of recipients
+
     errors:
       models:
         event:
@@ -83,6 +92,7 @@ en:
   advance_events_search: Advance Events Search
   advance_x_search: "Advance %{item} Search"
   advance_search: Advance Search
+  distributions: Distributions
 
 de:
   hello_world: Hallo Welt

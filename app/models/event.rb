@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
 
   scope :desc, order("events.updated_at DESC")
 
-  attr_accessible :title, :description, :address, :project_id, :partner_ids, :sector_ids, :images_attributes
+  attr_accessible :title, :description, :address, :project_id, :partner_ids, :sector_ids, :images_attributes, :distributions_attributes
 
   def as_feature_hash
     props = attributes

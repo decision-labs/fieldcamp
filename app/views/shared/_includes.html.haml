@@ -4,7 +4,7 @@
 = stylesheet_link_tag 'print', :media => 'print'
 = stylesheet_link_tag 'compiled/application', :media => 'screen, projection'
 
-= javascript_include_tag :defaults, :cache => true
+= javascript_include_tag :defaults, 'nested_form', :cache => true
 = javascript_include_tag "vendor/web-socket-js/swfobject", "vendor/web-socket-js/FABridge", "vendor/web-socket-js/web_socket"
 = javascript_include_tag 'vendor/zoombox'
 = javascript_include_tag "jquery.tokeninput"

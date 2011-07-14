@@ -4,7 +4,7 @@
   = stylesheet_link_tag 'flick/jquery-ui', 'jquery.multiselect', 'jquery.multiselect.filter'
   = javascript_include_tag  'jquery-ui.min', 'vendor/jquery.multiselect', 'vendor/jquery.multiselect.filter'
 
-= form_for [@project, @event], :html => { :multipart => true }  do |f|
+= nested_form_for [@project, @event], :html => { :multipart => true }  do |f|
   -if @event.errors.any?
     #error_explanation
       %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
@@ -21,6 +21,7 @@
         = f.label :description, :class => 'label'
         #description-button-bar
         = f.text_area :description, :class => 'text_area'
+
       .field.group
         %label.label Preview
         #event_description-preview.markdown_preview
@@ -28,6 +29,7 @@
       / address field geocoding
       .field.group
         = f.hidden_field :geom, :class => 'hidden_field', :value => @event.geom.try(:as_ewkt)
+
       .field.group
         .fieldWithErrors
           = f.label :address, :class => 'label'
@@ -51,22 +53,55 @@
       #map
         #map_canvas
       %br
+
       .field.group
         = f.label :sector_tokens, t('sectors'), :class => 'label'
         = select_tag 'event[sector_ids][]',
           options_from_collection_for_select(Sector.all, "id", "name", Proc.new{ |rec| @event.sectors.map(&:id).include?(rec.id) } ),
           :multiple=>true, :class => 'multiselect jqui-multiselect'
-      %br
+
       .field.group
         = f.label :partner_tokens, t('partners'), :class => 'label'
         = select_tag 'event[partner_ids][]',
           options_from_collection_for_select(Partner.all, "id", "name", Proc.new{ |rec| @event.partners.map(&:id).include?(rec.id) } ),
           :multiple=>true, :class => 'multiselect jqui-multiselect'
 
-  .group.navform.wat-cf
-    = content_tag :button, :type => :submit, :class => 'button' do
-      = image_tag "icons/tick.png"
-      =t(:save)
+      %h3{:class => 'label'}=t('distributions')
+      / = render :partial => "distribution_form", :locals => {:f => f}
+      = f.fields_for :distributions do |distribution_form|
+        .field.group
+          = distribution_form.label :item, :class => 'label'
+          = distribution_form.text_field :item, :class => 'text_field'
+          %span.description The relief or aid item being distributed during this activity
+        .field.group
+          = distribution_form.label :quantity_of_items, :class => 'label'
+          = distribution_form.text_field :quantity_of_items, :class => 'text_field'
+          %span.description The quantity of the items distributed during this activity
+        .field.group
+          = distribution_form.label :unit, :class => 'label'
+          = distribution_form.text_field :unit, :class => 'text_field'
+          %span.description The type of recipients e.g. families, individuals, organisations
+        .field.group
+          = distribution_form.label :recipient, :class => 'label'
+          = distribution_form.text_field :recipient, :class => 'text_field'
+          %span.description The unit for the "quantity" of items distributed. Some standard "unit" (e.g. kg of rice or food, gallons of water, etc)
+        .field.group
+          = distribution_form.label :number_of_recipients, :class => 'label'
+          = distribution_form.text_field :number_of_recipients, :class => 'text_field'
+        .group.navform.wat-cf
+          = distribution_form.link_to_remove :confirm => t(:are_you_sure), :class => 'button right' do
+            =image_tag("icons/14-minus.png")
+            Remove this distribution
+
+      .group.navform.wat-cf.distribution_fields
+        = f.link_to_add :distributions, :class => 'button' do
+          =image_tag("icons/13-plus.png")
+          Add a distribution
+
+      .group.navform.wat-cf
+        = content_tag :button, :type => :submit, :class => 'button' do
+          = image_tag "icons/tick.png"
+          =t(:save)
 
 :javascript
   $(document).ready(function () {

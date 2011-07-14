@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708071448) do
+ActiveRecord::Schema.define(:version => 20110713213734) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(:version => 20110708071448) do
   add_index "articles", ["project_id"], :name => "index_articles_on_project_id"
   add_index "articles", ["published_at"], :name => "index_articles_on_published_at"
   add_index "articles", ["title"], :name => "index_articles_on_title"
+
+  create_table "distributions", :force => true do |t|
+    t.column "item", :string
+    t.column "quantity_of_items", :integer
+    t.column "unit", :string
+    t.column "recipient", :string
+    t.column "number_of_recepiants", :integer
+    t.column "event_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -80,9 +91,11 @@ ActiveRecord::Schema.define(:version => 20110708071448) do
     t.column "parent_id", :integer
     t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "projects_count", :integer, :default => 0
+    t.column "iso_3166_2", :string, :limit => 2
   end
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
+  add_index "locations", ["iso_3166_2"], :name => "index_locations_on_iso_3166_2"
   add_index "locations", ["name"], :name => "index_locations_on_name"
   add_index "locations", ["parent_id"], :name => "index_locations_on_parent_id"
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"

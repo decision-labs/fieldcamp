@@ -93,6 +93,7 @@ en:
   advance_x_search: "Advance %{item} Search"
   advance_search: Advance Search
   distributions: Distributions
+  provided_to: provided to
 
 de:
   hello_world: Hallo Welt
@@ -158,6 +159,7 @@ de:
   Administrative_Level: Administrativer Ebene
   search: Suche
   projects_found: Projekte gefunden
+  provided_to: "verteilt, um"
 
 ur:
   hello_world: ہیلو دنیا والو

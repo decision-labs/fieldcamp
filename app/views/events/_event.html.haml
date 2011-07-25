@@ -13,6 +13,10 @@
         ="#{t(:location)}:"
       = event.address
 
+    - unless event.distributions.blank?
+      %ul
+        = render :partial => "distributions/distribution", :collection => event.distributions
+
     %p.event-description= raw(RDiscount.new(event.description).to_html) rescue nil
     -event.images.each do |image|
       =image_tag image.asset_url(:thumb).to_s, :alt =>image.title

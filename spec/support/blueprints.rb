@@ -59,3 +59,12 @@ end
 # Location.blueprint(:country) do
 #   # load a location
 # end
+
+Distribution.blueprint do
+  item { Faker::Lorem.words.first }
+  quantity_of_items { rand(100) }
+  unit { Faker::Lorem.words.first }
+  recipient { Faker::Lorem.words.first }
+  number_of_recipients { rand(10) }
+  event
+end

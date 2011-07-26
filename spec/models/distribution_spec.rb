@@ -8,4 +8,20 @@ describe Distribution do
   it { should validate_numericality_of(:number_of_recipients ) }
   it { should validate_numericality_of(:event_id) }
   # it { should validate_format_of(:location_id).not_with('').with_message(/invalid/) }
+
+  describe '#description' do
+    before do
+      @valid_params = {
+        :item                 => "water",
+        :quantity_of_items    => 100,
+        :unit                 => "liters",
+        :recipient            => "villages",
+        :number_of_recipients => 10
+      }
+    end
+    it "should return a string" do
+      distribution = Distribution.make(@valid_params)
+      distribution.description.should == "#{@valid_params[:quantity_of_items]} #{@valid_params[:unit]} #{@valid_params[:item]} provided to #{@valid_params[:number_of_recipients]} #{@valid_params[:recipient]}"
+    end
+  end
 end

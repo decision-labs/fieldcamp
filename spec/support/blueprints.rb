@@ -61,10 +61,8 @@ end
 # end
 
 Distribution.blueprint do
-  item { Faker::Lorem.words.first }
-  quantity_of_items { rand(100) }
-  unit { Faker::Lorem.words.first }
-  recipient { Faker::Lorem.words.first }
-  number_of_recipients { rand(10) }
+  # item { Faker::Lorem.words.first }
+  # quantity_of_items { rand(100) }
+  # unit { Faker::Lorem.words.first }
   event
 end

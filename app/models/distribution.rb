@@ -12,8 +12,8 @@ class Distribution < ActiveRecord::Base
       str = "#{str} #{I18n.t('provided_to')}"
       str = "#{str} #{self.number_of_recipients}" unless self.number_of_recipients.blank?
       str = "#{str} #{self.recipient}"
-      str
     end
+    str
   end
 
 end

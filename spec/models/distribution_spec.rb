@@ -23,5 +23,10 @@ describe Distribution do
       distribution = Distribution.make(@valid_params)
       distribution.description.should == "#{@valid_params[:quantity_of_items]} #{@valid_params[:unit]} #{@valid_params[:item]} provided to #{@valid_params[:number_of_recipients]} #{@valid_params[:recipient]}"
     end
+
+    it "should return a string with blank recepient" do
+      distribution = Distribution.make(:item => @valid_params[:item], :quantity_of_items => @valid_params[:quantity_of_items], :unit => @valid_params[:unit])
+      distribution.description.should == "#{@valid_params[:quantity_of_items]} #{@valid_params[:unit]} #{@valid_params[:item]}"
+    end
   end
 end

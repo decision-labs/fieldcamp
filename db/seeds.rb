@@ -62,6 +62,22 @@ public_relations = User.create(
 )
 public_relations.settings = Settings.create!
 
+oea = User.create(
+  :email                 => 'oea@caritas.de',
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
+  :role                  => 'public_relations'
+)
+oea.settings = Settings.create!
+
+monika = User.create(
+  :email                 => 'monika.hoffmann@caritas.de',
+  :password              => "caritas321",
+  :password_confirmation => "caritas321",
+  :role                  => 'public_relations'
+)
+monika.settings = Settings.create!
+
 # -----------------------------------
 # Load Locations data from shapefiles
 # -----------------------------------

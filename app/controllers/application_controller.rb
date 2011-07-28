@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   USERNAME, PASSWORD = "caritaspublic", "caritaspublic"
 
   protect_from_forgery
-  before_filter :staging_authentication
+  # before_filter :staging_authentication
   before_filter :set_locale, :prepare_for_mobile
   before_filter :authenticate_user!
   before_filter :set_location_scope

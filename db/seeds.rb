@@ -6,6 +6,7 @@ require 'geokit'
 include Geokit::Geocoders
 
 # TODO: set locations for new users by creating a world location by default and set to that
+# TODO: create world location first
 
 # -------------------------------
 # Delete all unless in production
@@ -68,7 +69,7 @@ oea = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'public_relations'
 )
-oea.settings = Settings.create!
+oea.settings = Settings.create!(:location => Location.find_by_name('World'))
 
 monika = User.create(
   :email                 => 'monika.hoffmann@caritas.de',
@@ -76,7 +77,7 @@ monika = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'public_relations'
 )
-monika.settings = Settings.create!
+monika.settings = Settings.create!(:location => Location.find_by_name('World'))
 
 # -----------------------------------
 # Load Locations data from shapefiles

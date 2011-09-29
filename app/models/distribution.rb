@@ -4,7 +4,7 @@ class Distribution < ActiveRecord::Base
   validates :quantity_of_items, :presence => true
   validates :quantity_of_items, :numericality => true
   validates :number_of_recipients, :numericality => true
-  validates :event_id, :numericality => true
+  validates :event_id, :numericality => true, :unless => :new_record?
 
   def description
     str = [self.quantity_of_items, self.unit, self.item].join(" ")

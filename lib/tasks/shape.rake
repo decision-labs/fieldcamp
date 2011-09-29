@@ -5,14 +5,14 @@ include GeoRuby::Shp4r
 
 namespace :db do
   desc "load a shapefile into the locations table."
-  task :load_shapefile,
+  task :load_shapefile, [
     :shapefile_path,
     :name_field,
     :description_field,
     :admin_level,
     :admin_email,
     :parent_id,
-    :parent_name_field, :needs => :environment do |t, args|
+    :parent_name_field ] => :environment do |t, args|
 
     example = "\nrake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de [parent_id=23]\n"
 

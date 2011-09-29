@@ -1,22 +1,7 @@
 / = render :partial => "shared/nav"
-
-#box
+/ TODO: refactor - currently used in the info-bubble
+#box.content
   #block-login.block
-    %h2 Event Details
-
-    .content.location
-      %h1= @event.title
-
-      %p
-        %b Address:
-        = @event.address
-      %p
-        %b Project:
-        =link_to @event.project.title, project_path(@event.project), :target => "_blank"
-      %p
-        %b Description:
-        = raw(RDiscount.new(@event.description).to_html) rescue nil
-
-      / = link_to 'Edit', edit_project_event_path(@project, @event)
-      / \|
-      / = link_to 'Back', project_events_path(@project)
+    %h2=t('activity_details')
+    .content
+      =render :partial => "event", :locals => {:event => @event, :project => @event.project}

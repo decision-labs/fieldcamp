@@ -3,7 +3,7 @@
 .block-forms.block
   .dashboard
     #content.content
-      %h2 Event Feed
+      %h2=t('activity')
       .inner
         = render :partial => 'event', :collection => @events
         .actions-bar.wat-cf

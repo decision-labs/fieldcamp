@@ -23,6 +23,9 @@ en:
       formats:
         default: "%B %d, %Y %H:%M"
 
+  regional_overview: Regional Overview
+  projects_changed_since_login: Projects changes since last login
+  activities_since_login: Activities since last login
   new: New
   edit: Edit
   show: Show
@@ -38,6 +41,7 @@ en:
   editing_project: Editing project
   sectors: Sectors
   partners: Partners
+  activity: Activity
   new_event: New Activity
   editing_event: Editing Activity
   recent_events: Recent Activities
@@ -94,8 +98,12 @@ en:
   advance_search: Advance Search
   distributions: Distributions
   provided_to: provided to
+  activity_details: Activity details
 
 de:
+  regional_overview: Regionaler Überblick
+  projects_changed_since_login: "Projekte, die geändert wurden"
+  activities_since_login: Aktivitäten seit der letzten Anmeldung
   hello_world: Hallo Welt
   hello_flash: Hallo Flash
   new: Neu
@@ -114,6 +122,7 @@ de:
   editing_project: Projekt bearbeiten
   sectors: Bereich
   partners: Partner
+  activity: Aktivität
   new_event: Neues Aktivität
   editing_event: Aktivität bearbeiten
   recent_events: Aktuelle Aktivitäten
@@ -160,8 +169,11 @@ de:
   search: Suche
   projects_found: Projekte gefunden
   provided_to: "verteilt, um"
+  activity_details: Details zu Aktivitäten
 
 ur:
+  regional_overview: علاقائی کا مجموعی جائزہ
+  projects_changed_since_login:  منصوبوں کو تبدیل کر دیا گیا تھے
   hello_world: ہیلو دنیا والو
   hello_flash: ہیلو فلیش
   new: نیا
@@ -179,10 +191,11 @@ ur:
   editing_project: ترمیم منصوبہ
   sectors: شعبہ
   partners: شریک
-  new_event: نیا اہم واقعہ
-  editing_event: ترمیم واقعہ
-  recent_events: حالیہ واقعات
-  add_a_new_event: نیا اہم واقعہ شامل کریں
+  activity: سرگرمی
+  new_event: نئی سرگرمی
+  editing_event: ترمیم سرگرمی
+  recent_events: حالیہ سرگرمیوں
+  add_a_new_event: نایک نئی سرگرمی شامل کریں
   create_a_new_project: ایک نیا منصوبہ تشکیل دیں
   create_a_new_sector: ایک نئے شعبہ بنائیں
   back_to_current_project: موجودہ پروجیکٹ پر واپس جائیں
@@ -224,8 +237,12 @@ ur:
   Administrative_Level: انتظامی سطح
   search: تلاش
   projects_found: منصوبوں پایا
+  activity_details: رگرمیوں کی تفصیلات
+  activities_since_login: آخری لاگ ان کے بعد کی سرگرمیوں
 
 fr:
+  regional_overview: Aperçu régional
+  projects_changed_since_login: Les projets qui ont été modifiées
   hello_world: Bonjour tout le monde
   hello_flash: Bonjour Flash
   new: Nouveau
@@ -243,6 +260,7 @@ fr:
   editing_project: Projet de montage
   sectors: Secteurs
   partners: Partenaires
+  activity: Activité
   new_event: Nouvel activité
   editing_event: Modification de l'activité
   recent_events: Activités récents
@@ -288,4 +306,5 @@ fr:
   Administrative_Level: Niveau administratif
   search: de recherche
   projects_found: les projets jugés
-
+  activity_details: détails de l'activité
+  activities_since_login: Activités depuis la dernière connexion

@@ -3,15 +3,16 @@
 
 = render :partial => "shared/nav"
 
+.action
+  %button{:id => "jump_to_project", :class => "button"}=t('jump_to_project')
+.clear
+%br
+
 #edit_article.block
   .content
     %h2.title
       = t(:editing_article)
     .inner
-      .action
-        %button{:id => "jump_to_project", :class => "button"}=t('jump_to_project')
-      .clear
-      %br
       .form
         = render 'form'
 

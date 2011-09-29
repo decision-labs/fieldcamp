@@ -38,10 +38,10 @@ en:
   editing_project: Editing project
   sectors: Sectors
   partners: Partners
-  new_event: New Event
-  editing_event: Editing Event
-  recent_events: Recent Events
-  add_a_new_event: Add a new event
+  new_event: New Activity
+  editing_event: Editing Activity
+  recent_events: Recent Activities
+  add_a_new_event: Add a new activity
   create_a_new_project: Create a New Project
   create_a_new_sector: Create a New Sector
   back_to_current_project: Back to Current Project
@@ -86,10 +86,10 @@ en:
   n_results_found: "%{n} results found"
   publish: publish
   save_draft: save draft
-  search_for_events: Search for Events
+  search_for_events: Search for Activities
   search_for_projects: Search for Projects
   advance_projects_search: Advance Projects Search
-  advance_events_search: Advance Events Search
+  advance_events_search: Advance Activities Search
   advance_x_search: "Advance %{item} Search"
   advance_search: Advance Search
   distributions: Distributions
@@ -114,10 +114,10 @@ de:
   editing_project: Projekt bearbeiten
   sectors: Bereich
   partners: Partner
-  new_event: Neues Ereignis
-  editing_event: Ereignis bearbeiten
-  recent_events: Aktuelle Ereignisse
-  add_a_new_event: Neues Ereignis hinzufügen
+  new_event: Neues Aktivität
+  editing_event: Aktivität bearbeiten
+  recent_events: Aktuelle Aktivitäten
+  add_a_new_event: Neues Aktivität hinzufügen
   create_a_new_project: Neues Projekt erstellen
   create_a_new_sector: Neuen Bereich erstellen
   back_to_current_project: Zurück zum aktuellen Projekt
@@ -243,10 +243,10 @@ fr:
   editing_project: Projet de montage
   sectors: Secteurs
   partners: Partenaires
-  new_event: Nouvel événement
-  editing_event: Modification de l'événement
-  recent_events: Événements récents
-  add_a_new_event: Ajouter un nouvel événement
+  new_event: Nouvel activité
+  editing_event: Modification de l'activité
+  recent_events: Activités récents
+  add_a_new_event: Ajouter un nouvel activité
   create_a_new_project: Créer un nouveau projet
   create_a_new_sector: Créer un nouveau secteur
   back_to_current_project: Retour au projet actuel

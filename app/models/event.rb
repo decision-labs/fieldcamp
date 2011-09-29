@@ -22,6 +22,8 @@ class Event < ActiveRecord::Base
     props["description"] = RDiscount.new(attributes["description"]).to_html if !attributes["description"].nil?
     props["updated_at"] = attributes["updated_at"].to_formatted_s(:long) # FIXME: should be done via locales
     props.delete('geom')
+    props['distributions'] = distributions.collect(&:description)
+
     geojson = {
       :id => id_title,
       :type => 'Feature',

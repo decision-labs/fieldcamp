@@ -107,14 +107,23 @@ function ToggleFullScreen(controlDiv, map) {
 }
 
 function renderJSONEvent(obj){
-  // console.log(obj["id"]);
+  // console.log(obj);
   title = obj["title"];
   description = obj["description"];
+  distributions = ''
   address = obj["address"];
   updated_at = obj["updated_at"];
 
-var useragent = navigator.userAgent;
-html = "";
+  for (var i=0; i < obj['distributions'].length; i++) {
+    distributions += '<li>' + obj['distributions'][i] + '</li>';
+  }
+
+  if (distributions != '') {
+    distributions = '<ul>'+distributions+'</ul>';
+  }
+
+  var useragent = navigator.userAgent;
+  html = "";
   if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1 ) 
   {
      //do not add enlarge view
@@ -124,13 +133,16 @@ html = "";
     href='/projects/'+obj["project_id"]+'/events/'+obj["id"]+'?zoombox=true'
     html= "<a class='zoombox' href='" + href + "' >Enlarge View</a>";
   }
-  
+
    html = html +  "<h3>"+title+"</h3>"+
-    "<strong class='label'>Address:</strong> "+ address         +
-    "<p>"+
-        "<strong class='label'>Description:</strong> "+ description +"<br>"+
-        "<span class='infowindow_updated_at'><strong class='label'>Updated at:</strong> <span id='datetime'>"+updated_at+"</span></span>"+
-    "</p>";
+    "<strong class='label'>Address:</strong> " + address +
+    "<p>"
+    if (distributions != '') {
+      html += "<strong class='label'>Distributions:</strong>" + distributions + "</br>" 
+    }
+    html += "<strong class='label'>Description:</strong>" + description + "</br>"
+    html += "  <span class='infowindow_updated_at'><strong class='label'>Updated at:</strong> <span id='datetime'>" + updated_at + "</span></span>"
+    html += "</p>";
   return(html);
 
 }

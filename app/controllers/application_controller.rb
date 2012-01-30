@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale, :prepare_for_mobile
   before_filter :authenticate_user!
   before_filter :set_location_scope
-  before_filter :setup_breadcrumbs, :only => [:index, :show, :edit, :new]
+  before_filter :setup_breadcrumbs, :only => [:index, :show, :edit, :new, :projects]
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => t(:unauthorized, :action => t(exception.action), :subject => t(exception.subject))
@@ -25,9 +25,23 @@ class ApplicationController < ActionController::Base
   private
 
   def setup_breadcrumbs
-    add_crumb "Dashboard", '/'
-    add_crumb(self.controller_name.titleize, send("#{self.controller_name}_path") )
-    add_crumb self.action_name.to_s
+    # TODO: refactor, will probably need to move to their own controllers 
+    # esp. for nested resources
+    if current_user and self.controller_name != 'events'
+      add_crumb "Dashboard", '/'
+      unless self.controller_name == 'dashboard'
+        add_crumb self.controller_name.titleize, send("#{self.controller_name}_path") 
+      end
+      case self.action_name.to_s
+      when 'show'
+        add_crumb params[:id], send("#{self.controller_name.singularize}_path", params[:id])
+      when 'edit'
+        add_crumb "Editing #{params[:id]}"
+      when 'index'
+      else
+        add_crumb self.action_name.to_s
+      end
+    end
   end
 
   def mobile_device?

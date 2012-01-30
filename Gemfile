@@ -7,7 +7,7 @@ gem 'haml'
 gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'
 gem 'postgis_adapter',  :git => 'git://github.com/nofxx/postgis_adapter.git'
 gem 'em-websocket',     :git => 'git://github.com/igrigorik/em-websocket'
-gem 'hoptoad_notifier'
+gem 'airbrake'
 gem 'jquery-rails'
 gem 'redis'
 gem 'SystemTimer', :platforms => ['ruby_18']

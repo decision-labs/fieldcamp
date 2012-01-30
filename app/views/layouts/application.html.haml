@@ -4,7 +4,7 @@
     %meta{:charset => 'utf-8'}
     %title= content_for?(:title) ? yield(:title) : title_fallback
     /[if (gt IE 8)]
-      = hoptoad_javascript_notifier
+      = airbrake_javascript_notifier
     = render 'shared/includes'
     = yield :head
   %body

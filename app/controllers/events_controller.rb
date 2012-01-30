@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_filter :setup_breadcrumbs, :only => [:index, :show, :edit, :new, :projects]
   # GET /events
   def index
     @project = Project.find(params[:project_id])
@@ -111,4 +112,15 @@ class EventsController < ApplicationController
       format.html { redirect_to(project_url(@project)) }
     end
   end
+private
+
+def setup_breadcrumbs
+  if current_user
+    add_crumb "Dashboard", '/'
+    add_crumb "Projects", projects_path
+    add_crumb params[:project_id], project_path(params[:project_id])
+    add_crumb "Activities" #, project_events_path(params[:project_id])
+    add_crumb params[:id] #, project_event_path(params[:project_id],params[:id])
+  end
+end
 end

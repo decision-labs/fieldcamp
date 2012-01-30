@@ -21,6 +21,8 @@
           %ul.wat-cf
             = yield :nav
       #wrapper.wat-cf
+        .breadcrumb
+          =raw(render_crumbs(:format => :html_list))
         .flash
           - flash.each do |type, message|
             %div{:class => "message #{type}"}

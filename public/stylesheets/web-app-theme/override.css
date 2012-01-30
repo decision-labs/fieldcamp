@@ -262,3 +262,40 @@ div.field_with_errors label {
 
 a.button.add_nested_fields{ color:darkgreen }
 a.button.remove_nested_fields{ color:darkred }
+
+
+.breadcrumb {
+  background-color: #e6e6e6;
+  -moz-border-radius-bottomleft: 9px;
+  -webkit-border-bottom-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+  -moz-border-radius-bottomright: 9px;
+  -webkit-border-bottom-right-radius: 9px;
+  border-bottom-right-radius: 9px
+}
+.breadcrumb ul {
+  height: 20px;
+  padding-bottom: 15px;
+  padding-top: 0px;
+  list-style-type: none
+}
+.breadcrumb ul li {
+  color: #777;
+  display: block;
+  padding-top: 10px;
+  padding-left: 17px;
+  margin-right: 15px;
+  background: url("../../images/web-app-theme/breadcrumb.png") no-repeat 0px 12px;
+  float: left
+}
+.breadcrumb ul li a {
+  text-decoration: none;
+  color: #777
+}
+.breadcrumb ul li.first {
+  padding-left: 15px;
+  background: none
+}
+.breadcrumb ul li.active {
+  color: #a4a4a4
+}

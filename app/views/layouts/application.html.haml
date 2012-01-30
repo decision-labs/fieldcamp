@@ -20,9 +20,9 @@
         #main-navigation
           %ul.wat-cf
             = yield :nav
+      .breadcrumb
+        =raw(render_crumbs(:format => :html_list))
       #wrapper.wat-cf
-        .breadcrumb
-          =raw(render_crumbs(:format => :html_list))
         .flash
           - flash.each do |type, message|
             %div{:class => "message #{type}"}
@@ -41,5 +41,4 @@
               .content
                 .actions-bar.wat-cf
                   .actions
-                    %ul.user_settings
-                      %li= render 'shared/user_settings'
+                    .user_settings= render 'shared/user_settings'

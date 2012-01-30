@@ -1,7 +1,4 @@
 require 'pp'
-require 'geo_ruby'
-require 'geo_ruby/shp'
-include GeoRuby::Shp4r
 require 'geokit'
 include Geokit::Geocoders
 

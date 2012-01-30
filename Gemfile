@@ -4,9 +4,10 @@ gem 'rails', '3.0.9'
 # gem 'rake', '0.8.7'
 gem 'pg'
 gem 'haml'
-gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'
-gem 'postgis_adapter',  :git => 'git://github.com/nofxx/postgis_adapter.git'
 gem 'em-websocket',     :git => 'git://github.com/igrigorik/em-websocket'
+gem 'rgeo'
+gem 'rgeo-shapefile'
+gem 'activerecord-postgis-adapter'
 gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'redis'
@@ -37,7 +38,7 @@ group :test, :development do
   gem 'haml-rails'
   gem 'rails3-generators'
   gem 'machinist'# , '>= 2.0.0.beta1'
-  gem 'infinity_test'
+  # gem 'infinity_test'
   gem 'dbf'
   gem 'sham'
   gem 'faker'
@@ -56,6 +57,7 @@ group :development do
   gem "hirb"
   gem "awesome_print"
   gem 'capistrano'
+  gem 'bundle_outdated'
 end
 
 group :test do

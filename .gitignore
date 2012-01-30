@@ -8,3 +8,5 @@ tmp/**/*
 config/database.yml
 public/uploads
 public/stylesheets/compiled/
+db/raw_data/*
+tmp

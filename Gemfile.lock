@@ -81,7 +81,7 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    configatron (2.8.2)
+    configatron (2.9.0)
       yamler (>= 0.1.0)
     cucumber (1.0.0)
       builder (>= 2.1.2)

@@ -24,6 +24,7 @@ gem 'rmagick'
 gem 'kaminari'
 gem 'squeel'
 gem 'nested_form'
+gem 'crummy', '~> 1.3.6'
 
 group :test, :development do
   gem 'erb2haml' # only used when converting devise views to haml

@@ -71,7 +71,7 @@ input.button:active {
   color: #28485e;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
   border: 1px solid #8a9daa;
-  background: #b8d1e2 url("themes/default/images/messages/notice.png") no-repeat 10px center;
+  background: #b8d1e2 url("images/messages/notice.png") no-repeat 10px center;
 }
 
 input.checkbox {

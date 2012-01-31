@@ -16,8 +16,8 @@ Caritas::Application.routes.draw do
 
     devise_for :users
 
-    # root :to => 'public#index', :constraints => lambda {|r| !r.env["warden"].authenticate? }
-    root :to => "admin/dashboard#index"
+    root :to => 'public#index', :constraints => lambda {|r| !r.env["warden"].authenticate? }
+    # root :to => "admin/dashboard#index"
 
     authenticate :user do
       root :to => "admin/dashboard#index"

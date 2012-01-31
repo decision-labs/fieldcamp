@@ -13,8 +13,10 @@
     #container
       #header
         %span.locale_links=render 'shared/locale_links'
-        %h1
-          %a{:href => "/"} Caritas
+        %a.logo{:href => "/"}
+          %h1#logo
+            Caritas
+            %span#tagline (beta)
         #user-navigation
           =render 'shared/login_links'
         #main-navigation

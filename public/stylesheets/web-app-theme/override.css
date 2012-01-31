@@ -308,3 +308,43 @@ a.button.remove_nested_fields{ color:darkred }
 .breadcrumb ul li.active {
   color: #a4a4a4
 }
+
+#tagline{
+  font-size: 40%;
+  color: gray;
+}
+
+#logo{
+  background: url("../../../images/Caritas-Logo-alpha-40w.png") no-repeat 0px 8px;
+}
+
+#header h1 {
+  padding: 10px 50px!important;
+}
+#header a.logo {
+  text-decoration: none;
+}
+
+/* Sign up button */
+a.signup_button {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+  text-decoration: none;
+  text-shadow: none;
+}
+
+/* Round corners */
+.round {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius:	10px;
+}

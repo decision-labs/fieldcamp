@@ -73,14 +73,14 @@ namespace :db do
 
     shpfile.each_with_index do |rec,i|
       if parent_name_field
-        parent =  Location.find_by_name(rec.data[parent_name_field]) rescue nil
-        puts "[shape.rake] Couldn't find a parent with name #{rec.data[parent_name_field]} for #{rec.data[name_field]}" if parent.nil?
+        parent =  Location.find_by_name(rec.data.attributes[parent_name_field]) rescue nil
+        puts "[shape.rake] Couldn't find a parent with name #{rec.data.attributes[parent_name_field]} for #{rec.data.attributes[name_field]}" if parent.nil?
       else
         parent =  Location.find(parent_id) rescue nil
       end
       geom = rec.geometry
-      name = rec.data[name_field]
-      description = rec.data[description_field]
+      name = rec.data.attributes[name_field]
+      description = rec.data.attributes[description_field]
       location = Location.new(:name => name, :admin_level => admin_level)
       location.geom = geom
       location.user = admin_user

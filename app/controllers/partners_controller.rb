@@ -16,7 +16,7 @@ class PartnersController < ApplicationController
     if current_user
       @partner = Partner.find(params[:id])
       @projects = @partner.projects.all(:conditions => {
-        "projects.location_id" => current_user.settings.location.child_location_ids.split('|')
+        "projects.location_id" => current_user_location_ids
       })
     else
       @partner = Partner.find(params[:id], :include => :projects)

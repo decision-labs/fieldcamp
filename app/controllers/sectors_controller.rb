@@ -20,7 +20,7 @@ class SectorsController < ApplicationController
     if current_user
       @sector = Sector.find(params[:id])
       @projects = @sector.projects.all(:conditions => {
-        "projects.location_id" => current_user.settings.location.child_location_ids.split('|')
+        "projects.location_id" => current_user_location_ids
       })
     else
       @sector = Sector.find(params[:id], :include => :projects)

@@ -16,6 +16,8 @@ namespace :db do
 
     example = "\nrake db:load_shapefile shapefile_path=./db/raw_data/haiti/Haiti_adm1_2000-2010.shp name_field=ADM1_NAME description_field=COMMENT admin_level=1 admin_email=gernot.ritthaler@caritas.de [parent_id=23]\n"
 
+    args = ENV.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+
     if args[:shapefile_path].nil?
       print "Please provide a path to the .shp file\n"
       print "The path may be relative to the current directory.\n"

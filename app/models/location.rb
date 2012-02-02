@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   has_many :projects
   belongs_to :user
-  has_many :children, :class_name => "Location", :foreign_key => "parent_id"
+  has_many :children, :class_name => "Location", :foreign_key => "parent_id", :dependent => :destroy
   belongs_to :parent, :class_name => "Location"
   has_many :events, :through => :projects
 

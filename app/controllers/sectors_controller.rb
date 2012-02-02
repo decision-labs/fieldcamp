@@ -19,13 +19,9 @@ class SectorsController < ApplicationController
   def show
     if current_user
       @sector = Sector.find(params[:id])
-      #FIXME: Dry this branching
-      unless @current_user_location_ids.blank?
-        @projects = @sector.projects.all(
-          :conditions => {"projects.location_id" => @current_user_location_ids})
-      else
-        @projects = @sector.projects.all
-      end
+      @projects = @sector.projects.all(:conditions => {
+        "projects.location_id" => current_user.settings.location.child_location_ids.split('|')
+      })
     else
       @sector = Sector.find(params[:id], :include => :projects)
       @projects = @sector.projects.all

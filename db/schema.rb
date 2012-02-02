@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110713213734) do
+ActiveRecord::Schema.define(:version => 20120202085744) do
 
   create_table "articles", :force => true do |t|
     t.column "content", :text
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(:version => 20110713213734) do
     t.column "created_at", :datetime
     t.column "updated_at", :datetime
   end
+
+  create_table "documents", :force => true do |t|
+    t.column "asset", :string
+    t.column "title", :string
+    t.column "description", :text
+    t.column "event_id", :integer
+    t.column "created_at", :datetime
+    t.column "updated_at", :datetime
+  end
+
+  add_index "documents", ["asset"], :name => "index_documents_on_asset"
+  add_index "documents", ["title"], :name => "index_documents_on_title"
 
   create_table "events", :force => true do |t|
     t.column "title", :string
@@ -92,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20110713213734) do
     t.column "geom", :geometry, :srid => 4326, :null => false
     t.column "projects_count", :integer, :default => 0
     t.column "iso_3166_2", :string, :limit => 2
+    t.column "child_location_ids", :text
   end
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 

@@ -82,6 +82,7 @@ class LocationsController < ApplicationController
   def update
     authorize! :update, Location
     @location = Location.find(params[:id], :select => @desired_columns)
+    redis ||= REDIS
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
@@ -95,6 +96,7 @@ class LocationsController < ApplicationController
 
   def destroy
     authorize! :destroy, Location
+    redis ||= REDIS
     @location = Location.find(params[:id], :select => @desired_columns)
     redis.del("location:"+@location.id.to_s)
     @location.destroy

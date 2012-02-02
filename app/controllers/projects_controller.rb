@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
 
     if current_user
       @projects = Project.all(
-        :conditions => {'projects.location_id' => current_user.settings.location.child_location_ids.split('|')},
+        :conditions => {'projects.location_id' => current_user_location_ids},
         :order => session[:projects_sort_order])
     end
 
@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
     if current_user
       #FIXME: Dry this branching, also in view we iterate over all projects again to find events.
       @project = Project.find(params[:id],
-        :conditions => {'projects.location_id' => current_user.settings.location.child_location_ids.split('|')},
+        :conditions => {'projects.location_id' => current_user_location_ids},
         :include => [:location, :events])
     end
 

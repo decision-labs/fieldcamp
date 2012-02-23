@@ -1,6 +1,7 @@
 Caritas::Application.routes.draw do
 
   resources :images
+  resources :documents
 
   scope "(:locale)" do
     match "/events_feed", :to => "events_feed#index",  :as => "events_feed"

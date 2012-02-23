@@ -3,11 +3,13 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_one :location, :through => :project
   has_many :images, :dependent => :destroy
+  has_many :documents, :dependent => :destroy
   has_many :distributions, :dependent => :destroy
   has_and_belongs_to_many :partners
   has_and_belongs_to_many :sectors
 
   accepts_nested_attributes_for :images, :allow_destroy => true,  :reject_if => :all_blank
+  accepts_nested_attributes_for :documents, :allow_destroy => true,  :reject_if => :all_blank
   accepts_nested_attributes_for :distributions, :allow_destroy => true, :reject_if => :all_blank
 
   validates_presence_of :title, :message => "Title can't be blank."
@@ -15,7 +17,7 @@ class Event < ActiveRecord::Base
 
   scope :desc, order("events.updated_at DESC")
 
-  attr_accessible :title, :description, :address, :project_id, :partner_ids, :sector_ids, :images_attributes, :distributions_attributes
+  attr_accessible :title, :description, :address, :project_id, :partner_ids, :sector_ids, :images_attributes, :distributions_attributes, :documents_attributes
 
   def as_feature_hash
     props = attributes

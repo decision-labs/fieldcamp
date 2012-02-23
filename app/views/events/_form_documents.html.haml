@@ -1,0 +1,16 @@
+.field.group
+  %label.label Old Documents:
+  =f.fields_for :documents do |document_fields|
+    -unless document_fields.object.new_record?
+      .field.group{:id => "document_#{document_fields.object.id}"}
+        =link_to  document_fields.object.title, document_fields.object.asset_url.to_s
+        =link_to 'Delete', document_path(document_fields.object),
+          :method => :delete,
+          :remote => true, :confirm => 'Are you sure?',
+          :class => 'button',
+          :id => "delete_document_#{document_fields.object.id}"
+        :javascript
+           $("#delete_document_#{document_fields.object.id}").bind('ajax:success', function() {
+             $(this).parent().fadeOut();
+             $("input:regex(id,event_documents_attributes_([0-9]+)_id)[value=#{document_fields.object.id}]").remove();
+           });

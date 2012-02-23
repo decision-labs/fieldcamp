@@ -1,0 +1,14 @@
+.field.group
+  %label.label New Documents:
+  .field.group
+    %input#event_documents_attributes_0_asset.file_field{:name => "event[documents_attributes][#{old_document_count}][asset]",:type => "file"}
+      %input#event_documents_attributes_0_title.text_field{:name => "event[documents_attributes][#{old_document_count}][title]", :size => "30", :type => "text"}
+        %span.description Document Caption
+  .field.group
+    %input#event_documents_attributes_1_asset.file_field{:name => "event[documents_attributes][#{old_document_count+1}][asset]", :type => "file"}
+      %input#event_documents_attributes_1_title.text_field{:name => "event[documents_attributes][#{old_document_count+1}][title]", :size => "30", :type => "text"}
+        %span.description Document Caption
+  .field.group
+    %input#event_documents_attributes_2_asset.file_field{:name => "event[documents_attributes][#{old_document_count+2}][asset]", :type => "file"}
+      %input#event_documents_attributes_2_title.text_field{:name => "event[documents_attributes][#{old_document_count+2}][title]", :size => "30", :type => "text"}
+        %span.description Document Caption

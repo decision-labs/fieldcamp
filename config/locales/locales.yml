@@ -99,6 +99,8 @@ en:
   distributions: Distributions
   provided_to: provided to
   activity_details: Activity details
+  documents: Documents
+  images: Images
 
 de:
   regional_overview: Regionaler Überblick
@@ -170,6 +172,8 @@ de:
   projects_found: Projekte gefunden
   provided_to: "verteilt, um"
   activity_details: Details zu Aktivitäten
+  documents: Dokumente
+  images: Bilder
 
 ur:
   regional_overview: علاقائی کا مجموعی جائزہ
@@ -239,6 +243,8 @@ ur:
   projects_found: منصوبوں پایا
   activity_details: رگرمیوں کی تفصیلات
   activities_since_login: آخری لاگ ان کے بعد کی سرگرمیوں
+  documents: دستاویزات
+  images: تصاویر
 
 fr:
   regional_overview: Aperçu régional
@@ -308,3 +314,5 @@ fr:
   projects_found: les projets jugés
   activity_details: détails de l'activité
   activities_since_login: Activités depuis la dernière connexion
+  documents: Documents
+  images: Images

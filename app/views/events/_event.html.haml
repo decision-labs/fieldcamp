@@ -18,8 +18,19 @@
         = render :partial => "distributions/distribution", :collection => event.distributions
 
     %p.event-description= raw(RDiscount.new(event.description).to_html) rescue nil
-    -event.images.each do |image|
-      =image_tag image.asset_url(:thumb).to_s, :alt =>image.title
+    %p
+      %strong=t(:documents)
+      %br
+      -event.documents.each do |document|
+        = link_to (image_tag "/images/icons/blue-document-text.png", :title => "#{document.title || doc.asset.file.filename}", :class => "class"), 
+          document.asset_url, :target => '_blank'
+
+    %p
+      %strong=t(:images)
+      %br
+      -event.images.each do |image|
+        = link_to (image_tag image.asset_url(:thumb).to_s, :alt =>image.title), 
+          image.asset_url, :target => '_blank'
 
     %p
       %strong.gray.right.time{:datetime => "#{event.updated_at}"}= event.updated_at.to_formatted_s(:long)

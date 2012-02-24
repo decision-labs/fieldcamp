@@ -46,8 +46,11 @@
         / documents
         #new_documents_form
           =render :partial => "form_blank_documents", :locals => {:old_document_count => @event.documents.count}
-        #image_list
+
+        #document_list
           =render :partial => "form_documents", :locals => {:f => f}
+
+        %br
 
         / images
         #new_images_form

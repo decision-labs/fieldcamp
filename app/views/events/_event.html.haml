@@ -22,7 +22,7 @@
       %strong=t(:documents)
       %br
       -event.documents.each do |document|
-        = link_to (image_tag "/images/icons/blue-document-text.png", :title => "#{document.title || doc.asset.file.filename}", :class => "class"), 
+        = link_to (image_tag "/images/icons/blue-document-text.png", :title => "#{document.title.blank? ? document.asset.file.filename : document.title}", :class => "class"), 
           document.asset_url, :target => '_blank'
 
     %p

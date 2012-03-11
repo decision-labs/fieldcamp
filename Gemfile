@@ -31,6 +31,8 @@ group :test, :development do
   gem "gherkin", "~> 2.4.1"
   gem 'cucumber'
   gem 'cucumber-rails'
+  gem 'pickle'
+
   gem 'dbf'
 
   gem 'silent-postgres'

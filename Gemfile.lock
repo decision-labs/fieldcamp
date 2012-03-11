@@ -181,6 +181,9 @@ GEM
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
     pg (0.11.0)
+    pickle (0.4.10)
+      cucumber (>= 0.8)
+      rake
     polyglot (0.3.1)
     rack (1.2.3)
     rack-mount (0.6.14)
@@ -317,6 +320,7 @@ DEPENDENCIES
   machinist
   nested_form
   pg
+  pickle
   postgis_adapter!
   rails (= 3.0.9)
   rails-erd

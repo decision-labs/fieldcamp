@@ -1,12 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '~> 3.1'
 # gem 'rake', '0.8.7'
 gem 'pg'
 gem 'haml'
-gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'
-gem 'postgis_adapter',  :git => 'git://github.com/nofxx/postgis_adapter.git'
-gem 'em-websocket',     :git => 'git://github.com/igrigorik/em-websocket'
+gem 'georuby'
+gem 'postgis_adapter'
+gem 'em-websocket'
 gem 'airbrake'
 gem 'jquery-rails'
 gem 'redis'
@@ -32,7 +32,6 @@ group :test, :development do
   gem 'cucumber'
   gem 'cucumber-rails'
   gem 'pickle'
-
   gem 'dbf'
 
   gem 'silent-postgres'
@@ -68,6 +67,9 @@ group :development do
   gem 'growl'
 
   gem 'annotate'
+
+  gem 'faker'
+  # gem 'ffaker'
 end
 
 group :test do
@@ -79,6 +81,3 @@ group :test do
   gem 'capybara'
   gem 'machinist'
 end
-
-gem 'faker'
-gem 'ffaker'

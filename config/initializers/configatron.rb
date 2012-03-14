@@ -1,1 +1,1 @@
-configatron.configure_from_yaml "#{Rails.root}/config/configatron.yml", :hash => Rails.env
+configatron.configure_from_hash YAML::load(File.open("#{Rails.root}/config/configatron.yml"))[Rails.env]

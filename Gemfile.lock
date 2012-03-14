@@ -101,6 +101,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
+    fastercsv (1.5.4)
     ffi (1.0.11)
     fssm (0.2.8.1)
     geokit (1.6.5)
@@ -307,6 +308,7 @@ DEPENDENCIES
   erb2haml
   factory_girl_rails
   faker
+  fastercsv
   geokit
   georuby
   gherkin (~> 2.4.1)
@@ -344,5 +346,5 @@ DEPENDENCIES
   sqlite3
   squeel
   web-app-theme
-  will_paginate (~> 3.0.pre2)
+  will_paginate (~> 3.0)
   wirble

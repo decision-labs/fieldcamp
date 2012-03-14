@@ -16,7 +16,7 @@ gem 'devise'
 gem 'configatron'
 gem 'cancan'
 gem 'rdiscount'
-gem 'will_paginate', "~> 3.0.pre2"
+gem 'will_paginate', '~> 3.0'
 gem 'dalli'
 gem 'compass', '>= 0.10.6'
 gem 'carrierwave'
@@ -33,6 +33,7 @@ group :test, :development do
   gem 'cucumber-rails'
   gem 'pickle'
   gem 'dbf'
+  gem 'fastercsv'
 
   gem 'silent-postgres'
   gem 'geokit'

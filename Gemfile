@@ -27,38 +27,58 @@ gem 'nested_form'
 gem 'crummy', '~> 1.3.6'
 
 group :test, :development do
-  gem 'erb2haml' # only used when converting devise views to haml
   gem 'sqlite3'
-  gem 'rspec'
-  gem 'rspec-rails'
   gem "gherkin", "~> 2.4.1"
   gem 'cucumber'
   gem 'cucumber-rails'
-  gem 'capybara'
-  gem 'haml-rails'
-  gem 'rails3-generators'
-  gem 'machinist'# , '>= 2.0.0.beta1'
-  # gem 'infinity_test'
+  gem 'pickle'
+
   gem 'dbf'
-  gem 'sham'
-  gem 'faker'
+
   gem 'silent-postgres'
   gem 'geokit'
-  gem 'web-app-theme'
   gem 'hpricot'
+
   gem 'ruby_parser'
   gem 'ruby-debug', :platforms => ['ruby_18']
   gem 'ruby-debug19', :platforms => ['ruby_19']
-  gem 'rails-erd'
 end
 
 group :development do
+  # == for generators ==
+  gem 'haml-rails'
+  gem 'rails3-generators'
+  gem 'web-app-theme'
+  gem 'rails-erd'
+  gem 'erb2haml' # (used when converting devise views to haml)
+
   gem "wirble"
   gem "hirb"
   gem "awesome_print"
   gem 'capistrano'
+
+  # == rspec ==
+  gem 'rspec'
+  gem 'rspec-rails'
+
+  # == guard ==
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
+  gem 'guard-spork'
+  gem 'growl'
+
+  gem 'annotate'
 end
 
 group :test do
   gem "shoulda"
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'rb-fsevent', :require => false
+  gem 'spork', '~> 0.9.0.rc'
+  gem 'capybara'
+  gem 'machinist'
 end
+
+gem 'faker'
+gem 'ffaker'

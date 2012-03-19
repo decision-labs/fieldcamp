@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
-# gem 'rake', '0.8.7'
+gem 'rails', '3.2.2'
 gem 'pg'
 gem 'haml'
-gem 'em-websocket',     :git => 'git://github.com/igrigorik/em-websocket'
+gem 'em-websocket'
 gem 'rgeo'
 gem 'rgeo-shapefile'
 gem 'activerecord-postgis-adapter'
@@ -29,16 +28,8 @@ gem 'nested_form'
 group :test, :development do
   gem 'erb2haml' # only used when converting devise views to haml
   gem 'sqlite3'
-  gem 'rspec'
-  gem 'rspec-rails'
-  gem "gherkin", "~> 2.4.1"
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'capybara'
   gem 'haml-rails'
   gem 'rails3-generators'
-  gem 'machinist'# , '>= 2.0.0.beta1'
-  # gem 'infinity_test'
   gem 'dbf'
   gem 'sham'
   gem 'faker'
@@ -53,13 +44,20 @@ group :test, :development do
 end
 
 group :development do
-  gem "wirble"
-  gem "hirb"
-  gem "awesome_print"
+  gem 'wirble'
+  gem 'hirb'
+  gem 'awesome_print'
   gem 'capistrano'
   gem 'bundle_outdated'
 end
 
 group :test do
-  gem "shoulda"
+  gem 'shoulda'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'gherkin'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'capybara'
+  gem 'machinist'
 end

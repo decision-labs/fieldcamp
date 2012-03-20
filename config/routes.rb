@@ -1,6 +1,7 @@
 Caritas::Application.routes.draw do
 
   resources :images
+  resources :documents
 
   scope "(:locale)" do
     match "/events_feed", :to => "events_feed#index",  :as => "events_feed"
@@ -17,6 +18,7 @@ Caritas::Application.routes.draw do
     devise_for :users
 
     root :to => 'public#index', :constraints => lambda {|r| !r.env["warden"].authenticate? }
+    # root :to => "admin/dashboard#index"
 
     authenticate :user do
       root :to => "admin/dashboard#index"

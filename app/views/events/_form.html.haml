@@ -43,6 +43,15 @@
             / FIXME: OR needed
             =link_to t(:use_current_location), nil, :class => 'use_current_location button'
 
+        / documents
+        #new_documents_form
+          =render :partial => "form_blank_documents", :locals => {:old_document_count => @event.documents.count}
+
+        #document_list
+          =render :partial => "form_documents", :locals => {:f => f}
+
+        %br
+
         / images
         #new_images_form
           =render :partial => "form_blank_images", :locals => {:old_image_count => @event.images.count}

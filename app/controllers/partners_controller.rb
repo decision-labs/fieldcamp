@@ -15,13 +15,9 @@ class PartnersController < ApplicationController
   def show
     if current_user
       @partner = Partner.find(params[:id])
-      #FIXME: Dry this branching
-      unless @current_user_location_ids.blank?
-        @projects = @partner.projects.all(
-          :conditions => {"projects.location_id" => @current_user_location_ids})
-      else
-        @projects = @partner.projects.all
-      end
+      @projects = @partner.projects.all(:conditions => {
+        "projects.location_id" => current_user_location_ids
+      })
     else
       @partner = Partner.find(params[:id], :include => :projects)
       @projects = @partner.projects

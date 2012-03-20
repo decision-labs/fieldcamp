@@ -31,7 +31,8 @@
         marker = new google.maps.Marker({
           map: map,
           animation: google.maps.Animation.DROP,
-          position: event
+          position: event,
+          draggable: true
         });
         $('input#event_geom').val("POINT(" + lon + " " + lat + " " + elev + ")");
         // console.log("Location Found: lat="+lat + " lon="+lon );
@@ -78,13 +79,14 @@
           event = new google.maps.LatLng(lat, lon);
           map.panTo(event);
           if (marker != null) {
+            // clear any old markers
             marker.setMap(null);
           }
-          // clear any old markers
           marker = new google.maps.Marker({
             map: map,
             animation: google.maps.Animation.DROP,
-            position: event
+            position: event,
+            draggable: true
           });
         }
       });
@@ -102,6 +104,7 @@
     map.panTo(latlng);
     marker = new google.maps.Marker({
       map: map,
-      position: latlng
+      position: latlng,
+      draggable: true
     });
   })

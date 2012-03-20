@@ -4,7 +4,7 @@
     %meta{:charset => 'utf-8'}
     %title= content_for?(:title) ? yield(:title) : title_fallback
     /[if (gt IE 8)]
-      = hoptoad_javascript_notifier
+      = airbrake_javascript_notifier
     = render 'shared/includes'
     = yield :head
   %body
@@ -13,13 +13,17 @@
     #container
       #header
         %span.locale_links=render 'shared/locale_links'
-        %h1
-          %a{:href => "/"} Caritas
+        %a.logo{:href => "/"}
+          %h1#logo
+            Caritas
+            %span#tagline (beta)
         #user-navigation
           =render 'shared/login_links'
         #main-navigation
           %ul.wat-cf
             = yield :nav
+      .breadcrumb
+        =raw(render_crumbs(:format => :html_list))
       #wrapper.wat-cf
         .flash
           - flash.each do |type, message|
@@ -39,5 +43,4 @@
               .content
                 .actions-bar.wat-cf
                   .actions
-                    %ul.user_settings
-                      %li= render 'shared/user_settings'
+                    .user_settings= render 'shared/user_settings'

@@ -27,7 +27,8 @@
           .columns.wat-cf
             .column.left
               .field.group
-                = f.label :locations, :class => 'label'
+                = f.label t(:location), :class => 'label'
+                %span.description Your region of interest: E.g. Multan, Pakistan
                 = f.text_field :location_id,
                   "data-pre" => @pre_populate_location.to_json
 

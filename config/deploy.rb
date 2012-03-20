@@ -9,7 +9,7 @@ set :use_sudo,      false
 
 set :application, "caritas"
 set :repository,  "git@nomad-labs.dyndns.org:caritas.git"
-# set :branch,      "pilot"
+set :branch,      "hotfix/I18n-missing"
 set :deploy_to,   "/data/shoaib/caritas"
 set :scm,         :git
 
@@ -88,4 +88,5 @@ end
 
 
 # require 'config/boot'
-require 'hoptoad_notifier/capistrano'
+require './config/boot'
+require 'airbrake/capistrano'

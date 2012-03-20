@@ -5,10 +5,19 @@ class ApplicationController < ActionController::Base
   # before_filter :staging_authentication
   before_filter :set_locale, :prepare_for_mobile
   before_filter :authenticate_user!
-  before_filter :set_location_scope
+  before_filter :set_settings
+  before_filter :setup_breadcrumbs, :only => [:index, :show, :edit, :new, :projects]
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, :alert => t(:unauthorized, :action => t(exception.action), :subject => t(exception.subject))
+  end
+
+  def current_user_location_ids
+    if current_user.settings.location.child_location_ids.blank?
+      [current_user.settings.location.id.to_s]
+    else
+      [current_user.settings.location.id.to_s] + current_user.settings.location.child_location_ids.split('|')
+    end
   end
 
   def set_locale
@@ -22,6 +31,27 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def setup_breadcrumbs
+    # TODO: refactor, will probably need to move to their own controllers 
+    # esp. for nested resources
+    if current_user and self.controller_name != 'events'
+      add_crumb "Dashboard", '/'
+      unless self.controller_name == 'dashboard'
+        add_crumb self.controller_name.titleize, send("#{self.controller_name}_path") 
+      end
+      case self.action_name.to_s
+      when 'show'
+        add_crumb params[:id], send("#{self.controller_name.singularize}_path", params[:id])
+      when 'edit'
+        add_crumb "Editing #{params[:id]}"
+      when 'index'
+      else
+        add_crumb self.action_name.to_s
+      end
+    end
+  end
+
   def mobile_device?
     return false if request.format.to_s =~ /application\/json/i
     request.user_agent =~ /Mobile|webOS/
@@ -31,17 +61,8 @@ class ApplicationController < ActionController::Base
     request.format = :mobile if mobile_device?
   end
 
-  def set_location_scope
-    #FIXME: Dry this to somehow set a default scope - remove dependence on this instance variable
-    # everything should just go through current_user.settings
-    @current_user_location_ids ||= []
-    unless (current_user.nil? || current_user.settings.nil?)
-      @settings = current_user.settings
-      unless @settings.location.nil? || @settings.location.world?
-        @current_user_location_ids = current_user.settings.location.children.collect(&:id)
-        @current_user_location_ids << current_user.settings.location_id
-      end
-    end
+  def set_settings
+    @settings = current_user.settings if current_user
   end
 
   def staging_authentication

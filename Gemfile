@@ -94,3 +94,6 @@ group :test do
   gem 'capybara'
   gem 'machinist'
 end
+
+gem 'foreman'
+

@@ -5,6 +5,7 @@ class Location < ActiveRecord::Base
   belongs_to :parent, :class_name => "Location"
   has_many :events, :through => :projects
 
+  set_rgeo_factory_for_column(:geom, RGeo::Geographic.simple_mercator_factory)
   # acts_as_geom :geom => :multi_polygon
 
   cattr_reader :per_page

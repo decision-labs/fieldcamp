@@ -1,9 +1,7 @@
 require 'pp'
 require 'geokit'
+require 'rgeo'
 include Geokit::Geocoders
-
-# TODO: set locations for new users by creating a world location by default and set to that
-# TODO: create world location first
 
 # -------------------------------
 # Delete all unless in production
@@ -18,6 +16,23 @@ if Rails.env != "production"
 end
 
 # -------------------------------
+# Create parent location
+# -------------------------------
+
+factory = ::RGeo::Geographic.simple_mercator_factory()
+p1 = factory.point(-179, 89)
+p2 = factory.point( 179, 89)
+p3 = factory.point( 179,-89)
+p4 = factory.point(-179,-89)
+ring = factory.linear_ring([p1, p2, p3, p4, p1])
+world_geom = factory.polygon(ring)
+
+# World admin_level is set to -1 by convention
+# National: 1
+# Provincial: 2
+world = Location.where(:name => 'World', :admin_level => -1).first_or_create(:geom => world_geom)
+
+# -------------------------------
 # Create users
 # -------------------------------
 gernot  = User.create(
@@ -26,7 +41,7 @@ gernot  = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-gernot.settings = Settings.create!
+gernot.settings = Settings.create!(:location => world)
 
 silvius = User.create(
   :email                 => 'prakkako@caritas.de',
@@ -34,7 +49,7 @@ silvius = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-silvius.settings = Settings.create!
+silvius.settings = Settings.create!(:location => world)
 
 publisher = User.create(
   :email                 => 'publisher@caritas.de',
@@ -42,7 +57,7 @@ publisher = User.create(
   :password_confirmation => "caritas123",
   :role                  => 'publisher'
 )
-publisher.settings = Settings.create!
+publisher.settings = Settings.create!(:location => world)
 
 shoaib = User.create(
   :email                 => 'shoaib@nomad-labs.com',
@@ -50,7 +65,7 @@ shoaib = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'admin'
 )
-shoaib.settings = Settings.create!
+shoaib.settings = Settings.create!(:location => world)
 
 public_relations = User.create(
   :email                 => 'public_relations@caritas.de',
@@ -58,7 +73,7 @@ public_relations = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'public_relations'
 )
-public_relations.settings = Settings.create!
+public_relations.settings = Settings.create!(:location => world)
 
 oea = User.create(
   :email                 => 'oea@caritas.de',
@@ -66,7 +81,7 @@ oea = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'public_relations'
 )
-oea.settings = Settings.create!(:location => Location.find_by_name('World'))
+oea.settings = Settings.create!(:location => world)
 
 monika = User.create(
   :email                 => 'monika.hoffmann@caritas.de',
@@ -74,7 +89,7 @@ monika = User.create(
   :password_confirmation => "caritas321",
   :role                  => 'public_relations'
 )
-monika.settings = Settings.create!(:location => Location.find_by_name('World'))
+monika.settings = Settings.create!(:location => world)
 
 # -----------------------------------
 # Load Locations data from shapefiles
@@ -82,7 +97,7 @@ monika.settings = Settings.create!(:location => Location.find_by_name('World'))
 
 # load pakistan data
 puts %x[rake db:load_shapefile \
-  shapefile_path="#{Rails.root}/db/raw_data/national_boundries_of_pakistan/pakistan_country_bdry.shp" \
+  shapefile_path="#{Rails.root}/db/raw_data/pakistan/national_boundries_of_pakistan/pakistan_country_bdry.shp" \
   name_field=NAME_1 \
   description_field=descriptio \
   admin_level=0 \
@@ -91,7 +106,7 @@ pakistan = Location.where(:name => "Pakistan").first
 puts "Created Pakistan id: #{pakistan.id}"
 
 puts %x[rake db:load_shapefile \
-  shapefile_path="#{Rails.root}/db/raw_data/provincial_boundaries_of_pakistan/provincial_boundaries_of_pakistan.shp" \
+  shapefile_path="#{Rails.root}/db/raw_data/pakistan/provincial_boundaries_of_pakistan/provincial_boundaries_of_pakistan.shp" \
   name_field=NAME_1 \
   description_field=ENGTYPE_1 \
   admin_level=1 \
@@ -100,7 +115,7 @@ puts %x[rake db:load_shapefile \
 
 # load Haiti data
 puts %x[rake db:load_shapefile \
-  shapefile_path="#{Rails.root}/db/raw_data/haiti_national/haiti_national_bdry.shp" \
+  shapefile_path="#{Rails.root}/db/raw_data/haiti/haiti_national/haiti_national_bdry.shp" \
   name_field=COUNTRY \
   description_field=COMMENT \
   admin_level=0 \
@@ -200,7 +215,7 @@ proj_desc = "With help from partner agencies, Caritas Pakistan has since focused
 
     3.times do |i|
       e = project.events.build(events_attributes[i])
-      point = location.geom.envelope.center
+      point = location.geom.envelope.centroid
 
       width  = (country.geom.envelope.upper_corner.x - country.geom.envelope.lower_corner.x).abs/2
       height = (country.geom.envelope.upper_corner.y - country.geom.envelope.lower_corner.y).abs/2

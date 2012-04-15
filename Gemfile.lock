@@ -193,6 +193,8 @@ GEM
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       ruby-graphviz (~> 0.9.18)
+    rails-footnotes (3.7.6)
+      rails (>= 3.0.0)
     rails3-generators (0.17.4)
       railties (>= 3.0.0)
     railties (3.2.3)
@@ -337,6 +339,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.3)
   rails-erd
+  rails-footnotes
   rails3-generators
   rb-fsevent
   rdiscount

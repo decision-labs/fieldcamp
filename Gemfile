@@ -4,11 +4,12 @@ gem 'rails', '3.2.3'
 gem 'pg'
 gem 'haml'
 gem 'em-websocket'
+
+# == RGeo ==
 gem 'rgeo'
 gem 'rgeo-shapefile'
-# gem 'postgis_adapter' (moving to rgeo)
-# gem 'georuby'         (moving to rgeo)
 gem 'activerecord-postgis-adapter'
+
 gem 'airbrake'
 gem 'jquery-rails'
 gem 'redis'
@@ -42,14 +43,17 @@ group :test, :development do
   gem 'ruby_parser'
   gem 'ruby-debug', :platforms => ['ruby_18']
   gem 'ruby-debug19', :platforms => ['ruby_19']
-end
 
-group :development do
   gem 'wirble'
   gem 'hirb'
   gem 'awesome_print'
+end
+
+group :development do
+  gem 'rails-footnotes'
   gem 'capistrano'
   gem 'bundle_outdated'
+  gem 'foreman'
 end
 
 group :test do
@@ -61,16 +65,9 @@ group :test do
   gem 'cucumber-rails'
 
   # == for generators ==
-  gem 'haml-rails'
-  gem 'rails3-generators'
   gem 'web-app-theme'
   gem 'rails-erd'
   gem 'erb2haml' # (used when converting devise views to haml)
-
-  gem "wirble"
-  gem "hirb"
-  gem "awesome_print"
-  gem 'capistrano'
 
   # == rspec ==
   gem 'rspec'
@@ -94,6 +91,4 @@ group :test do
   gem 'capybara'
   gem 'machinist'
 end
-
-gem 'foreman'
 

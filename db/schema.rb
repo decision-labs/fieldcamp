@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120202085744) do
+ActiveRecord::Schema.define(:version => 20120223134644) do
 
   create_table "articles", :force => true do |t|
-    t.column "content", :text
-    t.column "published_at", :datetime
-    t.column "author_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "published", :boolean
-    t.column "title", :string
-    t.column "project_id", :integer
+    t.text     "content"
+    t.datetime "published_at"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "published"
+    t.string   "title"
+    t.integer  "project_id"
   end
 
   add_index "articles", ["author_id"], :name => "index_articles_on_author_id"
@@ -29,176 +30,176 @@ ActiveRecord::Schema.define(:version => 20120202085744) do
   add_index "articles", ["title"], :name => "index_articles_on_title"
 
   create_table "distributions", :force => true do |t|
-    t.column "item", :string
-    t.column "quantity_of_items", :integer
-    t.column "unit", :string
-    t.column "recipient", :string
-    t.column "number_of_recipients", :integer
-    t.column "event_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "item"
+    t.integer  "quantity_of_items"
+    t.string   "unit"
+    t.string   "recipient"
+    t.integer  "number_of_recipients"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "documents", :force => true do |t|
-    t.column "asset", :string
-    t.column "title", :string
-    t.column "description", :text
-    t.column "event_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "asset"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "documents", ["asset"], :name => "index_documents_on_asset"
   add_index "documents", ["title"], :name => "index_documents_on_title"
 
   create_table "events", :force => true do |t|
-    t.column "title", :string
-    t.column "description", :text
-    t.column "address", :string
-    t.column "project_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "user_id", :integer
-    t.column "geom", :point, :srid => 4326, :with_z => true
+    t.string   "title"
+    t.text     "description"
+    t.string   "address"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.spatial  "geom",        :limit => {:srid=>4326, :type=>"point"}
   end
 
-  add_index "events", ["geom"], :name => "index_events_on_geom", :spatial=> true 
+  add_index "events", ["geom"], :name => "index_events_on_geom", :spatial => true
   add_index "events", ["title"], :name => "index_events_on_title"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "events_partners", :id => false, :force => true do |t|
-    t.column "event_id", :integer
-    t.column "partner_id", :integer
+    t.integer "event_id"
+    t.integer "partner_id"
   end
 
   add_index "events_partners", ["event_id"], :name => "index_events_partners_on_event_id"
   add_index "events_partners", ["partner_id"], :name => "index_events_partners_on_partner_id"
 
   create_table "events_sectors", :id => false, :force => true do |t|
-    t.column "event_id", :integer
-    t.column "sector_id", :integer
+    t.integer "event_id"
+    t.integer "sector_id"
   end
 
   add_index "events_sectors", ["event_id"], :name => "index_events_sectors_on_event_id"
   add_index "events_sectors", ["sector_id"], :name => "index_events_sectors_on_sector_id"
 
   create_table "images", :force => true do |t|
-    t.column "asset", :string
-    t.column "title", :string
-    t.column "event_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "asset"
+    t.string   "title"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "images", ["asset"], :name => "index_images_on_asset"
   add_index "images", ["title"], :name => "index_images_on_title"
 
   create_table "locations", :force => true do |t|
-    t.column "name", :string
-    t.column "description", :text
-    t.column "admin_level", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "user_id", :integer
-    t.column "parent_id", :integer
-    t.column "geom", :geometry, :srid => 4326, :null => false
-    t.column "projects_count", :integer, :default => 0
-    t.column "iso_3166_2", :string, :limit => 2
-    t.column "child_location_ids", :text
+    t.string   "name"
+    t.text     "description"
+    t.integer  "admin_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.integer  "projects_count",                                                 :default => 0
+    t.string   "iso_3166_2",         :limit => 2
+    t.text     "child_location_ids"
+    t.spatial  "geom",               :limit => {:srid=>4326, :type=>"geometry"}
   end
 
-  add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial=> true 
+  add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial => true
   add_index "locations", ["iso_3166_2"], :name => "index_locations_on_iso_3166_2"
   add_index "locations", ["name"], :name => "index_locations_on_name"
   add_index "locations", ["parent_id"], :name => "index_locations_on_parent_id"
   add_index "locations", ["user_id"], :name => "index_locations_on_user_id"
 
   create_table "partners", :force => true do |t|
-    t.column "name", :string
-    t.column "description", :text
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "user_id", :integer
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "partners", ["name"], :name => "index_partners_on_name"
   add_index "partners", ["user_id"], :name => "index_partners_on_user_id"
 
   create_table "partners_projects", :id => false, :force => true do |t|
-    t.column "partner_id", :integer
-    t.column "project_id", :integer
+    t.integer "partner_id"
+    t.integer "project_id"
   end
 
   create_table "people", :force => true do |t|
-    t.column "first_name", :string, :null => false
-    t.column "last_name", :string, :null => false
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "first_name", :null => false
+    t.string   "last_name",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", :force => true do |t|
-    t.column "title", :string, :null => false
-    t.column "description", :text
-    t.column "admin_id", :integer
-    t.column "start_date", :date
-    t.column "end_date", :date
-    t.column "location_id", :integer
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "user_id", :integer
+    t.string   "title",       :null => false
+    t.text     "description"
+    t.integer  "admin_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "location_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "projects", ["title"], :name => "index_projects_on_title"
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
 
   create_table "projects_sectors", :id => false, :force => true do |t|
-    t.column "project_id", :integer
-    t.column "sector_id", :integer
+    t.integer "project_id"
+    t.integer "sector_id"
   end
 
   add_index "projects_sectors", ["project_id"], :name => "index_projects_sectors_on_project_id"
   add_index "projects_sectors", ["sector_id"], :name => "index_projects_sectors_on_sector_id"
 
   create_table "sectors", :force => true do |t|
-    t.column "name", :string
-    t.column "description", :text
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
-    t.column "user_id", :integer
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "sectors", ["name"], :name => "index_sectors_on_name"
   add_index "sectors", ["user_id"], :name => "index_sectors_on_user_id"
 
   create_table "settings", :force => true do |t|
-    t.column "user_id", :integer
-    t.column "location_id", :integer
-    t.column "language", :string
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.string   "language"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "settings", ["language"], :name => "index_settings_on_language"
   add_index "settings", ["location_id"], :name => "index_settings_on_location_id"
 
   create_table "users", :force => true do |t|
-    t.column "email", :string, :default => "", :null => false
-    t.column "encrypted_password", :string, :limit => 128, :default => "", :null => false
-    t.column "password_salt", :string, :default => "", :null => false
-    t.column "reset_password_token", :string
-    t.column "remember_token", :string
-    t.column "remember_created_at", :datetime
-    t.column "sign_in_count", :integer, :default => 0
-    t.column "current_sign_in_at", :datetime
-    t.column "last_sign_in_at", :datetime
-    t.column "current_sign_in_ip", :string
-    t.column "last_sign_in_ip", :string
-    t.column "confirmation_token", :string
-    t.column "confirmed_at", :datetime
-    t.column "confirmation_sent_at", :datetime
-    t.column "role", :string
-    t.column "created_at", :datetime
-    t.column "updated_at", :datetime
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

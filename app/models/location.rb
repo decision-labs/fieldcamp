@@ -14,9 +14,9 @@ class Location < ActiveRecord::Base
 
   @@per_page = 5
 
-  scope :world,     where(:admin_level => 0)
-  scope :countries, where(:admin_level => 1)
-  scope :provinces, where(:admin_level => 2)
+  scope :world,     where(:admin_level => -1)
+  scope :countries, where(:admin_level => 0)
+  scope :provinces, where(:admin_level => 1)
 
   # def self.user_location_scoped(location_ids)
   #   scope :all, where(:id => location_ids)

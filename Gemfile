@@ -1,12 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
-# gem 'rake', '0.8.7'
+gem 'rails', '3.2.3'
 gem 'pg'
 gem 'haml'
-gem 'georuby',          :git => 'git://github.com/nofxx/georuby.git', :require => 'geo_ruby'
-gem 'postgis_adapter',  :git => 'git://github.com/nofxx/postgis_adapter.git'
-gem 'em-websocket',     :git => 'git://github.com/igrigorik/em-websocket'
+gem 'em-websocket'
+
+# == RGeo ==
+gem 'rgeo'
+gem 'rgeo-shapefile'
+gem 'activerecord-postgis-adapter'
+
 gem 'airbrake'
 gem 'jquery-rails'
 gem 'redis'
@@ -16,7 +19,7 @@ gem 'devise'
 gem 'configatron'
 gem 'cancan'
 gem 'rdiscount'
-gem 'will_paginate', "~> 3.0.pre2"
+gem 'will_paginate', '~> 3.0'
 gem 'dalli'
 gem 'compass', '>= 0.10.6'
 gem 'carrierwave'
@@ -28,12 +31,10 @@ gem 'crummy', '~> 1.3.6'
 
 group :test, :development do
   gem 'sqlite3'
-  gem "gherkin", "~> 2.4.1"
-  gem 'cucumber'
-  gem 'cucumber-rails'
-  gem 'pickle'
-
+  gem 'haml-rails'
+  gem 'rails3-generators'
   gem 'dbf'
+  gem 'fastercsv'
 
   gem 'silent-postgres'
   gem 'geokit'
@@ -42,20 +43,31 @@ group :test, :development do
   gem 'ruby_parser'
   gem 'ruby-debug', :platforms => ['ruby_18']
   gem 'ruby-debug19', :platforms => ['ruby_19']
+
+  gem 'wirble'
+  gem 'hirb'
+  gem 'awesome_print'
 end
 
 group :development do
+  gem 'rails-footnotes'
+  gem 'capistrano'
+  gem 'bundle_outdated'
+  gem 'foreman'
+end
+
+group :test do
+  gem 'shoulda'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'gherkin'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+
   # == for generators ==
-  gem 'haml-rails'
-  gem 'rails3-generators'
   gem 'web-app-theme'
   gem 'rails-erd'
   gem 'erb2haml' # (used when converting devise views to haml)
-
-  gem "wirble"
-  gem "hirb"
-  gem "awesome_print"
-  gem 'capistrano'
 
   # == rspec ==
   gem 'rspec'
@@ -68,10 +80,10 @@ group :development do
   gem 'growl'
 
   gem 'annotate'
-end
 
-group :test do
-  gem "shoulda"
+  gem 'faker'
+  # gem 'ffaker'
+
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'rb-fsevent', :require => false
@@ -80,5 +92,3 @@ group :test do
   gem 'machinist'
 end
 
-gem 'faker'
-gem 'ffaker'

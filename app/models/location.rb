@@ -5,7 +5,8 @@ class Location < ActiveRecord::Base
   belongs_to :parent, :class_name => "Location"
   has_many :events, :through => :projects
 
-  acts_as_geom :geom => :multi_polygon
+  set_rgeo_factory_for_column(:geom, RGeo::Geographic.simple_mercator_factory)
+  # acts_as_geom :geom => :multi_polygon
 
   cattr_reader :per_page
 
@@ -13,9 +14,9 @@ class Location < ActiveRecord::Base
 
   @@per_page = 5
 
-  scope :world,     where(:admin_level => 0)
-  scope :countries, where(:admin_level => 1)
-  scope :provinces, where(:admin_level => 2)
+  scope :world,     where(:admin_level => -1)
+  scope :countries, where(:admin_level => 0)
+  scope :provinces, where(:admin_level => 1)
 
   # def self.user_location_scoped(location_ids)
   #   scope :all, where(:id => location_ids)

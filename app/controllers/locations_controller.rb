@@ -5,19 +5,19 @@ class LocationsController < ApplicationController
 
   def index
     if current_user
-      @locations = current_user.settings.location.children.paginate(
-        :per_page => 5,
-        :page => params[:page],
-        :select => @desired_columns,
-        :order  => 'locations.created_at desc')
-      @locations.insert(0, Location.find(current_user.settings.location.id, :select => @desired_columns))
+      @locations = current_user.settings.location.children.
+        paginate(:per_page => 5, :page => params[:page]).
+        select(@desired_columns).
+        order('locations.created_at desc').all
+      location = Location.find(current_user.settings.location.id, :select => @desired_columns)
+      @locations.insert(0, location)
     else
       @locations = Location.paginate(
         :per_page => 5,
         :page => params[:page],
         :select => @desired_columns,
         :conditions => ["locations.admin_level < ?", 1],
-        :order  => 'locations.created_at desc')
+        :order  => 'locations.created_at desc').all
     end
   end
 

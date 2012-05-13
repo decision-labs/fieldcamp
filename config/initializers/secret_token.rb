@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Caritas::Application.config.secret_token = '9360c9a112dee325cc8b03185ca6a7327beba30e78d98e61c9824f7a60305b3b40238455a06049b4a39e97183e1264e39fd78ed7130efb30a1c148fff32fb330'
+Caritas::Application.config.secret_token = 'ed2070cac1f1d2e13c7e0318eccfbb51a783655a8eba5c7cfb6f003dc2428b7aeacebbf439e1129424244e0979bf60fa77404a763f4b7ba8e8d68f55ae8b7a2a'

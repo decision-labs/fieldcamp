@@ -71,7 +71,6 @@ Make sure the database migrations are up-to-date: `rake db:migrate:status`
 
 **Japan Boundary:**
 
-
 # Development:
 
 ## Getting started:

@@ -1,7 +1,9 @@
 class Admin::DashboardController < ApplicationController
   before_filter :authenticate_user!
   def index
-    @events = current_user.events_since_login.order('created_at DESC').page(params[:page]).per(5)
+    @events = current_user.events_since_login.
+      order('created_at DESC').
+      paginate(:page => params[:page], :per_page => 5).all
     @projects = Project.where(:id => @events.map(&:project_id).uniq)
 
     # TODO: move to models

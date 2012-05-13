@@ -1,0 +1,1941 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Output of rails_best_practices</title>
+    <style type="text/css">
+      body {
+        color: #333;
+        background: #eee;
+        padding: 0 20px;
+      }
+      h1 {
+        color: ##4E4E4E;
+      }
+      p {
+        margin: 5px 0;
+      }
+      table {
+        background: white;
+        border: 1px solid #666;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      table th, table td {
+        padding: 4px;
+        border: 1px solid #D0D0D0;
+      }
+      table th {
+        background-color: #DFC;
+        color: #337022;
+      }
+      table td.filename {
+        color: #ED1556;
+      }
+      table tr:hover {
+        background-color: #FFFFC0;
+      }
+      ul {
+        clear: both;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+       list-style: none;
+       display: none;
+       float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>rails_best_practices output</h1>
+    <p>
+      Please go to
+      <a href='http://rails-bestpractices.com' target='_blank'>http://rails-bestpractices.com</a>
+      to see more useful Rails Best Practices.
+    </p>
+    <p>
+        Found 198 warnings.
+    </p>
+    <ul>
+        <li>
+            <input type="checkbox" id="MoveFinderToNamedScopeReview" value="MoveFinderToNamedScopeReview" />
+            <label for="MoveFinderToNamedScopeReview">MoveFinderToNamedScopeReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="MoveModelLogicIntoModelReview" value="MoveModelLogicIntoModelReview" />
+            <label for="MoveModelLogicIntoModelReview">MoveModelLogicIntoModelReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="LawOfDemeterReview" value="LawOfDemeterReview" />
+            <label for="LawOfDemeterReview">LawOfDemeterReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="AlwaysAddDbIndexReview" value="AlwaysAddDbIndexReview" />
+            <label for="AlwaysAddDbIndexReview">AlwaysAddDbIndexReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="UseBeforeFilterReview" value="UseBeforeFilterReview" />
+            <label for="UseBeforeFilterReview">UseBeforeFilterReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="MoveCodeIntoControllerReview" value="MoveCodeIntoControllerReview" />
+            <label for="MoveCodeIntoControllerReview">MoveCodeIntoControllerReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="ReplaceInstanceVariableWithLocalVariableReview" value="ReplaceInstanceVariableWithLocalVariableReview" />
+            <label for="ReplaceInstanceVariableWithLocalVariableReview">ReplaceInstanceVariableWithLocalVariableReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="DryBundlerInCapistranoReview" value="DryBundlerInCapistranoReview" />
+            <label for="DryBundlerInCapistranoReview">DryBundlerInCapistranoReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="UseSayWithTimeInMigrationsReview" value="UseSayWithTimeInMigrationsReview" />
+            <label for="UseSayWithTimeInMigrationsReview">UseSayWithTimeInMigrationsReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="SimplifyRenderInViewsReview" value="SimplifyRenderInViewsReview" />
+            <label for="SimplifyRenderInViewsReview">SimplifyRenderInViewsReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="SimplifyRenderInControllersReview" value="SimplifyRenderInControllersReview" />
+            <label for="SimplifyRenderInControllersReview">SimplifyRenderInControllersReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="RemoveEmptyHelpersReview" value="RemoveEmptyHelpersReview" />
+            <label for="RemoveEmptyHelpersReview">RemoveEmptyHelpersReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview" />
+            <label for="RemoveUnusedMethodsInModelsReview">RemoveUnusedMethodsInModelsReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="RemoveUnusedMethodsInControllersReview" value="RemoveUnusedMethodsInControllersReview" />
+            <label for="RemoveUnusedMethodsInControllersReview">RemoveUnusedMethodsInControllersReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="RemoveUnusedMethodsInHelpersReview" value="RemoveUnusedMethodsInHelpersReview" />
+            <label for="RemoveUnusedMethodsInHelpersReview">RemoveUnusedMethodsInHelpersReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="NotUseTimeAgoInWordsReview" value="NotUseTimeAgoInWordsReview" />
+            <label for="NotUseTimeAgoInWordsReview">NotUseTimeAgoInWordsReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="ProtectMassAssignmentReview" value="ProtectMassAssignmentReview" />
+            <label for="ProtectMassAssignmentReview">ProtectMassAssignmentReview</label>
+        </li>
+        <li>
+            <input type="checkbox" id="RemoveTrailingWhitespaceCheck" value="RemoveTrailingWhitespaceCheck" />
+            <label for="RemoveTrailingWhitespaceCheck">RemoveTrailingWhitespaceCheck</label>
+        </li>
+    </ul>
+    <table>
+      <tr>
+        <th>Filename</th>
+        <th>Line Number</th>
+        <th>Warning Message</th>
+      </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>12</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>28</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>65</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>84</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>100</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/partners_controller.rb
+          </td>
+          <td class='line'>12</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/partners_controller.rb
+          </td>
+          <td class='line'>18</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/partners_controller.rb
+          </td>
+          <td class='line'>22</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>15</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>25</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>108</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>109</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/sectors_controller.rb
+          </td>
+          <td class='line'>13</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/sectors_controller.rb
+          </td>
+          <td class='line'>15</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/sectors_controller.rb
+          </td>
+          <td class='line'>22</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/sectors_controller.rb
+          </td>
+          <td class='line'>26</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveFinderToNamedScopeReview">
+          <td class='filename'>
+              app/controllers/settings_controller.rb
+          </td>
+          <td class='line'>25</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/1-move-finder-to-named_scope' target='_blank'>move finder to named_scope</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/events_controller.rb
+          </td>
+          <td class='line'>56</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@event use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>24</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@location use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>56</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@project use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="MoveModelLogicIntoModelReview">
+          <td class='filename'>
+              app/controllers/settings_controller.rb
+          </td>
+          <td class='line'>16</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@settings use_count > 4)</a>
+          </td>
+        </tr>
+        <tr class="LawOfDemeterReview">
+          <td class='filename'>
+              app/views/admin/dashboard/_project.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+          </td>
+        </tr>
+        <tr class="LawOfDemeterReview">
+          <td class='filename'>
+              app/views/articles/_project_summary.html.haml
+          </td>
+          <td class='line'>10</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+          </td>
+        </tr>
+        <tr class="LawOfDemeterReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>144</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+          </td>
+        </tr>
+        <tr class="LawOfDemeterReview">
+          <td class='filename'>
+              app/views/events/index.html.haml
+          </td>
+          <td class='line'>18</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+          </td>
+        </tr>
+        <tr class="LawOfDemeterReview">
+          <td class='filename'>
+              app/views/projects/show.html.haml
+          </td>
+          <td class='line'>25</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+          </td>
+        </tr>
+        <tr class="LawOfDemeterReview">
+          <td class='filename'>
+              app/views/search/_project.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>32</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (distributions => [event_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>43</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (documents => [event_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>55</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (events => [project_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>86</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (images => [event_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>128</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (partners_projects => [partner_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>128</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (partners_projects => [project_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>140</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (projects => [location_id])</a>
+          </td>
+        </tr>
+        <tr class="AlwaysAddDbIndexReview">
+          <td class='filename'>
+              db/schema.rb
+          </td>
+          <td class='line'>174</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (settings => [user_id])</a>
+          </td>
+        </tr>
+        <tr class="UseBeforeFilterReview">
+          <td class='filename'>
+              app/controllers/articles_controller.rb
+          </td>
+          <td class='line'>22,44,71,91,106</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/22-use-before_filter' target='_blank'>use before_filter for show,edit,update,destroy,unpublish</a>
+          </td>
+        </tr>
+        <tr class="UseBeforeFilterReview">
+          <td class='filename'>
+              app/controllers/documents_controller.rb
+          </td>
+          <td class='line'>15,34,56,70</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/22-use-before_filter' target='_blank'>use before_filter for show,edit,update,destroy</a>
+          </td>
+        </tr>
+        <tr class="UseBeforeFilterReview">
+          <td class='filename'>
+              app/controllers/events_controller.rb
+          </td>
+          <td class='line'>4,20,48,56,77,104</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/22-use-before_filter' target='_blank'>use before_filter for index,show,edit,create,update,destroy</a>
+          </td>
+        </tr>
+        <tr class="UseBeforeFilterReview">
+          <td class='filename'>
+              app/controllers/images_controller.rb
+          </td>
+          <td class='line'>14,33,55,69</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/22-use-before_filter' target='_blank'>use before_filter for show,edit,update,destroy</a>
+          </td>
+        </tr>
+        <tr class="MoveCodeIntoControllerReview">
+          <td class='filename'>
+              app/views/locations/_location.html.haml
+          </td>
+          <td class='line'>19</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/24-move-code-into-controller' target='_blank'>move code into controller</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>11</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>38</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>38</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/articles/_form.html.haml
+          </td>
+          <td class='line'>40</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>10</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>12</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>31</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>48</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>57</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>68</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>74</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>141</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>144</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>147</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>150</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.mobile.haml
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.mobile.haml
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.mobile.haml
+          </td>
+          <td class='line'>2</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.mobile.haml
+          </td>
+          <td class='line'>4</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/events/_form.mobile.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/images/_form.html.haml
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/images/_form.html.haml
+          </td>
+          <td class='line'>2</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/images/_form.html.haml
+          </td>
+          <td class='line'>4</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/images/_form.html.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_edit-map_js.haml
+          </td>
+          <td class='line'>96</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_edit-map_js.haml
+          </td>
+          <td class='line'>96</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_new-map_js.haml
+          </td>
+          <td class='line'>96</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_new-map_js.haml
+          </td>
+          <td class='line'>96</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>10</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>10</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>44</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-map_js.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-map_js.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/js/_show-map_js.haml
+          </td>
+          <td class='line'>85</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/locations/_form.html.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/locations/_form.html.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/locations/_form.html.haml
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/locations/_form.html.haml
+          </td>
+          <td class='line'>11</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/partners/_form.html.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/partners/_form.html.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/partners/_form.html.haml
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/partners/_form.html.haml
+          </td>
+          <td class='line'>11</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>9</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>11</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>13</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>29</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>39</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.html.haml
+          </td>
+          <td class='line'>46</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.mobile.haml
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.mobile.haml
+          </td>
+          <td class='line'>2</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.mobile.haml
+          </td>
+          <td class='line'>4</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/projects/_form.mobile.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/sectors/_form.html.haml
+          </td>
+          <td class='line'>5</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/sectors/_form.html.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/sectors/_form.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/sectors/_form.html.haml
+          </td>
+          <td class='line'>10</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/shared/_user_settings.html.haml
+          </td>
+          <td class='line'>2</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+          <td class='filename'>
+              app/views/shared/_user_settings.html.haml
+          </td>
+          <td class='line'>3</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+          </td>
+        </tr>
+        <tr class="DryBundlerInCapistranoReview">
+          <td class='filename'>
+              config/deploy.rb
+          </td>
+          <td class='line'>40</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/51-dry-bundler-in-capistrano' target='_blank'>dry bundler in capistrano</a>
+          </td>
+        </tr>
+        <tr class="UseSayWithTimeInMigrationsReview">
+          <td class='filename'>
+              db/migrate/20110402182403_add_projects_count.rb
+          </td>
+          <td class='line'>5</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/46-use-say-and-say_with_time-in-migrations-to-make-a-useful-migration-log' target='_blank'>use say with time in migrations</a>
+          </td>
+        </tr>
+        <tr class="UseSayWithTimeInMigrationsReview">
+          <td class='filename'>
+              db/migrate/20110402182403_add_projects_count.rb
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/46-use-say-and-say_with_time-in-migrations-to-make-a-useful-migration-log' target='_blank'>use say with time in migrations</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/admin/dashboard/index.html.haml
+          </td>
+          <td class='line'>86</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/admin/dashboard/index.html.haml
+          </td>
+          <td class='line'>93</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/articles/projects.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>48</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>51</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>57</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/events/_form.html.haml
+          </td>
+          <td class='line'>59</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/events/show.html.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/events_feed/index.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/projects/show.html.haml
+          </td>
+          <td class='line'>46</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/projects/show.html.haml
+          </td>
+          <td class='line'>54</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/search/events.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/search/events.haml
+          </td>
+          <td class='line'>13</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/search/projects.haml
+          </td>
+          <td class='line'>7</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInViewsReview">
+          <td class='filename'>
+              app/views/search/projects.haml
+          </td>
+          <td class='line'>13</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/articles_controller.rb
+          </td>
+          <td class='line'>63</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/articles_controller.rb
+          </td>
+          <td class='line'>83</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/articles_controller.rb
+          </td>
+          <td class='line'>114</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/documents_controller.rb
+          </td>
+          <td class='line'>48</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/documents_controller.rb
+          </td>
+          <td class='line'>63</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/events_controller.rb
+          </td>
+          <td class='line'>71</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/events_controller.rb
+          </td>
+          <td class='line'>98</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/images_controller.rb
+          </td>
+          <td class='line'>47</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/images_controller.rb
+          </td>
+          <td class='line'>62</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>77</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/locations_controller.rb
+          </td>
+          <td class='line'>92</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/partners_controller.rb
+          </td>
+          <td class='line'>47</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/partners_controller.rb
+          </td>
+          <td class='line'>60</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>68</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>69</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>86</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>87</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/sectors_controller.rb
+          </td>
+          <td class='line'>50</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="SimplifyRenderInControllersReview">
+          <td class='filename'>
+              app/controllers/sectors_controller.rb
+          </td>
+          <td class='line'>63</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/admin/dashboard_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/events_feed_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/events_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/locations_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/partners_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/projects_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/public_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveEmptyHelpersReview">
+          <td class='filename'>
+              app/helpers/settings_helper.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/article.rb
+          </td>
+          <td class='line'>15</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Article#chronological)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/article.rb
+          </td>
+          <td class='line'>16</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Article#published)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/article.rb
+          </td>
+          <td class='line'>23</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Article#publish)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/article.rb
+          </td>
+          <td class='line'>35</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Article#content_html)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInModelsReview">
+          <td class='filename'>
+              app/models/location.rb
+          </td>
+          <td class='line'>19</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (Location#provinces)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInControllersReview">
+          <td class='filename'>
+              app/controllers/application_controller.rb
+          </td>
+          <td class='line'>28</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (ApplicationController#default_url_options)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInControllersReview">
+          <td class='filename'>
+              app/controllers/application_controller.rb
+          </td>
+          <td class='line'>68</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (ApplicationController#staging_authentication)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInHelpersReview">
+          <td class='filename'>
+              app/helpers/application_helper.rb
+          </td>
+          <td class='line'>15</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (ApplicationHelper#dom_class_first)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInHelpersReview">
+          <td class='filename'>
+              app/helpers/application_helper.rb
+          </td>
+          <td class='line'>35</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (ApplicationHelper#event_title_links)</a>
+          </td>
+        </tr>
+        <tr class="RemoveUnusedMethodsInHelpersReview">
+          <td class='filename'>
+              app/helpers/application_helper.rb
+          </td>
+          <td class='line'>56</td>
+          <td class='message'>
+            <a href='#' target='_blank'>remove unused methods (ApplicationHelper#static_map_img_link)</a>
+          </td>
+        </tr>
+        <tr class="NotUseTimeAgoInWordsReview">
+          <td class='filename'>
+              app/views/admin/dashboard/_event.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/105-not-use-time_ago_in_words' target='_blank'>not use time_ago_in_words</a>
+          </td>
+        </tr>
+        <tr class="NotUseTimeAgoInWordsReview">
+          <td class='filename'>
+              app/views/events_feed/_event.haml
+          </td>
+          <td class='line'>14</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/105-not-use-time_ago_in_words' target='_blank'>not use time_ago_in_words</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/ability.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/distribution.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/document.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/event_search.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/image.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/location.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/partner.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/project.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/project_search.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/sector.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="ProtectMassAssignmentReview">
+          <td class='filename'>
+              app/models/settings.rb
+          </td>
+          <td class='line'>1</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/148-protect-mass-assignment' target='_blank'>protect mass assignment</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/models/event_search.rb
+          </td>
+          <td class='line'>43</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/models/location.rb
+          </td>
+          <td class='line'>75</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/models/project.rb
+          </td>
+          <td class='line'>31</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/models/project_search.rb
+          </td>
+          <td class='line'>40</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/helpers/articles_helper.rb
+          </td>
+          <td class='line'>18</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/helpers/mobile_helper.rb
+          </td>
+          <td class='line'>27</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/controllers/application_controller.rb
+          </td>
+          <td class='line'>36</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/controllers/projects_controller.rb
+          </td>
+          <td class='line'>41</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              config/deploy.rb
+          </td>
+          <td class='line'>46</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              config/initializers/devise.rb
+          </td>
+          <td class='line'>122</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              db/migrate/20110402182403_add_projects_count.rb
+          </td>
+          <td class='line'>4</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              lib/tasks/cucumber.rake
+          </td>
+          <td class='line'>2</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/events/_event.html.haml
+          </td>
+          <td class='line'>8</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/events/_form_documents.html.haml
+          </td>
+          <td class='line'>14</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/js/_show-location-map_js.haml
+          </td>
+          <td class='line'>25</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/js/_show-map_js.haml
+          </td>
+          <td class='line'>12</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/locations/show.mobile.haml
+          </td>
+          <td class='line'>13</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/projects/_project.html.haml
+          </td>
+          <td class='line'>5</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/projects/edit.mobile.haml
+          </td>
+          <td class='line'>6</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/search/_form.haml
+          </td>
+          <td class='line'>43</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+        <tr class="RemoveTrailingWhitespaceCheck">
+          <td class='filename'>
+              app/views/sectors/show.mobile.haml
+          </td>
+          <td class='line'>12</td>
+          <td class='message'>
+            <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+          </td>
+        </tr>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('ul li').show();
+        $('input[type=checkbox]').prop('checked', true).click(function() {
+          if ($(this).attr('checked')) {
+            $(this).prop('checked', true);
+            $('.'+$(this).val()).show();
+          } else {
+            $(this).prop('checked', false);
+            $('.'+$(this).val()).hide();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -100,7 +100,7 @@ class ArticlesController < ApplicationController
   end
 
   def projects
-    @projects = Project.order('created_at desc').page(params[:page]).per(5)
+    @projects = Project.order('created_at desc').paginate(:page => params[:page], :per_page => 5).all
   end
 
   def unpublish

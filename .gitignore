@@ -10,3 +10,6 @@ public/uploads
 public/stylesheets/compiled/
 db/raw_data/*
 tmp/*
+
+.rails_footnotes
+

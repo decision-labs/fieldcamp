@@ -8,5 +8,5 @@
       =render :partial => "project_summary", :collection => @projects, :as => :project
 
       #paginator
-        = paginate @projects
+        = will_paginate @projects
       %br

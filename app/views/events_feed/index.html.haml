@@ -8,4 +8,4 @@
         = render :partial => 'event', :collection => @events
         .actions-bar.wat-cf
           .actions
-            = paginate @events
+            = will_paginate @events

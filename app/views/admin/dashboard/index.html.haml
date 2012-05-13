@@ -6,6 +6,7 @@
   = stylesheet_link_tag 'flick/jquery-ui'
 
   %script{:src => "https://www.google.com/jsapi", :type => "text/javascript"}
+  = javascript_include_tag 'jquery-ui.min'
 
   :javascript
     function loadGoogleChartsContent() {
@@ -74,7 +75,7 @@
           %ul
 
         #paginator
-          = paginate @events, :remote => true
+          = will_paginate @events, :remote => true
         .clear
         %form
           .columns.wat-cf

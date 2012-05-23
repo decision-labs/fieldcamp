@@ -71,8 +71,20 @@ class Location < ActiveRecord::Base
     }
   end
 
+  def geom_projected
+    RGeo::Geographic.simple_mercator_factory.project( self.geom )
+  end
+
+  def envelope_projected
+    RGeo::Geographic.simple_mercator_factory.project( self.geom.envelope )
+  end
+
+  def bbox_projected
+    RGeo::Cartesian::BoundingBox.create_from_geometry(self.geom.envelope)
+  end
+
   private
-  
+
   def self.has_ancestor?(loc, ancestor_id)
     return true  if loc.parent_id == ancestor_id
     return false if loc.parent.world?

@@ -5,9 +5,9 @@
     var marker = null;
     var pathname = "#{url_for(:action => controller.action_name)}"
 
-    var center = new google.maps.LatLng("#{@location.geom.envelope.center.y}", "#{@location.geom.envelope.center.x}");
-    var sw = new google.maps.LatLng("#{@location.geom.envelope.lower_corner.y}", "#{@location.geom.envelope.lower_corner.x}");
-    var ne = new google.maps.LatLng("#{@location.geom.envelope.upper_corner.y}", "#{@location.geom.envelope.upper_corner.x}");
+    var center = new google.maps.LatLng("#{@location.geom.envelope.centroid.y}", "#{@location.geom.envelope.centroid.x}");
+    var sw = new google.maps.LatLng("#{@location.bbox_projected.min_point.y}", "#{@location.bbox_projected.min_point.x}");
+    var ne = new google.maps.LatLng("#{@location.bbox_projected.max_point.y}", "#{@location.bbox_projected.max_point.x}");
     var mapBounds = new google.maps.LatLngBounds(sw, ne); // LatLngBounds(sw?:LatLng, ne?:LatLng)
     var mapOptions = {
       zoom: 5,

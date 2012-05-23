@@ -1,21 +1,20 @@
 spacialdb: &spacialdb
-  adapter: postgresql
-  username: <username>
-  password: <password>
-  host: beta.spacialdb.com
-  port: 9999
+  adapter: postgis
+  schema_search_path: "public,postgis"
+  username: kashif
+  host: localhost
+  postgis_extension: true
+  port: 5432
+  encoding: utf8
+  pool: 5
 
 local: &local
-  database: caratas_test
-  host: localhost
-  port: 5432
-  username: <username>
-  password:
-  template: template_postgis
+  database: fieldcamp_test
+  postgis_extension: true
 
 development:
   <<: *spacialdb
-  database: spacialdb0_<username>
+  database: fieldcamp_development
 
 test:
   <<: *local

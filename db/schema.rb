@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.text     "content"
     t.datetime "published_at"
     t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.boolean  "published"
     t.string   "title"
     t.integer  "project_id"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.string   "recipient"
     t.integer  "number_of_recipients"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "documents", :force => true do |t|
@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.string   "title"
     t.text     "description"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "documents", ["asset"], :name => "index_documents_on_asset"
@@ -57,10 +57,10 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.text     "description"
     t.string   "address"
     t.integer  "project_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
+    t.datetime "created_at",                                           :null => false
+    t.datetime "updated_at",                                           :null => false
     t.spatial  "geom",        :limit => {:srid=>4326, :type=>"point"}
+    t.integer  "user_id"
   end
 
   add_index "events", ["geom"], :name => "index_events_on_geom", :spatial => true
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.string   "asset"
     t.string   "title"
     t.integer  "event_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "images", ["asset"], :name => "index_images_on_asset"
@@ -98,14 +98,14 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.string   "name"
     t.text     "description"
     t.integer  "admin_level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                                    :null => false
+    t.datetime "updated_at",                                                                    :null => false
+    t.spatial  "geom",               :limit => {:srid=>4326, :type=>"geometry"}
     t.integer  "user_id"
     t.integer  "parent_id"
     t.integer  "projects_count",                                                 :default => 0
     t.string   "iso_3166_2",         :limit => 2
     t.text     "child_location_ids"
-    t.spatial  "geom",               :limit => {:srid=>4326, :type=>"geometry"}
   end
 
   add_index "locations", ["geom"], :name => "index_locations_on_geom", :spatial => true
@@ -117,8 +117,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
   create_table "partners", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -130,13 +130,6 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.integer "project_id"
   end
 
-  create_table "people", :force => true do |t|
-    t.string   "first_name", :null => false
-    t.string   "last_name",  :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "projects", :force => true do |t|
     t.string   "title",       :null => false
     t.text     "description"
@@ -144,8 +137,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -163,8 +156,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
   create_table "sectors", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
   end
 
@@ -175,8 +168,8 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.integer  "user_id"
     t.integer  "location_id"
     t.string   "language"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "settings", ["language"], :name => "index_settings_on_language"
@@ -185,7 +178,6 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -197,9 +189,10 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "password_salt"
     t.string   "role"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

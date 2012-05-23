@@ -2,7 +2,7 @@
 
 ## Create database
 
-Add `postgis` to the default postgresql template or manualy add it after
+Add `postgis` to the default postgresql template or manually add it after
 creating the database
 
     rake db:create
@@ -87,7 +87,7 @@ Make sure the database migrations are up-to-date: `rake db:migrate:status`
 
     ruby ./script/websocket_server.rb
 
-#### Run via forman:
+#### Run via foreman:
 
     foreman start
 

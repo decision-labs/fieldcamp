@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   has_many :events, :through => :projects
 
   set_rgeo_factory_for_column(:geom, RGeo::Geographic.simple_mercator_factory)
+  RGeo::ActiveRecord::GeometryMixin.set_json_generator(:geojson)
   # acts_as_geom :geom => :multi_polygon
 
   cattr_reader :per_page
@@ -62,11 +63,11 @@ class Location < ActiveRecord::Base
         WHERE parent_id = #{parent_result.id} OR id = #{parent_result.id}
         ORDER BY id ASC;")
 
-    results = locations.as_json.collect{|l|
-      loc         = l["location"]
-      geom        = loc["geom"]
-      loc["geom"] = JSON.parse(geom.as_geojson)
-      loc["center"] = {:x => geom.envelope.center.x, :y => geom.envelope.center.y }
+    results = locations.map{|l|
+      loc         = l.attributes
+      geom        = l.attributes["geom"]
+      loc["geom"] = geom.to_json
+      loc["center"] = {:x => geom.envelope.centroid.x, :y => geom.envelope.centroid.y }
       loc
     }
   end

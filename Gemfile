@@ -8,6 +8,7 @@ gem 'em-websocket'
 # == RGeo ==
 gem 'rgeo'
 gem 'rgeo-shapefile'
+gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 
 gem 'airbrake'
@@ -15,7 +16,7 @@ gem 'jquery-rails'
 gem 'redis'
 gem 'SystemTimer', :platforms => ['ruby_18']
 gem 'json'
-gem 'devise'
+gem 'devise', '2.0.4'
 gem 'configatron'
 gem 'cancan'
 gem 'rdiscount'

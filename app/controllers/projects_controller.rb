@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   respond_to :mobile, :html
   before_filter :set_desired_columns
-  before_filter :set_locations, :only => [:new, :edit, :update, :create]
+  before_filter :set_locations, :only => [:index, :show, :new, :edit, :update, :create]
 
   def index
     if params[:sort_order].blank? && session[:projects_sort_order].blank?
@@ -12,19 +12,19 @@ class ProjectsController < ApplicationController
     end
 
     if current_user
-      @projects = Project.all(
-        :conditions => {'projects.location_id' => current_user_location_ids},
-        :order => session[:projects_sort_order])
+      # TODO: scope the projects by user's location settings
+      # TODO the scope should probably be a decorator context
+      @projects = current_user.projects.where(:location_id => @locations.collect(&:id)).order(session[:projects_sort_order])
     end
-
   end
 
   def show
     if current_user
-      #FIXME: Dry this branching, also in view we iterate over all projects again to find events.
-      @project = Project.find(params[:id],
-        :conditions => {'projects.location_id' => current_user_location_ids},
-        :include => [:location, :events])
+      # FIXME: Dry this branching, also in view we iterate over all projects again to find events.
+      # TODO: scope the projects by user's location settings
+      @project = current_user.projects.where(
+          :location_id => @locations.collect(&:id)
+        ).find( params[:id], :include => [:location, :events] )
     end
 
     respond_to do |format|

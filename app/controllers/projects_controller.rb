@@ -35,7 +35,7 @@ class ProjectsController < ApplicationController
         if redis.exists(key)
           geojson = redis.get(key)
         else
-          geojson =  @project.location.geom.as_geojson
+          geojson =  @project.location.geom.as_json
           redis.setex(key, 1800, geojson)
         end
         render(:layout => false, :json => geojson) 

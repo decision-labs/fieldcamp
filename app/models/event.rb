@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
       :id => id_title,
       :type => 'Feature',
       :properties => props,
-      :geometry => JSON.parse(geom.as_geojson)
+      :geometry => JSON.parse(geom.as_json)
     }
     geojson
   end

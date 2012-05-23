@@ -41,7 +41,7 @@ class LocationsController < ApplicationController
           geojson = redis.get(key)
         else
           unless @location.admin_level == 0
-            geojson =  @location.geom.as_geojson
+            geojson =  @location.geom.as_json
           else
             # TODO FIXME: think of a better way to simplify on serverside (perhaps a second simple_geom column)
             res = ActiveRecord::Base.connection.execute(

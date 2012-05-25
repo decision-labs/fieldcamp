@@ -28,7 +28,7 @@
 
       / address field geocoding
       .field.group
-        = f.hidden_field :geom, :class => 'hidden_field', :value => @event.geom.try(:as_ewkt)
+        = f.hidden_field :geom, :class => 'hidden_field', :value => @event.geom.try(:as_text)
 
       .field.group
         .fieldWithErrors

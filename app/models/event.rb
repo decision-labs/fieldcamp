@@ -8,6 +8,11 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :partners
   has_and_belongs_to_many :sectors
 
+  # Rgeo
+  set_rgeo_factory_for_column(:geom, RGeo::Geographic.simple_mercator_factory(:has_z_coordinate => true))
+  RGeo::ActiveRecord::GeometryMixin.set_json_generator(:geojson)
+  GEOM_FACTORY ||= RGeo::Geographic.simple_mercator_factory
+
   accepts_nested_attributes_for :images, :allow_destroy => true,  :reject_if => :all_blank
   accepts_nested_attributes_for :documents, :allow_destroy => true,  :reject_if => :all_blank
   accepts_nested_attributes_for :distributions, :allow_destroy => true, :reject_if => :all_blank
@@ -17,7 +22,7 @@ class Event < ActiveRecord::Base
 
   scope :desc, order("events.updated_at DESC")
 
-  attr_accessible :title, :description, :address, :project_id, :partner_ids, :sector_ids, :images_attributes, :distributions_attributes, :documents_attributes
+  attr_accessible :title, :description, :address, :project_id, :partner_ids, :sector_ids, :images_attributes, :distributions_attributes, :documents_attributes, :geom
 
   def as_feature_hash
     props = attributes
@@ -30,7 +35,7 @@ class Event < ActiveRecord::Base
       :id => id_title,
       :type => 'Feature',
       :properties => props,
-      :geometry => JSON.parse(geom.as_json)
+      :geometry => geom.as_json
     }
     geojson
   end

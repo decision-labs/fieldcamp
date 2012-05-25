@@ -5,8 +5,10 @@ class Location < ActiveRecord::Base
   belongs_to :parent, :class_name => "Location"
   has_many :events, :through => :projects
 
+  # Rgeo
   set_rgeo_factory_for_column(:geom, RGeo::Geographic.simple_mercator_factory)
   RGeo::ActiveRecord::GeometryMixin.set_json_generator(:geojson)
+  GEOM_FACTORY ||= RGeo::Geographic.simple_mercator_factory
   # acts_as_geom :geom => :multi_polygon
 
   cattr_reader :per_page
@@ -26,7 +28,8 @@ class Location < ActiveRecord::Base
   def child_projects
     # find projects with location.parent_id = self.id
     # join projects on location.parent_id = self.id
-    Project.where("locations.parent_id = ? OR location_id = ?",self.id, self.id).joins(:location).includes(:events)
+    # Project.where("locations.parent_id = ? OR location_id = ?",self.id, self.id).joins(:location).includes(:events)
+    self.projects.where( :location_id => self.child_location_ids.split('|') )
   end
 
   def total_projects(opts={})

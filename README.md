@@ -116,6 +116,7 @@ Controllers example: `rspec controllers/projects_controller_spec.rb`
 1. fix the problem of not being able to run `rails dbconsole` with
    postgis as the adapter in the `database.yml` the error received is:
    `Unknown command-line client for caritas_development. Submit a Rails patch to add support!`
+1. change `with_z` and `with_m` to `has_z` and `has_m`
 
 ## Add more tests for
 

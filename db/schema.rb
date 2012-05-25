@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
     t.text     "description"
     t.string   "address"
     t.integer  "project_id"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.spatial  "geom",        :limit => {:srid=>4326, :type=>"point"}
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+    t.spatial  "geom",        :limit => {:srid=>4326, :type=>"point", :has_z=>true}
     t.integer  "user_id"
   end
 
@@ -128,6 +128,13 @@ ActiveRecord::Schema.define(:version => 20120223134644) do
   create_table "partners_projects", :id => false, :force => true do |t|
     t.integer "partner_id"
     t.integer "project_id"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "first_name", :null => false
+    t.string   "last_name",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", :force => true do |t|

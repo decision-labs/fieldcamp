@@ -12,19 +12,13 @@ class ProjectsController < ApplicationController
     end
 
     if current_user
-      # TODO: scope the projects by user's location settings
-      # TODO the scope should probably be a decorator context
-      @projects = @settings.location.child_projects.includes({ :events =>  [ :images, :documents, :distributions ] }).order(session[:projects_sort_order])
+      @projects = @settings.location.child_projects.includes({:events => [:images, :documents, :distributions]}).order(session[:projects_sort_order])
     end
   end
 
   def show
     if current_user
-      # FIXME: Dry this branching, also in view we iterate over all projects again to find events.
-      # TODO: scope the projects by user's location settings
-      @project = current_user.projects.where(
-          :location_id => @locations.collect(&:id)
-        ).find( params[:id], :include => [:location, :events] )
+      @project = @settings.location.child_projects.includes(:partners, :sectors, {:events => [ :images, :documents, :distributions ]}).find( params[:id])
     end
 
     respond_to do |format|

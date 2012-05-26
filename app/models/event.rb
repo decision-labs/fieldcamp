@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   # Rgeo
   set_rgeo_factory_for_column(:geom, RGeo::Geographic.simple_mercator_factory(:has_z_coordinate => true))
   RGeo::ActiveRecord::GeometryMixin.set_json_generator(:geojson)
-  GEOM_FACTORY ||= RGeo::Geographic.simple_mercator_factory
+  GEOM_FACTORY ||= RGeo::Geographic.simple_mercator_factory(:has_z_coordinate => true)
 
   accepts_nested_attributes_for :images, :allow_destroy => true,  :reject_if => :all_blank
   accepts_nested_attributes_for :documents, :allow_destroy => true,  :reject_if => :all_blank

@@ -1,4 +1,4 @@
-require 'pp'
+require 'awesome_print'
 require 'geokit'
 require 'rgeo'
 include Geokit::Geocoders
@@ -102,9 +102,9 @@ Settings.where(user_id: monika.id).first_or_create!(:location => world)
 
 # load pakistan data
 if pakistan = Location.where(:name => "Pakistan").first
-  puts "Found Pakistan id: #{pakistan.id}"
+  ap "Found Pakistan id: #{pakistan.id}"
 else
-  puts %x[rake db:load_shapefile \
+  ap %x[rake db:load_shapefile \
     shapefile_path="#{Rails.root}/db/raw_data/pakistan/national_boundries_of_pakistan/pakistan_country_bdry.shp" \
     name_field=NAME_1 \
     description_field=descriptio \
@@ -112,14 +112,15 @@ else
     parent_id=#{world.id} \
     admin_email=#{gernot.email}]
   pakistan = Location.where(:name => "Pakistan").first
-  puts "Created Pakistan id: #{pakistan.id}"
+  ap "Created Pakistan id: #{pakistan.id}"
 end
 
-if provinces_of_pakistan = pakistan.children.pluck(:name)
-  puts "Found Provinces of Pakistan"
-  puts provinces_of_pakistan
+if names_provinces_of_pakistan = pakistan.children.pluck(:name)
+  ap "Found Provinces of Pakistan"
+  ap names_provinces_of_pakistan
+  provinces_of_pakistan = pakistan.children.all
 else
-  puts %x[rake db:load_shapefile \
+  ap %x[rake db:load_shapefile \
     shapefile_path="#{Rails.root}/db/raw_data/pakistan/provincial_boundaries_of_pakistan/provincial_boundaries_of_pakistan.shp" \
     name_field=NAME_1 \
     description_field=ENGTYPE_1 \
@@ -130,9 +131,9 @@ end
 
 # load Haiti data
 if haiti = Location.where(:name => "Republic of Haiti").first
-  puts "Found Haiti id: #{haiti.id}"
+  ap "Found Haiti id: #{haiti.id}"
 else
-  puts %x[rake db:load_shapefile \
+  ap %x[rake db:load_shapefile \
     shapefile_path="#{Rails.root}/db/raw_data/haiti/haiti_national/haiti_national_bdry.shp" \
     name_field=COUNTRY \
     description_field=COMMENT \
@@ -140,24 +141,31 @@ else
     parent_id=#{world.id} \
     admin_email=#{gernot.email}]
   haiti = Location.where(:name => "Republic of Haiti").first
-  puts "Created Haiti id: #{haiti.id}"
+  ap "Created Haiti id: #{haiti.id}"
 end
 
-puts %x[rake db:load_shapefile \
-  shapefile_path="#{Rails.root}/db/raw_data/haiti/Haiti_adm1_2000-2010.shp" \
-  name_field=ADM1_NAME \
-  description_field=COMMENT \
-  admin_level=1 \
-  parent_id=#{haiti.id} \
-  admin_email=#{gernot.email}]
+if names_provinces_of_haiti = haiti.children.pluck(:name)
+  ap "Found Provinces of Haiti"
+  ap names_provinces_of_haiti
+  provinces_of_haiti = haiti.children.all
+else
+  ap %x[rake db:load_shapefile \
+    shapefile_path="#{Rails.root}/db/raw_data/haiti/Haiti_adm1_2000-2010.shp" \
+    name_field=ADM1_NAME \
+    description_field=COMMENT \
+    admin_level=1 \
+    parent_id=#{haiti.id} \
+    admin_email=#{gernot.email}]
+end
 
 # -------------------------------
 # Create partners
 # -------------------------------
 partners = ['UNHCR', 'UNODC', 'ION', 'ILO', 'ICMC', 'JRS', 'COATNET', 'USG'].collect do |name|
-  p = Partner.new(:name => name)
+  p = Partner.where(:name => name).first_or_create!
   p.user = gernot
   p.save!
+  ap p.name
   p
 end
 
@@ -185,9 +193,10 @@ sectors = [
   'Livelihoods',
   'Partner Support'
 ].collect{ |name|
-  s = Sector.new(:name => name)
+  s = Sector.where(:name => name).first_or_create!
   s.user = gernot
   s.save!
+  ap s.name
   s
 }
 
@@ -240,12 +249,13 @@ proj_desc = "With help from partner agencies, Caritas Pakistan has since focused
       width  = (country.bbox_projected.max_point.x - country.bbox_projected.min_point.x).abs/2
       height = (country.bbox_projected.max_point.y - country.bbox_projected.min_point.y).abs/2
 
-      point.x += width  * rand * 0.1 * [1,-1][rand(2)]
-      point.y += height * rand * 0.1 * [1,-1][rand(2)]
-      point.z = 0
-      res=GoogleGeocoder.reverse_geocode([point.y,point.x])
+      x = point.x + width  * rand * 0.1 * [1,-1][rand(2)]
+      y = point.y + height * rand * 0.1 * [1,-1][rand(2)]
+      z = point.z || 0
+      res=GoogleGeocoder.reverse_geocode([y,x])
       e.address = res.full_address
-      e.geom = point
+      event_location = Event::GEOM_FACTORY.point(x,y,z)
+      e.geom = event_location
       e.user = silvius
       e.save!
     end

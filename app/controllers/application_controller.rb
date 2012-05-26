@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_settings
-    @settings = current_user.settings if current_user
+    @settings ||= current_user.settings if current_user
   end
 
   def staging_authentication

@@ -29,7 +29,7 @@ class Location < ActiveRecord::Base
     # find projects with location.parent_id = self.id
     # join projects on location.parent_id = self.id
     # Project.where("locations.parent_id = ? OR location_id = ?",self.id, self.id).joins(:location).includes(:events)
-    self.projects.where( :location_id => self.child_location_ids.split('|') )
+    Project.where( :location_id => self.child_location_ids.split('|') + [self.id] )
   end
 
   def total_projects(opts={})

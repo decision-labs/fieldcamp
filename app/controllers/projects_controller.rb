@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
     if current_user
       # TODO: scope the projects by user's location settings
       # TODO the scope should probably be a decorator context
-      @projects = current_user.settings.location.child_projects.order(session[:projects_sort_order])
+      @projects = @settings.location.child_projects.includes({ :events =>  [ :images, :documents, :distributions ] }).order(session[:projects_sort_order])
     end
   end
 

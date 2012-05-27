@@ -17,11 +17,15 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_location_ids
-    if current_user.settings.location.child_location_ids.blank?
-      [current_user.settings.location.id.to_s]
-    else
-      [current_user.settings.location.id.to_s] + current_user.settings.location.child_location_ids.split('|')
-    end
+    # TODO make this based on sessions
+    #if session[:current_user_location_ids] && !session[:current_user_location_ids].blank?
+      #session[:current_user_location_ids].split('|')
+    #else
+      #session[current_user_location_ids] = Location.location_ids_as_delimited_string(current_user.settings.location_id)
+      #session[:current_user_location_ids].split('|')
+    #end
+
+    Location.location_ids_as_delimited_string(current_user.settings.location_id).split('|')
   end
 
   def set_locale

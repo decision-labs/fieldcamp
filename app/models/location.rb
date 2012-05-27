@@ -13,7 +13,7 @@ class Location < ActiveRecord::Base
 
   cattr_reader :per_page
 
-  attr_reader :projects_count, :total_projects
+  attr_reader :total_projects
 
   @@per_page = 5
 
@@ -21,9 +21,18 @@ class Location < ActiveRecord::Base
   scope :countries, where(:admin_level => 0)
   scope :provinces, where(:admin_level => 1)
 
+  self.per_page = 20
+
   # def self.user_location_scoped(location_ids)
   #   scope :all, where(:id => location_ids)
   # end
+
+  def self.location_ids_as_delimited_string(root_location_id)
+    delimiter = '|'
+    child_ids = Location.where(:id => root_location_id).pluck(:child_location_ids)
+    child_ids = child_ids.reject{|i| i.blank? } # remove blank strings
+    (child_ids + [root_location_id.to_s]).join(delimiter) # add the root id to the string as well
+  end
 
   def child_projects
     # find projects with location.parent_id = self.id

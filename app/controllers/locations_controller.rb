@@ -5,7 +5,8 @@ class LocationsController < ApplicationController
 
   def index
     if current_user
-      @locations = Location.where(:id => current_user_location_ids).order('admin_level asc').includes(:children).page(params[:page]).select(@desired_columns).all
+      # TODO ensure geom is not included with the children
+      @locations = Location.where(:id => current_user_location_ids).includes(:children).select(@desired_columns).page(params[:page]).order('admin_level asc').all
     end
   end
 

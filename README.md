@@ -2,7 +2,7 @@
 
 ## Create database
 
-Add `postgis` to the default postgresql template or manualy add it after
+Add `postgis` to the default postgresql template or manually add it after
 creating the database
 
     rake db:create
@@ -87,7 +87,7 @@ Make sure the database migrations are up-to-date: `rake db:migrate:status`
 
     ruby ./script/websocket_server.rb
 
-#### Run via forman:
+#### Run via foreman:
 
     foreman start
 
@@ -116,6 +116,7 @@ Controllers example: `rspec controllers/projects_controller_spec.rb`
 1. fix the problem of not being able to run `rails dbconsole` with
    postgis as the adapter in the `database.yml` the error received is:
    `Unknown command-line client for caritas_development. Submit a Rails patch to add support!`
+1. change `with_z` and `with_m` to `has_z` and `has_m`
 
 ## Add more tests for
 

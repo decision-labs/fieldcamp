@@ -11,7 +11,7 @@ class Admin::DashboardController < ApplicationController
     # @recent_events    = Event.find(:all, :order => "id desc", :limit => 5)
     # @recent_sectors   = Sector.find(:all, :order => "id desc", :limit => 5)
     # @recent_partners  = Partner.find(:all, :order => "id desc", :limit => 5)
-    @countries ||= Location.countries.select([:id, :name])
+    @countries ||= Location.countries.select([:id, :name, :child_location_ids])
     @countries_attributes = @countries.collect{ |c| c.attributes.merge(:total_projects => c.total_projects(:include_children => true)) }
   end
 end

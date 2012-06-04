@@ -55,9 +55,13 @@ class EventsController < ApplicationController
   # POST /events
   def create
     @project = Project.find(params[:project_id])
-    wkt = params[:event].delete(:geom)
+    #wkt = params[:event].delete(:geom)
+    params[:event][:geom] = 'POINT(71.46972219999998 30.19777779999999 0)' unless params[:event][:geom]
     @event = @project.events.build(params[:event])
-    @event.geom = Point.from_ewkt(wkt) rescue nil # TODO: move to virtual attribute
+    #@event.geom = Point.from_ewkt(wkt) rescue nil # TODO: move to virtual attribute
+    #geom = Event::GEOM_FACTORY.parse_wkt(wkt)
+    #ap geom
+    #@event.geom = geom
     @event.user = current_user
     authorize! :create, @event
 
@@ -79,11 +83,12 @@ class EventsController < ApplicationController
     @event = @project.events.find(params[:id])
     authorize! :update, @event
 
-    wkt = params[:event].delete(:geom)
-
+    #wkt = params[:event].delete(:geom)
+    params[:event][:geom] = 'POINT(71.46972219999998 30.19777779999999 0)' unless params[:event][:geom]
     # begin
     # FIXME: itn't working for ewkb
-    @event.geom = Point.from_ewkt(wkt)
+    #@event.geom = wkt
+    #@event.save
     # rescue GeoRuby::SimpleFeatures::EWKTFormatError
     #   @event.geom = Point.from_ewkb(wkt)
     # end
@@ -93,7 +98,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        format.html { redirect_to(project_url(@project, :anchor => "event_#{@event.id}"), :notice => 'Event was successfully updated.') }
+        format.html { redirect_to(project_url(@project, :anchor => "event_#{@event.id}"), :notice => 'Activity was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end

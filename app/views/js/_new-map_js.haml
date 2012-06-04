@@ -93,7 +93,7 @@
       return false;
     });
 
-    var latlng = new google.maps.LatLng("#{@project.location.geom.envelope.center.y}", "#{@project.location.geom.envelope.center.x}");
+    var latlng = new google.maps.LatLng("#{@project.location.geom.envelope.centroid.y}", "#{@project.location.geom.envelope.centroid.x}");
     var mapOptions = {
       zoom: 8,
       center: latlng,
@@ -101,3 +101,4 @@
     };
     map = new google.maps.Map($('#map_canvas')[0], mapOptions)
   })
+

@@ -13,13 +13,13 @@
             \:
 
         %tbody
-          - location.children.map{|loc| [loc.id, loc.name]}.each_slice(5) do |v|
+          - # TODO: use activerecord in_groups_of
+          - location.children.map{|loc| [loc.id, loc.name, loc.projects_count]}.each_slice(5) do |v|
             %tr{:class=>cycle('odd','even')}
               - v.each do |l|
-                - project_count = Location.find(l[0]).projects.size
-                %td{ :class => project_count > 0 ? "has_project" : "" }
-                  - if project_count > 0
+                %td{ :class => l[2] > 0 ? "has_project" : "" }
+                  - if l[2] > 0
                     %span.location
-                      = link_to "#{l[1]} (#{pluralize(project_count, 'project')})", location_path(l[0])
+                      = link_to "#{l[1]} (#{pluralize(l[2], 'project')})", location_path(l[0])
                   - else
                     %span.location= link_to l[1], location_path(l[0])

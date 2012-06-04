@@ -19,12 +19,9 @@ class SectorsController < ApplicationController
   def show
     if current_user
       @sector = Sector.find(params[:id])
-      @projects = @sector.projects.all(:conditions => {
-        "projects.location_id" => current_user_location_ids
-      })
-    else
-      @sector = Sector.find(params[:id], :include => :projects)
-      @projects = @sector.projects.all
+      @projects = @sector.projects.where(
+        :location_id => current_user_location_ids
+      ).includes({:events => [ :images, :documents, :distributions ]})
     end
   end
 

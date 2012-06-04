@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   respond_to :mobile, :html
   before_filter :set_desired_columns
-  before_filter :set_locations, :only => [:new, :edit, :update, :create]
+  before_filter :set_locations, :only => [:index, :show, :new, :edit, :update, :create]
 
   def index
     if params[:sort_order].blank? && session[:projects_sort_order].blank?
@@ -12,19 +12,13 @@ class ProjectsController < ApplicationController
     end
 
     if current_user
-      @projects = Project.all(
-        :conditions => {'projects.location_id' => current_user_location_ids},
-        :order => session[:projects_sort_order])
+      @projects = @settings.location.child_projects.includes({:events => [:images, :documents, :distributions]}).order(session[:projects_sort_order])
     end
-
   end
 
   def show
     if current_user
-      #FIXME: Dry this branching, also in view we iterate over all projects again to find events.
-      @project = Project.find(params[:id],
-        :conditions => {'projects.location_id' => current_user_location_ids},
-        :include => [:location, :events])
+      @project = @settings.location.child_projects.includes(:partners, :sectors, {:events => [ :images, :documents, :distributions ]}).find( params[:id])
     end
 
     respond_to do |format|
@@ -35,7 +29,7 @@ class ProjectsController < ApplicationController
         if redis.exists(key)
           geojson = redis.get(key)
         else
-          geojson =  @project.location.geom.as_geojson
+          geojson =  @project.location.geom.as_json
           redis.setex(key, 1800, geojson)
         end
         render(:layout => false, :json => geojson) 

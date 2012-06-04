@@ -26,8 +26,7 @@ class User < ActiveRecord::Base
   def events_since_login
 
     unless settings.location.nil?
-      current_user_location_ids = settings.location.children.collect(&:id)
-      current_user_location_ids << settings.location_id
+      current_user_location_ids = Location.location_ids_as_delimited_string(settings.location_id).split('|')
       Event.joins(:project).where("events.created_at > ? AND projects.location_id IN (?)", last_sign_in_at, current_user_location_ids)
     else
       return []

@@ -5,19 +5,8 @@ class LocationsController < ApplicationController
 
   def index
     if current_user
-      @locations = current_user.settings.location.children.
-        paginate(:per_page => 5, :page => params[:page]).
-        select(@desired_columns).
-        order('locations.created_at desc').all
-      location = Location.find(current_user.settings.location.id, :select => @desired_columns)
-      @locations.insert(0, location)
-    else
-      @locations = Location.paginate(
-        :per_page => 5,
-        :page => params[:page],
-        :select => @desired_columns,
-        :conditions => ["locations.admin_level < ?", 1],
-        :order  => 'locations.created_at desc').all
+      # TODO ensure geom is not included with the children
+      @locations = Location.where(:id => current_user_location_ids).includes(:children).select(@desired_columns).page(params[:page]).order('admin_level asc').all
     end
   end
 
@@ -41,7 +30,7 @@ class LocationsController < ApplicationController
           geojson = redis.get(key)
         else
           unless @location.admin_level == 0
-            geojson =  @location.geom.as_geojson
+            geojson =  @location.geom.as_json
           else
             # TODO FIXME: think of a better way to simplify on serverside (perhaps a second simple_geom column)
             res = ActiveRecord::Base.connection.execute(

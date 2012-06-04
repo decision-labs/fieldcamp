@@ -15,14 +15,10 @@ class PartnersController < ApplicationController
   def show
     if current_user
       @partner = Partner.find(params[:id])
-      @projects = @partner.projects.all(:conditions => {
-        "projects.location_id" => current_user_location_ids
-      })
-    else
-      @partner = Partner.find(params[:id], :include => :projects)
-      @projects = @partner.projects
+      @projects = @partner.projects.where(
+        :location_id => current_user_location_ids
+      ).includes({:events => [ :images, :documents, :distributions ]})
     end
-
   end
 
   def new

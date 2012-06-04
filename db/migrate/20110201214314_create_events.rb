@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string  :title
       t.text    :description
-      t.point   :geom, :srid => 4326, :with_z => true
+      t.point   :geom, :srid => 4326, :has_z => true
       t.string  :address
       t.integer :project_id
 

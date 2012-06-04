@@ -12,12 +12,20 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => t(:unauthorized, :action => t(exception.action), :subject => t(exception.subject))
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render_404
+  end
+
   def current_user_location_ids
-    if current_user.settings.location.child_location_ids.blank?
-      [current_user.settings.location.id.to_s]
-    else
-      [current_user.settings.location.id.to_s] + current_user.settings.location.child_location_ids.split('|')
-    end
+    # TODO make this based on sessions
+    #if session[:current_user_location_ids] && !session[:current_user_location_ids].blank?
+      #session[:current_user_location_ids].split('|')
+    #else
+      #session[current_user_location_ids] = Location.location_ids_as_delimited_string(current_user.settings.location_id)
+      #session[:current_user_location_ids].split('|')
+    #end
+
+    Location.location_ids_as_delimited_string(current_user.settings.location_id).split('|')
   end
 
   def set_locale
@@ -31,6 +39,18 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def render_404(exception = nil)
+    if exception
+      logger.info "Rendering 404 with exception: #{exception.message}"
+    end
+
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404.html", :status => :not_found, :layout => false }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
+  end
 
   def setup_breadcrumbs
     # TODO: refactor, will probably need to move to their own controllers 
@@ -62,7 +82,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_settings
-    @settings = current_user.settings if current_user
+    @settings ||= current_user.settings if current_user
   end
 
   def staging_authentication

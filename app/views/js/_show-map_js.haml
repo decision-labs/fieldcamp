@@ -5,7 +5,7 @@
   function initialize() {
 
     var pathname = "#{url_for(:action => controller.action_name)}"
-    var myLatlng = new google.maps.LatLng("#{@project.location.geom.envelope.center.y}", "#{@project.location.geom.envelope.center.x}");
+    var myLatlng = new google.maps.LatLng("#{@project.location.geom.envelope.centroid.y}", "#{@project.location.geom.envelope.centroid.x}");
 
     var useragent = navigator.userAgent;
     var controlVisible = true;

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '5.2.4.6'
 gem 'pg'
 gem 'haml'
 gem 'em-websocket'
@@ -12,11 +12,11 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter'
 
 gem 'airbrake'
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.0.1'
 gem 'redis'
 gem 'SystemTimer', :platforms => ['ruby_18']
 gem 'json'
-gem 'devise', '2.0.4'
+gem 'devise', '4.4.2'
 gem 'configatron'
 gem 'cancan'
 gem 'rdiscount'
@@ -25,15 +25,15 @@ gem 'dalli'
 gem 'compass', '>= 0.10.6'
 gem 'carrierwave'
 gem 'rmagick'
-gem 'kaminari'
+gem 'kaminari', '>= 0.13.0'
 gem 'squeel'
 gem 'nested_form'
 gem 'crummy', '~> 1.3.6'
 
 group :test, :development do
   gem 'sqlite3'
-  gem 'haml-rails'
-  gem 'rails3-generators'
+  gem 'haml-rails', '>= 0.5.3'
+  gem 'rails3-generators', '>= 0.17.4'
   gem 'dbf'
   gem 'fastercsv'
 
@@ -51,7 +51,7 @@ group :test, :development do
 end
 
 group :development do
-  gem 'rails-footnotes'
+  gem 'rails-footnotes', '>= 3.7.8'
   gem 'capistrano'
   gem 'bundle_outdated'
   gem 'foreman'
@@ -60,7 +60,7 @@ end
 group :test do
   gem 'shoulda'
   gem 'rspec'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 2.10.1', '>= 2.10.1'
   gem 'gherkin'
   gem 'cucumber'
   gem 'cucumber-rails'
@@ -85,7 +85,7 @@ group :test do
   gem 'faker'
   # gem 'ffaker'
 
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '>= 3.3.0'
   gem 'database_cleaner'
   gem 'rb-fsevent', :require => false
   gem 'spork', '~> 0.9.0.rc'

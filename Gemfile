@@ -63,7 +63,7 @@ group :test do
   gem 'rspec-rails'
   gem 'gherkin'
   gem 'cucumber'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', '>= 1.3.0'
 
   # == for generators ==
   gem 'web-app-theme'
@@ -89,7 +89,7 @@ group :test do
   gem 'database_cleaner'
   gem 'rb-fsevent', :require => false
   gem 'spork', '~> 0.9.0.rc'
-  gem 'capybara'
+  gem 'capybara', '>= 1.1.2'
   gem 'machinist'
 end
 

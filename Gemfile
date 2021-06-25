@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.5'
+gem 'rails', '4.0.0'
 gem 'pg'
 gem 'haml'
 gem 'em-websocket'
@@ -9,7 +9,7 @@ gem 'em-websocket'
 gem 'rgeo'
 gem 'rgeo-shapefile'
 gem 'rgeo-geojson'
-gem 'activerecord-postgis-adapter'
+gem 'activerecord-postgis-adapter', '>= 0.4.3'
 
 gem 'airbrake'
 gem 'jquery-rails'
@@ -26,7 +26,7 @@ gem 'compass', '>= 0.10.6'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'kaminari'
-gem 'squeel'
+gem 'squeel', '>= 1.1.0'
 gem 'nested_form'
 gem 'crummy', '~> 1.3.6'
 
@@ -51,7 +51,7 @@ group :test, :development do
 end
 
 group :development do
-  gem 'rails-footnotes'
+  gem 'rails-footnotes', '>= 3.7.8'
   gem 'capistrano'
   gem 'bundle_outdated'
   gem 'foreman'
@@ -67,7 +67,7 @@ group :test do
 
   # == for generators ==
   gem 'web-app-theme'
-  gem 'rails-erd'
+  gem 'rails-erd', '>= 1.0.0'
   gem 'erb2haml' # (used when converting devise views to haml)
 
   # == rspec ==
